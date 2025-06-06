@@ -74,4 +74,7 @@ bun run preview
 
 Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
 
+<!-- firebase デプロイ -->
+yarn build
 firebase deploy --only functions,hosting
+https://reunion-app-new.web.app/
