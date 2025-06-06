@@ -1,0 +1,40 @@
+{
+  "firestore": {
+    "database": "(default)",
+    "location": "asia-northeast1",
+    "rules": "firestore.rules",
+    "indexes": "firestore.indexes.json"
+  },
+  "functions": {
+    "source": ".output/server",
+    "codebase": "default",
+    "ignore": [
+      "node_modules",
+      ".git",
+      "firebase-debug.log",
+      "firebase-debug.*.log",
+      "*.local"
+    ],
+    "predeploy": [
+      "yarn --cwd \"$RESOURCE_DIR\" install"
+    ]
+  },
+  "hosting": {
+    "site": "reunion-app-new",
+    "public": ".output/public",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "rewrites": [
+      {
+        "source": "**",
+        "function": "server"
+      }
+    ]
+  },
+  "storage": {
+    "rules": "storage.rules"
+  }
+}
