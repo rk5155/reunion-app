@@ -27,8 +27,8 @@
     <div class="text-center mt-10 mb-10">
       <v-btn
         href="#createInvitation"
-        color="teal-lighten-2"
-        class="text-center font-weight-bold"
+        color="deep-purple-lighten-3"
+        class="text-center font-weight-bold rounded-pill"
       >
         無料で招待状を作ってみる
       </v-btn>
@@ -230,29 +230,29 @@
       <div class="inner">
         <ul class="steps">
           <li>
-            <h3>1. アカウント登録</h3>
+            <h3><span>1.</span> アカウント登録</h3>
             <p>Reunionに登録して、再会イベントを企画する準備を始めましょう。</p>
           </li>
           <li>
-            <h3>2. イベント作成</h3>
+            <h3><span>2.</span> イベント作成</h3>
             <p>
               イベントの詳細を入力し、参加者を招待します。日時や場所を簡単に設定可能です。
             </p>
           </li>
           <li>
-            <h3>3. 招待リンク送信</h3>
+            <h3><span>3.</span> 招待リンク送信</h3>
             <p>
               招待リンクを参加者に送信し、出欠確認を行います。参加者はリンクから簡単に登録できます。
             </p>
           </li>
           <li>
-            <h3>4. 決済と準備</h3>
+            <h3><span>4.</span> 決済と準備</h3>
             <p>
               Stripeを利用して参加費を集金。イベント当日の準備を進めましょう。
             </p>
           </li>
           <li>
-            <h3>5. イベント開催</h3>
+            <h3><span>5.</span> イベント開催</h3>
             <p>
               Reunionを活用して、参加者との再会を楽しみましょう。写真やコメントを共有して思い出を残します。
             </p>
@@ -350,8 +350,22 @@ body {
   font-weight: 300;
   -webkit-text-size-adjust: 100%;
   overflow-x: hidden;
-  color: #000;
+  color: #707380; /* テキストカラーを統一 */
   background: #fff;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+li,
+dd {
+  color: #4b4d54; /* 通常のテキストカラーを統一 */
+}
+p {
+  color: #707380; /* 段落のテキストカラーを統一 */
 }
 
 a {
@@ -412,11 +426,13 @@ input:focus {
   font-family: 'Pacifico', cursive;
   margin-bottom: 20px;
   font-weight: normal;
+  color: #fff;
 }
 
 #slogan h2 {
   font-size: 20px;
   font-weight: normal;
+  color: #fff;
 }
 
 /* フッター
@@ -466,7 +482,7 @@ section h2 {
 ------------------------------------------------------------*/
 
 .vision {
-  width: 60%;
+  width: 90%;
   margin: 0 auto;
   padding-bottom: 80px;
 }
@@ -578,7 +594,7 @@ section h2 {
   font-size: 24px;
   text-align: center;
   margin-bottom: 30px;
-  color: #333;
+  color: #707380;
 }
 
 .feature-list {
@@ -610,7 +626,6 @@ section h2 {
 .feature-list h3 {
   font-size: 18px;
   margin-bottom: 10px;
-  color: #4caf50;
 }
 
 .feature-list p {
@@ -787,14 +802,6 @@ section h2 {
 }
 
 @media only screen and (max-width: 799px) {
-  #slogan h1 {
-    font-size: 31px;
-  }
-
-  #slogan h2 {
-    font-size: 16px;
-  }
-
   a#menu {
     display: inline-block;
     position: relative;
@@ -908,6 +915,11 @@ section h2 {
     display: block;
     max-width: 288px;
   }
+}
+.steps h3 span {
+  color: #b39ddb; /* 数字のカラー */
+  font-weight: bold; /* 数字を強調 */
+  margin-right: 5px; /* 数字とテキストの間に余白を追加 */
 }
 
 @media only screen and (max-width: 1199px) {
