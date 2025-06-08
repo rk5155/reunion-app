@@ -21,7 +21,7 @@
       <img src="/images/mainImg.jpg" alt="" />
       <div id="slogan">
         <h1>Reunion</h1>
-        <h2>人と人を、もう一度つなぐ</h2>
+        <h2>あの日の仲間と、もう一度つながる。</h2>
       </div>
     </header>
 
@@ -213,6 +213,46 @@
     </section>
     <!-- // FEATURE -->
 
+    <!-- 利用の流れ -->
+    <section id="sec07">
+      <header>
+        <h2>利用の流れ</h2>
+      </header>
+      <div class="inner">
+        <ul class="steps">
+          <li>
+            <h3>1. アカウント登録</h3>
+            <p>Reunionに登録して、再会イベントを企画する準備を始めましょう。</p>
+          </li>
+          <li>
+            <h3>2. イベント作成</h3>
+            <p>
+              イベントの詳細を入力し、参加者を招待します。日時や場所を簡単に設定可能です。
+            </p>
+          </li>
+          <li>
+            <h3>3. 招待リンク送信</h3>
+            <p>
+              招待リンクを参加者に送信し、出欠確認を行います。参加者はリンクから簡単に登録できます。
+            </p>
+          </li>
+          <li>
+            <h3>4. 決済と準備</h3>
+            <p>
+              Stripeを利用して参加費を集金。イベント当日の準備を進めましょう。
+            </p>
+          </li>
+          <li>
+            <h3>5. イベント開催</h3>
+            <p>
+              Reunionを活用して、参加者との再会を楽しみましょう。写真やコメントを共有して思い出を残します。
+            </p>
+          </li>
+        </ul>
+      </div>
+    </section>
+    <!-- // 利用の流れ -->
+
     <footer id="footer">
       Copyright(c) 2025 Reunion Inc. All Rights Reserved.
     </footer>
@@ -335,7 +375,6 @@ input:focus {
   position: absolute;
   left: 50%;
   width: 1280px;
-  height: 568px;
   margin-left: -640px;
 }
 
@@ -498,6 +537,91 @@ section h2 {
   width: 100% !important;
   height: 100% !important;
   border: 0;
+}
+
+/* FEATURE セクションのスタイル */
+#sec06 {
+  background: #f9f9f9;
+  padding: 50px 0;
+}
+
+#sec06 header h2 {
+  font-size: 24px;
+  text-align: center;
+  margin-bottom: 30px;
+  color: #333;
+}
+
+.feature-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 auto;
+  max-width: 800px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.feature-list li {
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin: 10px;
+  flex: 1 1 calc(48% - 20px); /* 2列レイアウト */
+  box-sizing: border-box;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.feature-list li:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+}
+
+.feature-list h3 {
+  font-size: 18px;
+  margin-bottom: 10px;
+  color: #4caf50;
+}
+
+.feature-list p {
+  font-size: 14px;
+  color: #555;
+  line-height: 1.6;
+}
+
+/* 利用の流れセクション */
+#sec07 {
+  background: #f9f9f9;
+  padding: 50px 0;
+}
+
+#sec07 header h2 {
+  font-size: 24px;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.steps {
+  list-style: none;
+  padding: 0;
+  margin: 0 auto;
+  max-width: 800px;
+}
+
+.steps li {
+  margin-bottom: 30px;
+}
+
+.steps h3 {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.steps p {
+  font-size: 16px;
+  color: #555;
 }
 
 /* RESPONSIVE 設定
