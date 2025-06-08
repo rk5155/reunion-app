@@ -18,12 +18,21 @@
     </nav>
 
     <header id="header">
-      <img src="/images/mainImg.jpg" alt="" />
       <div id="slogan">
         <h1>Reunion</h1>
         <h2>あの日の仲間と、もう一度つながる。</h2>
       </div>
     </header>
+
+    <div class="text-center mt-10 mb-10">
+      <v-btn
+        href="#createInvitation"
+        color="teal-lighten-2"
+        class="text-center font-weight-bold"
+      >
+        無料で招待状を作ってみる
+      </v-btn>
+    </div>
 
     <!-- VISION -->
     <section id="sec01">
@@ -369,6 +378,15 @@ input:focus {
   overflow: hidden;
   width: 100%;
   height: 568px;
+  background-image: url('/images/main_pc.jpg'); /* PC用画像 */
+  background-size: cover;
+  background-position: center;
+}
+
+@media only screen and (max-width: 640px) {
+  #header {
+    background-image: url('/images/main_sp.jpg'); /* SP用画像 */
+  }
 }
 
 #header img {
@@ -456,13 +474,24 @@ section h2 {
 /* SEC02 MESSAGE
 ------------------------------------------------------------*/
 .wrap {
-  clear: both;
+  display: flex; /* Flexboxを使用 */
+  flex-wrap: wrap; /* 子要素を折り返し可能に */
+  justify-content: space-between; /* 子要素を均等に配置 */
+  align-items: center; /* 子要素を中央揃え */
   width: 100%;
   background: #f6f6f6;
 }
 
 .bg {
+  max-width: 50%; /* 最大幅を設定 */
   line-height: 0;
+}
+
+.txt {
+  max-width: 50%; /* 最大幅を設定 */
+  display: flex;
+  align-items: center; /* 垂直方向で中央揃え */
+  padding: 0 20px; /* テキストに余白を追加 */
 }
 
 .txt h2 {
@@ -569,7 +598,6 @@ section h2 {
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   padding: 20px;
   margin: 10px;
-  flex: 1 1 calc(48% - 20px); /* 2列レイアウト */
   box-sizing: border-box;
   transition: transform 0.3s, box-shadow 0.3s;
 }
@@ -704,6 +732,7 @@ section h2 {
     display: table-cell;
     padding: 0 100px;
     vertical-align: middle;
+    height: 100%;
   }
 
   /* SEC03 SERVICE MESSAGE STORY
@@ -741,9 +770,19 @@ section h2 {
 }
 
 @media only screen and (max-width: 640px) {
-  #map iframe {
-    width: 96% !important;
-    left: 2%;
+  .wrap {
+    flex-direction: column; /* 子要素を縦並びに変更 */
+    align-items: center; /* 子要素を中央揃え */
+  }
+
+  .bg,
+  .txt {
+    max-width: 100%; /* 幅を100%に設定 */
+    margin-bottom: 20px; /* 下に余白を追加 */
+  }
+
+  .txt {
+    padding: 0 10px; /* テキストの余白を調整 */
   }
 }
 
