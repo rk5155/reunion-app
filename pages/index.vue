@@ -42,32 +42,44 @@
       <div class="inner">
         <ul class="feature-list">
           <li>
+            <img src="/images/sec02_01.jpg" alt="完全無料で使える" />
             <h3><span>1.</span> 完全無料で使える！</h3>
             <p>
               登録・利用・イベント開催まですべて無料。広告や課金も一切ナシで安心して使えます。
             </p>
           </li>
           <li>
+            <img src="/images/sec02_01.jpg" alt="卒業年やクラス単位の管理" />
             <h3><span>2.</span> 卒業年やクラス単位の管理</h3>
             <p>クラス・部活・ゼミ・学科などでグルーピング。</p>
           </li>
           <li>
-            <h3><span>3.</span> 当時の思い出投稿・写真掲示板</h3>
+            <img src="/images/sec02_01.jpg" alt="当時の思い出写真投稿" />
+            <h3><span>3.</span> 当時の思い出写真投稿</h3>
             <p>
               「昔の写真をアップしてね」「担任のエピソード」などの投稿機能。イベント当日にはスライドショー表示も可能。
             </p>
           </li>
           <li>
+            <img
+              src="/images/sec02_01.jpg"
+              alt="幹事向けのラクラク業務支援ツール"
+            />
             <h3><span>4.</span> 幹事向けのラクラク業務支援ツール</h3>
             <p>招待リンク生成、出欠＆会費管理、QRチェックイン対応。</p>
           </li>
           <li>
+            <img
+              src="/images/sec02_01.jpg"
+              alt="オンライン集金 + 自動リマインド"
+            />
             <h3><span>5.</span> オンライン集金 + 自動リマインド</h3>
             <p>
               締切前に自動通知、支払い済ユーザーは自動でチェックイン。幹事への入金は初期段階で手動対応。
             </p>
           </li>
           <li>
+            <img src="/images/sec02_01.jpg" alt="参加者一覧" />
             <h3><span>6.</span> 「あの人来る？」がわかる参加者一覧</h3>
             <p>
               プロフィール＋当時の写真が並ぶ名簿機能。表示／非表示選択可で、参加意欲UP。
@@ -608,7 +620,6 @@ section h2 {
   border: 1px solid #ddd;
   border-radius: 8px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  padding: 20px;
   margin: 10px;
   box-sizing: border-box;
   transition: transform 0.3s, box-shadow 0.3s;
@@ -921,6 +932,43 @@ section h2 {
   color: #b39ddb; /* 数字のカラー */
   font-weight: bold; /* 数字を強調 */
   margin-right: 5px; /* 数字とテキストの間に余白を追加 */
+}
+
+.feature-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 auto;
+  max-width: 800px;
+}
+
+.feature-list li {
+  display: flex;
+  flex-direction: column; /* 縦並びに変更 */
+  align-items: center; /* 中央揃え */
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.feature-list img {
+  height: auto;
+  margin-bottom: 10px; /* 画像とテキストの間に余白を追加 */
+}
+
+.feature-list h3 span {
+  color: #b39ddb; /* 数字のカラー */
+  font-weight: bold; /* 数字を強調 */
+  margin-right: 5px; /* 数字とテキストの間に余白を追加 */
+}
+
+.feature-list h3 {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.feature-list p {
+  font-size: 14px;
+  color: #555;
+  line-height: 1.6;
 }
 
 @media only screen and (max-width: 1199px) {
