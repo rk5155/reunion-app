@@ -42,48 +42,54 @@
       <div class="inner">
         <ul class="feature-list">
           <li>
-            <img src="/images/sec02_01.jpg" alt="完全無料で使える" />
-            <h3><span>1.</span> 完全無料で使える！</h3>
-            <p>
-              登録・利用・イベント開催まですべて無料。広告や課金も一切ナシで安心して使えます。
-            </p>
+            <img src="/images/feature_01.png" alt="完全無料で使える" />
+            <div class="feature-text">
+              <h3><span>1.</span> 完全無料で使える！</h3>
+              <p>
+                登録・利用・イベント開催まですべて無料。広告や課金も一切ナシで安心して使えます。
+              </p>
+            </div>
           </li>
           <li>
-            <img src="/images/sec02_01.jpg" alt="卒業年やクラス単位の管理" />
-            <h3><span>2.</span> 卒業年やクラス単位の管理</h3>
-            <p>クラス・部活・ゼミ・学科などでグルーピング。</p>
+            <img src="/images/feature_02.png" alt="卒業年やクラス単位の管理" />
+            <div class="feature-text">
+              <h3><span>2.</span> 卒業年やクラス単位の管理</h3>
+              <p>クラス・部活・ゼミ・学科などでグルーピング。</p>
+            </div>
           </li>
           <li>
-            <img src="/images/sec02_01.jpg" alt="当時の思い出写真投稿" />
-            <h3><span>3.</span> 当時の思い出写真投稿</h3>
-            <p>
-              「昔の写真をアップしてね」「担任のエピソード」などの投稿機能。イベント当日にはスライドショー表示も可能。
-            </p>
+            <img src="/images/circleImg03.png" alt="卒業年やクラス単位の管理" />
+            <div class="feature-text">
+              <h3><span>3.</span> 当時の思い出写真投稿</h3>
+              <p>
+                「昔の写真をアップしてね」「担任のエピソード」などの投稿機能。イベント当日にはスライドショー表示も可能。
+              </p>
+            </div>
           </li>
           <li>
-            <img
-              src="/images/sec02_01.jpg"
-              alt="幹事向けのラクラク業務支援ツール"
-            />
-            <h3><span>4.</span> 幹事向けのラクラク業務支援ツール</h3>
-            <p>招待リンク生成、出欠＆会費管理、QRチェックイン対応。</p>
+            <img src="/images/circleImg01.png" alt="卒業年やクラス単位の管理" />
+            <div class="feature-text">
+              <h3><span>4.</span> 幹事向けのラクラク業務支援ツール</h3>
+              <p>招待リンク生成、出欠＆会費管理、QRチェックイン対応。</p>
+            </div>
           </li>
           <li>
-            <img
-              src="/images/sec02_01.jpg"
-              alt="オンライン集金 + 自動リマインド"
-            />
-            <h3><span>5.</span> オンライン集金 + 自動リマインド</h3>
-            <p>
-              締切前に自動通知、支払い済ユーザーは自動でチェックイン。幹事への入金は初期段階で手動対応。
-            </p>
+            <img src="/images/circleImg02.png" alt="卒業年やクラス単位の管理" />
+            <div class="feature-text">
+              <h3><span>5.</span> オンライン集金 + 自動リマインド</h3>
+              <p>
+                締切前に自動通知、支払い済ユーザーは自動でチェックイン。幹事への入金は初期段階で手動対応。
+              </p>
+            </div>
           </li>
           <li>
-            <img src="/images/sec02_01.jpg" alt="参加者一覧" />
-            <h3><span>6.</span> 「あの人来る？」がわかる参加者一覧</h3>
-            <p>
-              プロフィール＋当時の写真が並ぶ名簿機能。表示／非表示選択可で、参加意欲UP。
-            </p>
+            <img src="/images/feature_02.png" alt="卒業年やクラス単位の管理" />
+            <div class="feature-text">
+              <h3><span>6.</span> 「あの人来る？」がわかる参加者一覧</h3>
+              <p>
+                プロフィール＋当時の写真が並ぶ名簿機能。表示／非表示選択可で、参加意欲UP。
+              </p>
+            </div>
           </li>
         </ul>
       </div>
@@ -127,51 +133,6 @@
       </div>
     </section>
     <!-- // MESSAGE -->
-
-    <!-- SERVICE -->
-    <section id="sec03">
-      <div class="inner">
-        <ul class="col3">
-          <li>
-            <h2>イベント作成</h2>
-            <img
-              src="/images/circleImg01.png"
-              width="288"
-              height="288"
-              alt=""
-            />
-            <p>
-              誰でも簡単に再会イベントを作成できます。参加者を招待し、開催場所や日時をスムーズに調整可能。
-            </p>
-          </li>
-          <li>
-            <h2>決済機能</h2>
-            <img
-              src="/images/circleImg02.png"
-              width="288"
-              height="288"
-              alt=""
-            />
-            <p>
-              Stripeと連携し、参加費の事前決済にも対応。主催者・参加者ともに安心・スムーズに利用できます。
-            </p>
-          </li>
-          <li>
-            <h2>思い出の共有</h2>
-            <img
-              src="/images/circleImg03.png"
-              width="288"
-              height="288"
-              alt=""
-            />
-            <p>
-              再会後の写真やメッセージを簡単に共有。イベント後もつながりが続きます。
-            </p>
-          </li>
-        </ul>
-      </div>
-    </section>
-    <!-- // SERVICE -->
 
     <!-- STORY -->
     <section id="sec04">
@@ -492,7 +453,6 @@ section h2 {
 .vision {
   width: 90%;
   margin: 0 auto;
-  padding-bottom: 80px;
 }
 
 /* SEC02 MESSAGE
@@ -595,7 +555,6 @@ section h2 {
 /* FEATURE セクションのスタイル */
 #sec06 {
   background: #f9f9f9;
-  padding: 50px 0;
 }
 
 #sec06 header h2 {
@@ -644,7 +603,6 @@ section h2 {
 /* 利用の流れセクション */
 #sec07 {
   background: #f9f9f9;
-  padding: 50px 0;
 }
 
 #sec07 header h2 {
@@ -920,7 +878,6 @@ section h2 {
   .col3 li {
     margin: 0 auto;
     display: block;
-    max-width: 288px;
   }
 }
 .steps h3 span {
@@ -947,11 +904,13 @@ section h2 {
   align-items: center; /* 中央揃え */
   margin-bottom: 30px;
   text-align: center;
+  border-radius: 20px;
+  border: none;
 }
 
 .feature-list img {
   height: auto;
-  margin-bottom: 10px; /* 画像とテキストの間に余白を追加 */
+  border-radius: 20px;
 }
 
 .feature-list h3 span {
@@ -969,6 +928,9 @@ section h2 {
   font-size: 14px;
   color: #555;
   line-height: 1.6;
+}
+.feature-text {
+  padding: 16px 8px;
 }
 
 @media only screen and (max-width: 1199px) {
