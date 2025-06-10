@@ -25,12 +25,25 @@
 </template>
 
 <script lang="ts" setup>
-const handleSubmit = (formData: {
-  email: string;
-  confirmEmail?: string;
-  password: string;
-}) => {
-  console.log('登録情報:', formData);
-  // API呼び出しなどを行います
+import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
+import { useFirebase } from '@/composables/useFirebase';
+
+// Firebase アプリを取得
+const { app } = useFirebase();
+const auth = getAuth(app);
+
+const handleSubmit = async (formData: { email: string; password: string }) => {
+  try {
+    const userCredential = await createUserWithEmailAndPassword(
+      auth,
+      formData.email,
+      formData.password
+    );
+    console.log('ユーザー登録成功:', userCredential.user);
+    alert('会員登録が完了しました！');
+  } catch (error) {
+    console.error('ユーザー登録エラー:', error);
+    alert('会員登録に失敗しました: ' + error.message);
+  }
 };
 </script>

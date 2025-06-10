@@ -1,21 +1,31 @@
 // Import the functions you need from the SDKs you need
-import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
+import { initializeApp, getApps, getApp } from "firebase/app";
+import { useRuntimeConfig } from "#app";
 
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
-const firebaseConfig = {
-  apiKey: import.meta.env.FIREBASE_API_KEY,
-  authDomain: import.meta.env.FIREBASE_AUTH_DOMAIN,
-  projectId: import.meta.env.FIREBASE_PROJECT_ID,
-  storageBucket: import.meta.env.FIREBASE_STORAGE_BUCKET,
-  messagingSenderId: import.meta.env.FIREBASE_MESSAGING_SENDER_ID,
-  appId: import.meta.env.FIREBASE_APP_ID,
-  measurementId: import.meta.env.FIREBASE_MEASUREMENT_ID
+export const useFirebase = () => {
+  const config = useRuntimeConfig();
+
+  const firebaseConfig = {
+    apiKey: config.public.firebaseApiKey as string,
+    authDomain: config.public.firebaseAuthDomain as string,
+    projectId: config.public.firebaseProjectId as string,
+    storageBucket: config.public.firebaseStorageBucket as string,
+    messagingSenderId: config.public.firebaseMessagingSenderId as string,
+    appId: config.public.firebaseAppId as string,
+    measurementId: config.public.firebaseMeasurementId as string,
+  };
+
+  console.log("Firebase Config:", firebaseConfig); // デバッグ用ログ
+
+  // Firebase アプリを初期化（既に初期化済みの場合は既存のアプリを取得）
+  const app = getApps().length ? getApp() : initializeApp(firebaseConfig);
+
+  // Firebase Analytics をクライアントサイドでのみ初期化
+  if (import.meta.client && firebaseConfig.measurementId) {
+    import("firebase/analytics").then(({ getAnalytics }) => {
+      getAnalytics(app);
+    });
+  }
+
+  return { app };
 };
-
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-getAnalytics(app);
