@@ -12,9 +12,12 @@
           @submit="handleSubmit"
         />
         <div class="text-center mt-6">
-          <a href="/login" class="text-deep-purple-darken-1 font-weight-bold">
+          <nuxt-link
+            to="/login"
+            class="text-deep-purple-darken-1 font-weight-bold"
+          >
             すでに会員の方はこちら
-          </a>
+          </nuxt-link>
         </div>
       </v-card-text>
     </v-card>

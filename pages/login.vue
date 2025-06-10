@@ -12,12 +12,12 @@
           @submit="handleLogin"
         />
         <div class="text-center mt-6">
-          <a
-            href="/register"
+          <nuxt-link
+            to="/register"
             class="text-deep-purple-darken-1 font-weight-bold"
           >
             新規登録はこちら
-          </a>
+          </nuxt-link>
         </div>
       </v-card-text>
     </v-card>
