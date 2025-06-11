@@ -34,9 +34,8 @@ const handleLogout = async () => {
     await authStore.logout();
     alert('ログアウトしました！');
     router.push('/login');
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error('ログアウトエラー:', error);
-    alert('ログアウトに失敗しました: ' + error.message);
   }
 };
 </script>
