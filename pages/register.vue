@@ -25,22 +25,15 @@
 </template>
 
 <script lang="ts" setup>
-import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
-import { useFirebase } from '@/composables/useFirebase';
+import { useAuthStore } from '@/stores/auth'; // Pinia ストアをインポート
+import { useRouter } from 'vue-router';
 
-// Firebase アプリを取得
-const { app } = useFirebase();
-const auth = getAuth(app);
 const router = useRouter();
+const authStore = useAuthStore();
 
 const handleSubmit = async (formData: { email: string; password: string }) => {
   try {
-    const userCredential = await createUserWithEmailAndPassword(
-      auth,
-      formData.email,
-      formData.password
-    );
-    console.log('ユーザー登録成功:', userCredential.user);
+    await authStore.register(formData.email, formData.password); // register メソッドを呼び出し
     alert('会員登録が完了しました！');
     router.push('/dashboard'); // ダッシュボードへ遷移
   } catch (error) {
