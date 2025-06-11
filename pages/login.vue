@@ -25,8 +25,25 @@
 </template>
 
 <script lang="ts" setup>
-const handleLogin = (formData: { email: string; password: string }) => {
-  console.log('ログイン情報:', formData);
-  // API呼び出しなどを行います
+import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
+import { useFirebase } from '@/composables/useFirebase';
+
+// Firebase アプリを取得
+const { app } = useFirebase();
+const auth = getAuth(app);
+
+const handleLogin = async (formData: { email: string; password: string }) => {
+  try {
+    const userCredential = await signInWithEmailAndPassword(
+      auth,
+      formData.email,
+      formData.password
+    );
+    console.log('ログイン成功:', userCredential.user);
+    alert('ログインに成功しました！');
+  } catch (error) {
+    console.error('ログインエラー:', error);
+    alert('ログインに失敗しました: ' + error.message);
+  }
 };
 </script>
