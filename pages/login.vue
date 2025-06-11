@@ -28,9 +28,9 @@
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 import { useFirebase } from '@/composables/useFirebase';
 
-// Firebase アプリを取得
 const { app } = useFirebase();
 const auth = getAuth(app);
+const router = useRouter();
 
 const handleLogin = async (formData: { email: string; password: string }) => {
   try {
@@ -41,6 +41,7 @@ const handleLogin = async (formData: { email: string; password: string }) => {
     );
     console.log('ログイン成功:', userCredential.user);
     alert('ログインに成功しました！');
+    router.push('/dashboard');
   } catch (error) {
     console.error('ログインエラー:', error);
     alert('ログインに失敗しました: ' + error.message);

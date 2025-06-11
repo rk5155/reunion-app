@@ -31,6 +31,7 @@ import { useFirebase } from '@/composables/useFirebase';
 // Firebase アプリを取得
 const { app } = useFirebase();
 const auth = getAuth(app);
+const router = useRouter();
 
 const handleSubmit = async (formData: { email: string; password: string }) => {
   try {
@@ -41,6 +42,7 @@ const handleSubmit = async (formData: { email: string; password: string }) => {
     );
     console.log('ユーザー登録成功:', userCredential.user);
     alert('会員登録が完了しました！');
+    router.push('/dashboard'); // ダッシュボードへ遷移
   } catch (error) {
     console.error('ユーザー登録エラー:', error);
     alert('会員登録に失敗しました: ' + error.message);
