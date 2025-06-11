@@ -3,7 +3,8 @@ import vuetify from 'vite-plugin-vuetify'
 export default defineNuxtConfig({
   ssr: true,
   nitro: {
-    preset: 'firebase'
+    preset: 'firebase',
+    compatibilityDate: '2025-06-11'
   },
   css: ['vuetify/styles'],
   build: {
