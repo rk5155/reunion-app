@@ -18,24 +18,23 @@
 </template>
 
 <script lang="ts" setup>
-import { getAuth, signOut } from 'firebase/auth';
+import { useAuthStore } from '@/stores/auth'; // ★ authストアをインポート
+import { storeToRefs } from 'pinia';
+import { useRouter } from 'vue-router';
 
-// Firebase Authentication
-const auth = getAuth();
-const user = ref(auth.currentUser);
-console.log('Current User:', user.value);
+const router = useRouter();
 
-onMounted(() => {
-  // ユーザー情報を取得
-  user.value = auth.currentUser;
-});
+// Pinia ストアの取得
+const authStore = useAuthStore();
+const { user } = storeToRefs(authStore); // user をリアクティブに取り出す
 
+// ログアウト処理
 const handleLogout = async () => {
   try {
-    await signOut(auth);
+    await authStore.logout();
     alert('ログアウトしました！');
-    window.location.href = '/login'; // ログインページにリダイレクト
-  } catch (error) {
+    router.push('/login');
+  } catch (error: any) {
     console.error('ログアウトエラー:', error);
     alert('ログアウトに失敗しました: ' + error.message);
   }

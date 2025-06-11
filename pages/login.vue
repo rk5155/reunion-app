@@ -25,26 +25,20 @@
 </template>
 
 <script lang="ts" setup>
-import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
-import { useFirebase } from '@/composables/useFirebase';
+import { useAuthStore } from '@/stores/auth';
+import { useRouter } from 'vue-router';
 
-const { app } = useFirebase();
-const auth = getAuth(app);
+const authStore = useAuthStore();
 const router = useRouter();
 
 const handleLogin = async (formData: { email: string; password: string }) => {
   try {
-    const userCredential = await signInWithEmailAndPassword(
-      auth,
-      formData.email,
-      formData.password
-    );
-    console.log('ログイン成功:', userCredential.user);
+    await authStore.login(formData.email, formData.password);
     alert('ログインに成功しました！');
     router.push('/dashboard');
   } catch (error) {
     console.error('ログインエラー:', error);
-    alert('ログインに失敗しました: ' + error.message);
+    alert('ログインに失敗しました: ' + (error as Error).message);
   }
 };
 </script>
