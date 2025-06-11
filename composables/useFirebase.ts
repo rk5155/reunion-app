@@ -15,8 +15,6 @@ export const useFirebase = () => {
     measurementId: config.public.firebaseMeasurementId as string,
   };
 
-  console.log("Firebase Config:", firebaseConfig); // デバッグ用ログ
-
   // Firebase アプリを初期化（既に初期化済みの場合は既存のアプリを取得）
   const app = getApps().length ? getApp() : initializeApp(firebaseConfig);
 
