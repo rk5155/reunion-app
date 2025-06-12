@@ -1,6 +1,5 @@
 <template>
   <v-app>
-    <Header />
     <header id="header">
       <div id="slogan">
         <h1>Reunion</h1>

@@ -28,7 +28,6 @@
 import { useAuthStore } from '@/stores/auth';
 import { storeToRefs } from 'pinia';
 import { useRouter } from 'vue-router';
-import Header from '@/components/Header.vue'; // Headerコンポーネントをインポート
 
 const router = useRouter();
 const authStore = useAuthStore();

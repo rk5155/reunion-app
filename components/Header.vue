@@ -2,7 +2,10 @@
   <v-app-bar color="" dark>
     <v-toolbar-title>Reunion</v-toolbar-title>
     <v-spacer></v-spacer>
-    <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
+    <v-app-bar-nav-icon
+      v-if="isSmallScreen"
+      @click="drawer = !drawer"
+    ></v-app-bar-nav-icon>
     <template v-if="!isSmallScreen">
       <v-btn text href="#sec01">VISION</v-btn>
       <v-btn text href="#sec02">MESSAGE</v-btn>
