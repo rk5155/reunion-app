@@ -11,8 +11,6 @@
 
 <script>
 import { useAuthStore } from '@/stores/auth';
-import { useRoute } from 'vue-router';
-import Header from '@/components/Header';
 
 export default {
   setup() {
@@ -20,7 +18,9 @@ export default {
     authStore.initializeUser();
 
     const route = useRoute();
-    const showHeader = ['/', '/login', '/register'].includes(route.path);
+    const showHeader = computed(() =>
+      ['/', '/login', '/register'].includes(route.path)
+    );
 
     return {
       showHeader,
