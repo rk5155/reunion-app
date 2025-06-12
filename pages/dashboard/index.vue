@@ -21,6 +21,14 @@
         </v-card-text>
       </v-card>
     </v-container>
+    <!-- 画面下部に追従するボタン -->
+    <v-btn
+      class="fixed-add-button"
+      color="deep-purple-lighten-3"
+      @click="handleAddInvitation"
+    >
+      招待状を追加する
+    </v-btn>
   </v-app>
 </template>
 
@@ -48,4 +56,25 @@ const handleLogout = async () => {
     console.error('ログアウトエラー:', error);
   }
 };
+
+const handleAddInvitation = () => {
+  alert('招待状を追加する機能が呼び出されました！');
+  // 必要に応じてロジックを追加
+};
 </script>
+
+<style scoped>
+.fixed-add-button {
+  position: fixed;
+  bottom: 50px; /* 画面下部に配置 */
+  left: 50%; /* 左右中央に配置 */
+  transform: translateX(-50%); /* ボタンの幅を考慮して中央に調整 */
+  z-index: 1000; /* 他の要素より前面に表示 */
+  padding: 10px 20px;
+  font-weight: bold;
+  border-radius: 50px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  background-color: #673ab7; /* ボタンの背景色 */
+  color: white; /* ボタンの文字色 */
+}
+</style>
