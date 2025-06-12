@@ -3,23 +3,14 @@
     <v-container>
       <auth-header />
       <!-- Headerコンポーネントを追加 -->
-      <v-card>
-        <v-card-title class="text-h5 text-center font-weight-bold mb-4">
-          ダッシュボード
-        </v-card-title>
-        <v-card-text>
-          <div class="text-center">
-            <h2 v-if="hydrated && userEmail">
-              ようこそ、{{ user.email }} さん！
-            </h2>
-            <h2 v-else>ようこそ、ゲストさん！</h2>
-            <p>ここでは、イベントの管理やプロフィールの編集ができます。</p>
-          </div>
-          <v-btn color="deep-purple-accent-1" @click="handleLogout">
-            ログアウト
-          </v-btn>
-        </v-card-text>
-      </v-card>
+      <div class="dashboard-content text-center">
+        <h2 v-if="hydrated && userEmail">ようこそ、{{ user.email }} さん！</h2>
+        <h2 v-else>ようこそ、ゲストさん！</h2>
+        <p>ここでは、イベントの管理やプロフィールの編集ができます。</p>
+        <v-btn color="deep-purple-accent-1" class="mt-4" @click="handleLogout">
+          ログアウト
+        </v-btn>
+      </div>
     </v-container>
     <!-- 画面下部に追従するボタン -->
     <v-btn
@@ -64,6 +55,10 @@ const handleAddInvitation = () => {
 </script>
 
 <style scoped>
+.dashboard-content {
+  margin-top: 20px;
+}
+
 .fixed-add-button {
   position: fixed;
   bottom: 50px; /* 画面下部に配置 */
