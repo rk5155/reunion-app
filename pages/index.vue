@@ -1,22 +1,6 @@
 <template>
-  <div>
-    <nav id="mainnav">
-      <p id="menuWrap">
-        <a id="menu"><span id="menuBtn"></span></a>
-      </p>
-      <div class="panel">
-        <ul>
-          <li><a href="#header">TOP</a></li>
-          <li><a href="#sec01">VISION</a></li>
-          <li><a href="#sec02">MESSAGE</a></li>
-          <li><a href="#sec03">SERVICE</a></li>
-          <li><a href="#sec04">STORY</a></li>
-          <li><a href="#sec05">PROFILE</a></li>
-          <li><a href="#sec06">FEATURE</a></li>
-        </ul>
-      </div>
-    </nav>
-
+  <v-app>
+    <Header />
     <header id="header">
       <div id="slogan">
         <h1>Reunion</h1>
@@ -234,8 +218,12 @@
     <footer id="footer">
       Copyright(c) 2025 Reunion Inc. All Rights Reserved.
     </footer>
-  </div>
+  </v-app>
 </template>
+
+<script lang="ts" setup>
+import Header from '@/components/Header';
+</script>
 
 <style scoped>
 body,

@@ -1,7 +1,7 @@
 <template>
   <v-app>
     <v-container>
-      <Header />
+      <auth-header />
       <!-- Headerコンポーネントを追加 -->
       <v-card>
         <v-card-title class="text-h5 text-center font-weight-bold mb-4">
