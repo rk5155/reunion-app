@@ -1,5 +1,12 @@
 import { defineStore } from 'pinia';
-import { getAuth, signInWithEmailAndPassword, signOut, createUserWithEmailAndPassword } from 'firebase/auth';
+import {
+  getAuth,
+  signInWithEmailAndPassword,
+  signOut,
+  createUserWithEmailAndPassword,
+  signInWithPopup,
+  GoogleAuthProvider,
+} from 'firebase/auth';
 import { useFirebase } from '@/composables/useFirebase';
 
 export const useAuthStore = defineStore('auth', {
@@ -9,7 +16,6 @@ export const useAuthStore = defineStore('auth', {
   actions: {
     initializeUser() {
       if (typeof window !== 'undefined') {
-        // クライアントサイドでのみ localStorage を使用
         const storedUser = localStorage.getItem('user');
         if (storedUser) {
           this.user = JSON.parse(storedUser);
@@ -46,7 +52,20 @@ export const useAuthStore = defineStore('auth', {
       await signOut(auth);
       this.user = null;
       if (typeof window !== 'undefined') {
-        localStorage.removeItem('user'); 
+        localStorage.removeItem('user');
+      }
+    },
+    async loginWithGoogle() {
+      const { app } = useFirebase();
+      const auth = getAuth(app);
+      const provider = new GoogleAuthProvider();
+      const result = await signInWithPopup(auth, provider);
+      this.user = {
+        uid: result.user.uid,
+        email: result.user.email,
+      };
+      if (typeof window !== 'undefined') {
+        localStorage.setItem('user', JSON.stringify(this.user));
       }
     },
   },
