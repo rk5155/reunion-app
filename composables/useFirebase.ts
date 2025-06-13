@@ -1,6 +1,7 @@
-// Import the functions you need from the SDKs you need
-import { initializeApp, getApps, getApp } from "firebase/app";
-import { useRuntimeConfig } from "#app";
+// plugins/firebase.ts or composables/useFirebase.ts
+import { initializeApp, getApps, getApp } from 'firebase/app';
+import { getFirestore } from 'firebase/firestore';
+import { useRuntimeConfig } from '#app';
 
 export const useFirebase = () => {
   const config = useRuntimeConfig();
@@ -15,15 +16,18 @@ export const useFirebase = () => {
     measurementId: config.public.firebaseMeasurementId as string,
   };
 
-  // Firebase アプリを初期化（既に初期化済みの場合は既存のアプリを取得）
+  // Firebase アプリの初期化（既に初期化されていれば再利用）
   const app = getApps().length ? getApp() : initializeApp(firebaseConfig);
 
-  // Firebase Analytics をクライアントサイドでのみ初期化
+  // Firestore インスタンスを取得
+  const db = getFirestore(app);
+
+  // Analytics（クライアントサイドのみ）
   if (import.meta.client && firebaseConfig.measurementId) {
-    import("firebase/analytics").then(({ getAnalytics }) => {
+    import('firebase/analytics').then(({ getAnalytics }) => {
       getAnalytics(app);
     });
   }
 
-  return { app };
+  return { app, db };
 };

@@ -19,13 +19,6 @@
             outlined
             required
           />
-          <v-textarea
-            v-model="form.description"
-            label="イベントの詳細"
-            outlined
-            rows="5"
-            required
-          />
           <v-btn
             type="submit"
             color="deep-purple-accent-1"
@@ -43,29 +36,41 @@
 <script lang="ts" setup>
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
+import { collection, addDoc } from 'firebase/firestore';
+import { useFirebase } from '@/composables/useFirebase'; // useFirebase をインポート
 
 definePageMeta({
   layout: 'dashboard',
 });
 
 const router = useRouter();
+const { db } = useFirebase(); // Firestore インスタンスを取得
 
 const form = ref({
   title: '',
   date: '',
-  description: '',
 });
 
-const handleSubmit = () => {
-  if (!form.value.title || !form.value.date || !form.value.description) {
+const handleSubmit = async () => {
+  if (!form.value.title || !form.value.date) {
     alert('すべてのフィールドを入力してください。');
     return;
   }
 
-  // 招待状作成のロジックを追加
-  console.log('招待状データ:', form.value);
-  alert('招待状が作成されました！');
-  router.push('/dashboard'); // 作成後にダッシュボードへリダイレクト
+  try {
+    // Firestore にデータを保存
+    const docRef = await addDoc(collection(db, 'invitations'), {
+      title: form.value.title,
+      date: form.value.date,
+    });
+
+    console.log('招待状ID:', docRef.id);
+    alert('招待状が作成されました！');
+    router.push('/dashboard'); // 作成後にダッシュボードへリダイレクト
+  } catch (error) {
+    console.error('招待状の作成に失敗しました:', error);
+    alert('招待状の作成に失敗しました。');
+  }
 };
 </script>
 
