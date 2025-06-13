@@ -7,6 +7,7 @@
       outlined
       required
       bg-color="white"
+      autocomplete="email"
     />
     <v-text-field
       v-if="props.showConfirmEmail"
@@ -16,6 +17,7 @@
       outlined
       required
       bg-color="white"
+      autocomplete="email"
     />
     <v-text-field
       v-model="form.password"
@@ -24,6 +26,7 @@
       outlined
       required
       bg-color="white"
+      autocomplete="current-password"
     />
     <v-btn
       type="submit"

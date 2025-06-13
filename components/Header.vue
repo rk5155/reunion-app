@@ -1,5 +1,5 @@
 <template>
-  <v-app-bar color="" dark>
+  <v-app-bar v-if="hydrated" color="" dark>
     <v-toolbar-title>Reunion</v-toolbar-title>
     <v-spacer></v-spacer>
     <v-app-bar-nav-icon
@@ -16,7 +16,7 @@
     </template>
   </v-app-bar>
 
-  <v-navigation-drawer v-model="drawer" app temporary>
+  <v-navigation-drawer v-if="hydrated" v-model="drawer" app temporary>
     <v-list>
       <v-list-item href="#sec01">VISION</v-list-item>
       <v-list-item href="#sec02">MESSAGE</v-list-item>
@@ -29,12 +29,20 @@
 </template>
 
 <script lang="ts" setup>
+import { ref, computed, onMounted } from 'vue';
 import { useDisplay } from 'vuetify';
+import { useUIStore } from '@/stores/ui';
 
-const route = useRoute();
 const drawer = ref(false);
 const { smAndDown } = useDisplay();
 const isSmallScreen = computed(() => smAndDown.value);
+
+const uiStore = useUIStore();
+const hydrated = computed(() => uiStore.hydrated);
+
+onMounted(() => {
+  uiStore.setHydrated();
+});
 </script>
 
 <style scoped>

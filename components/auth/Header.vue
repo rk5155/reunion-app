@@ -1,5 +1,5 @@
 <template>
-  <v-app-bar color="deep-purple-accent-1" dark>
+  <v-app-bar v-if="hydrated" color="deep-purple-accent-1" dark>
     <v-toolbar-title>Reunion App</v-toolbar-title>
     <v-app-bar-nav-icon
       v-if="isSmallScreen"
@@ -11,7 +11,7 @@
     </template>
   </v-app-bar>
 
-  <v-navigation-drawer v-model="drawer" app temporary>
+  <v-navigation-drawer v-if="hydrated" v-model="drawer" app temporary>
     <v-list>
       <v-list-item @click="navigateToHome">
         <v-list-item-title>ホーム</v-list-item-title>
@@ -25,12 +25,23 @@
 
 <script lang="ts" setup>
 import { useRouter } from 'vue-router';
-import { ref, computed } from 'vue';
+import { computed, onMounted, ref } from 'vue';
 import { useDisplay } from 'vuetify';
+import { useUIStore } from '@/stores/ui';
 
 const router = useRouter();
 const drawer = ref(false);
 const { smAndDown } = useDisplay();
+
+const uiStore = useUIStore();
+
+// onMounted で Piniaのhydrated状態をセット
+onMounted(() => {
+  uiStore.setHydrated();
+});
+
+// uiStore.hydrated をcomputedで取得（リアクティブに）
+const hydrated = computed(() => uiStore.hydrated);
 
 const isSmallScreen = computed(() => smAndDown.value);
 
@@ -45,4 +56,6 @@ const navigateToProfile = () => {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+/* 必要に応じてスタイル追加 */
+</style>

@@ -26,6 +26,6 @@ export default defineNuxtConfig({
       firebaseAppId: process.env.NUXT_FIREBASE_APP_ID || '',
       firebaseMeasurementId: process.env.NUXT_FIREBASE_MEASUREMENT_ID || '',
     },
-    modules: ['@pinia/nuxt'],
   },
+  modules: ['@pinia/nuxt'],
 })

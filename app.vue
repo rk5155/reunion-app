@@ -9,22 +9,22 @@
   </v-app>
 </template>
 
-<script>
+<script lang="ts" setup>
 import { useAuthStore } from '@/stores/auth';
+import { useUIStore } from '@/stores/ui';
+import { useRoute } from 'vue-router';
+import { onMounted, computed } from 'vue';
 
-export default {
-  setup() {
-    const authStore = useAuthStore();
-    authStore.initializeUser();
+const uiStore = useUIStore();
+const authStore = useAuthStore();
+const route = useRoute();
 
-    const route = useRoute();
-    const showHeader = computed(() =>
-      ['/', '/login', '/register'].includes(route.path)
-    );
+onMounted(() => {
+  uiStore.setHydrated();
+  authStore.initializeUser();
+});
 
-    return {
-      showHeader,
-    };
-  },
-};
+const showHeader = computed(() =>
+  ['/', '/login', '/register'].includes(route.path)
+);
 </script>
