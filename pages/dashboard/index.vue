@@ -1,7 +1,6 @@
 <template>
   <v-app>
     <v-container>
-      <auth-header />
       <v-card>
         <v-card-title class="text-h5 text-center font-weight-bold mb-4">
           ダッシュボード
@@ -44,6 +43,10 @@ const hydrated = ref(false);
 
 onMounted(() => {
   hydrated.value = true;
+});
+
+definePageMeta({
+  layout: 'dashboard',
 });
 
 const handleLogout = async () => {
