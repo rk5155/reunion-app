@@ -60,8 +60,7 @@ const handleLogout = async () => {
 };
 
 const handleAddInvitation = () => {
-  alert('招待状を追加する機能が呼び出されました！');
-  // 必要に応じてロジックを追加
+  router.push('/dashboard/invitation/create');
 };
 </script>
 
