@@ -75,6 +75,16 @@ bun run preview
 Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
 
 <!-- firebase デプロイ -->
+ローカルサーバを停止する（勝手に.output/serverが消えるからデプロイできなくなる）
 yarn build
+
+npx firebase-tools deploy
+firebase.jsonのすべての対象を一括でデプロイ
+一気にすべてを最新にしたいとき
+
+
 firebase deploy --only functions,hosting
+functionsとhostingだけを限定してデプロイ
+特定部分だけ更新したい、無駄な処理を省きたいとき
+
 https://reunion-app-new.web.app/
