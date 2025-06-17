@@ -19,7 +19,11 @@ import { useRoute } from 'vue-router';
 const route = useRoute();
 
 const isInvitationDetailPage = computed(() => {
-  return route.path.startsWith('/dashboard/invitation/') && route.params.id;
+  return (
+    route.path.startsWith('/dashboard/invitation/') &&
+    route.params.id &&
+    !route.path.includes('/edit')
+  );
 });
 </script>
 
