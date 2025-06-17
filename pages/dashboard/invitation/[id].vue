@@ -1,12 +1,12 @@
 <template>
   <div>
-    <h2 class="text-center text-h6 font-weight-bold mb-4">招待状の詳細</h2>
+    <h2 class="text-center text-h6 font-weight-bold mb-4">
+      {{ invitation.title }}
+    </h2>
     <v-card class="pa-4">
-      <v-card-title class="text-h5">{{ invitation.title }}</v-card-title>
-      <v-card-subtitle class="text-h6"
-        >開催日: {{ invitation.date }}</v-card-subtitle
-      >
       <v-card-text>
+        <p>開催日: {{ invitation.date }}</p>
+        <p>開始時間: {{ invitation.startTime }}</p>
         <p>開始時間: {{ invitation.startTime }}</p>
         <p>終了時間: {{ invitation.endTime }}</p>
         <p>会場名: {{ invitation.venueName }}</p>
