@@ -18,6 +18,51 @@
         class="mb-4"
         type="date"
       ></v-text-field>
+      <v-text-field
+        v-model="form.startTime"
+        label="開始時間"
+        outlined
+        required
+        class="mb-4"
+        type="time"
+      ></v-text-field>
+      <v-text-field
+        v-model="form.endTime"
+        label="終了時間"
+        outlined
+        required
+        class="mb-4"
+        type="time"
+      ></v-text-field>
+      <v-text-field
+        v-model="form.venueName"
+        label="会場名"
+        outlined
+        required
+        class="mb-4"
+      ></v-text-field>
+      <v-text-field
+        v-model="form.venueAddress"
+        label="会場の住所"
+        outlined
+        required
+        class="mb-4"
+      ></v-text-field>
+      <v-text-field
+        v-model="form.deadline"
+        label="回答締切日"
+        outlined
+        required
+        class="mb-4"
+        type="date"
+      ></v-text-field>
+      <v-textarea
+        v-model="form.description"
+        label="案内文"
+        outlined
+        required
+        class="mb-4"
+      ></v-textarea>
       <v-btn type="submit" color="primary" class="mt-4">保存</v-btn>
       <v-btn color="secondary" class="mt-4" @click="handleCancel"
         >キャンセル</v-btn
@@ -44,6 +89,12 @@ const invitationId = route.params.id;
 const form = ref({
   title: '',
   date: '',
+  startTime: '',
+  endTime: '',
+  venueName: '',
+  venueAddress: '',
+  deadline: '',
+  description: '',
 });
 
 const formRef = ref(null);
@@ -71,6 +122,12 @@ const handleSubmit = async () => {
   await updateDoc(docRef, {
     title: form.value.title,
     date: form.value.date,
+    startTime: form.value.startTime,
+    endTime: form.value.endTime,
+    venueName: form.value.venueName,
+    venueAddress: form.value.venueAddress,
+    deadline: form.value.deadline,
+    description: form.value.description,
   });
   alert('招待状を更新しました');
   router.push('/dashboard');
