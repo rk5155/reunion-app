@@ -1,12 +1,17 @@
-import { defineStore } from 'pinia'
-import { ref } from 'vue'
+import { defineStore } from 'pinia';
+import { ref } from 'vue';
 
 export const useUIStore = defineStore('ui', () => {
-  const hydrated = ref(false)
+  const hydrated = ref(false);
+  const loading = ref(false);
 
   const setHydrated = () => {
-    hydrated.value = true
-  }
+    hydrated.value = true;
+  };
 
-  return { hydrated, setHydrated }
-})
+  const setLoading = (value: boolean) => {
+    loading.value = value;
+  };
+
+  return { hydrated, loading, setHydrated, setLoading };
+});

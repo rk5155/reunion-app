@@ -1,8 +1,8 @@
 <template>
   <div>
-    <common-loading-overlay :visible="loading" />
+    <common-loading-overlay :visible="uiStore.loading" />
 
-    <v-app-bar v-if="hydrated" color="deep-purple-accent-1" dark>
+    <v-app-bar v-if="uiStore.hydrated" color="deep-purple-accent-1" dark>
       <v-toolbar-title>Reunion App</v-toolbar-title>
       <v-app-bar-nav-icon
         v-if="isSmallScreen"
@@ -15,7 +15,7 @@
       </template>
     </v-app-bar>
 
-    <v-navigation-drawer v-if="hydrated" v-model="drawer" app temporary>
+    <v-navigation-drawer v-if="uiStore.hydrated" v-model="drawer" app temporary>
       <v-list>
         <v-list-item>
           <v-list-item-title>ログイン中: {{ userEmail }}</v-list-item-title>
@@ -44,7 +44,6 @@ import { useAuthStore } from '@/stores/auth';
 
 const router = useRouter();
 const drawer = ref(false);
-const loading = ref(false); // ローディング状態を管理
 const { smAndDown } = useDisplay();
 
 const uiStore = useUIStore();
@@ -69,7 +68,7 @@ const navigateToProfile = () => {
 };
 
 const handleLogout = async () => {
-  loading.value = true; // ローディング開始
+  uiStore.setLoading(true); // ローディング開始
   try {
     await authStore.logout();
     alert('ログアウトしました！');
@@ -78,7 +77,7 @@ const handleLogout = async () => {
     console.error('ログアウトエラー:', error);
     alert('ログアウトに失敗しました。');
   } finally {
-    loading.value = false; // ローディング終了
+    uiStore.setLoading(false); // ローディング終了
     drawer.value = false;
   }
 };
