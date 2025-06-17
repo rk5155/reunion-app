@@ -1,16 +1,16 @@
 <template>
   <div class="invitation-detail">
-    <h2 class="text-center text-h6 font-weight-bold mb-4">
-      {{ invitation.title }}
-    </h2>
-    <v-card class="pa-4">
+    <v-card class="pa-4 semi-transparent-card">
       <!-- カードの上に画像を表示 -->
       <v-img
         src="/images/invitation.jpg"
         alt="イベント画像"
-        class="event-image"
+        class="event-image mb-4"
         contain
       ></v-img>
+      <h2 class="text-center text-h6 font-weight-bold mb-0 text-black">
+        {{ invitation.title }}
+      </h2>
       <v-card-text>
         <p>開催日: {{ invitation.date }}</p>
         <p>開始時間: {{ invitation.startTime }}</p>
@@ -80,7 +80,7 @@ const handleBack = () => {
 
 <style scoped>
 .invitation-detail {
-  background-image: url('/images/bg-2.png'); /* 背景画像を設定 */
+  background-image: url('/images/bg.png'); /* 背景画像を設定 */
   background-size: cover; /* 背景画像を画面全体にフィット */
   background-position: center; /* 背景画像を中央に配置 */
   min-height: 100vh; /* コンテンツが少ない場合でも画面全体を覆う */
@@ -98,8 +98,8 @@ h2 {
   color: #fff; /* 背景に合わせて文字色を白に変更 */
 }
 
-v-card {
-  background-color: rgba(255, 255, 255, 0.9); /* カードの背景を半透明に設定 */
+.semi-transparent-card {
+  background-color: rgba(255, 255, 255, 0.8); /* 背景を半透明に設定 */
   border-radius: 10px; /* カードの角を丸くする */
 }
 </style>
