@@ -1,9 +1,9 @@
 <template>
   <v-app>
     <auth-header />
-    <div class="content">
+    <v-container class="content pt-6">
       <NuxtPage />
-    </div>
+    </v-container>
   </v-app>
 </template>
 

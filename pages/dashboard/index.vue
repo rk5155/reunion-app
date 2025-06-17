@@ -1,19 +1,23 @@
 <template>
-  <v-app>
-    <v-container>
-      <h2>招待状一覧</h2>
+  <div>
+    <h2 class="text-center text-h6 font-weight-bold mb-4">招待状一覧</h2>
 
-      <v-card class="mt-4">
-        <v-card-text>
-          <v-list>
-            <v-list-item v-for="invitation in invitations" :key="invitation.id">
-              <v-list-item-title>{{ invitation.title }}</v-list-item-title>
-              <v-list-item-subtitle>{{ invitation.date }}</v-list-item-subtitle>
+    <template v-for="invitation in invitations" :key="invitation.id">
+      <v-card variant="outlined" color="deep-purple-lighten-3" class="mb-2">
+        <v-card-text class="pa-4">
+          <v-list class="pa-0">
+            <v-list-item class="pa-0">
+              <v-list-item-title class="mb-3 text-h6">{{
+                invitation.title
+              }}</v-list-item-title>
+              <v-list-item-subtitle
+                >開催日: {{ invitation.date }}</v-list-item-subtitle
+              >
             </v-list-item>
           </v-list>
         </v-card-text>
       </v-card>
-    </v-container>
+    </template>
 
     <v-btn
       class="fixed-add-button"
@@ -22,7 +26,7 @@
     >
       招待状を追加する
     </v-btn>
-  </v-app>
+  </div>
 </template>
 
 <script lang="ts" setup>
