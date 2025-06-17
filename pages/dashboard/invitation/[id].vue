@@ -117,7 +117,5 @@ h2 {
 
 .semi-transparent-card {
   background-color: rgba(255, 255, 255, 0.8); /* 背景を半透明に設定 */
-  border-radius: 10px; /* カードの角を丸くする */
-  font-family: 'Kiwi Maru', serif; /* フォントを適用 */
 }
 </style>
