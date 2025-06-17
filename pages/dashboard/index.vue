@@ -7,6 +7,7 @@
         variant="outlined"
         color="deep-purple-lighten-3"
         class="mb-2 rounded-lg d-flex align-center"
+        @click="handleViewInvitation(invitation.id)"
       >
         <v-card-text class="pa-4 flex-grow-1">
           <v-list class="pa-0">
@@ -21,14 +22,7 @@
           </v-list>
         </v-card-text>
 
-        <!-- 編集ボタン -->
-        <v-btn
-          icon
-          size="x-small"
-          color="deep-purple-darken-3"
-          class="ma-2"
-          @click="handleEditInvitation(invitation.id)"
-        >
+        <v-btn icon size="x-small" color="deep-purple-darken-3" class="ma-2">
           <v-icon>mdi-pencil</v-icon>
         </v-btn>
       </v-card>
@@ -89,8 +83,8 @@ const handleAddInvitation = () => {
   router.push('/dashboard/invitation/create');
 };
 
-const handleEditInvitation = (id: string) => {
-  router.push(`/dashboard/invitation/edit/${id}`);
+const handleViewInvitation = (id: string) => {
+  router.push(`/dashboard/invitation/${id}`);
 };
 </script>
 
