@@ -1,13 +1,6 @@
 <template>
   <div>
-    <!-- ローディング画面 -->
-    <div v-if="loading" class="loading-overlay">
-      <v-progress-circular
-        indeterminate
-        color="deep-purple-lighten-3"
-        size="50"
-      ></v-progress-circular>
-    </div>
+    <common-loading-overlay :visible="loading" />
 
     <v-app-bar v-if="hydrated" color="deep-purple-accent-1" dark>
       <v-toolbar-title>Reunion App</v-toolbar-title>
@@ -90,18 +83,3 @@ const handleLogout = async () => {
   }
 };
 </script>
-
-<style scoped>
-.loading-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(255, 255, 255, 0.8);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 9999;
-}
-</style>
