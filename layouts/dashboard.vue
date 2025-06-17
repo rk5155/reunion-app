@@ -1,14 +1,26 @@
 <template>
   <v-app>
-    <auth-header />
-    <v-container class="content pt-6">
+    <template v-if="isInvitationDetailPage">
       <NuxtPage />
-    </v-container>
+    </template>
+    <template v-else>
+      <auth-header />
+      <v-container class="content pt-6">
+        <NuxtPage />
+      </v-container>
+    </template>
   </v-app>
 </template>
 
 <script lang="ts" setup>
 import AuthHeader from '@/components/auth/Header.vue';
+import { useRoute } from 'vue-router';
+
+const route = useRoute();
+
+const isInvitationDetailPage = computed(() => {
+  return route.path.startsWith('/dashboard/invitation/') && route.params.id;
+});
 </script>
 
 <style scoped>
