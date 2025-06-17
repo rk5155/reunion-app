@@ -134,7 +134,7 @@ const handleSubmit = async () => {
 };
 
 const handleCancel = () => {
-  router.push('/dashboard');
+  router.push(`/dashboard/invitation/${invitationId}`);
 };
 </script>
 

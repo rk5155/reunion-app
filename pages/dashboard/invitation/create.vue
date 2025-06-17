@@ -38,6 +38,7 @@ import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 import { collection, addDoc } from 'firebase/firestore';
 import { useFirebase } from '@/composables/useFirebase'; // useFirebase をインポート
+import { useAuthStore } from '@/stores/auth'; // AuthStore をインポート
 
 definePageMeta({
   layout: 'dashboard',
@@ -45,6 +46,7 @@ definePageMeta({
 
 const router = useRouter();
 const { db } = useFirebase(); // Firestore インスタンスを取得
+const authStore = useAuthStore(); // AuthStore インスタンスを取得
 
 const form = ref({
   title: '',
@@ -57,11 +59,20 @@ const handleSubmit = async () => {
     return;
   }
 
+  const userUid = authStore.user?.uid; // ログイン中のユーザーの UID を取得
+
+  if (!userUid) {
+    alert('ログインしてください。');
+    router.push('/login');
+    return;
+  }
+
   try {
     // Firestore にデータを保存
     const docRef = await addDoc(collection(db, 'invitations'), {
       title: form.value.title,
       date: form.value.date,
+      createdBy: userUid, // UID を保存
     });
 
     console.log('招待状ID:', docRef.id);

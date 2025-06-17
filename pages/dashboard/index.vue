@@ -42,22 +42,33 @@
 import { useAuthStore } from '@/stores/auth';
 import { storeToRefs } from 'pinia';
 import { useRouter } from 'vue-router';
-import { collection, onSnapshot } from 'firebase/firestore';
+import { collection, query, where, onSnapshot } from 'firebase/firestore';
 import { useFirebase } from '@/composables/useFirebase';
 
 const { db } = useFirebase();
 const router = useRouter();
 const authStore = useAuthStore();
 const { user } = storeToRefs(authStore);
-const userEmail = computed(() => user.value?.email || null);
+const userUid = computed(() => user.value?.uid || null); // UID を取得
 const hydrated = ref(false);
 const invitations = ref([]);
 
 onMounted(() => {
   hydrated.value = true;
 
+  if (!userUid.value) {
+    alert('ログインしてください');
+    router.push('/login');
+    return;
+  }
+
   const invitationsRef = collection(db, 'invitations');
-  onSnapshot(invitationsRef, (snapshot) => {
+  const userInvitationsQuery = query(
+    invitationsRef,
+    where('createdBy', '==', userUid.value)
+  );
+
+  onSnapshot(userInvitationsQuery, (snapshot) => {
     invitations.value = snapshot.docs.map((doc) => ({
       id: doc.id,
       ...doc.data(),
