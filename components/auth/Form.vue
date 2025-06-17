@@ -53,7 +53,6 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, defineProps, defineEmits } from 'vue';
 import { useAuthStore } from '@/stores/auth';
 
 // Propsの型を定義
