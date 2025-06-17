@@ -3,8 +3,12 @@
     <h2 class="text-center text-h6 font-weight-bold mb-4">招待状一覧</h2>
 
     <template v-for="invitation in invitations" :key="invitation.id">
-      <v-card variant="outlined" color="deep-purple-lighten-3" class="mb-2">
-        <v-card-text class="pa-4">
+      <v-card
+        variant="outlined"
+        color="deep-purple-lighten-3"
+        class="mb-2 rounded-lg d-flex align-center"
+      >
+        <v-card-text class="pa-4 flex-grow-1">
           <v-list class="pa-0">
             <v-list-item class="pa-0">
               <v-list-item-title class="mb-3 text-h6">{{
@@ -16,6 +20,17 @@
             </v-list-item>
           </v-list>
         </v-card-text>
+
+        <!-- 編集ボタン -->
+        <v-btn
+          icon
+          size="x-small"
+          color="deep-purple-darken-3"
+          class="ma-2"
+          @click="handleEditInvitation(invitation.id)"
+        >
+          <v-icon>mdi-pencil</v-icon>
+        </v-btn>
       </v-card>
     </template>
 
@@ -72,6 +87,10 @@ const handleLogout = async () => {
 
 const handleAddInvitation = () => {
   router.push('/dashboard/invitation/create');
+};
+
+const handleEditInvitation = (id: string) => {
+  router.push(`/dashboard/invitation/edit/${id}`);
 };
 </script>
 
