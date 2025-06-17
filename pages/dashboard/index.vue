@@ -1,25 +1,20 @@
 <template>
   <v-app>
     <v-container>
-      <v-card>
-        <v-card-title class="text-h5 text-center font-weight-bold mb-4">
-          ダッシュボード
-        </v-card-title>
+      <h2>招待状一覧</h2>
+
+      <v-card class="mt-4">
         <v-card-text>
-          <div class="text-center">
-            <h2 v-if="hydrated && userEmail">
-              ようこそ、{{ user.email }} さん！
-            </h2>
-            <h2 v-else>ようこそ、ゲストさん！</h2>
-            <p>ここでは、イベントの管理やプロフィールの編集ができます。</p>
-          </div>
-          <v-btn color="deep-purple-accent-1" @click="handleLogout">
-            ログアウト
-          </v-btn>
+          <v-list>
+            <v-list-item v-for="invitation in invitations" :key="invitation.id">
+              <v-list-item-title>{{ invitation.title }}</v-list-item-title>
+              <v-list-item-subtitle>{{ invitation.date }}</v-list-item-subtitle>
+            </v-list-item>
+          </v-list>
         </v-card-text>
       </v-card>
     </v-container>
-    <!-- 画面下部に追従するボタン -->
+
     <v-btn
       class="fixed-add-button"
       color="deep-purple-lighten-3"
@@ -34,15 +29,27 @@
 import { useAuthStore } from '@/stores/auth';
 import { storeToRefs } from 'pinia';
 import { useRouter } from 'vue-router';
+import { collection, onSnapshot } from 'firebase/firestore';
+import { useFirebase } from '@/composables/useFirebase';
 
+const { db } = useFirebase();
 const router = useRouter();
 const authStore = useAuthStore();
 const { user } = storeToRefs(authStore);
 const userEmail = computed(() => user.value?.email || null);
 const hydrated = ref(false);
+const invitations = ref([]);
 
 onMounted(() => {
   hydrated.value = true;
+
+  const invitationsRef = collection(db, 'invitations');
+  onSnapshot(invitationsRef, (snapshot) => {
+    invitations.value = snapshot.docs.map((doc) => ({
+      id: doc.id,
+      ...doc.data(),
+    }));
+  });
 });
 
 definePageMeta({
