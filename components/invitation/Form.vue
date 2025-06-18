@@ -46,12 +46,32 @@
     </v-form>
 
     <common-modal-confirmation
-      :isVisible="isModalVisible"
+      v-model:isVisible="isModalVisible"
       :title="'送信内容の確認'"
-      :details="formData"
+      :message="'以下の内容で送信しますか？'"
       @confirm="handleSubmit"
       @cancel="closeConfirmationModal"
-    />
+    >
+      <div class="mb-2 border-b py-2">
+        <p>{{ formData.attendance }}</p>
+      </div>
+      <div class="mb-2 border-b py-2">
+        <p class="mb-2">氏名</p>
+        <p>{{ formData.name }}</p>
+      </div>
+      <div class="mb-2 border-b py-2">
+        <p class="mb-2">メールアドレス</p>
+        <p>{{ formData.email }}</p>
+      </div>
+      <div class="mb-2 border-b py-2">
+        <p class="mb-2">クラス</p>
+        <p>{{ formData.className }}</p>
+      </div>
+      <div class="mb-2 border-b py-2">
+        <p class="mb-2">メッセージ</p>
+        <p>{{ formData.message }}</p>
+      </div>
+    </common-modal-confirmation>
   </div>
 </template>
 
