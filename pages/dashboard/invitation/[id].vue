@@ -84,7 +84,16 @@
             {{ getFormattedDate(invitation.deadline) }}
           </div>
         </div>
-        <invitation-form />
+
+        <div v-if="isDeadlinePassed" class="text-danger font-weight-bold mt-2">
+          受付は終了しました。
+        </div>
+
+        <invitation-form v-else />
+
+        <h2 class="ttl_center5 text-h3 font-weight-bold my-16 text-black">
+          Thank you!!
+        </h2>
       </v-card-text>
     </v-card>
 
@@ -122,6 +131,13 @@ const countdown = ref({
   hours: '-',
   minutes: '-',
   seconds: '-',
+});
+
+const isDeadlinePassed = computed(() => {
+  if (!invitation.value.deadline) return false;
+  const deadlineDate = new Date(invitation.value.deadline);
+  const now = new Date();
+  return now > deadlineDate;
 });
 
 const getFormattedDate = (dateString: string): string => {
