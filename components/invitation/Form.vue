@@ -11,6 +11,7 @@
         v-model="formData.email"
         label="メールアドレス"
         type="email"
+        :rules="[emailRule]"
         required
         class="mb-4"
       />
@@ -62,10 +63,17 @@ const attendanceOptions = ['参加する', '参加しない'];
 
 const emit = defineEmits(['submit']);
 
+const emailRule = (value: string) => {
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return emailRegex.test(value) || '正しいメールアドレスを入力してください';
+};
+
+// フォームがすべて入力されているかをチェック
 const isFormValid = computed(() => {
+  const isEmailValid = emailRule(formData.value.email) === true;
   return (
     formData.value.name &&
-    formData.value.email &&
+    isEmailValid &&
     formData.value.attendance &&
     formData.value.className &&
     formData.value.message
