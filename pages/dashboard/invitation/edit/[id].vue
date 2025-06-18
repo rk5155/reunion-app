@@ -100,7 +100,7 @@
 import { useRouter, useRoute } from 'vue-router';
 import { doc, getDoc, updateDoc } from 'firebase/firestore';
 import { useFirebase } from '@/composables/useFirebase';
-import { descriptionTemplates } from '@/src/constants/descriptionTemplates'; // インポート
+import { generateDescriptionTemplates } from '@/src/constants/descriptionTemplates';
 import { ref, computed, onMounted } from 'vue';
 
 definePageMeta({
@@ -127,6 +127,13 @@ const form = ref({
 
 const selectedTemplate = ref('');
 const formRef = ref(null);
+
+const descriptionTemplates = computed(() => {
+  const { schoolName, graduationYear } = form.value;
+  return schoolName && graduationYear
+    ? generateDescriptionTemplates(schoolName, graduationYear)
+    : [];
+});
 
 const computedDescription = computed(() => {
   return selectedTemplate.value || form.value.description;
