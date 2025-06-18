@@ -1,39 +1,43 @@
 <template>
-  <div class="invitation-detail text-center">
-    <v-card class="px-4 semi-transparent-card py-8 mb-4">
+  <div class="invitation-detail text-center pa-0">
+    <v-card class="semi-transparent-card">
       <!-- カードの上に画像を表示 -->
       <v-img
         src="/images/invitation.jpg"
         alt="イベント画像"
         class="event-image mb-4"
         contain
-      ></v-img>
-      <p class="text-center text-h6 font-weight-bold mb-0 text-black">
-        Reunion invitations<br />
-        {{ invitation.title }}
-      </p>
+      />
+      <h2 class="text-center text-h3 font-weight-bold my-16 text-black">
+        Reunion invitations
+      </h2>
+
+      <v-card-text class="bg-black py-10">
+        <p class="text-center text-h6 font-weight-bold mb-4">
+          {{ invitation.title }}
+        </p>
+        <div>{{ invitation.description }}</div>
+      </v-card-text>
+
       <v-card-text>
         <div class="mb-2 font-weight-bold">{{ invitation.date }}</div>
         <div class="mb-2 font-weight-bold">
           {{ invitation.startTime }} - {{ invitation.endTime }}
         </div>
-        <div class="mb-2 font-weight-bold">
-          {{ invitation.venueName }}
-        </div>
+        <div class="mb-2 font-weight-bold">会場/{{ invitation.venueName }}</div>
         <div class="font-weight-bold">
           {{ invitation.venueAddress }}
         </div>
       </v-card-text>
-    </v-card>
-    <v-card class="px-4 semi-transparent-card py-8">
+
       <v-card-text class="pa-0">
-        <div class="mb-2">{{ invitation.description }}</div>
         <div class="mb-2 font-weight-bold">
           回答締切: {{ invitation.deadline }}
         </div>
         <div class="mb-2 font-weight-bold">招待状ID: {{ invitationId }}</div>
       </v-card-text>
     </v-card>
+
     <v-btn color="primary" class="mt-4" @click="handleEdit">編集する</v-btn>
     <v-btn color="secondary" class="mt-4" @click="handleBack">戻る</v-btn>
   </div>
@@ -117,6 +121,7 @@ h2 {
   background-color: rgba(255, 255, 255, 0.8); /* 背景を半透明に設定 */
 }
 
+.text-h3,
 .text-h6 {
   font-family: 'Cinzel', serif !important; /* タイトルフォントを適用 */
 }
