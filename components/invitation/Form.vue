@@ -1,6 +1,6 @@
 <template>
   <div class="px-4 py-8 rounded bg-white shadow">
-    <v-form @submit.prevent="handleSubmit" class="w-100">
+    <v-form @submit.prevent="openConfirmationModal" class="w-100">
       <v-radio-group v-model="formData.attendance" label="出欠 (必須)" required>
         <v-radio label="参加する" value="参加する"></v-radio>
         <v-radio label="参加しない" value="参加しない"></v-radio>
@@ -29,7 +29,7 @@
       />
       <v-textarea
         v-model="formData.message"
-        label="メッセージ (必須)"
+        label="メッセージ"
         rows="4"
         required
         class="mb-4"
@@ -44,6 +44,14 @@
         確認する
       </v-btn>
     </v-form>
+
+    <common-modal-confirmation
+      :isVisible="isModalVisible"
+      :title="'送信内容の確認'"
+      :details="formData"
+      @confirm="handleSubmit"
+      @cancel="closeConfirmationModal"
+    />
   </div>
 </template>
 
@@ -74,8 +82,19 @@ const isFormValid = computed(() => {
   );
 });
 
+const isModalVisible = ref(false);
+
+const openConfirmationModal = () => {
+  isModalVisible.value = true;
+};
+
+const closeConfirmationModal = () => {
+  isModalVisible.value = false;
+};
+
 const handleSubmit = () => {
   emit('submit', formData.value);
+  closeConfirmationModal();
 };
 </script>
 
