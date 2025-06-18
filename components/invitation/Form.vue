@@ -34,12 +34,6 @@
         required
         class="mb-4"
       ></v-textarea>
-      <v-checkbox
-        v-model="formData.photoPermission"
-        label="写真の掲載許可"
-        required
-        class="mb-4"
-      ></v-checkbox>
       <v-btn
         type="submit"
         color="primary"
@@ -61,21 +55,19 @@ const formData = ref({
   attendance: '',
   className: '',
   message: '',
-  photoPermission: false,
 });
 
 const attendanceOptions = ['参加する', '参加しない'];
 
 const emit = defineEmits(['submit']);
 
-// フォームがすべて入力されているかをチェック
 const isFormValid = computed(() => {
   return (
     formData.value.name &&
     formData.value.email &&
     formData.value.attendance &&
     formData.value.className &&
-    formData.value.photoPermission
+    formData.value.message
   );
 });
 
@@ -84,6 +76,4 @@ const handleSubmit = () => {
 };
 </script>
 
-<style scoped>
-/* Vuetify 3 のユーティリティクラスを使用するため、カスタムスタイルは不要 */
-</style>
+<style scoped></style>
