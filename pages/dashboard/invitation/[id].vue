@@ -9,17 +9,18 @@
         contain
       ></v-img>
       <p class="text-center text-h6 font-weight-bold mb-0 text-black">
+        Reunion invitations<br />
         {{ invitation.title }}
       </p>
       <v-card-text>
-        <div class="mb-2 text-h7 font-weight-bold">{{ invitation.date }}</div>
-        <div class="mb-2 text-h7 font-weight-bold">
+        <div class="mb-2 font-weight-bold">{{ invitation.date }}</div>
+        <div class="mb-2 font-weight-bold">
           {{ invitation.startTime }} - {{ invitation.endTime }}
         </div>
-        <div class="mb-2 text-h7 font-weight-bold">
+        <div class="mb-2 font-weight-bold">
           {{ invitation.venueName }}
         </div>
-        <div class="text-h7 font-weight-bold">
+        <div class="font-weight-bold">
           {{ invitation.venueAddress }}
         </div>
       </v-card-text>
@@ -27,12 +28,10 @@
     <v-card class="px-4 semi-transparent-card py-8">
       <v-card-text class="pa-0">
         <div class="mb-2">{{ invitation.description }}</div>
-        <div class="mb-2 text-h7 font-weight-bold">
+        <div class="mb-2 font-weight-bold">
           回答締切: {{ invitation.deadline }}
         </div>
-        <div class="mb-2 text-h7 font-weight-bold">
-          招待状ID: {{ invitationId }}
-        </div>
+        <div class="mb-2 font-weight-bold">招待状ID: {{ invitationId }}</div>
       </v-card-text>
     </v-card>
     <v-btn color="primary" class="mt-4" @click="handleEdit">編集する</v-btn>
@@ -92,7 +91,7 @@ const handleBack = () => {
 </script>
 
 <style scoped>
-@import url('https://fonts.googleapis.com/css2?family=Kiwi+Maru&family=Zen+Antique&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&family=Kiwi+Maru&family=Zen+Antique&display=swap');
 
 .invitation-detail {
   background-image: url('/images/bg.png'); /* 背景画像を設定 */
@@ -100,7 +99,7 @@ const handleBack = () => {
   background-position: center; /* 背景画像を中央に配置 */
   min-height: 100vh; /* コンテンツが少ない場合でも画面全体を覆う */
   padding: 20px; /* コンテンツの余白を設定 */
-  font-family: 'Kiwi Maru', serif; /* フォントを適用 */
+  font-family: 'Zen Antique', serif !important; /* フォントを適用 */
 }
 
 .event-image {
@@ -112,10 +111,13 @@ const handleBack = () => {
 h2 {
   margin-bottom: 20px;
   color: #fff; /* 背景に合わせて文字色を白に変更 */
-  font-family: 'Zen Antique', serif; /* フォントを適用 */
 }
 
 .semi-transparent-card {
   background-color: rgba(255, 255, 255, 0.8); /* 背景を半透明に設定 */
+}
+
+.text-h6 {
+  font-family: 'Cinzel', serif !important; /* タイトルフォントを適用 */
 }
 </style>
