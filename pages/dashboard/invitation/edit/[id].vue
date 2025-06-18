@@ -100,6 +100,8 @@
 import { useRouter, useRoute } from 'vue-router';
 import { doc, getDoc, updateDoc } from 'firebase/firestore';
 import { useFirebase } from '@/composables/useFirebase';
+import { descriptionTemplates } from '@/src/constants/descriptionTemplates'; // インポート
+import { ref, computed, onMounted } from 'vue';
 
 definePageMeta({
   layout: 'dashboard',
@@ -123,11 +125,6 @@ const form = ref({
   description: '',
 });
 
-const descriptionTemplates = [
-  '親愛なる皆様へ、同窓会のご案内です。',
-  '懐かしい思い出を共有するために集まりましょう。',
-  '再会の喜びを分かち合う特別な日をお楽しみください。',
-];
 const selectedTemplate = ref('');
 const formRef = ref(null);
 
