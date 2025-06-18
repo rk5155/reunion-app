@@ -1,5 +1,5 @@
 <template>
-  <div class="pa-6 ma-4 rounded bg-white shadow">
+  <div class="px-4 py-8 rounded bg-white shadow">
     <v-form @submit.prevent="handleSubmit" class="w-100">
       <v-radio-group v-model="formData.attendance" label="出欠 (必須)" required>
         <v-radio label="参加する" value="参加する"></v-radio>
