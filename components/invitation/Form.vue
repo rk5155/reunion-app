@@ -3,13 +3,13 @@
     <v-form @submit.prevent="handleSubmit" class="w-100">
       <v-text-field
         v-model="formData.name"
-        label="名前"
+        label="氏名 (必須)"
         required
         class="mb-4"
       />
       <v-text-field
         v-model="formData.email"
-        label="メールアドレス"
+        label="メールアドレス (必須)"
         type="email"
         :rules="[emailRule]"
         required
@@ -18,19 +18,19 @@
       <v-select
         v-model="formData.attendance"
         :items="attendanceOptions"
-        label="出欠"
+        label="出欠 (必須)"
         required
         class="mb-4"
       />
       <v-text-field
         v-model="formData.className"
-        label="クラス"
+        label="クラス (必須)"
         required
         class="mb-4"
       />
       <v-textarea
         v-model="formData.message"
-        label="メッセージ"
+        label="メッセージ (必須)"
         rows="4"
         required
         class="mb-4"
@@ -75,8 +75,7 @@ const isFormValid = computed(() => {
     formData.value.name &&
     isEmailValid &&
     formData.value.attendance &&
-    formData.value.className &&
-    formData.value.message
+    formData.value.className
   );
 });
 
