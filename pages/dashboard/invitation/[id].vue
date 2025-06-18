@@ -40,6 +40,7 @@
           出欠情報のご連絡をお願い申し上げます<br />
           <div class="text-h5 mt-4">{{ invitation.deadline }}</div>
         </div>
+        <invitation-form />
       </v-card-text>
     </v-card>
 
