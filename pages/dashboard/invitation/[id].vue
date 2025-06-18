@@ -8,9 +8,19 @@
         class="event-image mb-4 rounded-0"
         contain
       />
-      <h2 class="ttl_center5 text-h3 font-weight-bold my-16 text-black">
-        Reunion invitations
-      </h2>
+
+      <div class="my-16">
+        <p class="mb-3 text-grey-darken-3 text-caption">
+          Where memories meet, and stories begin.
+        </p>
+        <h2 class="ttl_center5 text-h3 font-weight-bold text-black mb-3">
+          Reunion invitations
+        </h2>
+
+        <p class="text-grey-darken-3 text-caption">
+          Together again, to cherish the moments we share.
+        </p>
+      </div>
 
       <v-card-text class="bg-black py-10">
         <v-img
@@ -107,8 +117,6 @@ import { useRouter, useRoute } from 'vue-router';
 import { doc, getDoc } from 'firebase/firestore';
 import { useFirebase } from '@/composables/useFirebase';
 import { ref, onMounted, computed } from 'vue';
-
-definePageMeta({ layout: 'dashboard' });
 
 const { db } = useFirebase();
 const router = useRouter();
@@ -246,7 +254,6 @@ h2 {
   width: fit-content;
   margin: auto;
   padding: 0.5em 1em;
-  margin-bottom: 0.3em;
   text-align: center;
   position: relative;
 }
