@@ -32,7 +32,7 @@
 
       <v-card-text class="py-10">
         <h3 class="text-h5 font-weight-bold mb-4">INFORMATION</h3>
-        <div class="mb-2 font-weight-bold text-h4">{{ invitation.date }}</div>
+        <div class="mb-2 font-weight-bold text-h4">{{ formattedDate }}</div>
         <div class="mb-2 font-weight-bold text-h5">
           {{ invitation.startTime }} - {{ invitation.endTime }}
         </div>
@@ -89,6 +89,17 @@ const countdown = ref({
   hours: '-',
   minutes: '-',
   seconds: '-',
+});
+
+const formattedDate = computed(() => {
+  if (!invitation.value.date) return '';
+  const eventDate = new Date(invitation.value.date);
+  const dayNames = ['日', '月', '火', '水', '木', '金', '土'];
+  const year = eventDate.getFullYear();
+  const month = String(eventDate.getMonth() + 1).padStart(2, '0');
+  const date = String(eventDate.getDate()).padStart(2, '0');
+  const day = dayNames[eventDate.getDay()];
+  return `${year}.${month}.${date}(${day})`;
 });
 
 const updateCountdown = () => {
