@@ -71,8 +71,18 @@
         class="mb-4"
         type="number"
       ></v-text-field>
+
+      <!-- 案内文テンプレート選択 -->
+      <v-select
+        v-model="selectedTemplate"
+        :items="descriptionTemplates"
+        label="案内文テンプレート"
+        outlined
+        class="mb-4"
+      ></v-select>
+
       <v-textarea
-        v-model="form.description"
+        v-model="computedDescription"
         label="案内文"
         outlined
         required
@@ -90,7 +100,6 @@
 import { useRouter, useRoute } from 'vue-router';
 import { doc, getDoc, updateDoc } from 'firebase/firestore';
 import { useFirebase } from '@/composables/useFirebase';
-import { ref, onMounted } from 'vue';
 
 definePageMeta({
   layout: 'dashboard',
@@ -114,7 +123,17 @@ const form = ref({
   description: '',
 });
 
+const descriptionTemplates = [
+  '親愛なる皆様へ、同窓会のご案内です。',
+  '懐かしい思い出を共有するために集まりましょう。',
+  '再会の喜びを分かち合う特別な日をお楽しみください。',
+];
+const selectedTemplate = ref('');
 const formRef = ref(null);
+
+const computedDescription = computed(() => {
+  return selectedTemplate.value || form.value.description;
+});
 
 onMounted(async () => {
   if (!invitationId) {
@@ -146,7 +165,7 @@ const handleSubmit = async () => {
     deadline: form.value.deadline,
     schoolName: form.value.schoolName,
     graduationYear: form.value.graduationYear,
-    description: form.value.description,
+    description: computedDescription.value, // computedから案内文を取得
   });
   alert('招待状を更新しました');
   router.push('/dashboard');
