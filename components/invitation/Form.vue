@@ -37,7 +37,7 @@
       />
       <v-btn
         type="submit"
-        color="pink-accent-1"
+        color="cyan-darken-1"
         class="mt-4 w-100"
         :disabled="!isFormValid"
         rounded="lg"

@@ -5,7 +5,7 @@
       <v-img
         src="/images/invitation.jpg"
         alt="イベント画像"
-        class="event-image mb-4"
+        class="event-image mb-4 rounded-0"
         contain
       />
       <h2 class="text-center text-h3 font-weight-bold my-16 text-black">
@@ -13,6 +13,11 @@
       </h2>
 
       <v-card-text class="bg-black py-10">
+        <v-img
+          src="/images/invitation-2.jpg"
+          class="event-image mb-4 rounded-0"
+          contain
+        ></v-img>
         <p class="text-center text-h6 font-weight-bold mb-4">
           {{ invitation.title }}
         </p>
