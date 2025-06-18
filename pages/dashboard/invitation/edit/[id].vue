@@ -56,6 +56,21 @@
         class="mb-4"
         type="date"
       ></v-text-field>
+      <v-text-field
+        v-model="form.schoolName"
+        label="学校名"
+        outlined
+        required
+        class="mb-4"
+      ></v-text-field>
+      <v-text-field
+        v-model="form.graduationYear"
+        label="卒業年度"
+        outlined
+        required
+        class="mb-4"
+        type="number"
+      ></v-text-field>
       <v-textarea
         v-model="form.description"
         label="案内文"
@@ -94,6 +109,8 @@ const form = ref({
   venueName: '',
   venueAddress: '',
   deadline: '',
+  schoolName: '',
+  graduationYear: '',
   description: '',
 });
 
@@ -127,6 +144,8 @@ const handleSubmit = async () => {
     venueName: form.value.venueName,
     venueAddress: form.value.venueAddress,
     deadline: form.value.deadline,
+    schoolName: form.value.schoolName,
+    graduationYear: form.value.graduationYear,
     description: form.value.description,
   });
   alert('招待状を更新しました');
