@@ -24,9 +24,33 @@
         <div class="text-h4 font-weight-bold mb-4">
           to {{ invitation.date }}
         </div>
-        <div class="text-h4 font-weight-bold text-danger">
-          {{ countdown.days }} 日 {{ countdown.hours }} 時間
-          {{ countdown.minutes }} 分 {{ countdown.seconds }} 秒
+        <div
+          class="text-h4 font-weight-bold text-danger d-flex justify-space-between"
+        >
+          <div class="w-25">
+            <div>{{ countdown.days }}</div>
+            <div class="countdown-label text-cyan-lighten-4 font-weight-bold">
+              Days
+            </div>
+          </div>
+          <div class="w-25">
+            <div>{{ countdown.hours }}</div>
+            <div class="countdown-label text-cyan-lighten-4 font-weight-bold">
+              Hours
+            </div>
+          </div>
+          <div class="w-25">
+            <div>{{ countdown.minutes }}</div>
+            <div class="countdown-label text-cyan-lighten-4 font-weight-bold">
+              Minutes
+            </div>
+          </div>
+          <div class="w-25">
+            <div>{{ countdown.seconds }}</div>
+            <div class="countdown-label text-cyan-lighten-4 font-weight-bold">
+              Seconds
+            </div>
+          </div>
         </div>
       </v-card-text>
 
@@ -186,5 +210,9 @@ h2 {
 .text-h5,
 .text-h6 {
   font-family: 'Cinzel', serif !important; /* タイトルフォントを適用 */
+}
+
+.countdown-label {
+  font-size: 0.8rem;
 }
 </style>
