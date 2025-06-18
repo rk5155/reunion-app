@@ -6,34 +6,34 @@
         label="名前"
         required
         class="mb-4"
-      ></v-text-field>
+      />
       <v-text-field
         v-model="formData.email"
         label="メールアドレス"
         type="email"
         required
         class="mb-4"
-      ></v-text-field>
+      />
       <v-select
         v-model="formData.attendance"
         :items="attendanceOptions"
         label="出欠"
         required
         class="mb-4"
-      ></v-select>
+      />
       <v-text-field
         v-model="formData.className"
         label="クラス"
         required
         class="mb-4"
-      ></v-text-field>
+      />
       <v-textarea
         v-model="formData.message"
         label="メッセージ"
         rows="4"
         required
         class="mb-4"
-      ></v-textarea>
+      />
       <v-btn
         type="submit"
         color="primary"
