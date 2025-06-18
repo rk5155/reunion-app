@@ -15,13 +15,13 @@
       <v-card-text class="bg-black py-10">
         <v-img
           src="/images/invitation-2.jpg"
-          class="event-image mb-4 rounded-0"
+          class="event-image mb-6 rounded-0"
           contain
-        ></v-img>
+        />
         <p class="text-center text-h6 font-weight-bold mb-4">
           {{ invitation.title }}
         </p>
-        <div>{{ invitation.description }}</div>
+        <div class="text-pre-line">{{ invitation.description }}</div>
       </v-card-text>
 
       <v-card-text class="py-10 bg-grey-darken-4">
@@ -61,7 +61,9 @@
 
       <v-card-text class="py-10">
         <h3 class="text-h5 font-weight-bold mb-4">INFORMATION</h3>
-        <div class="mb-2 font-weight-bold text-h4">{{ formattedDate }}</div>
+        <div class="mb-2 font-weight-bold text-h4">
+          {{ getFormattedDate(invitation.date) }}
+        </div>
         <div class="mb-2 font-weight-bold text-h5">
           {{ invitation.startTime }} - {{ invitation.endTime }}
         </div>
@@ -78,7 +80,9 @@
         <div class="new-action-design-tm-Heading3">
           お手数ですが　下記お日にち迄に<br />
           出欠情報のご連絡をお願い申し上げます<br />
-          <div class="text-h5 mt-4">{{ invitation.deadline }}</div>
+          <div class="text-h5 mt-4">
+            {{ getFormattedDate(invitation.deadline) }}
+          </div>
         </div>
         <invitation-form />
       </v-card-text>
@@ -120,16 +124,16 @@ const countdown = ref({
   seconds: '-',
 });
 
-const formattedDate = computed(() => {
-  if (!invitation.value.date) return '';
-  const eventDate = new Date(invitation.value.date);
+const getFormattedDate = (dateString: string): string => {
+  if (!dateString) return '';
+  const eventDate = new Date(dateString);
   const dayNames = ['日', '月', '火', '水', '木', '金', '土'];
   const year = eventDate.getFullYear();
   const month = String(eventDate.getMonth() + 1).padStart(2, '0');
   const date = String(eventDate.getDate()).padStart(2, '0');
   const day = dayNames[eventDate.getDay()];
   return `${year}.${month}.${date}(${day})`;
-});
+};
 
 const updateCountdown = () => {
   if (!invitation.value.date) return;
