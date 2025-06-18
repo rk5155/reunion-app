@@ -19,7 +19,7 @@
         <div>{{ invitation.description }}</div>
       </v-card-text>
 
-      <v-card-text class="py-10 bg-yellow-accent-1">
+      <v-card-text class="py-10 bg-grey-darken-4">
         <h3 class="text-h5 font-weight-bold mb-4">Countdown</h3>
         <div class="text-h4 font-weight-bold mb-4">
           to {{ invitation.date }}
