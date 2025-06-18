@@ -36,11 +36,12 @@
       />
       <v-btn
         type="submit"
-        color="primary"
-        class="mt-4"
+        color="pink-accent-1"
+        class="mt-4 w-100"
         :disabled="!isFormValid"
+        rounded="lg"
       >
-        送信
+        確認する
       </v-btn>
     </v-form>
   </div>
