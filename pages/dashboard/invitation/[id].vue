@@ -19,6 +19,17 @@
         <div>{{ invitation.description }}</div>
       </v-card-text>
 
+      <v-card-text class="py-10 bg-yellow-accent-1">
+        <h3 class="text-h5 font-weight-bold mb-4">Countdown</h3>
+        <div class="text-h4 font-weight-bold mb-4">
+          to {{ invitation.date }}
+        </div>
+        <div class="text-h4 font-weight-bold text-danger">
+          {{ countdown.days }} 日 {{ countdown.hours }} 時間
+          {{ countdown.minutes }} 分 {{ countdown.seconds }} 秒
+        </div>
+      </v-card-text>
+
       <v-card-text class="py-10">
         <h3 class="text-h5 font-weight-bold mb-4">INFORMATION</h3>
         <div class="mb-2 font-weight-bold text-h4">{{ invitation.date }}</div>
@@ -53,7 +64,7 @@
 import { useRouter, useRoute } from 'vue-router';
 import { doc, getDoc } from 'firebase/firestore';
 import { useFirebase } from '@/composables/useFirebase';
-import { ref, onMounted } from 'vue';
+import { ref, onMounted, computed } from 'vue';
 
 definePageMeta({ layout: 'dashboard' });
 
@@ -73,6 +84,36 @@ const invitation = ref({
   description: '',
 });
 
+const countdown = ref({
+  days: '-',
+  hours: '-',
+  minutes: '-',
+  seconds: '-',
+});
+
+const updateCountdown = () => {
+  if (!invitation.value.date) return;
+  const eventDate = new Date(invitation.value.date);
+  const now = new Date();
+  const diffTime = eventDate.getTime() - now.getTime();
+
+  if (diffTime > 0) {
+    countdown.value.days = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+    countdown.value.hours = Math.floor(
+      (diffTime % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+    );
+    countdown.value.minutes = Math.floor(
+      (diffTime % (1000 * 60 * 60)) / (1000 * 60)
+    );
+    countdown.value.seconds = Math.floor((diffTime % (1000 * 60)) / 1000);
+  } else {
+    countdown.value.days = 0;
+    countdown.value.hours = 0;
+    countdown.value.minutes = 0;
+    countdown.value.seconds = 0;
+  }
+};
+
 onMounted(async () => {
   if (!invitationId) {
     alert('招待状IDが見つかりません');
@@ -85,6 +126,8 @@ onMounted(async () => {
 
   if (docSnap.exists()) {
     invitation.value = docSnap.data();
+    updateCountdown();
+    setInterval(updateCountdown, 1000); // 1秒ごとにカウントダウンを更新
   } else {
     alert('招待状が存在しません');
     router.push('/dashboard');
@@ -128,6 +171,7 @@ h2 {
 }
 
 .text-h3,
+.text-h4,
 .text-h5,
 .text-h6 {
   font-family: 'Cinzel', serif !important; /* タイトルフォントを適用 */
