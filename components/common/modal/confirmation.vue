@@ -31,19 +31,21 @@
           <p>{{ details.message }}</p>
         </div>
       </v-card-text>
-      <div class="d-flex">
+      <div>
         <v-btn
           color="cyan-darken-1"
           @click="onConfirm"
-          class="w-50 font-weight-bold"
-          >送信</v-btn
+          class="w-100 font-weight-bold d-block mb-4"
         >
+          送信
+        </v-btn>
         <v-btn
           color="grey-lighten-3"
           @click="onCancel"
-          class="w-50 font-weight-bold"
-          >キャンセル</v-btn
+          class="w-100 font-weight-bold d-block"
         >
+          キャンセル
+        </v-btn>
       </div>
     </v-card>
   </v-dialog>
