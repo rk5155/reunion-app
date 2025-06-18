@@ -8,7 +8,7 @@
         class="event-image mb-4 rounded-0"
         contain
       />
-      <h2 class="text-center text-h3 font-weight-bold my-16 text-black">
+      <h2 class="ttl_center5 text-h3 font-weight-bold my-16 text-black">
         Reunion invitations
       </h2>
 
@@ -219,5 +219,34 @@ h2 {
 
 .countdown-label {
   font-size: 0.8rem;
+}
+
+.ttl_center5 {
+  font-weight: bold;
+  width: fit-content;
+  margin: auto;
+  padding: 0.5em 1em;
+  margin-bottom: 0.3em;
+  text-align: center;
+  position: relative;
+}
+
+.ttl_center5::before,
+.ttl_center5::after {
+  content: '';
+  background-color: black;
+  width: 50%;
+  height: 2px;
+  position: absolute;
+}
+
+.ttl_center5::before {
+  top: 0;
+  left: 0;
+}
+
+.ttl_center5::after {
+  bottom: 0;
+  right: 0;
 }
 </style>
