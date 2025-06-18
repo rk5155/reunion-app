@@ -19,27 +19,32 @@
         <div>{{ invitation.description }}</div>
       </v-card-text>
 
-      <v-card-text>
-        <div class="mb-2 font-weight-bold">{{ invitation.date }}</div>
-        <div class="mb-2 font-weight-bold">
+      <v-card-text class="py-10">
+        <h3 class="text-h5 font-weight-bold mb-4">INFORMATION</h3>
+        <div class="mb-2 font-weight-bold text-h4">{{ invitation.date }}</div>
+        <div class="mb-2 font-weight-bold text-h5">
           {{ invitation.startTime }} - {{ invitation.endTime }}
         </div>
-        <div class="mb-2 font-weight-bold">会場/{{ invitation.venueName }}</div>
+        <div class="mb-2 font-weight-bold text-h5">
+          会場/{{ invitation.venueName }}
+        </div>
         <div class="font-weight-bold">
           {{ invitation.venueAddress }}
         </div>
       </v-card-text>
 
-      <v-card-text class="pa-0">
-        <div class="mb-2 font-weight-bold">
-          回答締切: {{ invitation.deadline }}
+      <v-card-text class="py-10 bg-grey-lighten-2">
+        <h3 class="text-h5 font-weight-bold mb-4">Presence or Absence</h3>
+        <div class="new-action-design-tm-Heading3">
+          お手数ですが　下記お日にち迄に<br />
+          出欠情報のご連絡をお願い申し上げます<br />
+          <div class="text-h5 mt-4">{{ invitation.deadline }}</div>
         </div>
-        <div class="mb-2 font-weight-bold">招待状ID: {{ invitationId }}</div>
       </v-card-text>
     </v-card>
 
-    <v-btn color="primary" class="mt-4" @click="handleEdit">編集する</v-btn>
-    <v-btn color="secondary" class="mt-4" @click="handleBack">戻る</v-btn>
+    <v-btn color="primary" @click="handleEdit">編集する</v-btn>
+    <v-btn color="secondary" @click="handleBack">戻る</v-btn>
   </div>
 </template>
 
@@ -122,6 +127,7 @@ h2 {
 }
 
 .text-h3,
+.text-h5,
 .text-h6 {
   font-family: 'Cinzel', serif !important; /* タイトルフォントを適用 */
 }
