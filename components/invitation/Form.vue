@@ -53,22 +53,23 @@
       @cancel="closeConfirmationModal"
     >
       <div class="mb-2 border-b py-2">
+        <p class="mb-1">出欠</p>
         <p>{{ formData.attendance }}</p>
       </div>
       <div class="mb-2 border-b py-2">
-        <p class="mb-2">氏名</p>
+        <p class="mb-1">氏名</p>
         <p>{{ formData.name }}</p>
       </div>
       <div class="mb-2 border-b py-2">
-        <p class="mb-2">メールアドレス</p>
+        <p class="mb-1">メールアドレス</p>
         <p>{{ formData.email }}</p>
       </div>
       <div class="mb-2 border-b py-2">
-        <p class="mb-2">クラス</p>
+        <p class="mb-1">クラス</p>
         <p>{{ formData.className }}</p>
       </div>
       <div class="mb-2 border-b py-2">
-        <p class="mb-2">メッセージ</p>
+        <p class="mb-1">メッセージ</p>
         <p>{{ formData.message }}</p>
       </div>
     </common-modal-confirmation>
