@@ -1,6 +1,11 @@
 <template>
   <div class="pa-6 ma-4 rounded bg-white shadow">
     <v-form @submit.prevent="handleSubmit" class="w-100">
+      <v-radio-group v-model="formData.attendance" label="出欠 (必須)" required>
+        <v-radio label="参加する" value="参加する"></v-radio>
+        <v-radio label="参加しない" value="参加しない"></v-radio>
+      </v-radio-group>
+
       <v-text-field
         v-model="formData.name"
         label="氏名 (必須)"
@@ -15,13 +20,7 @@
         required
         class="mb-4"
       />
-      <v-select
-        v-model="formData.attendance"
-        :items="attendanceOptions"
-        label="出欠 (必須)"
-        required
-        class="mb-4"
-      />
+
       <v-text-field
         v-model="formData.className"
         label="クラス (必須)"
@@ -49,8 +48,6 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, computed, defineEmits } from 'vue';
-
 const formData = ref({
   name: '',
   email: '',
@@ -58,8 +55,6 @@ const formData = ref({
   className: '',
   message: '',
 });
-
-const attendanceOptions = ['参加する', '参加しない'];
 
 const emit = defineEmits(['submit']);
 
