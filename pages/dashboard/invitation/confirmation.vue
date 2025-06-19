@@ -1,6 +1,6 @@
 <template>
   <div
-    class="confirmation d-flex justify-center align-center fill-height text-center mx-4"
+    class="confirmation d-flex justify-center align-center fill-height text-center px-6 bg-grey-lighten-4"
   >
     <v-card class="py-12 elevation-10 w-100">
       <v-icon color="cyan-darken-1" size="100" class="mb-4"
