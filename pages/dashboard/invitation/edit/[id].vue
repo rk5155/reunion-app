@@ -9,7 +9,7 @@
         outlined
         required
         class="mb-4"
-      ></v-text-field>
+      />
       <v-text-field
         v-model="form.date"
         label="開催日"
@@ -17,7 +17,7 @@
         required
         class="mb-4"
         type="date"
-      ></v-text-field>
+      />
       <v-text-field
         v-model="form.startTime"
         label="開始時間"
@@ -25,7 +25,7 @@
         required
         class="mb-4"
         type="time"
-      ></v-text-field>
+      />
       <v-text-field
         v-model="form.endTime"
         label="終了時間"
@@ -33,21 +33,21 @@
         required
         class="mb-4"
         type="time"
-      ></v-text-field>
+      />
       <v-text-field
         v-model="form.venueName"
         label="会場名"
         outlined
         required
         class="mb-4"
-      ></v-text-field>
+      />
       <v-text-field
         v-model="form.venueAddress"
         label="会場の住所"
         outlined
         required
         class="mb-4"
-      ></v-text-field>
+      />
       <v-text-field
         v-model="form.deadline"
         label="回答締切日"
@@ -55,14 +55,14 @@
         required
         class="mb-4"
         type="date"
-      ></v-text-field>
+      />
       <v-text-field
         v-model="form.schoolName"
         label="学校名"
         outlined
         required
         class="mb-4"
-      ></v-text-field>
+      />
       <v-text-field
         v-model="form.graduationYear"
         label="卒業年度"
@@ -70,7 +70,7 @@
         required
         class="mb-4"
         type="number"
-      ></v-text-field>
+      />
 
       <!-- 案内文テンプレート選択 -->
       <v-select
@@ -79,15 +79,14 @@
         label="案内文テンプレート"
         outlined
         class="mb-4"
-      ></v-select>
-
+      />
       <v-textarea
         v-model="computedDescription"
         label="案内文"
         outlined
         required
         class="mb-4"
-      ></v-textarea>
+      />
       <v-btn type="submit" color="primary" class="mt-4">保存</v-btn>
       <v-btn color="secondary" class="mt-4" @click="handleCancel"
         >キャンセル</v-btn
