@@ -99,6 +99,7 @@
 import { useRouter, useRoute } from 'vue-router';
 import { doc, getDoc, updateDoc } from 'firebase/firestore';
 import { useFirebase } from '@/composables/useFirebase';
+import { useAuthStore } from '@/stores/auth';
 import { generateDescriptionTemplates } from '@/src/constants/descriptionTemplates';
 import { ref, computed, onMounted } from 'vue';
 
@@ -109,6 +110,7 @@ definePageMeta({
 const { db } = useFirebase();
 const router = useRouter();
 const route = useRoute();
+const authStore = useAuthStore();
 const invitationId = route.params.id;
 
 const form = ref({
@@ -122,6 +124,7 @@ const form = ref({
   schoolName: '',
   graduationYear: '',
   description: '',
+  createdBy: '',
 });
 
 const selectedTemplate = ref('');
@@ -150,9 +153,11 @@ onMounted(async () => {
 
   if (docSnap.exists()) {
     form.value = docSnap.data();
-  } else {
-    alert('招待状が存在しません');
-    router.push('/dashboard');
+  }
+
+  if (form.value.createdBy !== authStore.user?.uid) {
+    alert('編集権限がありません');
+    router.push('/');
   }
 });
 
