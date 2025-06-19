@@ -213,8 +213,11 @@ const handleFormSubmit = async (formData: Record<string, any>) => {
   try {
     formData.invitationId = invitationId; // invitationIdを追加
     const docRef = await addDoc(collection(db, 'attendances'), formData);
-    console.log('登録成功:', docRef.id);
-    alert('登録が成功しました！');
+
+    router.push({
+      path: '/dashboard/invitation/confirmation',
+      query: { id: invitationId },
+    });
   } catch (error) {
     console.error('登録失敗:', error);
     alert('登録に失敗しました。もう一度お試しください。');
