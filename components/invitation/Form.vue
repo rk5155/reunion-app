@@ -77,17 +77,7 @@
 </template>
 
 <script lang="ts" setup>
-import { collection, addDoc } from 'firebase/firestore';
-import { useFirebase } from '@/composables/useFirebase';
-const { db } = useFirebase();
 const emit = defineEmits(['submit']);
-
-const props = defineProps({
-  invitationId: {
-    type: String,
-    required: true,
-  },
-});
 
 const formData = ref({
   name: '',
@@ -95,7 +85,6 @@ const formData = ref({
   attendance: '',
   className: '',
   message: '',
-  invitationId: props.invitationId,
 });
 
 const emailRule = (value: string) => {
@@ -103,7 +92,6 @@ const emailRule = (value: string) => {
   return emailRegex.test(value) || '正しいメールアドレスを入力してください';
 };
 
-// フォームがすべて入力されているかをチェック
 const isFormValid = computed(() => {
   const isEmailValid = emailRule(formData.value.email) === true;
   return (
@@ -124,20 +112,9 @@ const closeConfirmationModal = () => {
   isModalVisible.value = false;
 };
 
-const handleSubmit = async () => {
-  try {
-    const docRef = await addDoc(collection(db, 'attendances'), formData.value);
-    console.log('登録成功:', docRef.id);
-
-    // フォーム送信イベントを発火
-    emit('submit', formData.value);
-
-    // モーダルを閉じる
-    closeConfirmationModal();
-  } catch (error) {
-    console.error('登録失敗:', error);
-    alert('登録に失敗しました。もう一度お試しください。');
-  }
+const handleSubmit = () => {
+  emit('submit', formData.value);
+  closeConfirmationModal();
 };
 </script>
 

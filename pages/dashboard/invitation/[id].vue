@@ -99,7 +99,7 @@
           受付は終了しました。
         </div>
 
-        <invitation-form v-else :invitationId="invitationId" class="mt-4" />
+        <invitation-form v-else class="mt-4" @submit="handleFormSubmit" />
 
         <h2 class="ttl_center5 text-h3 font-weight-bold my-16 text-black">
           Thank you!!
@@ -114,9 +114,8 @@
 
 <script lang="ts" setup>
 import { useRouter, useRoute } from 'vue-router';
-import { doc, getDoc } from 'firebase/firestore';
+import { doc, getDoc, collection, addDoc } from 'firebase/firestore';
 import { useFirebase } from '@/composables/useFirebase';
-import { ref, onMounted, computed } from 'vue';
 
 const { db } = useFirebase();
 const router = useRouter();
@@ -208,6 +207,18 @@ const handleEdit = () => {
 
 const handleBack = () => {
   router.push('/dashboard');
+};
+
+const handleFormSubmit = async (formData: Record<string, any>) => {
+  try {
+    formData.invitationId = invitationId; // invitationIdを追加
+    const docRef = await addDoc(collection(db, 'attendances'), formData);
+    console.log('登録成功:', docRef.id);
+    alert('登録が成功しました！');
+  } catch (error) {
+    console.error('登録失敗:', error);
+    alert('登録に失敗しました。もう一度お試しください。');
+  }
 };
 </script>
 
