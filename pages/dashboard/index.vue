@@ -71,7 +71,7 @@ onMounted(() => {
   const invitationsRef = collection(db, 'invitations');
   const userInvitationsQuery = query(
     invitationsRef,
-    where('createdBy', '==', userUid.value)
+    where('creatorId', '==', userUid.value)
   );
 
   onSnapshot(userInvitationsQuery, (snapshot) => {

@@ -72,7 +72,7 @@ const handleSubmit = async () => {
     const docRef = await addDoc(collection(db, 'invitations'), {
       title: form.value.title,
       date: form.value.date,
-      createdBy: userUid, // UID を保存
+      creatorId: userUid, // UID を保存
     });
 
     console.log('招待状ID:', docRef.id);

@@ -141,7 +141,7 @@ const invitation = ref({
   venueAddress: '',
   deadline: '',
   description: '',
-  createdBy: '', // 作成者IDを追加
+  creatorId: '',
 });
 
 const countdown = ref({
@@ -159,7 +159,7 @@ const isDeadlinePassed = computed(() => {
 });
 
 const isCreator = computed(() => {
-  return invitation.value.createdBy === authStore.user?.uid; // 現在のユーザーIDと作成者IDを比較
+  return invitation.value.creatorId === authStore.user?.uid; // 現在のユーザーIDと作成者IDを比較
 });
 
 const getFormattedDate = (dateString: string): string => {

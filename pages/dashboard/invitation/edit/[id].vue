@@ -124,7 +124,7 @@ const form = ref({
   schoolName: '',
   graduationYear: '',
   description: '',
-  createdBy: '',
+  creatorId: '',
 });
 
 const selectedTemplate = ref('');
@@ -155,7 +155,7 @@ onMounted(async () => {
     form.value = docSnap.data();
   }
 
-  if (form.value.createdBy !== authStore.user?.uid) {
+  if (form.value.creatorId !== authStore.user?.uid) {
     alert('編集権限がありません');
     router.push('/');
   }
