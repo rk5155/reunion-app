@@ -1,5 +1,6 @@
 <template>
   <div class="invitation-detail text-center pa-0">
+    <common-loading-overlay :visible="uiStore.loading" />
     <v-card class="semi-transparent-card">
       <!-- カードの上に画像を表示 -->
       <v-img
@@ -116,10 +117,12 @@
 import { useRouter, useRoute } from 'vue-router';
 import { doc, getDoc, collection, addDoc } from 'firebase/firestore';
 import { useFirebase } from '@/composables/useFirebase';
+import { useUIStore } from '@/stores/ui';
 
 const { db } = useFirebase();
 const router = useRouter();
 const route = useRoute();
+const uiStore = useUIStore();
 const invitationId = route.params.id;
 
 const invitation = ref({
@@ -211,7 +214,8 @@ const handleBack = () => {
 
 const handleFormSubmit = async (formData: Record<string, any>) => {
   try {
-    formData.invitationId = invitationId; // invitationIdを追加
+    uiStore.setLoading(true);
+    formData.invitationId = invitationId;
     const docRef = await addDoc(collection(db, 'attendances'), formData);
 
     router.push({
@@ -221,6 +225,8 @@ const handleFormSubmit = async (formData: Record<string, any>) => {
   } catch (error) {
     console.error('登録失敗:', error);
     alert('登録に失敗しました。もう一度お試しください。');
+  } finally {
+    uiStore.setLoading(false);
   }
 };
 </script>
