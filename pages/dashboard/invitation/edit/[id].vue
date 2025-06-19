@@ -87,10 +87,10 @@
         required
         class="mb-4"
       />
-      <v-btn type="submit" color="primary" class="mt-4">保存</v-btn>
-      <v-btn color="secondary" class="mt-4" @click="handleCancel"
-        >キャンセル</v-btn
-      >
+      <div class="d-flex justify-center pa-4 bg-white">
+        <v-btn type="submit" color="primary" class="mx-2">保存</v-btn>
+        <v-btn class="mx-2" @click="handleCancel">キャンセル</v-btn>
+      </div>
     </v-form>
   </div>
 </template>
@@ -176,7 +176,7 @@ const handleSubmit = async () => {
     description: computedDescription.value, // computedから案内文を取得
   });
   alert('招待状を更新しました');
-  router.push('/dashboard');
+  router.push(`/dashboard/invitation/${invitationId}`);
 };
 
 const handleCancel = () => {
