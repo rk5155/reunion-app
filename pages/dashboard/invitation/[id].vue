@@ -99,7 +99,7 @@
           受付は終了しました。
         </div>
 
-        <invitation-form v-else class="mt-4" />
+        <invitation-form v-else :invitationId="invitationId" class="mt-4" />
 
         <h2 class="ttl_center5 text-h3 font-weight-bold my-16 text-black">
           Thank you!!
