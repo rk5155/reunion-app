@@ -214,6 +214,16 @@ const updateCountdown = () => {
   }
 };
 
+const fetchAttendeeCount = async () => {
+  const attendeesQuery = query(
+    collection(db, 'attendances'),
+    where('invitationId', '==', invitationId),
+    where('attendance', '==', '参加する')
+  );
+  const attendeeDocs = await getDocs(attendeesQuery);
+  attendeeCount.value = attendeeDocs.size;
+};
+
 onMounted(async () => {
   if (!invitationId) {
     alert('招待状IDが見つかりません');
@@ -227,15 +237,9 @@ onMounted(async () => {
   if (docSnap.exists()) {
     invitation.value = docSnap.data();
     updateCountdown();
-    setInterval(updateCountdown, 1000); // 1秒ごとにカウントダウンを更新
 
-    const attendeesQuery = query(
-      collection(db, 'attendances'),
-      where('invitationId', '==', invitationId),
-      where('attendance', '==', '参加する')
-    );
-    const attendeeDocs = await getDocs(attendeesQuery);
-    attendeeCount.value = attendeeDocs.size;
+    setInterval(updateCountdown, 1000); // 1秒ごとにカウントダウンを更新
+    await fetchAttendeeCount();
   } else {
     alert('招待状が存在しません');
     router.push('/dashboard');
