@@ -108,8 +108,10 @@
       </v-card-text>
     </v-card>
 
-    <v-btn color="primary" @click="handleEdit">編集する</v-btn>
-    <v-btn color="secondary" @click="handleBack">戻る</v-btn>
+    <div class="sticky-bottom d-flex justify-center pa-4">
+      <v-btn color="primary" @click="handleEdit" class="mx-2">編集する</v-btn>
+      <v-btn @click="handleBack" class="mx-2">戻る</v-btn>
+    </div>
   </div>
 </template>
 
@@ -295,5 +297,23 @@ h2 {
 .ttl_center5::after {
   bottom: 0;
   right: 0;
+}
+
+/* 画面下部のボタンを調整 */
+.fixed-bottom {
+  background-color: rgba(255, 255, 255, 0.9); /* 半透明の背景 */
+  backdrop-filter: blur(10px); /* 背景をぼかす */
+  border-top: 1px solid #ddd; /* 上部に境界線 */
+  padding: 10px 0; /* 上下のパディング */
+}
+
+.sticky-bottom {
+  position: sticky;
+  bottom: 0;
+  background-color: rgba(255, 255, 255, 0.9); /* 半透明の背景 */
+  backdrop-filter: blur(10px); /* 背景をぼかす */
+  border-top: 1px solid #ddd; /* 上部に境界線 */
+  padding: 10px 0; /* 上下のパディング */
+  z-index: 1000; /* 他の要素より前面に表示 */
 }
 </style>
