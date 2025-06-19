@@ -251,7 +251,7 @@ h2 {
 .semi-transparent-card {
   background-color: rgba(255, 255, 255, 0.8); /* 背景を半透明に設定 */
 }
-
+.text-h2,
 .text-h3,
 .text-h4,
 .text-h5,

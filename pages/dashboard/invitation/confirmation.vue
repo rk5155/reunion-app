@@ -1,11 +1,24 @@
 <template>
-  <div class="confirmation-page text-center">
-    <v-card class="semi-transparent-card pa-8">
-      <h2 class="text-h4 font-weight-bold mb-4">受付が完了しました</h2>
+  <div
+    class="confirmation d-flex justify-center align-center fill-height text-center mx-4"
+  >
+    <v-card class="py-12 elevation-10 w-100">
+      <v-icon color="cyan-darken-1" size="100" class="mb-4"
+        >mdi-check-circle</v-icon
+      >
+      <h2 class="text-h5 font-weight-bold mb-4">
+        出欠のご回答<br />ありがとうございました!
+      </h2>
       <p class="text-body-1 mb-6">
-        ご登録いただきありがとうございます。イベント当日を楽しみにお待ちください。
+        同窓会当日にお会いできるのを<br />楽しみにしております。
       </p>
-      <v-btn color="primary" @click="handleBackToDetail" class="mt-4">
+      <v-btn
+        color="cyan-darken-1"
+        @click="handleBackToDetail"
+        class="mt-4 font-weight-bold"
+        size="large"
+        rounded="xl"
+      >
         招待状に戻る
       </v-btn>
     </v-card>
@@ -29,17 +42,14 @@ const handleBackToDetail = () => {
 </script>
 
 <style scoped>
-.confirmation-page {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  background-color: #f9f9f9;
-}
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&family=Kiwi+Maru&family=Zen+Antique&display=swap');
 
-.semi-transparent-card {
-  background-color: rgba(255, 255, 255, 0.9);
-  border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+.confirmation,
+.text-h2,
+.text-h3,
+.text-h4,
+.text-h5,
+.text-h6 {
+  font-family: 'Cinzel', serif !important;
 }
 </style>
