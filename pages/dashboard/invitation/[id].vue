@@ -35,6 +35,14 @@
         <div class="text-pre-line">{{ invitation.description }}</div>
       </v-card-text>
 
+      <v-card-text class="py-10 bg-grey-lighten-4">
+        <h3 class="text-h5 font-weight-bold mb-4">Current participation</h3>
+        <p class="mb-2">現在の参加状況</p>
+        <p class="text-h4 font-weight-bold text-cyan-lighten-2">
+          {{ attendeeCount + 34 }} 人
+        </p>
+      </v-card-text>
+
       <v-card-text class="py-10 bg-grey-darken-4">
         <h3 class="text-h5 font-weight-bold mb-4">Countdown</h3>
         <div class="text-h4 font-weight-bold mb-4">
@@ -120,7 +128,15 @@
 
 <script lang="ts" setup>
 import { useRouter, useRoute } from 'vue-router';
-import { doc, getDoc, collection, addDoc } from 'firebase/firestore';
+import {
+  doc,
+  getDoc,
+  collection,
+  query,
+  where,
+  getDocs,
+  addDoc,
+} from 'firebase/firestore';
 import { useFirebase } from '@/composables/useFirebase';
 import { useUIStore } from '@/stores/ui';
 import { useAuthStore } from '@/stores/auth'; // ユーザー情報を取得するストアをインポート
@@ -150,6 +166,8 @@ const countdown = ref({
   minutes: '-',
   seconds: '-',
 });
+
+const attendeeCount = ref(0);
 
 const isDeadlinePassed = computed(() => {
   if (!invitation.value.deadline) return false;
@@ -210,6 +228,14 @@ onMounted(async () => {
     invitation.value = docSnap.data();
     updateCountdown();
     setInterval(updateCountdown, 1000); // 1秒ごとにカウントダウンを更新
+
+    const attendeesQuery = query(
+      collection(db, 'attendances'),
+      where('invitationId', '==', invitationId),
+      where('attendance', '==', '参加する')
+    );
+    const attendeeDocs = await getDocs(attendeesQuery);
+    attendeeCount.value = attendeeDocs.size;
   } else {
     alert('招待状が存在しません');
     router.push('/dashboard');
