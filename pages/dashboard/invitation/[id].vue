@@ -108,8 +108,11 @@
       </v-card-text>
     </v-card>
 
-    <div class="sticky-bottom d-flex justify-center pa-4 bg-white">
-      <v-btn color="primary" @click="handleEdit" class="mx-2">編集する</v-btn>
+    <div
+      v-if="isCreator"
+      class="sticky-bottom d-flex justify-center pa-4 bg-white"
+    >
+      <v-btn color="primary" @click="handleEdit" class="mx-2"> 編集する </v-btn>
       <v-btn @click="handleBack" class="mx-2">戻る</v-btn>
     </div>
   </div>
@@ -120,11 +123,13 @@ import { useRouter, useRoute } from 'vue-router';
 import { doc, getDoc, collection, addDoc } from 'firebase/firestore';
 import { useFirebase } from '@/composables/useFirebase';
 import { useUIStore } from '@/stores/ui';
+import { useAuthStore } from '@/stores/auth'; // ユーザー情報を取得するストアをインポート
 
 const { db } = useFirebase();
 const router = useRouter();
 const route = useRoute();
 const uiStore = useUIStore();
+const authStore = useAuthStore(); // ユーザー情報を取得するストアを使用
 const invitationId = route.params.id;
 
 const invitation = ref({
@@ -136,6 +141,7 @@ const invitation = ref({
   venueAddress: '',
   deadline: '',
   description: '',
+  createdBy: '', // 作成者IDを追加
 });
 
 const countdown = ref({
@@ -150,6 +156,10 @@ const isDeadlinePassed = computed(() => {
   const deadlineDate = new Date(invitation.value.deadline);
   const now = new Date();
   return now > deadlineDate;
+});
+
+const isCreator = computed(() => {
+  return invitation.value.createdBy === authStore.user?.uid; // 現在のユーザーIDと作成者IDを比較
 });
 
 const getFormattedDate = (dateString: string): string => {
