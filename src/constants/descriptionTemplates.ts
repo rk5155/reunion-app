@@ -2,7 +2,7 @@ export const generateDescriptionTemplates = (schoolName: string, graduationYear:
   `親愛なる同級生の皆さまへ
 
 お元気でお過ごしでしょうか。
-このたび、${schoolName} ${graduationYear}卒生による同窓会を下記の通り開催することとなりました。
+このたび、${schoolName} ${graduationYear}年卒業生による同窓会を下記の通り開催することとなりました。
 
 久しぶりに旧友と語り合い、懐かしい思い出に浸るひとときを共にしませんか？
 皆さまのご参加を心よりお待ちしております。`,
@@ -10,7 +10,7 @@ export const generateDescriptionTemplates = (schoolName: string, graduationYear:
   `こんにちは、同級生の皆さまへ
 
 お変わりなくお過ごしでしょうか。
-このたび、${schoolName} ${graduationYear}卒業生による同窓会を開催することになりました。
+このたび、${schoolName} ${graduationYear}年卒業生による同窓会を開催することになりました。
 
 学生時代の思い出話や近況報告を交わしながら、楽しい時間を過ごしましょう。
 皆さまにお会いできるのを心より楽しみにしております。`,
@@ -18,7 +18,7 @@ export const generateDescriptionTemplates = (schoolName: string, graduationYear:
   `同級生の皆さまへ
 
 時下ますますご清祥のこととお喜び申し上げます。
-このたび、${schoolName} ${graduationYear}卒業生による同窓会を、下記の通り開催いたします。
+このたび、${schoolName} ${graduationYear}年卒業生による同窓会を、下記の通り開催いたします。
 
 旧交を温め、これからの人生に新たな刺激を得る良い機会となれば幸いです。
 皆さまのご出席を心よりお待ち申し上げております。`
