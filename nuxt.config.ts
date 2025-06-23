@@ -4,7 +4,10 @@ export default defineNuxtConfig({
   ssr: true,
   nitro: {
     preset: 'firebase',
-    compatibilityDate: '2025-06-11'
+    compatibilityDate: '2025-06-11',
+    firebase: {
+      gen: 2
+    }
   },
   css: ['vuetify/styles'],
   build: {
