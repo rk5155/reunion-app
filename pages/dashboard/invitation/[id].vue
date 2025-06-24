@@ -250,6 +250,23 @@ onMounted(async () => {
   }
 });
 
+const sendEmail = async (email: string) => {
+  try {
+    await $fetch('/api/send-email', {
+      method: 'POST',
+      body: {
+        to: email,
+        subject: 'テストメール',
+        text: 'これはテストです',
+      },
+    });
+    alert('メール送信成功！');
+  } catch (error) {
+    console.error('通信エラー:', error);
+    alert('通信エラーが発生しました');
+  }
+};
+
 const handleEdit = () => {
   router.push(`/dashboard/invitation/edit/${invitationId}`);
 };
@@ -263,6 +280,8 @@ const handleFormSubmit = async (formData: Record<string, any>) => {
     uiStore.setLoading(true);
     formData.invitationId = invitationId;
     const docRef = await addDoc(collection(db, 'attendances'), formData);
+
+    sendEmail(formData.email);
 
     router.push({
       path: '/dashboard/invitation/confirmation',
