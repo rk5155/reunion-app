@@ -139,7 +139,8 @@ import {
 } from 'firebase/firestore';
 import { useFirebase } from '@/composables/useFirebase';
 import { useUIStore } from '@/stores/ui';
-import { useAuthStore } from '@/stores/auth'; // ユーザー情報を取得するストアをインポート
+import { useAuthStore } from '@/stores/auth';
+import type { Invitation, Countdown } from '@/types/invitation';
 
 const { db } = useFirebase();
 const router = useRouter();
@@ -148,7 +149,7 @@ const uiStore = useUIStore();
 const authStore = useAuthStore(); // ユーザー情報を取得するストアを使用
 const invitationId = route.params.id;
 
-const invitation = ref({
+const invitation = ref<Invitation>({
   title: '',
   date: '',
   startTime: '',
@@ -160,7 +161,7 @@ const invitation = ref({
   creatorId: '',
 });
 
-const countdown = ref({
+const countdown = ref<Countdown>({
   days: '-',
   hours: '-',
   minutes: '-',
@@ -231,14 +232,17 @@ onMounted(async () => {
     return;
   }
 
-  const docRef = doc(db, 'invitations', invitationId);
+  const docRef = doc(db, 'invitations', invitationId as string);
   const docSnap = await getDoc(docRef);
 
   if (docSnap.exists()) {
-    invitation.value = docSnap.data();
+    invitation.value = {
+      id: docSnap.id,
+      ...(docSnap.data() as Invitation),
+    };
     updateCountdown();
 
-    setInterval(updateCountdown, 1000); // 1秒ごとにカウントダウンを更新
+    setInterval(updateCountdown, 1000);
     await fetchAttendeeCount();
   } else {
     alert('招待状が存在しません');

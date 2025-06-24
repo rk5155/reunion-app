@@ -52,7 +52,6 @@ import { storeToRefs } from 'pinia';
 import { useRouter } from 'vue-router';
 import { collection, query, where, onSnapshot } from 'firebase/firestore';
 import { useFirebase } from '@/composables/useFirebase';
-import type { Invitation } from '@/types/invitation';
 
 const { db } = useFirebase();
 const router = useRouter();
@@ -60,7 +59,7 @@ const authStore = useAuthStore();
 const { user } = storeToRefs(authStore);
 const userUid = computed(() => user.value?.uid || null); // UID を取得
 const hydrated = ref(false);
-const invitations = ref<Invitation[]>([]);
+const invitations = ref<any[]>([]);
 
 onMounted(() => {
   hydrated.value = true;
