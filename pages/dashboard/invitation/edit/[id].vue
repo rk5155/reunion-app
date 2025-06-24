@@ -100,7 +100,7 @@ import { useRouter, useRoute } from 'vue-router';
 import { doc, getDoc, updateDoc } from 'firebase/firestore';
 import { useFirebase } from '@/composables/useFirebase';
 import { useAuthStore } from '@/stores/auth';
-import { generateDescriptionTemplates } from '@/src/constants/descriptionTemplates';
+import { generateDescriptionTemplates } from '@/constants/descriptionTemplates';
 import { ref, computed, onMounted } from 'vue';
 
 definePageMeta({

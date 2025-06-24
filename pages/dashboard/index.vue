@@ -52,7 +52,7 @@ import { storeToRefs } from 'pinia';
 import { useRouter } from 'vue-router';
 import { collection, query, where, onSnapshot } from 'firebase/firestore';
 import { useFirebase } from '@/composables/useFirebase';
-import type { Invitation } from '@/src/types/invitation';
+import type { Invitation } from '@/types/invitation';
 
 const { db } = useFirebase();
 const router = useRouter();
