@@ -52,6 +52,7 @@ import { storeToRefs } from 'pinia';
 import { useRouter } from 'vue-router';
 import { collection, query, where, onSnapshot } from 'firebase/firestore';
 import { useFirebase } from '@/composables/useFirebase';
+import type { Invitation } from '@/src/types/invitation';
 
 const { db } = useFirebase();
 const router = useRouter();
@@ -59,7 +60,7 @@ const authStore = useAuthStore();
 const { user } = storeToRefs(authStore);
 const userUid = computed(() => user.value?.uid || null); // UID を取得
 const hydrated = ref(false);
-const invitations = ref([]);
+const invitations = ref<Invitation[]>([]);
 
 onMounted(() => {
   hydrated.value = true;
@@ -77,10 +78,15 @@ onMounted(() => {
   );
 
   onSnapshot(userInvitationsQuery, (snapshot) => {
-    invitations.value = snapshot.docs.map((doc) => ({
-      id: doc.id,
-      ...doc.data(),
-    }));
+    invitations.value = snapshot.docs.map((doc) => {
+      const data = doc.data();
+      return {
+        id: doc.id,
+        title: data.title,
+        date: data.date,
+        ...data,
+      };
+    });
   });
 });
 
