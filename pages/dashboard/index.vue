@@ -41,6 +41,8 @@
     >
       招待状を追加する
     </v-btn>
+
+    <button @click="sendEmail">メールを送信</button>
   </div>
 </template>
 
@@ -102,6 +104,19 @@ const handleAddInvitation = () => {
 
 const handleViewInvitation = (id: string) => {
   router.push(`/dashboard/invitation/${id}`);
+};
+
+const sendEmail = async () => {
+  const result = await useFetch('/api/send-email', {
+    method: 'POST',
+    body: {
+      to: 'baseballryuki5155@yahoo.co.jp',
+      subject: 'テストメール',
+      text: 'これはテストです',
+    },
+  });
+
+  console.log(result.data.value);
 };
 </script>
 

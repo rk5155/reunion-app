@@ -20,6 +20,8 @@ export default defineNuxtConfig({
     plugins: [vuetify()]
   },
   runtimeConfig: {
+    SENDGRID_API_KEY: process.env.SENDGRID_API_KEY || '',
+    FROM_EMAIL: process.env.FROM_EMAIL || '',
     public: {
       firebaseApiKey: process.env.NUXT_FIREBASE_API_KEY || '',
       firebaseAuthDomain: process.env.NUXT_FIREBASE_AUTH_DOMAIN || '',
