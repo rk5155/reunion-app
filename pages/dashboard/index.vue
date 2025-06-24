@@ -107,16 +107,20 @@ const handleViewInvitation = (id: string) => {
 };
 
 const sendEmail = async () => {
-  const result = await useFetch('/api/send-email', {
-    method: 'POST',
-    body: {
-      to: 'baseballryuki5155@yahoo.co.jp',
-      subject: 'テストメール',
-      text: 'これはテストです',
-    },
-  });
-
-  console.log(result.data.value);
+  try {
+    await $fetch('/api/send-email', {
+      method: 'POST',
+      body: {
+        to: 'baseballryuki5155@yahoo.co.jp',
+        subject: 'テストメール',
+        text: 'これはテストです',
+      },
+    });
+    alert('メール送信成功！');
+  } catch (error) {
+    console.error('通信エラー:', error);
+    alert('通信エラーが発生しました');
+  }
 };
 </script>
 
