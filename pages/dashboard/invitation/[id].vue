@@ -89,6 +89,9 @@
         <div class="mb-2 font-weight-bold text-h5">
           会場/{{ invitation.venueName }}
         </div>
+        <div class="mb-2 font-weight-bold text-h5">
+          会費：{{ invitation.fee }}円
+        </div>
         <div class="font-weight-bold">
           {{ invitation.venueAddress }}
         </div>
@@ -275,6 +278,7 @@ const handleFormSubmit = async (formData: Record<string, any>) => {
       `日時：${getFormattedDate(invitation.value.date)}`,
       `時間：${invitation.value.startTime} - ${invitation.value.endTime}`,
       `会場：${invitation.value.venueName}`,
+      `会費：${invitation.value.fee}円`,
       `住所：${invitation.value.venueAddress}`,
       '',
       '-------------------------------',

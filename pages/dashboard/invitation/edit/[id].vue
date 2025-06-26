@@ -71,6 +71,14 @@
         class="mb-4"
         type="number"
       />
+      <v-text-field
+        v-model="form.fee"
+        label="料金"
+        outlined
+        required
+        class="mb-4"
+        type="number"
+      />
 
       <!-- 案内文テンプレート選択 -->
       <v-select
@@ -123,6 +131,7 @@ const form = ref({
   deadline: '',
   schoolName: '',
   graduationYear: '',
+  fee: 0, // 料金を追加
   description: '',
   creatorId: '',
 });
@@ -173,6 +182,7 @@ const handleSubmit = async () => {
     deadline: form.value.deadline,
     schoolName: form.value.schoolName,
     graduationYear: form.value.graduationYear,
+    fee: form.value.fee, // 料金を保存
     description: computedDescription.value, // computedから案内文を取得
   });
   alert('招待状を更新しました');
