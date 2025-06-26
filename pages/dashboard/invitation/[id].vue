@@ -161,6 +161,9 @@ const invitation = ref<Invitation>({
   venueName: '',
   venueAddress: '',
   deadline: '',
+  schoolName: '',
+  graduationYear: '',
+  fee: 0,
   description: '',
   creatorId: '',
 });

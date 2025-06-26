@@ -7,12 +7,15 @@ export interface Invitation {
   venueName: string;
   venueAddress: string;
   deadline: string;
+  schoolName: string;
+  graduationYear: string;
+  fee: number;
   description: string;
   creatorId: string;
 }
 
 export interface Countdown {
-  days: string | number; 
+  days: string | number;
   hours: string | number;
   minutes: string | number;
   seconds: string | number;
