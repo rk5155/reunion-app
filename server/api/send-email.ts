@@ -4,14 +4,14 @@ import { defineEventHandler, readBody, useRuntimeConfig } from '#imports'
 export default defineEventHandler(async (event) => {
   const config = useRuntimeConfig()
   const { to, subject, text } = await readBody(event)
-
-  console.log(config.SENDGRID_API_KEY, config.FROM_EMAIL);
-  
   sgMail.setApiKey(config.SENDGRID_API_KEY)
 
   const msg = {
     to,
-    from: config.FROM_EMAIL,
+    from: {
+      name: 'REUNION(リユニオン)',
+      email: config.FROM_EMAIL,
+    },
     subject,
     text,
   }
