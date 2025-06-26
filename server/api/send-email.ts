@@ -14,6 +14,9 @@ export default defineEventHandler(async (event) => {
     },
     subject,
     text,
+    trackingSettings: {
+      clickTracking: { enable: false, enableText: false }
+    }
   }
 
   try {

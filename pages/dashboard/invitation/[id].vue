@@ -276,6 +276,12 @@ const handleFormSubmit = async (formData: Record<string, any>) => {
       `時間：${invitation.value.startTime} - ${invitation.value.endTime}`,
       `会場：${invitation.value.venueName}`,
       `住所：${invitation.value.venueAddress}`,
+      '',
+      '-------------------------------',
+      'あの日の仲間と、もう一度つながる。',
+      '同窓会支援サービス 「Reunion」',
+      'https://reunion-app-new.web.app',
+      '-------------------------------',
     ].join('\n');
 
     await sendEmail(
