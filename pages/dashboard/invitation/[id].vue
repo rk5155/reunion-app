@@ -263,9 +263,26 @@ const handleFormSubmit = async (formData: Record<string, any>) => {
   try {
     uiStore.setLoading(true);
     formData.invitationId = invitationId;
-    const docRef = await addDoc(collection(db, 'attendances'), formData);
+    await addDoc(collection(db, 'attendances'), formData);
 
-    await sendEmail(formData.email);
+    const text = [
+      'ご参加ありがとうございます！',
+      '',
+      '久しぶりに皆さんと顔を合わせて、懐かしい話に花を咲かせられればと思っています。',
+      '皆さまにお会いできるのを楽しみにしております！',
+      '',
+      '▼ INFORMATION',
+      `日時：${getFormattedDate(invitation.value.date)}`,
+      `時間：${invitation.value.startTime} - ${invitation.value.endTime}`,
+      `会場：${invitation.value.venueName}`,
+      `住所：${invitation.value.venueAddress}`,
+    ].join('\n');
+
+    await sendEmail(
+      formData.email,
+      `【受付完了】${invitation.value.title}の受付が完了しました。`,
+      text
+    );
 
     router.push({
       path: '/dashboard/invitation/confirmation',
