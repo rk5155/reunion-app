@@ -141,6 +141,7 @@ import { useFirebase } from '@/composables/useFirebase';
 import { useUIStore } from '@/stores/ui';
 import { useAuthStore } from '@/stores/auth';
 import type { Invitation, Countdown } from '@/types/invitation';
+const { sendEmail } = useSendEmail();
 
 const { db } = useFirebase();
 const router = useRouter();
@@ -250,23 +251,6 @@ onMounted(async () => {
   }
 });
 
-const sendEmail = async (email: string) => {
-  try {
-    await $fetch('/api/send-email', {
-      method: 'POST',
-      body: {
-        to: email,
-        subject: 'テストメール',
-        text: 'これはテストです',
-      },
-    });
-    alert('メール送信成功！');
-  } catch (error) {
-    console.error('通信エラー:', error);
-    alert('通信エラーが発生しました');
-  }
-};
-
 const handleEdit = () => {
   router.push(`/dashboard/invitation/edit/${invitationId}`);
 };
@@ -281,7 +265,7 @@ const handleFormSubmit = async (formData: Record<string, any>) => {
     formData.invitationId = invitationId;
     const docRef = await addDoc(collection(db, 'attendances'), formData);
 
-    sendEmail(formData.email);
+    await sendEmail(formData.email);
 
     router.push({
       path: '/dashboard/invitation/confirmation',
