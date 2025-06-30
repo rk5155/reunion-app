@@ -110,6 +110,7 @@ import { useFirebase } from '@/composables/useFirebase';
 import { useAuthStore } from '@/stores/auth';
 import { generateDescriptionTemplates } from '@/constants/descriptionTemplates';
 import { ref, computed, onMounted } from 'vue';
+import type { Invitation } from '@/types/invitation';
 
 definePageMeta({
   layout: 'dashboard',
@@ -121,7 +122,7 @@ const route = useRoute();
 const authStore = useAuthStore();
 const invitationId = route.params.id;
 
-const form = ref({
+const form = ref<Invitation>({
   title: '',
   date: '',
   startTime: '',
@@ -131,7 +132,7 @@ const form = ref({
   deadline: '',
   schoolName: '',
   graduationYear: '',
-  fee: 0, // 料金を追加
+  fee: 0,
   description: '',
   creatorId: '',
 });
@@ -157,11 +158,13 @@ onMounted(async () => {
     return;
   }
 
-  const docRef = doc(db, 'invitations', invitationId);
+  const docRef = doc(db, 'invitations', invitationId as string);
   const docSnap = await getDoc(docRef);
 
   if (docSnap.exists()) {
-    form.value = docSnap.data();
+    form.value = {
+      ...(docSnap.data() as Invitation),
+    };
   }
 
   if (form.value.creatorId !== authStore.user?.uid) {
@@ -171,7 +174,7 @@ onMounted(async () => {
 });
 
 const handleSubmit = async () => {
-  const docRef = doc(db, 'invitations', invitationId);
+  const docRef = doc(db, 'invitations', invitationId as string);
   await updateDoc(docRef, {
     title: form.value.title,
     date: form.value.date,
