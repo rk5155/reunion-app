@@ -112,28 +112,28 @@
         </div>
 
         <invitation-form v-else class="mt-4" @submit="handleFormSubmit" />
-
-        <div class="py-10 bg-grey-lighten-2 px-0">
-          <div class="d-flex flex-column align-center">
-            <v-btn color="success" class="mb-2 w-100" @click="shareOnLine">
-              <v-icon left>mdi-chat</v-icon>
-              LINEで共有
-            </v-btn>
-            <v-btn color="info" class="mb-2 w-100" @click="shareOnX">
-              <v-icon left>mdi-twitter</v-icon>
-              Xで共有
-            </v-btn>
-            <v-btn color="pink" class="mb-2 w-100" @click="copyUrl">
-              <v-icon left>mdi-link</v-icon>
-              URLをコピー
-            </v-btn>
-          </div>
-        </div>
-
-        <h2 class="ttl_center5 text-h3 font-weight-bold my-16 text-black">
-          Thank you!!
-        </h2>
       </v-card-text>
+
+      <div class="py-10 px-4">
+        <div class="d-flex flex-column align-center">
+          <v-btn color="success" class="mb-2 w-100" @click="shareOnLine">
+            <v-icon left>mdi-chat</v-icon>
+            LINEで共有
+          </v-btn>
+          <v-btn color="info" class="mb-2 w-100" @click="shareOnX">
+            <v-icon left>mdi-twitter</v-icon>
+            Xで共有
+          </v-btn>
+          <v-btn color="pink" class="mb-2 w-100" @click="copyUrl">
+            <v-icon left>mdi-link</v-icon>
+            URLをコピー
+          </v-btn>
+        </div>
+      </div>
+
+      <p class="ttl_center5 text-h3 font-weight-bold my-16 text-black">
+        Thank you!!
+      </p>
     </v-card>
 
     <div
