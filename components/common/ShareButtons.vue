@@ -23,16 +23,19 @@ const props = defineProps({
   },
 });
 
+const generateShareMessage = () =>
+  `イベント「${props.title}」に参加しませんか？\n\n詳細はこちら:\n${window.location.href}`;
+
 const shareOnLine = () => {
   const url = `https://line.me/R/msg/text/?${encodeURIComponent(
-    `イベント「${props.title}」に参加しませんか？\n\n詳細はこちら:\n${window.location.href}`
+    generateShareMessage()
   )}`;
   window.open(url, '_blank');
 };
 
 const shareOnX = () => {
   const url = `https://twitter.com/intent/tweet?text=${encodeURIComponent(
-    `イベント「${props.title}」に参加しませんか？\n\n詳細はこちら:\n${window.location.href}`
+    generateShareMessage()
   )}`;
   window.open(url, '_blank');
 };
