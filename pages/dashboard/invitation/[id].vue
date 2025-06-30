@@ -114,22 +114,7 @@
         <invitation-form v-else class="mt-4" @submit="handleFormSubmit" />
       </v-card-text>
 
-      <div class="py-10 px-4">
-        <div class="d-flex flex-column align-center">
-          <v-btn color="success" class="mb-2 w-100" @click="shareOnLine">
-            <v-icon left>mdi-chat</v-icon>
-            LINEで共有
-          </v-btn>
-          <v-btn color="info" class="mb-2 w-100" @click="shareOnX">
-            <v-icon left>mdi-twitter</v-icon>
-            Xで共有
-          </v-btn>
-          <v-btn color="pink" class="mb-2 w-100" @click="copyUrl">
-            <v-icon left>mdi-link</v-icon>
-            URLをコピー
-          </v-btn>
-        </div>
-      </div>
+      <common-share-buttons :title="invitation.title" class="py-10 px-4" />
 
       <p class="ttl_center5 text-h3 font-weight-bold my-16 text-black">
         Thank you!!
@@ -324,33 +309,6 @@ const handleFormSubmit = async (formData: Record<string, any>) => {
   } finally {
     uiStore.setLoading(false);
   }
-};
-
-const shareOnLine = () => {
-  const url = `https://line.me/R/msg/text/?${encodeURIComponent(
-    `イベント「${invitation.value.title}」に参加しませんか？\n\n詳細はこちら:\n${window.location.href}`
-  )}`;
-  window.open(url, '_blank');
-};
-
-const shareOnX = () => {
-  const url = `https://twitter.com/intent/tweet?text=${encodeURIComponent(
-    `イベント「${invitation.value.title}」に参加しませんか？\n\n詳細はこちら:\n${window.location.href}`
-  )}`;
-  window.open(url, '_blank');
-};
-
-const copyUrl = () => {
-  const url = window.location.href;
-  navigator.clipboard
-    .writeText(url)
-    .then(() => {
-      alert('URLをコピーしました！');
-    })
-    .catch((error) => {
-      console.error('URLのコピーに失敗しました:', error);
-      alert('URLのコピーに失敗しました。もう一度お試しください。');
-    });
 };
 </script>
 
