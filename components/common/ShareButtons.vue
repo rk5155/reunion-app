@@ -1,5 +1,6 @@
 <template>
   <div class="d-flex flex-column align-center">
+    <slot />
     <v-btn color="success" class="mb-2 w-100" @click="shareOnLine">
       <v-icon left>mdi-chat</v-icon>
       LINEで共有

@@ -35,6 +35,19 @@
         <div class="text-pre-line">{{ invitation.description }}</div>
       </v-card-text>
 
+      <common-share-buttons :title="invitation.title" class="py-10 px-4">
+        <h2 class="mb-4 text-black">幹事からのお願い</h2>
+        <div class="mb-6">
+          <p>
+            このページをまだ同窓会の開催を知らなそうな
+            同級生に拡散してください！
+          </p>
+          <p>
+            一人でも多くの同窓生と再会できるように ご協力をお願いいたします！
+          </p>
+        </div>
+      </common-share-buttons>
+
       <v-card-text class="py-10 bg-grey-lighten-4">
         <h3 class="text-h5 font-weight-bold mb-4">Current participation</h3>
         <p class="mb-2">現在の参加状況</p>
