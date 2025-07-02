@@ -184,6 +184,7 @@ const invitation = ref<Invitation>({
   fee: 0,
   description: '',
   creatorId: '',
+  remarks: '',
 });
 
 const countdown = ref<Countdown>({
