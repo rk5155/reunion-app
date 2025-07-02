@@ -2,8 +2,8 @@
   <div class="px-4 py-8 rounded bg-white shadow">
     <v-form @submit.prevent="openConfirmationModal" class="w-100">
       <v-radio-group v-model="formData.attendance" label="出欠 (必須)" required>
-        <v-radio label="参加する" value="参加する"></v-radio>
-        <v-radio label="参加しない" value="参加しない"></v-radio>
+        <v-radio label="出席" value="出席"></v-radio>
+        <v-radio label="欠席" value="欠席"></v-radio>
       </v-radio-group>
 
       <v-text-field
