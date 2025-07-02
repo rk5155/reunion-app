@@ -1,5 +1,5 @@
 <template>
-  <div class="d-flex flex-column align-center">
+  <div class="d-flex flex-column align-center max-width-800">
     <slot />
     <v-btn color="success" class="mb-2 w-100" @click="shareOnLine">
       <v-icon left>mdi-chat</v-icon>
@@ -54,3 +54,10 @@ const copyUrl = () => {
     });
 };
 </script>
+
+<style scoped>
+.max-width-800 {
+  max-width: 800px;
+  margin: auto;
+}
+</style>

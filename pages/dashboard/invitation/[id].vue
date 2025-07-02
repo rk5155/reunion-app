@@ -115,37 +115,42 @@
 
       <v-card-text class="py-10 bg-grey-lighten-2">
         <h3 class="text-h5 font-weight-bold mb-4">Presence or Absence</h3>
-        <div class="new-action-design-tm-Heading3 mb-4">
-          お手数ですが　下記お日にち迄に<br />
-          出欠情報のご連絡をお願い申し上げます<br />
-          <div class="text-h5 mt-4">
-            {{ getFormattedDate(invitation.deadline) }}
+        <div class="max-width-800">
+          <div class="new-action-design-tm-Heading3 mb-4">
+            お手数ですが　下記お日にち迄に<br />
+            出欠情報のご連絡をお願い申し上げます<br />
+            <div class="text-h5 mt-4">
+              {{ getFormattedDate(invitation.deadline) }}
+            </div>
           </div>
-        </div>
-        <p class="mb-4 text-left">
-          下記のフォームから同窓会への参加の可否を投稿してください。
-          投稿後に再度出欠を変更することも可能です。
-        </p>
-        <p class="mb-4">個人情報の取り扱いについて</p>
-        <p class="text-left mb-8">
-          ・本フォームにて入力をいただいた情報は、同窓会の出欠確認および同窓会に関するご連絡にのみ利用をさせていただきます。<br />
-          ・本同窓会は、幹事並びに運営の委託を受けております。<br />
-          お客様の個人情報は、当社の個人情報の取り扱いについてに則りお取り扱いをいたします。<br />
-          <a
-            href="/privacy"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="text-primary font-weight-bold"
+          <p class="mb-4 text-left">
+            下記のフォームから同窓会への参加の可否を投稿してください。
+            投稿後に再度出欠を変更することも可能です。
+          </p>
+          <p class="mb-4">個人情報の取り扱いについて</p>
+          <p class="text-left mb-8">
+            ・本フォームにて入力をいただいた情報は、同窓会の出欠確認および同窓会に関するご連絡にのみ利用をさせていただきます。<br />
+            ・本同窓会は、幹事並びに運営の委託を受けております。<br />
+            お客様の個人情報は、当社の個人情報の取り扱いについてに則りお取り扱いをいたします。<br />
+            <a
+              href="/privacy"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="text-primary font-weight-bold"
+            >
+              個人情報の取扱いについて </a
+            >内容に同意の上、入力情報を送信してください。　
+          </p>
+
+          <div
+            v-if="isDeadlinePassed"
+            class="text-danger font-weight-bold mt-2"
           >
-            個人情報の取扱いについて </a
-          >内容に同意の上、入力情報を送信してください。　
-        </p>
+            受付は終了しました。
+          </div>
 
-        <div v-if="isDeadlinePassed" class="text-danger font-weight-bold mt-2">
-          受付は終了しました。
+          <invitation-form v-else class="mt-4" @submit="handleFormSubmit" />
         </div>
-
-        <invitation-form v-else class="mt-4" @submit="handleFormSubmit" />
       </v-card-text>
 
       <common-share-buttons :title="invitation.title" class="py-10 px-4" />
@@ -425,5 +430,10 @@ h2 {
   position: sticky;
   bottom: 0;
   z-index: 10;
+}
+
+.max-width-800 {
+  max-width: 800px;
+  margin: auto;
 }
 </style>
