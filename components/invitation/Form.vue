@@ -34,6 +34,14 @@
         required
         class="mb-4"
       />
+
+      <v-checkbox
+        v-model="isPrivacyChecked"
+        label="個人情報の取扱いについて同意します"
+        required
+        class="mb-4"
+      />
+
       <v-btn
         type="submit"
         color="cyan-darken-1"
@@ -87,6 +95,8 @@ const formData = ref({
   message: '',
 });
 
+const isPrivacyChecked = ref(false);
+
 const emailRule = (value: string) => {
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   return emailRegex.test(value) || '正しいメールアドレスを入力してください';
@@ -98,7 +108,8 @@ const isFormValid = computed(() => {
     formData.value.name &&
     isEmailValid &&
     formData.value.attendance &&
-    formData.value.className
+    formData.value.className &&
+    isPrivacyChecked.value
   );
 });
 
