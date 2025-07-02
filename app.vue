@@ -2,7 +2,7 @@
   <v-app>
     <NuxtLayout>
       <template v-if="showHeader">
-        <Header />
+        <header />
       </template>
       <NuxtPage />
     </NuxtLayout>
