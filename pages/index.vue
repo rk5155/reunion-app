@@ -215,7 +215,14 @@
     <!-- // 利用の流れ -->
 
     <footer id="footer">
-      Copyright(c) 2025 Reunion Inc. All Rights Reserved.
+      <div class="mb-2">
+        Copyright(c) 2025 Reunion Inc. All Rights Reserved.
+      </div>
+      <div>
+        <nuxt-link class="text-black" to="/trade"
+          >特定商取引法に基づく表記</nuxt-link
+        >
+      </div>
     </footer>
   </v-app>
 </template>
