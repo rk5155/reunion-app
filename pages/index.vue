@@ -220,10 +220,6 @@
   </v-app>
 </template>
 
-<script lang="ts" setup>
-import Header from '@/components/Header';
-</script>
-
 <style scoped>
 body,
 div,
