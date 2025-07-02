@@ -11,6 +11,7 @@ export interface Invitation {
   graduationYear: string;
   fee: number;
   description: string;
+  remarks: string;
   creatorId: string;
 }
 

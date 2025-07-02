@@ -93,20 +93,23 @@
 
       <v-card-text class="py-10">
         <h3 class="text-h5 font-weight-bold mb-4">INFORMATION</h3>
-        <div class="mb-2 font-weight-bold text-h4">
+        <div class="mb-3 font-weight-bold text-h4">
           {{ getFormattedDate(invitation.date) }}
         </div>
-        <div class="mb-2 font-weight-bold text-h5">
+        <div class="mb-3 font-weight-bold text-h5">
           {{ invitation.startTime }} - {{ invitation.endTime }}
         </div>
-        <div class="mb-2 font-weight-bold text-h5">
+        <div class="mb-3 font-weight-bold text-h5">
           会場/{{ invitation.venueName }}
         </div>
-        <div class="mb-2 font-weight-bold text-h5">
+        <div class="mb-3 font-weight-bold text-h5">
           会費：{{ invitation.fee }}円
         </div>
-        <div class="font-weight-bold">
+        <div class="mb-4 font-weight-bold">
           {{ invitation.venueAddress }}
+        </div>
+        <div class="text-pre-line text-h6 font-weight-bold">
+          {{ invitation.remarks }}
         </div>
       </v-card-text>
 

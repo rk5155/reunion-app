@@ -79,8 +79,6 @@
         class="mb-4"
         type="number"
       />
-
-      <!-- 案内文テンプレート選択 -->
       <v-select
         v-model="selectedTemplate"
         :items="descriptionTemplates"
@@ -95,6 +93,7 @@
         required
         class="mb-4"
       />
+      <v-textarea v-model="form.remarks" label="備考" outlined class="mb-4" />
       <div class="d-flex justify-center pa-4 bg-white">
         <v-btn type="submit" color="primary" class="mx-2">保存</v-btn>
         <v-btn class="mx-2" @click="handleCancel">キャンセル</v-btn>
@@ -112,9 +111,7 @@ import { generateDescriptionTemplates } from '@/constants/descriptionTemplates';
 import { ref, computed, onMounted } from 'vue';
 import type { Invitation } from '@/types/invitation';
 
-definePageMeta({
-  layout: 'dashboard',
-});
+definePageMeta({ layout: 'dashboard' });
 
 const { db } = useFirebase();
 const router = useRouter();
@@ -134,6 +131,7 @@ const form = ref<Invitation>({
   graduationYear: '',
   fee: 0,
   description: '',
+  remarks: '',
   creatorId: '',
 });
 
@@ -162,9 +160,7 @@ onMounted(async () => {
   const docSnap = await getDoc(docRef);
 
   if (docSnap.exists()) {
-    form.value = {
-      ...(docSnap.data() as Invitation),
-    };
+    form.value = { ...(docSnap.data() as Invitation) };
   }
 
   if (form.value.creatorId !== authStore.user?.uid) {
@@ -185,8 +181,9 @@ const handleSubmit = async () => {
     deadline: form.value.deadline,
     schoolName: form.value.schoolName,
     graduationYear: form.value.graduationYear,
-    fee: form.value.fee, // 料金を保存
-    description: computedDescription.value, // computedから案内文を取得
+    fee: form.value.fee,
+    description: computedDescription.value,
+    remarks: form.value.remarks,
   });
   alert('招待状を更新しました');
   router.push(`/dashboard/invitation/${invitationId}`);
