@@ -9,7 +9,7 @@
       <v-icon left>mdi-twitter</v-icon>
       Xで共有
     </v-btn>
-    <v-btn color="pink" class="mb-2 w-100" @click="copyUrl">
+    <v-btn color="blue-grey-darken-1" class="mb-2 w-100" @click="copyUrl">
       <v-icon left>mdi-link</v-icon>
       URLをコピー
     </v-btn>
