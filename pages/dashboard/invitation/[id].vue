@@ -226,7 +226,15 @@ const products = ref<Product[]>([]);
 
 onMounted(async () => {
   const data = await $fetch('/api/products');
-  products.value = data;
+  if (Array.isArray(data)) {
+    products.value = data.map((product: any) => ({
+      id: product.id,
+      name: product.name,
+      description: product.description ?? undefined,
+      images: product.images,
+      default_price: product.default_price,
+    }));
+  }
 });
 
 const invitation = ref<Invitation>({
