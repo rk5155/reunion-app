@@ -1,6 +1,7 @@
 <template>
   <div class="invitation-detail text-center pa-0">
     <common-loading-overlay :visible="uiStore.loading" />
+
     <v-card class="semi-transparent-card">
       <!-- カードの上に画像を表示 -->
       <v-img
@@ -160,6 +161,23 @@
       </p>
     </v-card>
 
+    <div>
+      <h1>商品一覧</h1>
+      <ul>
+        <li v-for="product in products" :key="product.id">
+          <h2>{{ product.name }}</h2>
+          <img
+            :src="product.images?.[0]"
+            alt=""
+            v-if="product.images?.length"
+          />
+          <p>{{ product.description }}</p>
+          <p>価格: ¥{{ product.default_price?.unit_amount }}</p>
+          <CheckoutButton :productId="product.default_price?.id || ''" />
+        </li>
+      </ul>
+    </div>
+
     <div
       v-if="isCreator"
       class="sticky-bottom d-flex justify-center pa-4 bg-white"
@@ -193,6 +211,23 @@ const route = useRoute();
 const uiStore = useUIStore();
 const authStore = useAuthStore(); // ユーザー情報を取得するストアを使用
 const invitationId = route.params.id;
+interface Product {
+  id: string;
+  name: string;
+  description?: string;
+  images?: string[];
+  default_price?: {
+    id: string;
+    unit_amount: number;
+  };
+}
+
+const products = ref<Product[]>([]);
+
+onMounted(async () => {
+  const data = await $fetch('/api/products');
+  products.value = data;
+});
 
 const invitation = ref<Invitation>({
   title: '',
