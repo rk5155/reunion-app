@@ -11,7 +11,13 @@ export default defineEventHandler(async (event) => {
       payment_method_types: ['card'],
       line_items: [
         {
-          price: body.productId,
+          price_data: {
+            currency: 'jpy',
+            product_data: {
+              name: body.name,
+            },
+            unit_amount: body.amount,
+          },
           quantity: 1,
         },
       ],
