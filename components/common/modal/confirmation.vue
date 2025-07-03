@@ -18,14 +18,14 @@
           @click="onConfirm"
           class="w-100 font-weight-bold d-block mb-4"
         >
-          送信
+          {{ confirmLabel }}
         </v-btn>
         <v-btn
           color="grey-lighten-3"
           @click="onCancel"
           class="w-100 font-weight-bold d-block"
         >
-          キャンセル
+          {{ cancelLabel }}
         </v-btn>
       </div>
     </v-card>
@@ -37,11 +37,19 @@ const props = defineProps({
   isVisible: Boolean,
   title: {
     type: String,
-    default: '確認',
+    default: '内容の確認',
   },
   message: {
     type: String,
     default: '以下の内容でよろしいですか？',
+  },
+  confirmLabel: {
+    type: String,
+    default: '送信',
+  },
+  cancelLabel: {
+    type: String,
+    default: 'キャンセル',
   },
   details: {
     type: Object,

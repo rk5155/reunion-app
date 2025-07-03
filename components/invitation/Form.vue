@@ -55,8 +55,7 @@
 
     <common-modal-confirmation
       v-model:isVisible="isModalVisible"
-      :title="'送信内容の確認'"
-      :message="'以下の内容で送信しますか？'"
+      :confirm-label="dynamicConfirmLabel"
       @confirm="handleSubmit"
       @cancel="closeConfirmationModal"
     >
@@ -127,6 +126,10 @@ const handleSubmit = () => {
   emit('submit', formData.value);
   closeConfirmationModal();
 };
+
+const dynamicConfirmLabel = computed(() => {
+  return formData.value.attendance === '出席' ? '次へ' : '送信';
+});
 </script>
 
 <style scoped></style>
