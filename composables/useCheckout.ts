@@ -5,7 +5,8 @@ export type CheckoutResponse = {
 
 export const useCheckout = async (
   amount: number,
-  name: string
+  name: string,
+  reservationId: string
 ): Promise<CheckoutResponse> => {
   try {
     const res: CheckoutResponse = await $fetch('/api/checkout', {
@@ -14,6 +15,7 @@ export const useCheckout = async (
         amount,
         name,
         origin: window.location.origin,
+        reservationId,
       },
     });
     return res;

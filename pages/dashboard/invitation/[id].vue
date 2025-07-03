@@ -219,13 +219,16 @@ import {
   where,
   getDocs,
   addDoc,
+  Timestamp,
+  serverTimestamp,
 } from 'firebase/firestore';
 import { useFirebase } from '@/composables/useFirebase';
 import { useUIStore } from '@/stores/ui';
 import { useAuthStore } from '@/stores/auth';
 import type { Invitation, Countdown } from '@/types/invitation';
-const { sendEmail } = useSendEmail();
+import { useCheckout } from '@/composables/useCheckout';
 
+const { sendEmail } = useSendEmail();
 const { db } = useFirebase();
 const router = useRouter();
 const route = useRoute();
@@ -371,42 +374,30 @@ const handleBack = () => {
   router.push('/dashboard');
 };
 
+const saveReservation = async (formData: any) => {
+  // 1時間後
+  const expireAt = Timestamp.fromDate(new Date(Date.now() + 60 * 60 * 1000));
+
+  const docRef = await addDoc(collection(db, 'reservations'), {
+    ...formData,
+    isPaid: false,
+    createdAt: serverTimestamp(),
+    expireAt: expireAt, // TTL対象
+  });
+
+  return docRef.id;
+};
+
 const handleFormSubmit = async (formData: Record<string, any>) => {
   try {
     uiStore.setLoading(true);
-    formData.invitationId = invitationId;
-    await addDoc(collection(db, 'attendances'), formData);
 
-    const text = [
-      'ご参加ありがとうございます！',
-      '',
-      '久しぶりに皆さんと顔を合わせて、懐かしい話に花を咲かせられればと思っています。',
-      '皆さまにお会いできるのを楽しみにしております！',
-      '',
-      '▼ INFORMATION',
-      `日時：${getFormattedDate(invitation.value.date)}`,
-      `時間：${invitation.value.startTime} - ${invitation.value.endTime}`,
-      `会場：${invitation.value.venueName}`,
-      `会費：${invitation.value.fee}円`,
-      `住所：${invitation.value.venueAddress}`,
-      '',
-      '-------------------------------',
-      'あの日の仲間と、もう一度つながる。',
-      '同窓会支援サービス 「Reunion」',
-      'https://reunion-app-new.web.app',
-      '-------------------------------',
-    ].join('\n');
-
-    await sendEmail(
-      formData.email,
-      `【受付完了】${invitation.value.title}の受付が完了しました。`,
-      text
-    );
-
-    router.push({
-      path: '/dashboard/invitation/confirmation',
-      query: { id: invitationId },
-    });
+    if (formData.attendance === '出席') {
+      const reservationId = await saveReservation(formData);
+      formData.invitationId = invitationId;
+      const res = await useCheckout(5000, '代行手数料', reservationId);
+      if (res.url) window.location.href = res.url;
+    }
   } catch (error) {
     console.error('登録失敗:', error);
     alert('登録に失敗しました。もう一度お試しください。');
