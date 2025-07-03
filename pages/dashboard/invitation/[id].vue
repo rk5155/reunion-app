@@ -92,26 +92,43 @@
         </div>
       </v-card-text>
 
-      <v-card-text class="py-10">
-        <h3 class="text-h5 font-weight-bold mb-4">INFORMATION</h3>
-        <div class="mb-3 font-weight-bold text-h4">
-          {{ getFormattedDate(invitation.date) }}
-        </div>
-        <div class="mb-3 font-weight-bold text-h5">
-          {{ invitation.startTime }} - {{ invitation.endTime }}
-        </div>
-        <div class="mb-3 font-weight-bold text-h5">
-          会場/{{ invitation.venueName }}
-        </div>
-        <div class="mb-3 font-weight-bold text-h5">
-          会費：{{ invitation.fee }}円
-        </div>
-        <div class="mb-4 font-weight-bold">
-          {{ invitation.venueAddress }}
-        </div>
-        <div class="text-pre-line text-h6 font-weight-bold">
-          {{ invitation.remarks }}
-        </div>
+      <v-card-text class="py-10 text-left">
+        <h3 class="text-h5 font-weight-bold mb-4 text-center">INFORMATION</h3>
+        <v-table>
+          <tbody>
+            <tr>
+              <td class="w-25">日付</td>
+              <td>{{ getFormattedDate(invitation.date) }}</td>
+            </tr>
+            <tr>
+              <td class="w-25">時間</td>
+              <td>{{ invitation.startTime }} - {{ invitation.endTime }}</td>
+            </tr>
+            <tr>
+              <td class="w-25">会場名</td>
+              <td>{{ invitation.venueName }}</td>
+            </tr>
+            <tr>
+              <td class="w-25">会費</td>
+              <td>{{ invitation.fee }}円</td>
+            </tr>
+            <tr>
+              <td class="w-25">手数料</td>
+              <td class="py-4">
+                980円<br />
+                ※本同窓会は代行サービスを利用しているため、手数料を別途頂戴しております。
+              </td>
+            </tr>
+            <tr>
+              <td class="w-25">会場住所</td>
+              <td class="py-4">{{ invitation.venueAddress }}</td>
+            </tr>
+            <tr>
+              <td class="w-25">備考</td>
+              <td class="py-4">{{ invitation.remarks }}</td>
+            </tr>
+          </tbody>
+        </v-table>
       </v-card-text>
 
       <v-card-text class="py-10 bg-grey-lighten-2">
@@ -128,10 +145,9 @@
             下記のフォームから同窓会への参加の可否を投稿してください。
             投稿後に再度出欠を変更することも可能です。
           </p>
-          <p class="mb-4">個人情報の取り扱いについて</p>
+          <p class="mb-4 text-left">個人情報の取り扱いについて</p>
           <p class="text-left mb-8">
             ・本フォームにて入力をいただいた情報は、同窓会の出欠確認および同窓会に関するご連絡にのみ利用をさせていただきます。<br />
-            ・本同窓会は、幹事並びに運営の委託を受けております。<br />
             お客様の個人情報は、当社の個人情報の取り扱いについてに則りお取り扱いをいたします。<br />
             <a
               href="/privacy"
