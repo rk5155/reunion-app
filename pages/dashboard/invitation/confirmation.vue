@@ -26,7 +26,7 @@
 </template>
 
 <script lang="ts" setup>
-import { collection, addDoc, getDoc, doc } from 'firebase/firestore';
+import { collection, addDoc, getDoc, doc, deleteDoc } from 'firebase/firestore';
 import { useFirebase } from '@/composables/useFirebase';
 import { createEmailText } from '@/utils/email';
 
@@ -38,7 +38,7 @@ const { db } = useFirebase();
 const reservationData = ref<any>(null);
 
 onMounted(async () => {
-  reservationData.value = await fetchReservationData(reservationId as string);
+  reservationData.value = await fetchReservationData();
 
   const attendanceData = {
     email: reservationData.value?.email,
@@ -58,16 +58,23 @@ onMounted(async () => {
     reservationData.value?.title,
     emailText
   );
+
+  await deleteReservation();
 });
 
 const handleBackToDetail = () => {
   router.push(`/dashboard/invitation/${reservationData.value.invitationId}`);
 };
 
-const fetchReservationData = async (reservationId: string) => {
-  const reservationRef = doc(db, 'reservations', reservationId);
+const fetchReservationData = async () => {
+  const reservationRef = doc(db, 'reservations', reservationId as string);
   const reservationSnap = await getDoc(reservationRef);
   return reservationSnap.data();
+};
+
+const deleteReservation = async () => {
+  const reservationRef = doc(db, 'reservations', reservationId as string);
+  await deleteDoc(reservationRef);
 };
 
 const saveAttendanceData = async (attendanceData: Record<string, any>) => {
