@@ -227,13 +227,13 @@ import { useUIStore } from '@/stores/ui';
 import { useAuthStore } from '@/stores/auth';
 import type { Invitation, Countdown } from '@/types/invitation';
 import { useCheckout } from '@/composables/useCheckout';
+import { getFormattedDate } from '@/utils/date';
 
-const { sendEmail } = useSendEmail();
 const { db } = useFirebase();
 const router = useRouter();
 const route = useRoute();
 const uiStore = useUIStore();
-const authStore = useAuthStore(); // ユーザー情報を取得するストアを使用
+const authStore = useAuthStore();
 const invitationId = route.params.id;
 interface Product {
   id: string;
@@ -296,17 +296,6 @@ const isDeadlinePassed = computed(() => {
 const isCreator = computed(() => {
   return invitation.value.creatorId === authStore.user?.uid; // 現在のユーザーIDと作成者IDを比較
 });
-
-const getFormattedDate = (dateString: string): string => {
-  if (!dateString) return '';
-  const eventDate = new Date(dateString);
-  const dayNames = ['日', '月', '火', '水', '木', '金', '土'];
-  const year = eventDate.getFullYear();
-  const month = String(eventDate.getMonth() + 1).padStart(2, '0');
-  const date = String(eventDate.getDate()).padStart(2, '0');
-  const day = dayNames[eventDate.getDay()];
-  return `${year}.${month}.${date}(${day})`;
-};
 
 const updateCountdown = () => {
   if (!invitation.value.date) return;
