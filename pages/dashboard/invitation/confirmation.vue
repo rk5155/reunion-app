@@ -26,7 +26,7 @@
 </template>
 
 <script lang="ts" setup>
-import { onMounted } from 'vue';
+import { ref, onMounted } from 'vue';
 import { useRouter, useRoute } from 'vue-router';
 import { collection, addDoc, getDoc, doc } from 'firebase/firestore';
 import { useFirebase } from '@/composables/useFirebase';
@@ -36,7 +36,7 @@ const route = useRoute();
 const reservationId = route.query.reservationId;
 const { sendEmail } = useSendEmail();
 const { db } = useFirebase();
-const invitationId = route.query.id;
+const reservationData = ref<any>(null);
 
 const getFormattedDate = (dateString: string): string => {
   if (!dateString) return '';
@@ -50,11 +50,7 @@ const getFormattedDate = (dateString: string): string => {
 };
 
 const handleBackToDetail = () => {
-  if (invitationId) {
-    router.push(`/dashboard/invitation/${invitationId}`);
-  } else {
-    router.push('/');
-  }
+  router.push(`/dashboard/invitation/${reservationData.value.invitationId}`);
 };
 
 // Firestore から予約情報を取得
@@ -70,7 +66,7 @@ const saveAttendanceData = async (attendanceData: Record<string, any>) => {
 };
 
 // メール本文を作成
-const createEmailText = (reservationData: Record<string, any>) => {
+const createEmailText = () => {
   return [
     'ご参加ありがとうございます！',
     '',
@@ -78,11 +74,11 @@ const createEmailText = (reservationData: Record<string, any>) => {
     '皆さまにお会いできるのを楽しみにしております！',
     '',
     '▼ INFORMATION',
-    `日時：${getFormattedDate(reservationData.date)}`,
-    `時間：${reservationData.startTime} - ${reservationData.endTime}`,
-    `会場：${reservationData.venueName}`,
-    `会費：${reservationData.fee}円`,
-    `住所：${reservationData.venueAddress}`,
+    `日時：${getFormattedDate(reservationData.value.invitation.date)}`,
+    `時間：${reservationData.value.invitation.startTime} - ${reservationData.value.invitation.endTime}`,
+    `会場：${reservationData.value.invitation.venueName}`,
+    `会費：${reservationData.value.invitation.fee}円`,
+    `住所：${reservationData.value.invitation.venueAddress}`,
     '',
     '-------------------------------',
     'あの日の仲間と、もう一度つながる。',
@@ -103,22 +99,25 @@ const sendConfirmationEmail = async (
 
 onMounted(async () => {
   try {
-    const reservationData = await fetchReservationData(reservationId as string);
+    // reservationData を取得して設定
+    reservationData.value = await fetchReservationData(reservationId as string);
 
     const attendanceData = {
-      email: reservationData?.email,
-      name: reservationData?.name,
-      className: reservationData?.className,
-      attendance: reservationData?.attendance,
-      message: reservationData?.message,
+      email: reservationData.value?.email,
+      name: reservationData.value?.name,
+      className: reservationData.value?.className,
+      attendance: reservationData.value?.attendance,
+      message: reservationData.value?.message,
     };
 
     await saveAttendanceData(attendanceData);
 
-    const emailText = createEmailText(reservationData);
+    const emailText = createEmailText();
+    console.log(reservationData.value);
+
     await sendConfirmationEmail(
-      reservationData?.email,
-      reservationData?.title,
+      reservationData.value?.email,
+      reservationData.value?.title,
       emailText
     );
 

@@ -378,12 +378,25 @@ const saveReservation = async (formData: any) => {
   // 1時間後
   const expireAt = Timestamp.fromDate(new Date(Date.now() + 60 * 60 * 1000));
 
-  const docRef = await addDoc(collection(db, 'reservations'), {
+  const reservationData = {
     ...formData,
+    invitationId: invitationId, // 招待状IDを追加
+    invitation: {
+      title: invitation.value.title,
+      date: invitation.value.date,
+      startTime: invitation.value.startTime,
+      endTime: invitation.value.endTime,
+      venueName: invitation.value.venueName,
+      venueAddress: invitation.value.venueAddress,
+      fee: invitation.value.fee,
+      remarks: invitation.value.remarks,
+    },
     isPaid: false,
     createdAt: serverTimestamp(),
     expireAt: expireAt, // TTL対象
-  });
+  };
+
+  const docRef = await addDoc(collection(db, 'reservations'), reservationData);
 
   return docRef.id;
 };
