@@ -210,7 +210,6 @@
 </template>
 
 <script lang="ts" setup>
-import { useRouter, useRoute } from 'vue-router';
 import {
   doc,
   getDoc,
@@ -225,9 +224,9 @@ import {
 import { useFirebase } from '@/composables/useFirebase';
 import { useUIStore } from '@/stores/ui';
 import { useAuthStore } from '@/stores/auth';
-import type { Invitation, Countdown } from '@/types/invitation';
 import { useCheckout } from '@/composables/useCheckout';
 import { getFormattedDate } from '@/utils/date';
+import type { Invitation, Countdown } from '@/types/invitation';
 
 const { db } = useFirebase();
 const router = useRouter();
@@ -235,6 +234,7 @@ const route = useRoute();
 const uiStore = useUIStore();
 const authStore = useAuthStore();
 const invitationId = route.params.id;
+
 interface Product {
   id: string;
   name: string;

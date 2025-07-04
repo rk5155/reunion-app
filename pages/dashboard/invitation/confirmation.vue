@@ -26,8 +26,6 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, onMounted } from 'vue';
-import { useRouter, useRoute } from 'vue-router';
 import { collection, addDoc, getDoc, doc } from 'firebase/firestore';
 import { useFirebase } from '@/composables/useFirebase';
 import { createEmailText } from '@/utils/email';
