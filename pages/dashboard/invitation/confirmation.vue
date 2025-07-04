@@ -44,8 +44,9 @@ onMounted(async () => {
     email: reservationData.value?.email,
     name: reservationData.value?.name,
     className: reservationData.value?.className,
-    attendance: reservationData.value?.attendance,
+    isAttendance: reservationData.value?.isAttendance,
     message: reservationData.value?.message,
+    invitationId: reservationData.value?.invitationId,
   };
 
   await saveAttendanceData(attendanceData);

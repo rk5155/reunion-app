@@ -294,7 +294,7 @@ const fetchAttendeeCount = async () => {
   const attendeesQuery = query(
     collection(db, 'attendances'),
     where('invitationId', '==', invitationId),
-    where('attendance', '==', '参加する')
+    where('isAttendance', '==', true)
   );
   const attendeeDocs = await getDocs(attendeesQuery);
   attendeeCount.value = attendeeDocs.size;
@@ -338,7 +338,7 @@ const handleFormSubmit = async (formData: Record<string, any>) => {
   try {
     uiStore.setLoading(true);
 
-    if (formData.attendance === '出席') {
+    if (formData.isAttendance) {
       const reservationId = await saveReservation(formData);
       formData.invitationId = invitationId;
       const res = await useCheckout(5000, '代行手数料', reservationId);

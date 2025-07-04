@@ -1,9 +1,13 @@
 <template>
   <div class="px-4 py-8 rounded bg-white shadow">
     <v-form @submit.prevent="openConfirmationModal" class="w-100">
-      <v-radio-group v-model="formData.attendance" label="出欠 (必須)" required>
-        <v-radio label="出席" value="出席"></v-radio>
-        <v-radio label="欠席" value="欠席"></v-radio>
+      <v-radio-group
+        v-model="formData.isAttendance"
+        label="出欠 (必須)"
+        required
+      >
+        <v-radio label="出席" :value="true"></v-radio>
+        <v-radio label="欠席" :value="false"></v-radio>
       </v-radio-group>
 
       <v-text-field
@@ -61,7 +65,7 @@
     >
       <div class="mb-2 border-b py-2">
         <p class="mb-1">出欠</p>
-        <p>{{ formData.attendance }}</p>
+        <p>{{ formData.isAttendance ? '出席' : '欠席' }}</p>
       </div>
       <div class="mb-2 border-b py-2">
         <p class="mb-1">氏名</p>
@@ -89,7 +93,7 @@ const emit = defineEmits(['submit']);
 const formData = ref({
   name: '',
   email: '',
-  attendance: '',
+  isAttendance: '',
   className: '',
   message: '',
 });
@@ -106,7 +110,7 @@ const isFormValid = computed(() => {
   return (
     formData.value.name &&
     isEmailValid &&
-    formData.value.attendance &&
+    formData.value.isAttendance &&
     formData.value.className &&
     isPrivacyChecked.value
   );
@@ -128,7 +132,7 @@ const handleSubmit = () => {
 };
 
 const dynamicConfirmLabel = computed(() => {
-  return formData.value.attendance === '出席' ? '次へ' : '送信';
+  return formData.value.isAttendance ? '次へ' : '送信';
 });
 </script>
 
