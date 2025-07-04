@@ -38,6 +38,35 @@ const { sendEmail } = useSendEmail();
 const { db } = useFirebase();
 const reservationData = ref<any>(null);
 
+onMounted(async () => {
+  try {
+    reservationData.value = await fetchReservationData(reservationId as string);
+
+    const attendanceData = {
+      email: reservationData.value?.email,
+      name: reservationData.value?.name,
+      className: reservationData.value?.className,
+      attendance: reservationData.value?.attendance,
+      message: reservationData.value?.message,
+    };
+
+    await saveAttendanceData(attendanceData);
+
+    const emailText = createEmailText();
+    console.log(reservationData.value);
+
+    await sendConfirmationEmail(
+      reservationData.value?.email,
+      reservationData.value?.title,
+      emailText
+    );
+
+    console.log('データ保存とメール送信が完了しました。');
+  } catch (error) {
+    console.error('エラーが発生しました:', error);
+  }
+});
+
 const getFormattedDate = (dateString: string): string => {
   if (!dateString) return '';
   const eventDate = new Date(dateString);
@@ -96,36 +125,6 @@ const sendConfirmationEmail = async (
 ) => {
   await sendEmail(email, `【受付完了】${title}の受付が完了しました。`, text);
 };
-
-onMounted(async () => {
-  try {
-    // reservationData を取得して設定
-    reservationData.value = await fetchReservationData(reservationId as string);
-
-    const attendanceData = {
-      email: reservationData.value?.email,
-      name: reservationData.value?.name,
-      className: reservationData.value?.className,
-      attendance: reservationData.value?.attendance,
-      message: reservationData.value?.message,
-    };
-
-    await saveAttendanceData(attendanceData);
-
-    const emailText = createEmailText();
-    console.log(reservationData.value);
-
-    await sendConfirmationEmail(
-      reservationData.value?.email,
-      reservationData.value?.title,
-      emailText
-    );
-
-    console.log('データ保存とメール送信が完了しました。');
-  } catch (error) {
-    console.error('エラーが発生しました:', error);
-  }
-});
 </script>
 
 <style scoped>
