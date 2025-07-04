@@ -30,7 +30,7 @@ import { ref, onMounted } from 'vue';
 import { useRouter, useRoute } from 'vue-router';
 import { collection, addDoc, getDoc, doc } from 'firebase/firestore';
 import { useFirebase } from '@/composables/useFirebase';
-import { getFormattedDate } from '@/utils/date';
+import { createEmailText } from '@/utils/email';
 
 const router = useRouter();
 const route = useRoute();
@@ -40,74 +40,41 @@ const { db } = useFirebase();
 const reservationData = ref<any>(null);
 
 onMounted(async () => {
-  try {
-    reservationData.value = await fetchReservationData(reservationId as string);
+  reservationData.value = await fetchReservationData(reservationId as string);
 
-    const attendanceData = {
-      email: reservationData.value?.email,
-      name: reservationData.value?.name,
-      className: reservationData.value?.className,
-      attendance: reservationData.value?.attendance,
-      message: reservationData.value?.message,
-    };
+  const attendanceData = {
+    email: reservationData.value?.email,
+    name: reservationData.value?.name,
+    className: reservationData.value?.className,
+    attendance: reservationData.value?.attendance,
+    message: reservationData.value?.message,
+  };
 
-    await saveAttendanceData(attendanceData);
+  await saveAttendanceData(attendanceData);
 
-    const emailText = createEmailText();
-    console.log(reservationData.value);
+  const emailText = createEmailText(reservationData.value.invitation);
 
-    await sendConfirmationEmail(
-      reservationData.value?.email,
-      reservationData.value?.title,
-      emailText
-    );
-
-    console.log('データ保存とメール送信が完了しました。');
-  } catch (error) {
-    console.error('エラーが発生しました:', error);
-  }
+  await sendConfirmationEmail(
+    reservationData.value?.email,
+    reservationData.value?.title,
+    emailText
+  );
 });
 
 const handleBackToDetail = () => {
   router.push(`/dashboard/invitation/${reservationData.value.invitationId}`);
 };
 
-// Firestore から予約情報を取得
 const fetchReservationData = async (reservationId: string) => {
   const reservationRef = doc(db, 'reservations', reservationId);
   const reservationSnap = await getDoc(reservationRef);
   return reservationSnap.data();
 };
 
-// Firestore に出席情報を追加
 const saveAttendanceData = async (attendanceData: Record<string, any>) => {
   await addDoc(collection(db, 'attendances'), attendanceData);
 };
 
-// メール本文を作成
-const createEmailText = () => {
-  return [
-    'ご参加ありがとうございます！',
-    '',
-    '久しぶりに皆さんと顔を合わせて、懐かしい話に花を咲かせられればと思っています。',
-    '皆さまにお会いできるのを楽しみにしております！',
-    '',
-    '▼ INFORMATION',
-    `日時：${getFormattedDate(reservationData.value.invitation.date)}`,
-    `時間：${reservationData.value.invitation.startTime} - ${reservationData.value.invitation.endTime}`,
-    `会場：${reservationData.value.invitation.venueName}`,
-    `会費：${reservationData.value.invitation.fee}円`,
-    `住所：${reservationData.value.invitation.venueAddress}`,
-    '',
-    '-------------------------------',
-    'あの日の仲間と、もう一度つながる。',
-    '同窓会支援サービス 「Reunion」',
-    'https://reunion-app-new.web.app',
-    '-------------------------------',
-  ].join('\n');
-};
-
-// メール送信
 const sendConfirmationEmail = async (
   email: string,
   title: string,
