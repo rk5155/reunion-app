@@ -259,6 +259,29 @@ onMounted(async () => {
       default_price: product.default_price,
     }));
   }
+
+  if (!invitationId) {
+    alert('招待状IDが見つかりません');
+    router.push('/dashboard');
+    return;
+  }
+
+  const docRef = doc(db, 'invitations', invitationId as string);
+  const docSnap = await getDoc(docRef);
+
+  if (docSnap.exists()) {
+    invitation.value = {
+      id: docSnap.id,
+      ...(docSnap.data() as Invitation),
+    };
+    updateCountdown();
+
+    setInterval(updateCountdown, 1000);
+    await fetchAttendeeCount();
+  } else {
+    alert('招待状が存在しません');
+    router.push('/dashboard');
+  }
 });
 
 const invitation = ref<Invitation>({
@@ -329,31 +352,6 @@ const fetchAttendeeCount = async () => {
   const attendeeDocs = await getDocs(attendeesQuery);
   attendeeCount.value = attendeeDocs.size;
 };
-
-onMounted(async () => {
-  if (!invitationId) {
-    alert('招待状IDが見つかりません');
-    router.push('/dashboard');
-    return;
-  }
-
-  const docRef = doc(db, 'invitations', invitationId as string);
-  const docSnap = await getDoc(docRef);
-
-  if (docSnap.exists()) {
-    invitation.value = {
-      id: docSnap.id,
-      ...(docSnap.data() as Invitation),
-    };
-    updateCountdown();
-
-    setInterval(updateCountdown, 1000);
-    await fetchAttendeeCount();
-  } else {
-    alert('招待状が存在しません');
-    router.push('/dashboard');
-  }
-});
 
 const handleEdit = () => {
   router.push(`/dashboard/invitation/edit/${invitationId}`);
