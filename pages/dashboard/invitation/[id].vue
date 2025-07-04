@@ -181,24 +181,6 @@
         Thank you!!
       </p>
     </v-card>
-
-    <div>
-      <h1>商品一覧</h1>
-      <ul>
-        <li v-for="product in products" :key="product.id">
-          <h2>{{ product.name }}</h2>
-          <img
-            :src="product.images?.[0]"
-            alt=""
-            v-if="product.images?.length"
-          />
-          <p>{{ product.description }}</p>
-          <p>価格: ¥{{ product.default_price?.unit_amount }}</p>
-          <CheckoutButton :productId="product.default_price?.id || ''" />
-        </li>
-      </ul>
-    </div>
-
     <div
       v-if="isCreator"
       class="sticky-bottom d-flex justify-center pa-4 bg-white"
@@ -234,56 +216,6 @@ const route = useRoute();
 const uiStore = useUIStore();
 const authStore = useAuthStore();
 const invitationId = route.params.id;
-
-interface Product {
-  id: string;
-  name: string;
-  description?: string;
-  images?: string[];
-  default_price?: {
-    id: string;
-    unit_amount: number;
-  };
-}
-
-const products = ref<Product[]>([]);
-
-onMounted(async () => {
-  const data = await $fetch('/api/products');
-  if (Array.isArray(data)) {
-    products.value = data.map((product: any) => ({
-      id: product.id,
-      name: product.name,
-      description: product.description ?? undefined,
-      images: product.images,
-      default_price: product.default_price,
-    }));
-  }
-
-  if (!invitationId) {
-    alert('招待状IDが見つかりません');
-    router.push('/dashboard');
-    return;
-  }
-
-  const docRef = doc(db, 'invitations', invitationId as string);
-  const docSnap = await getDoc(docRef);
-
-  if (docSnap.exists()) {
-    invitation.value = {
-      id: docSnap.id,
-      ...(docSnap.data() as Invitation),
-    };
-    updateCountdown();
-
-    setInterval(updateCountdown, 1000);
-    await fetchAttendeeCount();
-  } else {
-    alert('招待状が存在しません');
-    router.push('/dashboard');
-  }
-});
-
 const invitation = ref<Invitation>({
   title: '',
   date: '',
@@ -308,6 +240,21 @@ const countdown = ref<Countdown>({
 });
 
 const attendeeCount = ref(0);
+
+onMounted(async () => {
+  const docRef = doc(db, 'invitations', invitationId as string);
+  const docSnap = await getDoc(docRef);
+
+  invitation.value = {
+    id: docSnap.id,
+    ...(docSnap.data() as Invitation),
+  };
+
+  updateCountdown();
+
+  setInterval(updateCountdown, 1000);
+  await fetchAttendeeCount();
+});
 
 const isDeadlinePassed = computed(() => {
   if (!invitation.value.deadline) return false;
