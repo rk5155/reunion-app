@@ -124,7 +124,7 @@
                 ・会場の手配や調整 • 出欠管理・名簿管理 •<br />
                 ・参加者への連絡や案内 • 支払いの代行 •<br />
                 ・当日の受付対応や運営サポート<br /><br />
-                このため、会費に加え、代行手数料{{
+                このため、会費に加え、同窓会代行サービス利用手数料{{
                   SERVICE_FEE
                 }}円を別途頂戴しております。<br />
                 ご理解とご協力のほど何卒よろしくお願いいたします。<br />
@@ -366,7 +366,11 @@ const handleFormSubmit = async (formData: Record<string, any>) => {
     if (formData.isAttendance) {
       const reservationId = await saveReservation(formData);
       formData.invitationId = invitationId;
-      const res = await useCheckout(SERVICE_FEE, '代行手数料', reservationId); // 定数を使用
+      const res = await useCheckout(
+        SERVICE_FEE,
+        '同窓会代行サービス利用手数料',
+        reservationId
+      ); // 定数を使用
       if (res.url) window.location.href = res.url;
     }
   } catch (error) {
