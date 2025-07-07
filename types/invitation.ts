@@ -6,6 +6,8 @@ export interface Invitation {
   endTime: string;
   venueName: string;
   venueAddress: string;
+  venueUrl?: string;
+  nearestStation?: string;
   deadline: string;
   schoolName: string;
   graduationYear: string;

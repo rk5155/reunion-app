@@ -49,6 +49,19 @@
         class="mb-4"
       />
       <v-text-field
+        v-model="form.venueUrl"
+        label="会場のURL"
+        outlined
+        class="mb-4"
+        type="url"
+      />
+      <v-text-field
+        v-model="form.nearestStation"
+        label="最寄駅"
+        outlined
+        class="mb-4"
+      />
+      <v-text-field
         v-model="form.deadline"
         label="回答締切日"
         outlined
@@ -126,6 +139,8 @@ const form = ref<Invitation>({
   endTime: '',
   venueName: '',
   venueAddress: '',
+  venueUrl: '', // 会場のURLを追加
+  nearestStation: '', // 最寄駅を追加
   deadline: '',
   schoolName: '',
   graduationYear: '',
@@ -178,6 +193,8 @@ const handleSubmit = async () => {
     endTime: form.value.endTime,
     venueName: form.value.venueName,
     venueAddress: form.value.venueAddress,
+    venueUrl: form.value.venueUrl, // 会場のURLを保存
+    nearestStation: form.value.nearestStation, // 最寄駅を保存
     deadline: form.value.deadline,
     schoolName: form.value.schoolName,
     graduationYear: form.value.graduationYear,

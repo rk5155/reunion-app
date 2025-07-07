@@ -53,7 +53,7 @@
         <h3 class="text-h5 font-weight-bold mb-4">Current participation</h3>
         <p class="mb-2">現在の参加状況</p>
         <p class="text-h4 font-weight-bold text-cyan-lighten-2">
-          {{ attendeeCount + 34 }} 人
+          {{ attendeeCount + 22 }} 人
         </p>
       </v-card-text>
 
@@ -124,7 +124,7 @@
                 ・会場の手配や調整 • 出欠管理・名簿管理 •<br />
                 ・参加者への連絡や案内 • 支払いの代行 •<br />
                 ・当日の受付対応や運営サポート<br /><br />
-                このため、会費に加え、サービス手数料980円を別途頂戴しております。<br />
+                このため、会費に加え、代行手数料980円を別途頂戴しております。<br />
                 ご理解とご協力のほど何卒よろしくお願いいたします。<br />
                 申込時に決済を行いますので、予めご了承ください。
               </td>
@@ -132,6 +132,23 @@
             <tr>
               <td class="w-25">会場住所</td>
               <td class="py-4">{{ invitation.venueAddress }}</td>
+            </tr>
+            <tr>
+              <td class="w-25">最寄駅</td>
+              <td class="py-4">{{ invitation.nearestStation }}</td>
+            </tr>
+            <tr>
+              <td class="w-25">会場URL</td>
+              <td class="py-4">
+                <a
+                  :href="invitation.venueUrl"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="text-primary font-weight-bold"
+                >
+                  {{ invitation.venueUrl }}
+                </a>
+              </td>
             </tr>
             <tr>
               <td class="w-25">備考</td>
