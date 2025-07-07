@@ -118,13 +118,15 @@
             <tr>
               <td class="w-25">手数料</td>
               <td class="py-4">
-                980円<br />
+                {{ SERVICE_FEE }}円<br />
                 ※同窓会の円滑な開催のため、同窓会代行サービスを利用しております。<br />
                 これにより、以下の業務をすべて委託しています。<br />
                 ・会場の手配や調整 • 出欠管理・名簿管理 •<br />
                 ・参加者への連絡や案内 • 支払いの代行 •<br />
                 ・当日の受付対応や運営サポート<br /><br />
-                このため、会費に加え、代行手数料980円を別途頂戴しております。<br />
+                このため、会費に加え、代行手数料{{
+                  SERVICE_FEE
+                }}円を別途頂戴しております。<br />
                 ご理解とご協力のほど何卒よろしくお願いいたします。<br />
                 申込時に決済を行いますので、予めご了承ください。
               </td>
@@ -232,6 +234,7 @@ import { useCheckout } from '@/composables/useCheckout';
 import { getFormattedDate } from '@/utils/date';
 import type { Invitation, Countdown } from '@/types/invitation';
 
+const SERVICE_FEE = 980;
 const { db } = useFirebase();
 const router = useRouter();
 const route = useRoute();
@@ -363,7 +366,7 @@ const handleFormSubmit = async (formData: Record<string, any>) => {
     if (formData.isAttendance) {
       const reservationId = await saveReservation(formData);
       formData.invitationId = invitationId;
-      const res = await useCheckout(5000, '代行手数料', reservationId);
+      const res = await useCheckout(SERVICE_FEE, '代行手数料', reservationId); // 定数を使用
       if (res.url) window.location.href = res.url;
     }
   } catch (error) {
