@@ -3,15 +3,15 @@
     <common-loading-overlay :visible="uiStore.loading" />
 
     <v-card class="semi-transparent-card">
-      <!-- カードの上に画像を表示 -->
       <v-img
         src="/images/invitation.jpg"
         alt="イベント画像"
         class="event-image mb-4 rounded-0"
         contain
+        data-aos="fade-up"
       />
 
-      <div class="my-16">
+      <div class="my-16" data-aos="fade-up">
         <p class="mb-3 text-grey-darken-3 text-caption">
           Where memories meet, and stories begin.
         </p>
@@ -24,7 +24,7 @@
         </p>
       </div>
 
-      <v-card-text class="bg-black py-10">
+      <v-card-text class="bg-black py-10" data-aos="fade-up">
         <v-img
           src="/images/invitation-2.jpg"
           class="event-image mb-6 rounded-0"
@@ -36,7 +36,11 @@
         <div class="text-pre-line">{{ invitation.description }}</div>
       </v-card-text>
 
-      <common-share-buttons :title="invitation.title" class="py-10 px-4">
+      <common-share-buttons
+        :title="invitation.title"
+        class="py-10 px-4"
+        data-aos="fade-up"
+      >
         <h2 class="mb-4 text-black">幹事からのお願い</h2>
         <div class="mb-6">
           <p>
@@ -49,7 +53,7 @@
         </div>
       </common-share-buttons>
 
-      <v-card-text class="py-10 bg-grey-lighten-4">
+      <v-card-text class="py-10 bg-grey-lighten-4" data-aos="fade-up">
         <h3 class="text-h5 font-weight-bold mb-4">Current participation</h3>
         <p class="mb-2">現在の参加状況</p>
         <p class="text-h4 font-weight-bold text-cyan-lighten-2">
@@ -57,7 +61,7 @@
         </p>
       </v-card-text>
 
-      <v-card-text class="py-10 bg-grey-darken-4">
+      <v-card-text class="py-10 bg-grey-darken-4" data-aos="fade-up">
         <h3 class="text-h5 font-weight-bold mb-4">Countdown</h3>
         <div class="text-h4 font-weight-bold mb-4">
           to {{ invitation.date }}
@@ -92,7 +96,7 @@
         </div>
       </v-card-text>
 
-      <v-card-text class="py-10 text-left">
+      <v-card-text class="py-10 text-left" data-aos="fade-up">
         <h3 class="text-h5 font-weight-bold mb-4 text-center">INFORMATION</h3>
         <v-table>
           <tbody>
@@ -164,7 +168,7 @@
         </v-table>
       </v-card-text>
 
-      <v-card-text class="py-10 bg-grey-lighten-2">
+      <v-card-text class="py-10 bg-grey-lighten-2" data-aos="fade-up">
         <h3 class="text-h5 font-weight-bold mb-4">Presence or Absence</h3>
         <div class="max-width-800">
           <div class="new-action-design-tm-Heading3 mb-4">
@@ -210,7 +214,11 @@
         </div>
       </v-card-text>
 
-      <common-share-buttons :title="invitation.title" class="py-10 px-4" />
+      <common-share-buttons
+        :title="invitation.title"
+        class="py-10 px-4"
+        data-aos="fade-up"
+      />
 
       <p class="ttl_center5 text-h3 font-weight-bold my-16 text-black">
         Thank you!!
@@ -244,6 +252,8 @@ import { useAuthStore } from '@/stores/auth';
 import { useCheckout } from '@/composables/useCheckout';
 import { getFormattedDate } from '@/utils/date';
 import type { Invitation, Countdown } from '@/types/invitation';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 const SERVICE_FEE = 980;
 const { db } = useFirebase();
@@ -291,6 +301,11 @@ onMounted(async () => {
 
   setInterval(updateCountdown, 1000);
   await fetchAttendeeCount();
+
+  AOS.init({
+    duration: 3000,
+    once: true,
+  });
 });
 
 const isDeadlinePassed = computed(() => {
