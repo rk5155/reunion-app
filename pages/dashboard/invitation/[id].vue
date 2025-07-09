@@ -9,6 +9,7 @@
         class="event-image mb-4 rounded-0"
         contain
         data-aos="fade-up"
+        data-aos-duration="3000"
       />
 
       <div class="my-16" data-aos="fade-up">
