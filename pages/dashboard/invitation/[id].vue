@@ -16,7 +16,7 @@
           Where memories meet, and stories begin.
         </p>
         <h2
-          id="animated-text-2"
+          id="animated-text"
           class="ttl_center5 text-h3 font-weight-bold text-black mb-3"
         ></h2>
         <p class="text-grey-darken-3 text-caption">
@@ -311,16 +311,13 @@ onMounted(async () => {
     once: true,
   });
 
-  const target2 = document.querySelector('#animated-text-2');
+  const target = document.querySelector('#animated-text');
 
-  const writer2 = new Writer(target2, {
-    loop: false,
-    typeSpeed: 300,
-    deleteSpeed: 50,
-    delay: 500,
+  const writer = new Writer(target, {
+    typeSpeed: 200,
   });
 
-  writer2.type('Reunion invitations').rest(500).start();
+  writer.type('Reunion invitations').start();
 });
 
 const isDeadlinePassed = computed(() => {
