@@ -15,10 +15,10 @@
         <p class="mb-3 text-grey-darken-3 text-caption">
           Where memories meet, and stories begin.
         </p>
-        <h2 class="ttl_center5 text-h3 font-weight-bold text-black mb-3">
-          Reunion invitations
-        </h2>
-
+        <h2
+          id="animated-text-2"
+          class="ttl_center5 text-h3 font-weight-bold text-black mb-3"
+        ></h2>
         <p class="text-grey-darken-3 text-caption">
           Together again, to cherish the moments we share.
         </p>
@@ -257,6 +257,7 @@ import { getFormattedDate } from '@/utils/date';
 import type { Invitation, Countdown } from '@/types/invitation';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import Writer from 't-writer.js';
 
 const SERVICE_FEE = 980;
 const { db } = useFirebase();
@@ -309,6 +310,17 @@ onMounted(async () => {
     duration: 2000,
     once: true,
   });
+
+  const target2 = document.querySelector('#animated-text-2');
+
+  const writer2 = new Writer(target2, {
+    loop: false,
+    typeSpeed: 300,
+    deleteSpeed: 50,
+    delay: 500,
+  });
+
+  writer2.type('Reunion invitations').rest(500).start();
 });
 
 const isDeadlinePassed = computed(() => {
