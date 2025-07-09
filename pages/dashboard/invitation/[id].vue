@@ -175,7 +175,7 @@
           <div class="new-action-design-tm-Heading3 mb-4">
             お手数ですが　下記お日にち迄に<br />
             出欠情報のご連絡をお願い申し上げます<br />
-            <div class="text-h5 mt-4">
+            <div class="text-h5 mt-4 font-weight-bold">
               {{ getFormattedDate(invitation.deadline) }}
             </div>
           </div>
