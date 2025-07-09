@@ -96,7 +96,7 @@
         </div>
       </v-card-text>
 
-      <v-card-text class="py-10 text-left" data-aos="fade-up">
+      <v-card-text class="py-10 text-left max-width-800" data-aos="fade-up">
         <h3 class="text-h5 font-weight-bold mb-4 text-center">INFORMATION</h3>
         <v-table>
           <tbody>
@@ -220,7 +220,10 @@
         data-aos="fade-up"
       />
 
-      <p class="ttl_center5 text-h3 font-weight-bold my-16 text-black">
+      <p
+        class="ttl_center5 text-h3 font-weight-bold my-16 text-black"
+        data-aos="fade-up"
+      >
         Thank you!!
       </p>
     </v-card>
