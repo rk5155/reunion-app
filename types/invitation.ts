@@ -4,6 +4,7 @@ export interface Invitation {
   date: string;
   startTime: string;
   endTime: string;
+  receptionStartTime: string;
   venueName: string;
   venueAddress: string;
   venueUrl?: string;

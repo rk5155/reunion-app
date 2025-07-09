@@ -97,8 +97,12 @@
         <v-table>
           <tbody>
             <tr>
-              <td class="w-25">日付</td>
+              <td class="w-25">開催日</td>
               <td>{{ getFormattedDate(invitation.date) }}</td>
+            </tr>
+            <tr>
+              <td class="w-25">受付開始</td>
+              <td>{{ invitation.receptionStartTime }}〜</td>
             </tr>
             <tr>
               <td class="w-25">時間</td>
@@ -121,8 +125,8 @@
                 {{ SERVICE_FEE }}円<br />
                 ※同窓会の円滑な開催のため、同窓会代行サービスを利用しております。<br />
                 これにより、以下の業務をすべて委託しています。<br />
-                ・会場の手配や調整 • 出欠管理・名簿管理 •<br />
-                ・参加者への連絡や案内 • 支払いの代行 •<br />
+                ・会場の手配や調整 • 出欠管理・名簿管理 <br />
+                ・参加者への連絡や案内 • 支払いの代行 <br />
                 ・当日の受付対応や運営サポート<br /><br />
                 このため、会費に加え、同窓会代行サービス利用手数料{{
                   SERVICE_FEE
@@ -186,6 +190,13 @@
             >
               個人情報の取扱いについて </a
             >内容に同意の上、入力情報を送信してください。　
+          </p>
+          <p class="text-left mb-8 text-danger text-red">
+            ※お申し込み時に発生する手数料（{{ SERVICE_FEE }}円）は、
+            代行サービスの利用開始と同時に発生するため、<br />
+            ご本人都合によるキャンセルや、万が一の開催中止となった場合でも、
+            ご返金はできかねます。<br />
+            あらかじめご理解のほど、何卒よろしくお願いいたします。
           </p>
 
           <div
@@ -255,6 +266,7 @@ const invitation = ref<Invitation>({
   description: '',
   creatorId: '',
   remarks: '',
+  receptionStartTime: '',
 });
 
 const countdown = ref<Countdown>({

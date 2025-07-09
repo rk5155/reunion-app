@@ -35,6 +35,14 @@
         type="time"
       />
       <v-text-field
+        v-model="form.receptionStartTime"
+        label="受付開始時間"
+        outlined
+        required
+        class="mb-4"
+        type="time"
+      />
+      <v-text-field
         v-model="form.venueName"
         label="会場名"
         outlined
@@ -137,10 +145,11 @@ const form = ref<Invitation>({
   date: '',
   startTime: '',
   endTime: '',
+  receptionStartTime: '', // 受付開始時間を追加
   venueName: '',
   venueAddress: '',
-  venueUrl: '', // 会場のURLを追加
-  nearestStation: '', // 最寄駅を追加
+  venueUrl: '',
+  nearestStation: '',
   deadline: '',
   schoolName: '',
   graduationYear: '',
@@ -191,10 +200,11 @@ const handleSubmit = async () => {
     date: form.value.date,
     startTime: form.value.startTime,
     endTime: form.value.endTime,
+    receptionStartTime: form.value.receptionStartTime, // 受付開始時間を保存
     venueName: form.value.venueName,
     venueAddress: form.value.venueAddress,
-    venueUrl: form.value.venueUrl, // 会場のURLを保存
-    nearestStation: form.value.nearestStation, // 最寄駅を保存
+    venueUrl: form.value.venueUrl,
+    nearestStation: form.value.nearestStation,
     deadline: form.value.deadline,
     schoolName: form.value.schoolName,
     graduationYear: form.value.graduationYear,
