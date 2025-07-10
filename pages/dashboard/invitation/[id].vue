@@ -58,7 +58,7 @@
         <h3 class="text-h5 font-weight-bold mb-4">Current participation</h3>
         <p class="mb-2">現在の参加状況</p>
         <p class="text-h4 font-weight-bold text-cyan-lighten-2">
-          {{ attendeeCount + 22 }} 人
+          {{ attendeeCount + 20 }} 人
         </p>
       </v-card-text>
 
