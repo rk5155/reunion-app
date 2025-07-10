@@ -23,8 +23,8 @@ export const createEmailText = (invitation: {
     '',
     '-------------------------------',
     'あの日の仲間と、もう一度つながる。',
-    '同窓会支援サービス 「Reunion」',
-    'https://reunion-app-new.web.app',
+    '同窓会支援サービス REUNION UP(リユニオン アップ)',
+    'https://reunion-up.com/',
     '-------------------------------',
   ].join('\n');
 };

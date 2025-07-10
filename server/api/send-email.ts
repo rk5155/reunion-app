@@ -9,7 +9,7 @@ export default defineEventHandler(async (event) => {
   const msg = {
     to,
     from: {
-      name: 'REUNION(リユニオン)',
+      name: 'REUNION UP(リユニオン アップ)',
       email: config.FROM_EMAIL,
     },
     subject,
