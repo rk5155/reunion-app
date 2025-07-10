@@ -93,7 +93,7 @@ const emit = defineEmits(['submit']);
 const formData = ref({
   name: '',
   email: '',
-  isAttendance: '',
+  isAttendance: null,
   className: '',
   message: '',
 });
@@ -110,7 +110,7 @@ const isFormValid = computed(() => {
   return (
     formData.value.name &&
     isEmailValid &&
-    formData.value.isAttendance &&
+    formData.value.isAttendance !== null &&
     formData.value.className &&
     isPrivacyChecked.value
   );
