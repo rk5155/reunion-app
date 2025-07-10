@@ -405,7 +405,7 @@ const handleFormSubmit = async (formData: Record<string, any>) => {
 
     if (formData.isAttendance) {
       const reservationId = await saveReservation(formData);
-      const successUrl = `${window.location.origin}/dashboard/invitation/confirmation?reservationId=${reservationId}`;
+      const successUrl = `${window.location.origin}/dashboard/invitation/confirmation?reservationId=${reservationId}&isAttendance=${formData.isAttendance}`;
       const cancelUrl = `${window.location.origin}/dashboard/invitation/${invitationId}`;
 
       formData.invitationId = invitationId;
@@ -417,7 +417,15 @@ const handleFormSubmit = async (formData: Record<string, any>) => {
         cancelUrl
       );
       if (res.url) window.location.href = res.url;
+      return;
     }
+    await addDoc(collection(db, 'attendances'), formData);
+    router.push({
+      path: '/dashboard/invitation/confirmation',
+      query: {
+        isAttendance: formData.isAttendance,
+      },
+    });
   } catch (error) {
     console.error('登録失敗:', error);
     alert('登録に失敗しました。もう一度お試しください。');

@@ -2,25 +2,39 @@
   <div
     class="confirmation d-flex justify-center align-center fill-height text-center px-6 bg-grey-lighten-4"
   >
-    <v-card class="py-12 elevation-10 w-100">
-      <v-icon color="cyan-darken-1" size="100" class="mb-4"
-        >mdi-check-circle</v-icon
-      >
-      <h2 class="text-h5 font-weight-bold mb-4">
-        出欠のご回答<br />ありがとうございました!
-      </h2>
-      <p class="text-body-1 mb-6">
-        同窓会当日にお会いできるのを<br />楽しみにしております。
-      </p>
-      <v-btn
-        color="cyan-darken-1"
-        @click="handleBackToDetail"
-        class="mt-4 font-weight-bold"
-        size="large"
-        rounded="xl"
-      >
-        招待状に戻る
-      </v-btn>
+    <v-card class="py-12 px-4 elevation-10 w-100">
+      <template v-if="isAttendance">
+        <v-icon color="cyan-darken-1" size="100" class="mb-4"
+          >mdi-check-circle</v-icon
+        >
+        <h2 class="text-h5 font-weight-bold mb-4">
+          出欠のご回答<br />ありがとうございました!
+        </h2>
+        <p class="text-body-1 mb-6">
+          同窓会当日にお会いできるのを<br />楽しみにしております。
+        </p>
+        <v-btn
+          color="cyan-darken-1"
+          @click="handleBackToDetail"
+          class="mt-4 font-weight-bold"
+          size="large"
+          rounded="xl"
+        >
+          招待状に戻る
+        </v-btn>
+      </template>
+      <template v-else>
+        <v-icon color="red-darken-1" size="100" class="mb-4">
+          mdi-cancel
+        </v-icon>
+        <h2 class="text-h5 font-weight-bold mb-4">
+          出欠のご回答<br />ありがとうございました。
+        </h2>
+        <p class="text-body-1 mb-6">
+          今回はご参加いただけないとのこと、<br />
+          残念ですがまたの機会を楽しみにしております。
+        </p>
+      </template>
     </v-card>
   </div>
 </template>
@@ -33,11 +47,14 @@ import { createEmailText } from '@/utils/email';
 const router = useRouter();
 const route = useRoute();
 const reservationId = route.query.reservationId;
+const isAttendance = route.query.isAttendance === 'true';
 const { sendEmail } = useSendEmail();
 const { db } = useFirebase();
 const reservationData = ref<any>(null);
 
 onMounted(async () => {
+  if (!isAttendance) return;
+
   reservationData.value = await fetchReservationData();
 
   const attendanceData = {
