@@ -1,13 +1,23 @@
-import Stripe from 'stripe';
-import { defineEventHandler, readBody } from 'h3';
-
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
+import Stripe from 'stripe'
+import { defineEventHandler, readBody } from 'h3'
+import { useRuntimeConfig } from '#imports' 
 
 export default defineEventHandler(async (event) => {
-  const body = await readBody(event);
+  const config = useRuntimeConfig()
+  const stripeSecretKey = config.stripeSecretKey
+
+  if (!stripeSecretKey) {
+    throw new Error('Missing Stripe Secret Key')
+  }
+
+  const stripe = new Stripe(stripeSecretKey, {
+    apiVersion: '2025-06-30.basil',
+  })
+
+  const body = await readBody(event)
 
   try {
-    const reservationId = body.reservationId || '';
+    const reservationId = body.reservationId || ''
 
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ['card'],
@@ -26,11 +36,11 @@ export default defineEventHandler(async (event) => {
       mode: 'payment',
       success_url: `${body.origin}/dashboard/invitation/confirmation?reservationId=${reservationId}`,
       cancel_url: `${body.origin}/cancel`,
-    });
+    })
 
-    return { url: session.url };
+    return { url: session.url }
   } catch (err: any) {
-    console.error('Stripe checkout session creation failed:', err);
-    return { error: err.message };
+    console.error('Stripe checkout session creation failed:', err)
+    return { error: err.message }
   }
-});
+})
