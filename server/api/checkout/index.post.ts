@@ -18,9 +18,11 @@ export default defineEventHandler(async (event) => {
 
   try {
     const reservationId = body.reservationId || ''
+    const customerEmail = body.email || ''
 
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ['card'],
+      customer_email: customerEmail,
       line_items: [
         {
           price_data: {

@@ -409,8 +409,9 @@ const handleFormSubmit = async (formData: Record<string, any>) => {
       const res = await useCheckout(
         SERVICE_FEE,
         '同窓会代行サービス利用手数料',
-        reservationId
-      ); // 定数を使用
+        reservationId,
+        formData.email
+      );
       if (res.url) window.location.href = res.url;
     }
   } catch (error) {
