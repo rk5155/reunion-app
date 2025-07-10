@@ -19,7 +19,7 @@ export default defineEventHandler(async (event) => {
   try {
     const successUrl = body.successUrl || ''
     const customerEmail = body.email || ''
-    const invitationId = body.invitationId || ''
+    const cancelUrl = body.cancelUrl || ''
 
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ['card'],
@@ -38,7 +38,7 @@ export default defineEventHandler(async (event) => {
       ],
       mode: 'payment',
       success_url: successUrl,
-      cancel_url: `${body.origin}/dashboard/invitation/${invitationId}`,
+      cancel_url: cancelUrl,
     })
 
     return { url: session.url }

@@ -8,7 +8,7 @@ export const useCheckout = async (
   name: string,
   successUrl: string,
   email: string,
-  invitationId: string
+  cancelUrl: string
 ): Promise<CheckoutResponse> => {
   try {
     const res: CheckoutResponse = await $fetch('/api/checkout', {
@@ -19,7 +19,7 @@ export const useCheckout = async (
         origin: window.location.origin,
         successUrl,
         email,
-        invitationId
+        cancelUrl
       },
     });
     return res;

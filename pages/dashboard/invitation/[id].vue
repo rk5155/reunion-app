@@ -406,6 +406,7 @@ const handleFormSubmit = async (formData: Record<string, any>) => {
     if (formData.isAttendance) {
       const reservationId = await saveReservation(formData);
       const successUrl = `${window.location.origin}/dashboard/invitation/confirmation?reservationId=${reservationId}`;
+      const cancelUrl = `${window.location.origin}/dashboard/invitation/${invitationId}`;
 
       formData.invitationId = invitationId;
       const res = await useCheckout(
@@ -413,7 +414,7 @@ const handleFormSubmit = async (formData: Record<string, any>) => {
         '同窓会代行サービス利用手数料',
         successUrl,
         formData.email,
-        invitationId
+        cancelUrl
       );
       if (res.url) window.location.href = res.url;
     }
