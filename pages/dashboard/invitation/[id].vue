@@ -266,7 +266,7 @@ const router = useRouter();
 const route = useRoute();
 const uiStore = useUIStore();
 const authStore = useAuthStore();
-const invitationId = route.params.id;
+const invitationId = route.params.id as string;
 const invitation = ref<Invitation>({
   title: '',
   date: '',
@@ -410,7 +410,8 @@ const handleFormSubmit = async (formData: Record<string, any>) => {
         SERVICE_FEE,
         '同窓会代行サービス利用手数料',
         reservationId,
-        formData.email
+        formData.email,
+        invitationId
       );
       if (res.url) window.location.href = res.url;
     }
