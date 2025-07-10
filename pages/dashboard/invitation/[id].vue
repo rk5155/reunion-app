@@ -405,11 +405,13 @@ const handleFormSubmit = async (formData: Record<string, any>) => {
 
     if (formData.isAttendance) {
       const reservationId = await saveReservation(formData);
+      const successUrl = `${window.location.origin}/dashboard/invitation/confirmation?reservationId=${reservationId}`;
+
       formData.invitationId = invitationId;
       const res = await useCheckout(
         SERVICE_FEE,
         '同窓会代行サービス利用手数料',
-        reservationId,
+        successUrl,
         formData.email,
         invitationId
       );

@@ -17,7 +17,7 @@ export default defineEventHandler(async (event) => {
   const body = await readBody(event)
 
   try {
-    const reservationId = body.reservationId || ''
+    const successUrl = body.successUrl || ''
     const customerEmail = body.email || ''
     const invitationId = body.invitationId || ''
 
@@ -37,7 +37,7 @@ export default defineEventHandler(async (event) => {
         },
       ],
       mode: 'payment',
-      success_url: `${body.origin}/dashboard/invitation/confirmation?reservationId=${reservationId}`,
+      success_url: successUrl,
       cancel_url: `${body.origin}/dashboard/invitation/${invitationId}`,
     })
 

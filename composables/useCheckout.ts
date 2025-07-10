@@ -6,7 +6,7 @@ export type CheckoutResponse = {
 export const useCheckout = async (
   amount: number,
   name: string,
-  reservationId: string,
+  successUrl: string,
   email: string,
   invitationId: string
 ): Promise<CheckoutResponse> => {
@@ -17,7 +17,7 @@ export const useCheckout = async (
         amount,
         name,
         origin: window.location.origin,
-        reservationId,
+        successUrl,
         email,
         invitationId
       },
