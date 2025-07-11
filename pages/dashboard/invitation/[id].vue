@@ -2,14 +2,17 @@
   <div class="invitation-detail text-center pa-0">
     <common-loading-overlay :visible="uiStore.loading" />
 
+    <h1
+      id="invitation-title-typing"
+      class="text-center text-h6 font-weight-bold py-4 bg-white"
+    ></h1>
+
     <v-card class="semi-transparent-card">
       <v-img
         src="/images/invitation.jpg"
         alt="イベント画像"
         class="event-image mb-4 rounded-0"
         contain
-        data-aos="fade-up"
-        data-aos-duration="3000"
       />
 
       <div class="my-16" data-aos="fade-up">
@@ -313,13 +316,20 @@ onMounted(async () => {
     once: true,
   });
 
-  const target = document.querySelector('#animated-text');
+  const titleTarget = document.querySelector('#invitation-title-typing');
+  if (titleTarget && invitation.value.title) {
+    titleTarget.textContent = '';
+    const writer = new Writer(titleTarget, {
+      typeSpeed: 200,
+    });
+    writer.type(invitation.value.title).start();
+  }
 
-  const writer = new Writer(target, {
+  const target = document.querySelector('#animated-text');
+  const writer2 = new Writer(target, {
     typeSpeed: 200,
   });
-
-  writer.type('Reunion invitations').start();
+  writer2.type('Reunion invitations').start();
 });
 
 const isDeadlinePassed = computed(() => {
