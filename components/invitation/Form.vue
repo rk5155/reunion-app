@@ -12,7 +12,7 @@
 
       <v-text-field
         v-model="formData.name"
-        label="氏名 (必須)"
+        label="氏名（旧姓） (必須)"
         required
         class="mb-4"
       />
