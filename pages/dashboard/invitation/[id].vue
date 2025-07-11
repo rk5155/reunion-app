@@ -3,8 +3,8 @@
     <common-loading-overlay :visible="uiStore.loading" />
 
     <h1
-      id="invitation-title-typing"
-      class="text-center text-h6 font-weight-bold bg-white d-flex justify-center align-center"
+      class="invitation-title text-center text-h6 font-weight-bold bg-white d-flex justify-center align-center"
+      ref="titleRef"
     ></h1>
 
     <v-card class="semi-transparent-card">
@@ -262,6 +262,7 @@ import type { Invitation, Countdown } from '@/types/invitation';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import Writer from 't-writer.js';
+import { ref, onMounted, computed } from 'vue';
 
 const SERVICE_FEE = 980;
 const { db } = useFirebase();
@@ -295,6 +296,7 @@ const countdown = ref<Countdown>({
 });
 
 const attendeeCount = ref(0);
+const titleRef = ref<HTMLElement | null>(null);
 
 onMounted(async () => {
   const docRef = doc(db, 'invitations', invitationId as string);
@@ -315,10 +317,9 @@ onMounted(async () => {
     once: true,
   });
 
-  const titleTarget = document.querySelector('#invitation-title-typing');
-  if (titleTarget && invitation.value.title) {
-    titleTarget.textContent = '';
-    const writer = new Writer(titleTarget, {
+  if (titleRef.value) {
+    titleRef.value.textContent = '';
+    const writer = new Writer(titleRef.value, {
       typeSpeed: 200,
     });
     writer.type(invitation.value.title).start();
@@ -460,7 +461,7 @@ const handleFormSubmit = async (formData: Record<string, any>) => {
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&family=Kiwi+Maru&family=Zen+Antique&display=swap');
 
-#invitation-title-typing {
+.invitation-title {
   height: 60px;
 }
 .invitation-detail {
