@@ -4,15 +4,19 @@
   >
     <v-card class="py-12 px-4 elevation-10 w-100">
       <template v-if="isAttendance">
-        <v-icon color="cyan-darken-1" size="100" class="mb-4"
+        <v-icon color="cyan-darken-1" size="100" class="mb-6"
           >mdi-check-circle</v-icon
         >
-        <h2 class="text-h5 font-weight-bold mb-4">
+        <h2 class="text-h5 font-weight-bold mb-6">
           出欠のご回答<br />ありがとうございました!
         </h2>
         <p class="text-body-1 mb-6">
           同窓会当日にお会いできるのを<br />楽しみにしております。
         </p>
+        <p class="text-success font-weight-bold text-h6 mb-6">
+          確認メールを送信しましたので<br />ご確認ください。
+        </p>
+
         <v-btn
           color="cyan-darken-1"
           @click="handleBackToDetail"
@@ -24,10 +28,10 @@
         </v-btn>
       </template>
       <template v-else>
-        <v-icon color="red-darken-1" size="100" class="mb-4">
+        <v-icon color="red-darken-1" size="100" class="mb-6">
           mdi-cancel
         </v-icon>
-        <h2 class="text-h5 font-weight-bold mb-4">
+        <h2 class="text-h5 font-weight-bold mb-6">
           出欠のご回答<br />ありがとうございました。
         </h2>
         <p class="text-body-1 mb-6">
@@ -82,7 +86,7 @@ onMounted(async () => {
 
   await sendConfirmationEmail(
     reservationData.value?.email,
-    reservationData.value?.title,
+    reservationData.value?.invitation?.title,
     emailText
   );
 
