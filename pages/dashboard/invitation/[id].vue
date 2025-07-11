@@ -4,7 +4,7 @@
 
     <h1
       id="invitation-title-typing"
-      class="text-center text-h6 font-weight-bold py-4 bg-white"
+      class="text-center text-h6 font-weight-bold bg-white d-flex justify-center align-center"
     ></h1>
 
     <v-card class="semi-transparent-card">
@@ -467,6 +467,9 @@ const handleFormSubmit = async (formData: Record<string, any>) => {
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&family=Kiwi+Maru&family=Zen+Antique&display=swap');
 
+#invitation-title-typing {
+  height: 60px;
+}
 .invitation-detail {
   background-image: url('/images/bg.png');
   background-size: cover;
