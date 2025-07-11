@@ -19,10 +19,9 @@
         <p class="mb-3 text-grey-darken-3 text-caption">
           Where memories meet, and stories begin.
         </p>
-        <h2
-          id="animated-text"
-          class="ttl_center5 text-h3 font-weight-bold text-black mb-3"
-        ></h2>
+        <h2 class="ttl_center5 text-h3 font-weight-bold text-black mb-3">
+          Reunion invitations
+        </h2>
         <p class="text-grey-darken-3 text-caption">
           Together again, to cherish the moments we share.
         </p>
@@ -324,12 +323,6 @@ onMounted(async () => {
     });
     writer.type(invitation.value.title).start();
   }
-
-  const target = document.querySelector('#animated-text');
-  const writer2 = new Writer(target, {
-    typeSpeed: 200,
-  });
-  writer2.type('Reunion invitations').start();
 });
 
 const isDeadlinePassed = computed(() => {
