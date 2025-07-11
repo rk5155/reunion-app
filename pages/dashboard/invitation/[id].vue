@@ -400,44 +400,56 @@ const saveReservation = async (formData: any) => {
   return docRef.id;
 };
 
+const registerAttend = async (formData: Record<string, any>) => {
+  const reservationId = await saveReservation(formData);
+  const successUrl = `${window.location.origin}/dashboard/invitation/confirmation?reservationId=${reservationId}&isAttendance=${formData.isAttendance}`;
+  const cancelUrl = `${window.location.origin}/dashboard/invitation/${invitationId}`;
+
+  formData.invitationId = invitationId;
+  const res = await useCheckout(
+    SERVICE_FEE,
+    '同窓会代行サービス利用手数料',
+    successUrl,
+    formData.email,
+    cancelUrl
+  );
+  if (res.url) window.location.href = res.url;
+};
+
+const registerAbsence = async (formData: Record<string, any>) => {
+  const attendanceCollection = collection(db, 'attendances');
+  const querySnapshot = await getDocs(
+    query(attendanceCollection, where('name', '==', formData.name))
+  );
+
+  if (!querySnapshot.empty) {
+    const docRef = querySnapshot.docs[0].ref;
+    await updateDoc(docRef, formData);
+    router.push({
+      path: '/dashboard/invitation/confirmation',
+      query: {
+        isAttendance: formData.isAttendance,
+      },
+    });
+    return;
+  }
+  await addDoc(attendanceCollection, formData);
+  router.push({
+    path: '/dashboard/invitation/confirmation',
+    query: {
+      isAttendance: formData.isAttendance,
+    },
+  });
+};
+
 const handleFormSubmit = async (formData: Record<string, any>) => {
   try {
     uiStore.setLoading(true);
-
     if (formData.isAttendance) {
-      const reservationId = await saveReservation(formData);
-      const successUrl = `${window.location.origin}/dashboard/invitation/confirmation?reservationId=${reservationId}&isAttendance=${formData.isAttendance}`;
-      const cancelUrl = `${window.location.origin}/dashboard/invitation/${invitationId}`;
-
-      formData.invitationId = invitationId;
-      const res = await useCheckout(
-        SERVICE_FEE,
-        '同窓会代行サービス利用手数料',
-        successUrl,
-        formData.email,
-        cancelUrl
-      );
-      if (res.url) window.location.href = res.url;
+      await registerAttend(formData);
       return;
     }
-
-    const attendanceCollection = collection(db, 'attendances');
-    const querySnapshot = await getDocs(
-      query(attendanceCollection, where('name', '==', formData.name))
-    );
-
-    if (!querySnapshot.empty) {
-      const docRef = querySnapshot.docs[0].ref;
-      await updateDoc(docRef, formData);
-      router.push({
-        path: '/dashboard/invitation/confirmation',
-        query: {
-          isAttendance: formData.isAttendance,
-        },
-      });
-      return;
-    }
-    await addDoc(attendanceCollection, formData);
+    await registerAbsence(formData);
   } catch (error) {
     console.error('登録失敗:', error);
     alert('登録に失敗しました。もう一度お試しください。');
