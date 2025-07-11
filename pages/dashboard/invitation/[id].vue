@@ -20,7 +20,7 @@
           Where memories meet, and stories begin.
         </p>
         <h2 class="ttl_center5 text-h3 font-weight-bold text-black mb-3">
-          Reunion invitations
+          REUNION INVITATIONS
         </h2>
         <p class="text-grey-darken-3 text-caption">
           Together again, to cherish the moments we share.
@@ -30,13 +30,15 @@
       <v-card-text class="bg-black py-10" data-aos="fade-up">
         <v-img
           src="/images/invitation-2.jpg"
-          class="event-image mb-6 rounded-0"
+          class="event-image rounded-0"
           contain
         />
-        <p class="text-center text-h6 font-weight-bold mb-4">
-          {{ invitation.title }}
-        </p>
-        <div class="text-pre-line">{{ invitation.description }}</div>
+        <div class="pt-10">
+          <p class="text-center text-h6 font-weight-bold mb-4">
+            {{ invitation.title }}
+          </p>
+          <p class="text-pre-line">{{ invitation.description }}</p>
+        </div>
       </v-card-text>
 
       <common-share-buttons
@@ -57,7 +59,9 @@
       </common-share-buttons>
 
       <v-card-text class="py-10 bg-grey-lighten-4" data-aos="fade-up">
-        <h3 class="text-h5 font-weight-bold mb-4">Current participation</h3>
+        <h2 class="text-h5 font-weight-bold mb-4 text-black">
+          CURRENT PARTICIPATION
+        </h2>
         <p class="mb-2">現在の参加状況</p>
         <p class="text-h4 font-weight-bold text-cyan-lighten-2">
           {{ attendeeCount + 20 }} 人
@@ -65,35 +69,37 @@
       </v-card-text>
 
       <v-card-text class="py-10 bg-grey-darken-4" data-aos="fade-up">
-        <h3 class="text-h5 font-weight-bold mb-4">Countdown</h3>
-        <div class="text-h4 font-weight-bold mb-4">
-          to {{ invitation.date }}
-        </div>
-        <div
-          class="text-h4 font-weight-bold text-danger d-flex justify-space-between"
-        >
-          <div class="w-25">
-            <div>{{ countdown.days }}</div>
-            <div class="countdown-label text-cyan-lighten-4 font-weight-bold">
-              Days
-            </div>
+        <div class="max-width-800">
+          <h3 class="text-h5 font-weight-bold mb-4">COUNTDOWN</h3>
+          <div class="text-h4 font-weight-bold mb-4">
+            to {{ invitation.date }}
           </div>
-          <div class="w-25">
-            <div>{{ countdown.hours }}</div>
-            <div class="countdown-label text-cyan-lighten-4 font-weight-bold">
-              Hours
+          <div
+            class="text-h4 font-weight-bold text-danger d-flex justify-space-between"
+          >
+            <div class="w-25">
+              <div>{{ countdown.days }}</div>
+              <div class="countdown-label text-cyan-lighten-4 font-weight-bold">
+                Days
+              </div>
             </div>
-          </div>
-          <div class="w-25">
-            <div>{{ countdown.minutes }}</div>
-            <div class="countdown-label text-cyan-lighten-4 font-weight-bold">
-              Minutes
+            <div class="w-25">
+              <div>{{ countdown.hours }}</div>
+              <div class="countdown-label text-cyan-lighten-4 font-weight-bold">
+                Hours
+              </div>
             </div>
-          </div>
-          <div class="w-25">
-            <div>{{ countdown.seconds }}</div>
-            <div class="countdown-label text-cyan-lighten-4 font-weight-bold">
-              Seconds
+            <div class="w-25">
+              <div>{{ countdown.minutes }}</div>
+              <div class="countdown-label text-cyan-lighten-4 font-weight-bold">
+                Minutes
+              </div>
+            </div>
+            <div class="w-25">
+              <div>{{ countdown.seconds }}</div>
+              <div class="countdown-label text-cyan-lighten-4 font-weight-bold">
+                Seconds
+              </div>
             </div>
           </div>
         </div>
@@ -147,7 +153,7 @@
               <td class="py-4">{{ invitation.venueAddress }}</td>
             </tr>
             <tr>
-              <td class="w-25">最寄駅</td>
+              <td class="w-25">アクセス</td>
               <td class="py-4">{{ invitation.nearestStation }}</td>
             </tr>
             <tr>
@@ -172,7 +178,7 @@
       </v-card-text>
 
       <v-card-text class="py-10 bg-grey-lighten-2" data-aos="fade-up">
-        <h3 class="text-h5 font-weight-bold mb-4">Presence or Absence</h3>
+        <h3 class="text-h5 font-weight-bold mb-4">PRESENCE OR ABSENCE</h3>
         <div class="max-width-800">
           <div class="new-action-design-tm-Heading3 mb-4">
             お手数ですが　下記お日にち迄に<br />
@@ -459,7 +465,9 @@ const handleFormSubmit = async (formData: Record<string, any>) => {
 </script>
 
 <style scoped>
-@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&family=Kiwi+Maru&family=Zen+Antique&display=swap');
+body {
+  font-family: 'Sawarabi Mincho', serif;
+}
 
 .invitation-title {
   height: 60px;
@@ -470,7 +478,7 @@ const handleFormSubmit = async (formData: Record<string, any>) => {
   background-position: center;
   min-height: 100vh;
   padding: 20px;
-  font-family: 'Zen Antique', serif !important;
+  font-family: 'Sawarabi Mincho', serif;
 }
 
 .event-image {
@@ -492,7 +500,7 @@ h2 {
 .text-h4,
 .text-h5,
 .text-h6 {
-  font-family: 'Cinzel', serif !important;
+  font-family: 'Sawarabi Mincho', serif;
 }
 
 .countdown-label {

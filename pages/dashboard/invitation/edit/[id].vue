@@ -65,7 +65,7 @@
       />
       <v-text-field
         v-model="form.nearestStation"
-        label="最寄駅"
+        label="アクセス"
         outlined
         class="mb-4"
       />

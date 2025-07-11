@@ -25,7 +25,7 @@ const props = defineProps({
 });
 
 const generateShareMessage = () =>
-  `「${props.title}✉️」\n\n${window.location.href}`;
+  `${props.title}💌\n\n${window.location.href}`;
 
 const shareOnLine = () => {
   const url = `https://line.me/R/msg/text/?${encodeURIComponent(
