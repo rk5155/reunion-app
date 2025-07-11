@@ -249,6 +249,7 @@ import {
   addDoc,
   Timestamp,
   serverTimestamp,
+  updateDoc,
 } from 'firebase/firestore';
 import { useFirebase } from '@/composables/useFirebase';
 import { useUIStore } from '@/stores/ui';
@@ -419,13 +420,24 @@ const handleFormSubmit = async (formData: Record<string, any>) => {
       if (res.url) window.location.href = res.url;
       return;
     }
-    await addDoc(collection(db, 'attendances'), formData);
-    router.push({
-      path: '/dashboard/invitation/confirmation',
-      query: {
-        isAttendance: formData.isAttendance,
-      },
-    });
+
+    const attendanceCollection = collection(db, 'attendances');
+    const querySnapshot = await getDocs(
+      query(attendanceCollection, where('name', '==', formData.name))
+    );
+
+    if (!querySnapshot.empty) {
+      const docRef = querySnapshot.docs[0].ref;
+      await updateDoc(docRef, formData);
+      router.push({
+        path: '/dashboard/invitation/confirmation',
+        query: {
+          isAttendance: formData.isAttendance,
+        },
+      });
+      return;
+    }
+    await addDoc(attendanceCollection, formData);
   } catch (error) {
     console.error('登録失敗:', error);
     alert('登録に失敗しました。もう一度お試しください。');

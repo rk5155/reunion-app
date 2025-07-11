@@ -40,7 +40,17 @@
 </template>
 
 <script lang="ts" setup>
-import { collection, addDoc, getDoc, doc, deleteDoc } from 'firebase/firestore';
+import {
+  collection,
+  addDoc,
+  getDoc,
+  doc,
+  deleteDoc,
+  getDocs,
+  query,
+  where,
+  updateDoc,
+} from 'firebase/firestore';
 import { useFirebase } from '@/composables/useFirebase';
 import { createEmailText } from '@/utils/email';
 
@@ -95,7 +105,17 @@ const deleteReservation = async () => {
 };
 
 const saveAttendanceData = async (attendanceData: Record<string, any>) => {
-  await addDoc(collection(db, 'attendances'), attendanceData);
+  const attendanceCollection = collection(db, 'attendances');
+  const querySnapshot = await getDocs(
+    query(attendanceCollection, where('name', '==', attendanceData.name))
+  );
+
+  if (!querySnapshot.empty) {
+    const docRef = querySnapshot.docs[0].ref;
+    await updateDoc(docRef, attendanceData);
+    return;
+  }
+  await addDoc(attendanceCollection, attendanceData);
 };
 
 const sendConfirmationEmail = async (
