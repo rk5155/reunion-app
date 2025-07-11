@@ -425,15 +425,10 @@ const registerAbsence = async (formData: Record<string, any>) => {
   if (!querySnapshot.empty) {
     const docRef = querySnapshot.docs[0].ref;
     await updateDoc(docRef, formData);
-    router.push({
-      path: '/dashboard/invitation/confirmation',
-      query: {
-        isAttendance: formData.isAttendance,
-      },
-    });
-    return;
+  } else {
+    await addDoc(attendanceCollection, formData);
   }
-  await addDoc(attendanceCollection, formData);
+
   router.push({
     path: '/dashboard/invitation/confirmation',
     query: {
