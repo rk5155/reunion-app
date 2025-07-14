@@ -58,8 +58,10 @@
       <v-container>
         <v-row>
           <v-col cols="12" class="text-center mb-8">
-            <h2 class="text-h4 font-weight-normal text-grey-darken-2">
-              メリット
+            <h2
+              class="elegant-heading elegant-heading--gradient text-h3 font-weight-bold"
+            >
+              他とは違う！リユニオンアップの3大ポイント
             </h2>
           </v-col>
         </v-row>
@@ -84,18 +86,13 @@
                     height="200"
                   ></v-img>
                   <v-card-text class="px-2">
-                    <h3 class="text-h6 mb-3">
-                      <span
-                        class="text-deep-purple-lighten-1 font-weight-bold me-1"
-                      >
-                        {{ feature.number }}.
+                    <h3 class="text-h5 mb-3 text-deep-purple-darken-1">
+                      <span class="text-pink-accent-3 font-weight-bold me-1">
+                        {{ feature.number }}
                       </span>
                       {{ feature.title }}
                     </h3>
-                    <p
-                      class="text-body-2 text-grey-darken-1"
-                      style="line-height: 1.6"
-                    >
+                    <p class="text-body-2 text-grey-darken-1 text-left">
                       {{ feature.description }}
                     </p>
                   </v-card-text>
@@ -107,19 +104,91 @@
       </v-container>
     </v-container>
 
-    <!-- VISION Section -->
-    <v-container class="py-16">
+    <div class="py-16 bg-light-blue-lighten-5">
       <v-row justify="center">
         <v-col cols="12" class="text-center mb-8">
-          <h2 class="text-h4 font-weight-normal text-grey-darken-2">VISION</h2>
+          <h2
+            class="elegant-heading elegant-heading--gradient text-h3 font-weight-bold"
+          >
+            同窓会幹事さんのこんなお悩み、ありませんか？
+          </h2>
         </v-col>
-        <v-col cols="12" md="10" lg="8" class="text-center">
-          <p class="text-body-1 text-grey-darken-1">
-            Reunionは、長らく会っていない友人・知人との再会をサポートするサービスです。人生の大切な縁をもう一度つなぎ、思い出を新たに共有できる場を提供します。
-          </p>
+
+        <v-col cols="12" md="10" lg="8">
+          <v-list class="bg-white px-6 py-8 rounded-xl shadow-lg">
+            <v-list-item class="py-3">
+              <template v-slot:prepend>
+                <v-icon
+                  color="pink-accent-3"
+                  icon="mdi-calendar-alert"
+                  size="x-large"
+                  class="me-4"
+                ></v-icon>
+              </template>
+              <v-list-item-title class="text-h5 text-grey-darken-1">
+                会場探しや人数調整が大変...
+              </v-list-item-title>
+            </v-list-item>
+
+            <v-list-item class="py-3">
+              <template v-slot:prepend>
+                <v-icon
+                  color="pink-accent-3"
+                  icon="mdi-phone-alert"
+                  size="x-large"
+                  class="me-4"
+                ></v-icon>
+              </template>
+              <v-list-item-title class="text-h5 text-grey-darken-1">
+                出欠確認の連絡が面倒...
+              </v-list-item-title>
+            </v-list-item>
+
+            <v-list-item class="py-3">
+              <template v-slot:prepend>
+                <v-icon
+                  color="pink-accent-3"
+                  icon="mdi-currency-jpy"
+                  size="x-large"
+                  class="me-4"
+                ></v-icon>
+              </template>
+              <v-list-item-title class="text-h5 text-grey-darken-1">
+                集金でトラブルにならないか不安...
+              </v-list-item-title>
+            </v-list-item>
+
+            <v-list-item class="py-3">
+              <template v-slot:prepend>
+                <v-icon
+                  color="pink-accent-3"
+                  icon="mdi-clock-alert"
+                  size="x-large"
+                  class="me-4"
+                ></v-icon>
+              </template>
+              <v-list-item-title class="text-h5 text-grey-darken-1">
+                当日バタバタして楽しめない...
+              </v-list-item-title>
+            </v-list-item>
+
+            <v-list-item class="py-3">
+              <template v-slot:prepend>
+                <v-icon
+                  color="pink-accent-3"
+                  icon="mdi-account-question"
+                  size="x-large"
+                  class="me-4"
+                ></v-icon>
+              </template>
+              <v-list-item-title class="text-h5 text-grey-darken-1">
+                そもそも誰に声をかけたらいいかわからない...
+              </v-list-item-title>
+            </v-list-item>
+          </v-list>
         </v-col>
       </v-row>
-    </v-container>
+    </div>
 
     <!-- MESSAGE Section -->
     <v-container fluid class="grey-lighten-4 py-0">
@@ -135,9 +204,7 @@
           class="d-flex align-center"
         >
           <div class="pa-8 pa-md-16">
-            <h2 class="text-h4 font-weight-normal mb-5 text-grey-darken-2">
-              MESSAGE
-            </h2>
+            <h2 class="elegant-heading elegant-heading--gradient">MESSAGE</h2>
             <p class="text-body-1 text-grey-darken-1">
               離れていても、気持ちは繋がっています。Reunionは、再会のきっかけをテクノロジーでつくり出すことで、あなたの人間関係を豊かにします。
             </p>
@@ -153,9 +220,7 @@
           class="d-flex align-center"
         >
           <div class="pa-8 pa-md-16">
-            <h2 class="text-h4 font-weight-normal mb-5 text-grey-darken-2">
-              MESSAGE
-            </h2>
+            <h2 class="elegant-heading elegant-heading--gradient">MESSAGE</h2>
             <p class="text-body-1 text-grey-darken-1">
               Reunionを使えば、再会イベントの企画から連絡、日程調整、参加管理まで一括して行うことができます。思い出をつなぐ一歩を、今ここから。
             </p>
@@ -184,7 +249,7 @@
       <v-container class="position-relative" style="z-index: 2">
         <v-row>
           <v-col cols="12" md="6" class="mb-8 mb-md-0">
-            <h2 class="text-h4 font-weight-normal mb-5 text-white">
+            <h2 class="elegant-heading elegant-heading--gradient">
               利用者の声
             </h2>
             <p class="text-body-1 text-white">
@@ -192,7 +257,7 @@
             </p>
           </v-col>
           <v-col cols="12" md="6">
-            <h2 class="text-h4 font-weight-normal mb-5 text-white">再会の力</h2>
+            <h2 class="elegant-heading elegant-heading--gradient">再会の力</h2>
             <p class="text-body-1 text-white">
               再会を通じて新しいビジネスが始まったり、失われていた絆が戻ったり。Reunionはそのきっかけを提供します。
             </p>
@@ -205,7 +270,7 @@
     <v-container class="py-16">
       <v-row justify="center">
         <v-col cols="12" class="text-center mb-8">
-          <h2 class="text-h4 font-weight-normal text-grey-darken-2">PROFILE</h2>
+          <h2 class="elegant-heading elegant-heading--gradient">PROFILE</h2>
         </v-col>
         <v-col cols="12" lg="10">
           <v-row>
@@ -308,7 +373,7 @@
       <v-container>
         <v-row justify="center">
           <v-col cols="12" class="text-center mb-8">
-            <h2 class="text-h4 font-weight-normal text-grey-darken-2">
+            <h2 class="elegant-heading elegant-heading--gradient">
               利用の流れ
             </h2>
           </v-col>
@@ -377,22 +442,22 @@ const features = [
     alt: '完全無料で使える',
     title: '幹事のやることはWEB招待状を拡散するのみ！',
     description:
-      '登録・利用・イベント開催まですべて無料。広告や課金も一切ナシで安心して使えます。',
+      '面倒な準備はすべてリユニオンアップにお任せ！幹事はWEB招待状を拡散するだけ。LINEやSNSで気軽にシェアできます！',
   },
   {
     number: 2,
     image: '/images/feature_02.png',
     alt: '卒業年やクラス単位の管理',
-    title: '卒業年やクラス単位の管理',
-    description: 'クラス・部活・ゼミ・学科などでグルーピング。',
+    title: 'ドタキャンリスク保証！',
+    description: '当日のドタキャンが何人いても幹事さんの自己負担は0円です！',
   },
   {
     number: 3,
-    image: '/images/circleImg03.png',
-    alt: '当時の思い出写真投稿',
-    title: '当時の思い出写真投稿',
+    image: '/images/feature_02.png',
+    alt: '準備の手間なし！',
+    title: '準備の手間なし！',
     description:
-      '「昔の写真をアップしてね」「担任のエピソード」などの投稿機能。イベント当日にはスライドショー表示も可能。',
+      '会場手配から出欠管理、参加費の回収までリユニオンアップが代行。幹事も安心して参加できます！',
   },
 ];
 
@@ -432,5 +497,27 @@ const steps = [
 </script>
 
 <style scoped>
-/* Remove the scoped styles as requested */
+.elegant-heading--gradient {
+  background: linear-gradient(135deg, #673ab7, #d974eb, #fa1d67);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-size: 200% 200%;
+  animation: gradientShift 3s ease-in-out infinite;
+  font-size: 24px;
+}
+
+@keyframes gradientShift {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+.text-h5 {
+  font-weight: bold !important;
+}
 </style>
