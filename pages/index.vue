@@ -1,900 +1,436 @@
 <template>
   <v-app>
-    <header id="header">
-      <div id="slogan">
-        <h1>REUNION UP</h1>
-        <h2>あの日の仲間と、もう一度つながる。</h2>
-      </div>
-    </header>
-
-    <div class="text-center mt-10 mb-10">
-      <v-btn
-        href="#createInvitation"
-        color="deep-purple-lighten-3"
-        class="text-center font-weight-bold rounded-pill"
-      >
-        無料で招待状を作ってみる
-      </v-btn>
-    </div>
-
-    <!-- FEATURE -->
-    <section id="sec06">
-      <header>
-        <h2>メリット</h2>
-      </header>
-      <div class="inner">
-        <ul class="feature-list">
-          <li>
-            <img src="/images/feature_01.png" alt="完全無料で使える" />
-            <div class="feature-text">
-              <h3><span>1.</span> 幹事のやることはWEB招待状を拡散するのみ！</h3>
-              <p>
-                登録・利用・イベント開催まですべて無料。広告や課金も一切ナシで安心して使えます。
-              </p>
+    <!-- Header Section -->
+    <v-container fluid class="pa-0">
+      <v-row no-gutters>
+        <v-col cols="12">
+          <v-card
+            height="568"
+            class="d-flex align-center justify-center position-relative overflow-hidden"
+            style="
+              background-image: url('/images/main_pc.jpg');
+              background-size: cover;
+              background-position: center;
+            "
+          >
+            <!-- CSS-based overlay -->
+            <div
+              class="position-absolute w-100 h-100 bg-black"
+              style="opacity: 0.3; top: 0; left: 0; z-index: 1"
+            ></div>
+            <div
+              class="text-center text-white position-relative"
+              style="z-index: 2"
+            >
+              <h1
+                class="text-h2 font-weight-normal mb-5"
+                style="font-family: 'Pacifico', cursive"
+              >
+                REUNION UP
+              </h1>
+              <h2 class="text-h5 font-weight-normal">
+                あの日の仲間と、もう一度つながる。
+              </h2>
             </div>
-          </li>
-          <li>
-            <img src="/images/feature_02.png" alt="卒業年やクラス単位の管理" />
-            <div class="feature-text">
-              <h3><span>2.</span> 卒業年やクラス単位の管理</h3>
-              <p>クラス・部活・ゼミ・学科などでグルーピング。</p>
-            </div>
-          </li>
-          <li>
-            <img src="/images/circleImg03.png" alt="卒業年やクラス単位の管理" />
-            <div class="feature-text">
-              <h3><span>3.</span> 当時の思い出写真投稿</h3>
-              <p>
-                「昔の写真をアップしてね」「担任のエピソード」などの投稿機能。イベント当日にはスライドショー表示も可能。
-              </p>
-            </div>
-          </li>
-        </ul>
-      </div>
-    </section>
-    <!-- // FEATURE -->
+          </v-card>
+        </v-col>
+      </v-row>
+    </v-container>
 
-    <!-- VISION -->
-    <section id="sec01">
-      <header>
-        <h2>VISION</h2>
-      </header>
-      <div class="vision">
-        Reunionは、長らく会っていない友人・知人との再会をサポートするサービスです。人生の大切な縁をもう一度つなぎ、思い出を新たに共有できる場を提供します。
-      </div>
-    </section>
-    <!-- // VISION -->
+    <!-- CTA Button -->
+    <v-container class="py-10">
+      <v-row justify="center">
+        <v-col cols="12" class="text-center">
+          <v-btn
+            href="#createInvitation"
+            color="deep-purple-lighten-3"
+            size="large"
+            class="font-weight-bold rounded-pill px-8"
+          >
+            無料で招待状を作ってみる
+          </v-btn>
+        </v-col>
+      </v-row>
+    </v-container>
 
-    <!-- MESSAGE -->
-    <section id="sec02">
-      <div class="wrap">
-        <p class="bg"><img src="/images/sec02_01.jpg" alt="" /></p>
-        <div class="txt">
-          <div class="vMid">
-            <h2>MESSAGE</h2>
-            <p>
+    <!-- FEATURE Section -->
+    <v-container fluid class="grey-lighten-4 py-16">
+      <v-container>
+        <v-row>
+          <v-col cols="12" class="text-center mb-8">
+            <h2 class="text-h4 font-weight-normal text-grey-darken-2">
+              メリット
+            </h2>
+          </v-col>
+        </v-row>
+        <v-row justify="center">
+          <v-col cols="12" md="10" lg="12">
+            <v-row>
+              <v-col
+                v-for="(feature, index) in features"
+                :key="index"
+                cols="12"
+                md="4"
+                class="d-flex"
+              >
+                <v-card
+                  class="flex-grow-1 text-center pa-4 elevation-0 bg-transparent"
+                >
+                  <v-img
+                    :src="feature.image"
+                    :alt="feature.alt"
+                    class="rounded-lg mb-4"
+                    contain
+                    height="200"
+                  ></v-img>
+                  <v-card-text class="px-2">
+                    <h3 class="text-h6 mb-3">
+                      <span
+                        class="text-deep-purple-lighten-1 font-weight-bold me-1"
+                      >
+                        {{ feature.number }}.
+                      </span>
+                      {{ feature.title }}
+                    </h3>
+                    <p
+                      class="text-body-2 text-grey-darken-1"
+                      style="line-height: 1.6"
+                    >
+                      {{ feature.description }}
+                    </p>
+                  </v-card-text>
+                </v-card>
+              </v-col>
+            </v-row>
+          </v-col>
+        </v-row>
+      </v-container>
+    </v-container>
+
+    <!-- VISION Section -->
+    <v-container class="py-16">
+      <v-row justify="center">
+        <v-col cols="12" class="text-center mb-8">
+          <h2 class="text-h4 font-weight-normal text-grey-darken-2">VISION</h2>
+        </v-col>
+        <v-col cols="12" md="10" lg="8" class="text-center">
+          <p class="text-body-1 text-grey-darken-1">
+            Reunionは、長らく会っていない友人・知人との再会をサポートするサービスです。人生の大切な縁をもう一度つなぎ、思い出を新たに共有できる場を提供します。
+          </p>
+        </v-col>
+      </v-row>
+    </v-container>
+
+    <!-- MESSAGE Section -->
+    <v-container fluid class="grey-lighten-4 py-0">
+      <v-row no-gutters>
+        <v-col cols="12" md="6" order="1" order-md="1">
+          <v-img src="/images/sec02_01.jpg" height="400" cover></v-img>
+        </v-col>
+        <v-col
+          cols="12"
+          md="6"
+          order="2"
+          order-md="2"
+          class="d-flex align-center"
+        >
+          <div class="pa-8 pa-md-16">
+            <h2 class="text-h4 font-weight-normal mb-5 text-grey-darken-2">
+              MESSAGE
+            </h2>
+            <p class="text-body-1 text-grey-darken-1">
               離れていても、気持ちは繋がっています。Reunionは、再会のきっかけをテクノロジーでつくり出すことで、あなたの人間関係を豊かにします。
             </p>
           </div>
-        </div>
-      </div>
-      <div id="sec02_02" class="wrap">
-        <p class="bg"><img src="/images/sec02_02.jpg" alt="" /></p>
-        <div class="txt">
-          <div class="vMid">
-            <h2>MESSAGE</h2>
-            <p>
+        </v-col>
+      </v-row>
+      <v-row no-gutters>
+        <v-col
+          cols="12"
+          md="6"
+          order="2"
+          order-md="1"
+          class="d-flex align-center"
+        >
+          <div class="pa-8 pa-md-16">
+            <h2 class="text-h4 font-weight-normal mb-5 text-grey-darken-2">
+              MESSAGE
+            </h2>
+            <p class="text-body-1 text-grey-darken-1">
               Reunionを使えば、再会イベントの企画から連絡、日程調整、参加管理まで一括して行うことができます。思い出をつなぐ一歩を、今ここから。
             </p>
           </div>
-        </div>
-      </div>
-    </section>
-    <!-- // MESSAGE -->
+        </v-col>
+        <v-col cols="12" md="6" order="1" order-md="2">
+          <v-img src="/images/sec02_02.jpg" height="400" cover></v-img>
+        </v-col>
+      </v-row>
+    </v-container>
 
-    <!-- STORY -->
-    <section id="sec04">
-      <div class="inner">
-        <ul class="col2">
-          <li>
-            <h2>利用者の声</h2>
-            <p>
+    <!-- STORY Section -->
+    <v-container
+      fluid
+      class="py-16 position-relative"
+      style="
+        background: url(/images/bgSec04.jpg) no-repeat center center fixed;
+        background-size: cover;
+      "
+    >
+      <!-- CSS-based overlay -->
+      <div
+        class="position-absolute w-100 h-100 bg-black"
+        style="opacity: 0.6; top: 0; left: 0; z-index: 1"
+      ></div>
+      <v-container class="position-relative" style="z-index: 2">
+        <v-row>
+          <v-col cols="12" md="6" class="mb-8 mb-md-0">
+            <h2 class="text-h4 font-weight-normal mb-5 text-white">
+              利用者の声
+            </h2>
+            <p class="text-body-1 text-white">
               高校時代の同窓会を開催し、連絡先が分からなかった友人とも再会。忘れられない一日になりました！（40代・男性）
             </p>
-          </li>
-          <li>
-            <h2>再会の力</h2>
-            <p>
+          </v-col>
+          <v-col cols="12" md="6">
+            <h2 class="text-h4 font-weight-normal mb-5 text-white">再会の力</h2>
+            <p class="text-body-1 text-white">
               再会を通じて新しいビジネスが始まったり、失われていた絆が戻ったり。Reunionはそのきっかけを提供します。
             </p>
-          </li>
-        </ul>
-      </div>
-    </section>
-    <!-- // STORY -->
+          </v-col>
+        </v-row>
+      </v-container>
+    </v-container>
 
-    <!-- PROFILE -->
-    <section id="sec05">
-      <header>
-        <h2>PROFILE</h2>
-      </header>
-      <div class="inner">
-        <ul class="col2">
-          <li>
-            <dl>
-              <dt>社名</dt>
-              <dd>Reunion株式会社</dd>
-              <dt>代表取締役</dt>
-              <dd>川田 太郎</dd>
-              <dt>所在地</dt>
-              <dd>東京都渋谷区〇〇1-2-3</dd>
-              <dt>連絡先</dt>
-              <dd>info@reunion-app.com</dd>
-              <dt>設立</dt>
-              <dd>2025年4月1日</dd>
-              <dt>事業内容</dt>
-              <dd>再会支援サービスの提供</dd>
-            </dl>
-          </li>
-          <li>
-            <div id="map">
-              <iframe
-                src="https://www.google.com/maps/embed?..."
-                allowfullscreen
-              ></iframe>
-            </div>
-          </li>
-        </ul>
-      </div>
-    </section>
-    <!-- // PROFILE -->
+    <!-- PROFILE Section -->
+    <v-container class="py-16">
+      <v-row justify="center">
+        <v-col cols="12" class="text-center mb-8">
+          <h2 class="text-h4 font-weight-normal text-grey-darken-2">PROFILE</h2>
+        </v-col>
+        <v-col cols="12" lg="10">
+          <v-row>
+            <v-col cols="12" md="6" class="mb-8 mb-md-0">
+              <v-list class="bg-transparent">
+                <v-list-item class="px-0 py-2">
+                  <template v-slot:prepend>
+                    <span
+                      class="text-body-1 font-weight-medium text-right me-6"
+                      style="min-width: 120px"
+                      >社名</span
+                    >
+                  </template>
+                  <v-list-item-title class="text-body-1"
+                    >Reunion株式会社</v-list-item-title
+                  >
+                </v-list-item>
+                <v-list-item class="px-0 py-2">
+                  <template v-slot:prepend>
+                    <span
+                      class="text-body-1 font-weight-medium text-right me-6"
+                      style="min-width: 120px"
+                      >代表取締役</span
+                    >
+                  </template>
+                  <v-list-item-title class="text-body-1"
+                    >川田 太郎</v-list-item-title
+                  >
+                </v-list-item>
+                <v-list-item class="px-0 py-2">
+                  <template v-slot:prepend>
+                    <span
+                      class="text-body-1 font-weight-medium text-right me-6"
+                      style="min-width: 120px"
+                      >所在地</span
+                    >
+                  </template>
+                  <v-list-item-title class="text-body-1"
+                    >東京都渋谷区〇〇1-2-3</v-list-item-title
+                  >
+                </v-list-item>
+                <v-list-item class="px-0 py-2">
+                  <template v-slot:prepend>
+                    <span
+                      class="text-body-1 font-weight-medium text-right me-6"
+                      style="min-width: 120px"
+                      >連絡先</span
+                    >
+                  </template>
+                  <v-list-item-title class="text-body-1"
+                    >info@reunion-app.com</v-list-item-title
+                  >
+                </v-list-item>
+                <v-list-item class="px-0 py-2">
+                  <template v-slot:prepend>
+                    <span
+                      class="text-body-1 font-weight-medium text-right me-6"
+                      style="min-width: 120px"
+                      >設立</span
+                    >
+                  </template>
+                  <v-list-item-title class="text-body-1"
+                    >2025年4月1日</v-list-item-title
+                  >
+                </v-list-item>
+                <v-list-item class="px-0 py-2">
+                  <template v-slot:prepend>
+                    <span
+                      class="text-body-1 font-weight-medium text-right me-6"
+                      style="min-width: 120px"
+                      >事業内容</span
+                    >
+                  </template>
+                  <v-list-item-title class="text-body-1"
+                    >再会支援サービスの提供</v-list-item-title
+                  >
+                </v-list-item>
+              </v-list>
+            </v-col>
+            <v-col cols="12" md="6">
+              <v-card class="rounded-lg overflow-hidden" height="300">
+                <iframe
+                  src="https://www.google.com/maps/embed?..."
+                  width="100%"
+                  height="100%"
+                  style="border: 0"
+                  allowfullscreen
+                  loading="lazy"
+                  referrerpolicy="no-referrer-when-downgrade"
+                ></iframe>
+              </v-card>
+            </v-col>
+          </v-row>
+        </v-col>
+      </v-row>
+    </v-container>
 
-    <!-- 利用の流れ -->
-    <section id="sec07">
-      <header>
-        <h2>利用の流れ</h2>
-      </header>
-      <div class="inner">
-        <ul class="steps">
-          <li>
-            <h3><span>1.</span> アカウント登録</h3>
-            <p>Reunionに登録して、再会イベントを企画する準備を始めましょう。</p>
-          </li>
-          <li>
-            <h3><span>2.</span> イベント作成</h3>
-            <p>
-              イベントの詳細を入力し、参加者を招待します。日時や場所を簡単に設定可能です。
-            </p>
-          </li>
-          <li>
-            <h3><span>3.</span> 招待リンク送信</h3>
-            <p>
-              招待リンクを参加者に送信し、出欠確認を行います。参加者はリンクから簡単に登録できます。
-            </p>
-          </li>
-          <li>
-            <h3><span>4.</span> 決済と準備</h3>
-            <p>
-              Stripeを利用して参加費を集金。イベント当日の準備を進めましょう。
-            </p>
-          </li>
-          <li>
-            <h3><span>5.</span> イベント開催</h3>
-            <p>
-              Reunionを活用して、参加者との再会を楽しみましょう。写真やコメントを共有して思い出を残します。
-            </p>
-          </li>
-        </ul>
-      </div>
-    </section>
-    <!-- // 利用の流れ -->
+    <!-- 利用の流れ Section -->
+    <v-container fluid class="grey-lighten-4 py-16">
+      <v-container>
+        <v-row justify="center">
+          <v-col cols="12" class="text-center mb-8">
+            <h2 class="text-h4 font-weight-normal text-grey-darken-2">
+              利用の流れ
+            </h2>
+          </v-col>
+          <v-col cols="12" md="10" lg="8">
+            <v-timeline side="end" truncate-line="both">
+              <v-timeline-item
+                v-for="(step, index) in steps"
+                :key="index"
+                :dot-color="'deep-purple-lighten-1'"
+                size="small"
+              >
+                <template v-slot:opposite>
+                  <div
+                    class="text-h6 font-weight-bold text-deep-purple-lighten-1"
+                  >
+                    {{ step.number }}
+                  </div>
+                </template>
+                <v-card class="elevation-2 rounded-lg">
+                  <v-card-text class="pa-6">
+                    <h3 class="text-h6 font-weight-medium mb-3">
+                      <span
+                        class="text-deep-purple-lighten-1 font-weight-bold me-1"
+                      >
+                        {{ step.number }}.
+                      </span>
+                      {{ step.title }}
+                    </h3>
+                    <p class="text-body-2 text-grey-darken-1 mb-0">
+                      {{ step.description }}
+                    </p>
+                  </v-card-text>
+                </v-card>
+              </v-timeline-item>
+            </v-timeline>
+          </v-col>
+        </v-row>
+      </v-container>
+    </v-container>
 
-    <footer id="footer">
-      <div class="mb-2">
-        Copyright(c) 2025 Reunion Inc. All Rights Reserved.
-      </div>
-      <div>
-        <nuxt-link class="text-black" to="/trade"
-          >特定商取引法に基づく表記</nuxt-link
-        >
-      </div>
-    </footer>
+    <!-- Footer -->
+    <v-footer class="bg-white text-center pa-8">
+      <v-container>
+        <div class="text-body-2 text-grey-darken-1 mb-2">
+          Copyright(c) 2025 Reunion Inc. All Rights Reserved.
+        </div>
+        <div>
+          <nuxt-link
+            to="/trade"
+            class="text-grey-darken-1 text-decoration-none"
+          >
+            特定商取引法に基づく表記
+          </nuxt-link>
+        </div>
+      </v-container>
+    </v-footer>
   </v-app>
 </template>
 
+<script setup>
+// Features data
+const features = [
+  {
+    number: 1,
+    image: '/images/feature_01.png',
+    alt: '完全無料で使える',
+    title: '幹事のやることはWEB招待状を拡散するのみ！',
+    description:
+      '登録・利用・イベント開催まですべて無料。広告や課金も一切ナシで安心して使えます。',
+  },
+  {
+    number: 2,
+    image: '/images/feature_02.png',
+    alt: '卒業年やクラス単位の管理',
+    title: '卒業年やクラス単位の管理',
+    description: 'クラス・部活・ゼミ・学科などでグルーピング。',
+  },
+  {
+    number: 3,
+    image: '/images/circleImg03.png',
+    alt: '当時の思い出写真投稿',
+    title: '当時の思い出写真投稿',
+    description:
+      '「昔の写真をアップしてね」「担任のエピソード」などの投稿機能。イベント当日にはスライドショー表示も可能。',
+  },
+];
+
+// Steps data
+const steps = [
+  {
+    number: 1,
+    title: 'アカウント登録',
+    description:
+      'Reunionに登録して、再会イベントを企画する準備を始めましょう。',
+  },
+  {
+    number: 2,
+    title: 'イベント作成',
+    description:
+      'イベントの詳細を入力し、参加者を招待します。日時や場所を簡単に設定可能です。',
+  },
+  {
+    number: 3,
+    title: '招待リンク送信',
+    description:
+      '招待リンクを参加者に送信し、出欠確認を行います。参加者はリンクから簡単に登録できます。',
+  },
+  {
+    number: 4,
+    title: '決済と準備',
+    description:
+      'Stripeを利用して参加費を集金。イベント当日の準備を進めましょう。',
+  },
+  {
+    number: 5,
+    title: 'イベント開催',
+    description:
+      'Reunionを活用して、参加者との再会を楽しみましょう。写真やコメントを共有して思い出を振り返ることもできます。',
+  },
+];
+</script>
+
 <style scoped>
-body,
-div,
-dl,
-dt,
-dd,
-ul,
-ol,
-li,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-pre,
-form,
-fieldset,
-input,
-textarea,
-p,
-blockquote,
-th,
-td {
-  margin: 0;
-  padding: 0;
-}
-address,
-caption,
-cite,
-code,
-dfn,
-em,
-strong,
-th,
-var {
-  font-style: normal;
-}
-ul {
-  list-style: none;
-}
-table {
-  border-collapse: collapse;
-  border-spacing: 0;
-}
-caption,
-th {
-  text-align: left;
-}
-q:before,
-q:after {
-  content: '';
-}
-object,
-embed {
-  vertical-align: top;
-}
-legend {
-  display: none;
-}
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-size: 100%;
-}
-img,
-abbr,
-acronym,
-fieldset {
-  border: 0;
-}
-
-body {
-  font: 14px/1.9 'Noto Sans JP', Arial, Verdana, 游ゴシック, YuGothic,
-    'ヒラギノ角ゴ ProN W3', 'Hiragino Kaku Gothic ProN', メイリオ, Meiryo,
-    sans-serif;
-  font-weight: 300;
-  -webkit-text-size-adjust: 100%;
-  overflow-x: hidden;
-  color: #707380; /* テキストカラーを統一 */
-  background: #fff;
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-li,
-dd {
-  color: #4b4d54; /* 通常のテキストカラーを統一 */
-}
-p {
-  color: #707380; /* 段落のテキストカラーを統一 */
-}
-
-a {
-  color: #0066ff;
-  text-decoration: none;
-}
-
-a:hover,
-.active {
-  text-decoration: underline;
-}
-
-a:active,
-a:focus,
-input:active,
-input:focus {
-  outline: 0;
-}
-
-/* ヘッダー
-------------------------------------------------------------*/
-#header {
-  position: relative;
-  overflow: hidden;
-  width: 100%;
-  height: 568px;
-  background-image: url('/images/main_pc.jpg'); /* PC用画像 */
-  background-size: cover;
-  background-position: center;
-}
-
-@media only screen and (max-width: 640px) {
-  #header {
-    background-image: url('/images/main_sp.jpg'); /* SP用画像 */
-  }
-}
-
-#header img {
-  position: absolute;
-  left: 50%;
-  width: 1280px;
-  margin-left: -640px;
-}
-
-#slogan {
-  position: absolute;
-  top: 50%;
-  width: 100%;
-  -webkit-transform: translate(0, -50%);
-  transform: translate(0, -50%);
-  color: #fff;
-  line-height: 1.2;
-  text-align: center;
-}
-
-#slogan h1 {
-  font-size: 40px;
-  font-family: 'Pacifico', cursive;
-  margin-bottom: 20px;
-  font-weight: normal;
-  color: #fff;
-}
-
-#slogan h2 {
-  font-size: 20px;
-  font-weight: normal;
-  color: #fff;
-}
-
-/* フッター
-------------------------------------------------------------*/
-#footer {
-  clear: both;
-  padding: 50px 10px 50px 0;
-  text-align: center;
-  font-size: 12px;
-}
-
-/* 共通
-------------------------------------------------------------*/
-h1,
-h2 {
-  font-family: 'Josefin Sans', 'Noto Sans JP', serif;
-}
-
-img {
-  width: 100%;
-  height: auto;
-}
-
-section {
-  clear: both;
-}
-
-section h2 {
-  font-size: 22px;
-  font-weight: normal;
-  text-align: center;
-}
-
-.inner {
-  width: 94%;
-  margin: 0 auto;
-  padding-bottom: 50px;
-}
-
-.col2 li {
-  display: inline-block;
-  width: 100%;
-  margin: 20px 0 20px 0;
-}
-
-/* SEC01 VISION
-------------------------------------------------------------*/
-
-.vision {
-  width: 90%;
-  margin: 0 auto;
-}
-
-/* SEC02 MESSAGE
-------------------------------------------------------------*/
-.wrap {
-  display: flex; /* Flexboxを使用 */
-  flex-wrap: wrap; /* 子要素を折り返し可能に */
-  justify-content: space-between; /* 子要素を均等に配置 */
-  align-items: center; /* 子要素を中央揃え */
-  width: 100%;
-  background: #f6f6f6;
-}
-
-.bg {
-  max-width: 50%; /* 最大幅を設定 */
-  line-height: 0;
-}
-
-.txt {
-  max-width: 50%; /* 最大幅を設定 */
-  display: flex;
-  align-items: center; /* 垂直方向で中央揃え */
-  padding: 0 20px; /* テキストに余白を追加 */
-}
-
-.txt h2 {
-  padding: 0 0 20px !important;
-}
-
-/* SEC03 SERVICE MESSAGE STORY
-------------------------------------------------------------*/
-.col3 li {
-  margin-bottom: 50px;
-}
-
-.col3 img {
-  max-width: 288px;
-  display: block;
-  margin: -5px auto 20px;
-}
-
-/* SEC04 STORY & SUCCESS
-------------------------------------------------------------*/
-#sec04 {
-  background: url(../images/bgSec04.jpg) no-repeat 100% 100% fixed;
-  background-size: cover;
-  -webkit-background-size: cover;
-  color: #fff;
-}
-
-/* SEC05 PROFILE
-------------------------------------------------------------*/
-#sec05 {
-  padding-top: 50px;
-}
-
-#sec05 dl {
-  line-height: 1.2;
-}
-
-#sec05 dt {
-  clear: left;
-  float: left;
-  display: block;
-  width: 30%;
-  margin-right: 10%;
-  margin-bottom: 20px;
-  text-align: right;
-  line-height: 1.6em;
-}
-
-#sec05 dd {
-  width: 60%;
-  float: left;
-  text-align: left;
-  margin-bottom: 15px;
-  line-height: 1.6em;
-}
-
-#sec05 header {
-  display: none;
-}
-
-#map {
-  position: relative;
-  padding-bottom: 75%;
-  height: 0;
-  overflow: hidden;
-}
-
-#map iframe {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100% !important;
-  height: 100% !important;
-  border: 0;
-}
-
-/* FEATURE セクションのスタイル */
-#sec06 {
-  background: #f9f9f9;
-}
-
-#sec06 header h2 {
-  font-size: 24px;
-  text-align: center;
-  margin-bottom: 30px;
-  color: #707380;
-}
-
-.feature-list {
-  list-style: none;
-  padding: 0;
-  margin: 0 auto;
-}
-
-.feature-list li {
-  display: flex;
-  flex-direction: column; /* 縦並びに変更 */
-  align-items: center; /* 中央揃え */
-  margin-bottom: 30px;
-  text-align: center;
-  border-radius: 20px;
-  border: none;
-}
-
-.feature-list img {
-  height: auto;
-  border-radius: 20px;
-}
-
-.feature-list h3 span {
-  color: #b39ddb; /* 数字のカラー */
-  font-weight: bold; /* 数字を強調 */
-  margin-right: 5px; /* 数字とテキストの間に余白を追加 */
-}
-
-.feature-list h3 {
-  font-size: 18px;
-  margin-bottom: 10px;
-}
-
-.feature-list p {
-  font-size: 14px;
-  color: #555;
-  line-height: 1.6;
-}
-.feature-text {
-  padding: 16px 8px;
-}
-
-/* PC向けのレスポンシブデザイン - 3列レイアウト */
-@media only screen and (min-width: 800px) {
-  .feature-list {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    max-width: 1200px;
-  }
-
-  .feature-list li {
-    width: 31%; /* 3列にするため約3分の1の幅 */
-    margin-bottom: 40px;
-    box-sizing: border-box;
-  }
-}
-
-/* RESPONSIVE 設定
-------------------------------------------------------------*/
-
-@media only screen and (min-width: 1200px) {
-  .inner {
-    width: 1200px;
-    padding-bottom: 120px;
-  }
-  section h2 {
-    padding: 70px 0 20px;
-  }
-  .txt h2 {
-    padding: 0 0 20px !important;
-  }
-}
-
-@media only screen and (min-width: 800px) {
-  body {
-    font-size: 14px;
-  }
-
-  a#menu {
-    display: none;
-  }
-
-  .panel {
-    display: block !important;
-  }
-
-  #mainnav {
-    position: fixed;
-    top: 0;
-    width: 100%;
-    z-index: 500;
-  }
-
-  #mainnav ul {
-    text-align: right;
-    padding-right: 30px;
-  }
-
-  #mainnav li {
-    display: inline-block;
-    padding: 45px 10px 20px;
-    font-size: 14px;
-    font-weight: 300;
-  }
-
-  #mainnav a {
-    color: #000;
-  }
-
-  #mainnav.changeNav {
-    background: rgba(255, 255, 255, 0.9);
-    border-bottom: 1px solid #d1d1d1;
-  }
-
-  #mainnav.changeNav li {
-    padding: 20px 10px;
-  }
-
-  /* SEC02 MESSAGE
-	-----------------*/
-  .txt,
-  .bg {
-    width: 50%;
-    float: left;
-    display: table;
-    background: #f6f6f6;
-  }
-
-  #sec02_02 .txt,
-  #sec02_02 .bg {
-    float: right;
-  }
-
-  .vMid {
-    display: table-cell;
-    padding: 0 100px;
-    vertical-align: middle;
-    height: 100%;
-  }
-
-  /* SEC03 SERVICE MESSAGE STORY
-	-----------------*/
-  .col3 {
-    text-align: center;
-  }
-
-  .col3 li {
-    display: inline-block;
-    width: 30%;
-    padding: 0 1.5%;
-    margin-bottom: 0;
-    vertical-align: top;
-    text-align: left;
-  }
-
-  /* SEC05 PROFILE
-	-----------------*/
-  #sec05 {
-    padding-top: 120px;
-  }
-
-  #footer {
-    padding: 30px 10px 70px 0;
-  }
-}
-
-@media only screen and (min-width: 641px) {
-  .col2 li {
-    width: 40%;
-    padding: 0 3%;
-    vertical-align: top;
-  }
-}
-
-@media only screen and (max-width: 640px) {
-  .wrap {
-    flex-direction: column; /* 子要素を縦並びに変更 */
-    align-items: center; /* 子要素を中央揃え */
-  }
-
-  .bg,
-  .txt {
-    max-width: 100%; /* 幅を100%に設定 */
-    margin-bottom: 20px; /* 下に余白を追加 */
-  }
-
-  .txt {
-    padding: 0 10px; /* テキストの余白を調整 */
-  }
-}
-
-@media only screen and (max-width: 799px) {
-  a#menu {
-    display: inline-block;
-    position: relative;
-    width: 40px;
-    height: 40px;
-    margin: 10px;
-  }
-
-  #menuBtn {
-    display: block;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 18px;
-    height: 2px;
-    margin: -1px 0 0 -7px;
-    background: #fff;
-    transition: 0.2s;
-  }
-
-  #menuBtn:before,
-  #menuBtn:after {
-    display: block;
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 0;
-    width: 18px;
-    height: 2px;
-    background: #fff;
-    transition: 0.3s;
-  }
-
-  #menuBtn:before {
-    margin-top: -7px;
-  }
-
-  #menuBtn:after {
-    margin-top: 5px;
-  }
-
-  a#menu .close {
-    background: transparent;
-  }
-
-  a#menu .close:before,
-  a#menu .close:after {
-    margin-top: 0;
-  }
-
-  a#menu .close:before {
-    transform: rotate(-45deg);
-    -webkit-transform: rotate(-45deg);
-  }
-
-  a#menu .close:after {
-    transform: rotate(-135deg);
-    -webkit-transform: rotate(-135deg);
-  }
-
-  .panel {
-    width: 100%;
-    display: none;
-    overflow: hidden;
-    position: relative;
-    left: 0;
-    top: 0;
-    z-index: 100;
-  }
-
-  #mainnav {
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 100%;
-    text-align: right;
-    z-index: 500;
-  }
-
-  #mainnav ul {
-    border-bottom: 1px solid #ccc;
-    background: #fff;
-    text-align: left;
-  }
-
-  #mainnav li a {
-    position: relative;
-    display: block;
-    padding: 15px 25px;
-    border-bottom: 1px solid #ccc;
-    color: #000;
-    font-weight: 400;
-  }
-
-  #mainnav li a:before {
-    display: block;
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 5px;
-    width: 6px;
-    height: 6px;
-    margin: -4px 0 0 0;
-    border-top: solid 2px #000;
-    border-right: solid 2px #000;
-    -webkit-transform: rotate(45deg);
-    transform: rotate(45deg);
-  }
-  .col3 li {
-    margin: 0 auto;
-    display: block;
-  }
-}
-.steps h3 span {
-  color: #b39ddb; /* 数字のカラー */
-  font-weight: bold; /* 数字を強調 */
-  margin-right: 5px; /* 数字とテキストの間に余白を追加 */
-}
-.feature-list h3 span {
-  color: #b39ddb; /* 数字のカラー */
-  font-weight: bold; /* 数字を強調 */
-  margin-right: 5px; /* 数字とテキストの間に余白を追加 */
-}
-
-.feature-list {
-  list-style: none;
-  padding: 0;
-  margin: 0 auto;
-}
-
-.feature-list li {
-  display: flex;
-  flex-direction: column; /* 縦並びに変更 */
-  align-items: center; /* 中央揃え */
-  margin-bottom: 30px;
-  text-align: center;
-  border-radius: 20px;
-  border: none;
-}
-
-.feature-list img {
-  height: auto;
-  border-radius: 20px;
-}
-
-.feature-list h3 span {
-  color: #b39ddb; /* 数字のカラー */
-  font-weight: bold; /* 数字を強調 */
-  margin-right: 5px; /* 数字とテキストの間に余白を追加 */
-}
-
-.feature-list h3 {
-  font-size: 18px;
-  margin-bottom: 10px;
-}
-
-.feature-list p {
-  font-size: 14px;
-  color: #555;
-  line-height: 1.6;
-}
-.feature-text {
-  padding: 16px 8px;
-}
-
-@media only screen and (max-width: 1199px) {
-  section h2 {
-    padding: 50px 0 20px 0;
-  }
-  #sec01 h2 {
-    padding: 70px 0 20px;
-  }
-  .vMid {
-    padding: 0 20px;
-  }
-}
+/* Remove the scoped styles as requested */
 </style>
