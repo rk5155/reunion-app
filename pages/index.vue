@@ -2,7 +2,7 @@
   <v-app>
     <header id="header">
       <div id="slogan">
-        <h1>Reunion</h1>
+        <h1>REUNION UP</h1>
         <h2>あの日の仲間と、もう一度つながる。</h2>
       </div>
     </header>
@@ -20,14 +20,14 @@
     <!-- FEATURE -->
     <section id="sec06">
       <header>
-        <h2>FEATURE</h2>
+        <h2>メリット</h2>
       </header>
       <div class="inner">
         <ul class="feature-list">
           <li>
             <img src="/images/feature_01.png" alt="完全無料で使える" />
             <div class="feature-text">
-              <h3><span>1.</span> 完全無料で使える！</h3>
+              <h3><span>1.</span> 幹事のやることはWEB招待状を拡散するのみ！</h3>
               <p>
                 登録・利用・イベント開催まですべて無料。広告や課金も一切ナシで安心して使えます。
               </p>
@@ -46,31 +46,6 @@
               <h3><span>3.</span> 当時の思い出写真投稿</h3>
               <p>
                 「昔の写真をアップしてね」「担任のエピソード」などの投稿機能。イベント当日にはスライドショー表示も可能。
-              </p>
-            </div>
-          </li>
-          <li>
-            <img src="/images/circleImg01.png" alt="卒業年やクラス単位の管理" />
-            <div class="feature-text">
-              <h3><span>4.</span> 幹事向けのラクラク業務支援ツール</h3>
-              <p>招待リンク生成、出欠＆会費管理、QRチェックイン対応。</p>
-            </div>
-          </li>
-          <li>
-            <img src="/images/circleImg02.png" alt="卒業年やクラス単位の管理" />
-            <div class="feature-text">
-              <h3><span>5.</span> オンライン集金 + 自動リマインド</h3>
-              <p>
-                締切前に自動通知、支払い済ユーザーは自動でチェックイン。幹事への入金は初期段階で手動対応。
-              </p>
-            </div>
-          </li>
-          <li>
-            <img src="/images/feature_02.png" alt="卒業年やクラス単位の管理" />
-            <div class="feature-text">
-              <h3><span>6.</span> 「あの人来る？」がわかる参加者一覧</h3>
-              <p>
-                プロフィール＋当時の写真が並ぶ名簿機能。表示／非表示選択可で、参加意欲UP。
               </p>
             </div>
           </li>
@@ -558,25 +533,27 @@ section h2 {
   list-style: none;
   padding: 0;
   margin: 0 auto;
-  max-width: 800px;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
 }
 
 .feature-list li {
-  background: #fff;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  margin: 10px;
-  box-sizing: border-box;
-  transition: transform 0.3s, box-shadow 0.3s;
+  display: flex;
+  flex-direction: column; /* 縦並びに変更 */
+  align-items: center; /* 中央揃え */
+  margin-bottom: 30px;
+  text-align: center;
+  border-radius: 20px;
+  border: none;
 }
 
-.feature-list li:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+.feature-list img {
+  height: auto;
+  border-radius: 20px;
+}
+
+.feature-list h3 span {
+  color: #b39ddb; /* 数字のカラー */
+  font-weight: bold; /* 数字を強調 */
+  margin-right: 5px; /* 数字とテキストの間に余白を追加 */
 }
 
 .feature-list h3 {
@@ -589,37 +566,24 @@ section h2 {
   color: #555;
   line-height: 1.6;
 }
-
-/* 利用の流れセクション */
-#sec07 {
-  background: #f9f9f9;
+.feature-text {
+  padding: 16px 8px;
 }
 
-#sec07 header h2 {
-  font-size: 24px;
-  text-align: center;
-  margin-bottom: 30px;
-}
+/* PC向けのレスポンシブデザイン - 3列レイアウト */
+@media only screen and (min-width: 800px) {
+  .feature-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    max-width: 1200px;
+  }
 
-.steps {
-  list-style: none;
-  padding: 0;
-  margin: 0 auto;
-  max-width: 800px;
-}
-
-.steps li {
-  margin-bottom: 30px;
-}
-
-.steps h3 {
-  font-size: 20px;
-  margin-bottom: 10px;
-}
-
-.steps p {
-  font-size: 16px;
-  color: #555;
+  .feature-list li {
+    width: 31%; /* 3列にするため約3分の1の幅 */
+    margin-bottom: 40px;
+    box-sizing: border-box;
+  }
 }
 
 /* RESPONSIVE 設定
@@ -627,7 +591,7 @@ section h2 {
 
 @media only screen and (min-width: 1200px) {
   .inner {
-    width: 1024px;
+    width: 1200px;
     padding-bottom: 120px;
   }
   section h2 {
@@ -885,7 +849,6 @@ section h2 {
   list-style: none;
   padding: 0;
   margin: 0 auto;
-  max-width: 800px;
 }
 
 .feature-list li {
