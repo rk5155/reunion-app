@@ -130,7 +130,7 @@
                 <v-list-item
                   v-for="(problem, index) in problems"
                   :key="index"
-                  class="py-3"
+                  class="py-3 problem-list-item"
                 >
                   <template v-slot:prepend>
                     <v-icon
@@ -140,7 +140,9 @@
                       class="me-4"
                     ></v-icon>
                   </template>
-                  <v-list-item-title class="text-h5 text-grey-darken-1">
+                  <v-list-item-title
+                    class="text-h5 text-grey-darken-1 problem-title"
+                  >
                     {{ problem.title }}
                   </v-list-item-title>
                 </v-list-item>
@@ -467,7 +469,7 @@
     </v-container>
 
     <!-- Footer -->
-    <v-footer class="bg-white text-center pa-8">
+    <v-footer class="bg-blue-grey-lighten-4 text-center pa-8">
       <v-container>
         <div class="text-body-2 text-grey-darken-1 mb-2">
           Copyright(c) 2025 Reunion Inc. All Rights Reserved.
@@ -691,10 +693,27 @@ const reviews = [
   font-weight: bold !important;
 }
 
+.problem-title {
+  white-space: normal !important;
+  overflow: visible !important;
+  text-overflow: unset !important;
+  line-height: 1.3 !important;
+}
+
+.problem-list-item {
+  min-height: auto !important;
+  align-items: flex-start !important;
+}
+
 @media (max-width: 599px) {
   .text-h3 {
     font-size: 1.75rem !important;
     line-height: 1.2 !important;
+  }
+
+  .problem-title {
+    font-size: 1rem !important;
+    line-height: 1.4 !important;
   }
 }
 </style>
