@@ -104,7 +104,7 @@
       </v-container>
     </v-container>
 
-    <div class="py-16 bg-light-blue-lighten-5">
+    <v-container fluid class="py-16 bg-light-blue-lighten-5">
       <v-row justify="center">
         <v-col cols="12" class="text-center mb-8">
           <h2
@@ -113,83 +113,96 @@
             同窓会幹事さんのこんなお悩み、ありませんか？
           </h2>
         </v-col>
+        <v-col cols="12">
+          <v-row>
+            <v-col cols="12" md="6" class="d-flex align-center">
+              <v-img
+                src="/images/problem.png"
+                alt="同窓会幹事のお悩み"
+                class="rounded-lg"
+                contain
+                height="400"
+              ></v-img>
+            </v-col>
 
-        <v-col cols="12" md="10" lg="8">
-          <v-list class="bg-white px-6 py-8 rounded-xl shadow-lg">
-            <v-list-item class="py-3">
-              <template v-slot:prepend>
-                <v-icon
-                  color="pink-accent-3"
-                  icon="mdi-calendar-alert"
-                  size="x-large"
-                  class="me-4"
-                ></v-icon>
-              </template>
-              <v-list-item-title class="text-h5 text-grey-darken-1">
-                会場探しや人数調整が大変...
-              </v-list-item-title>
-            </v-list-item>
+            <!-- 右側：お悩みリスト -->
+            <v-col cols="12" md="6" class="d-flex align-center">
+              <v-list class="bg-white px-6 py-8 rounded-xl shadow-lg w-100">
+                <v-list-item class="py-3">
+                  <template v-slot:prepend>
+                    <v-icon
+                      color="pink-accent-3"
+                      icon="mdi-calendar-alert"
+                      size="x-large"
+                      class="me-4"
+                    ></v-icon>
+                  </template>
+                  <v-list-item-title class="text-h5 text-grey-darken-1">
+                    会場探しや人数調整が大変...
+                  </v-list-item-title>
+                </v-list-item>
 
-            <v-list-item class="py-3">
-              <template v-slot:prepend>
-                <v-icon
-                  color="pink-accent-3"
-                  icon="mdi-phone-alert"
-                  size="x-large"
-                  class="me-4"
-                ></v-icon>
-              </template>
-              <v-list-item-title class="text-h5 text-grey-darken-1">
-                出欠確認の連絡が面倒...
-              </v-list-item-title>
-            </v-list-item>
+                <v-list-item class="py-3">
+                  <template v-slot:prepend>
+                    <v-icon
+                      color="pink-accent-3"
+                      icon="mdi-phone-alert"
+                      size="x-large"
+                      class="me-4"
+                    ></v-icon>
+                  </template>
+                  <v-list-item-title class="text-h5 text-grey-darken-1">
+                    出欠確認の連絡が面倒...
+                  </v-list-item-title>
+                </v-list-item>
 
-            <v-list-item class="py-3">
-              <template v-slot:prepend>
-                <v-icon
-                  color="pink-accent-3"
-                  icon="mdi-currency-jpy"
-                  size="x-large"
-                  class="me-4"
-                ></v-icon>
-              </template>
-              <v-list-item-title class="text-h5 text-grey-darken-1">
-                集金でトラブルにならないか不安...
-              </v-list-item-title>
-            </v-list-item>
+                <v-list-item class="py-3">
+                  <template v-slot:prepend>
+                    <v-icon
+                      color="pink-accent-3"
+                      icon="mdi-currency-jpy"
+                      size="x-large"
+                      class="me-4"
+                    ></v-icon>
+                  </template>
+                  <v-list-item-title class="text-h5 text-grey-darken-1">
+                    集金でトラブルにならないか不安...
+                  </v-list-item-title>
+                </v-list-item>
 
-            <v-list-item class="py-3">
-              <template v-slot:prepend>
-                <v-icon
-                  color="pink-accent-3"
-                  icon="mdi-clock-alert"
-                  size="x-large"
-                  class="me-4"
-                ></v-icon>
-              </template>
-              <v-list-item-title class="text-h5 text-grey-darken-1">
-                当日バタバタして楽しめない...
-              </v-list-item-title>
-            </v-list-item>
+                <v-list-item class="py-3">
+                  <template v-slot:prepend>
+                    <v-icon
+                      color="pink-accent-3"
+                      icon="mdi-clock-alert"
+                      size="x-large"
+                      class="me-4"
+                    ></v-icon>
+                  </template>
+                  <v-list-item-title class="text-h5 text-grey-darken-1">
+                    当日バタバタして楽しめない...
+                  </v-list-item-title>
+                </v-list-item>
 
-            <v-list-item class="py-3">
-              <template v-slot:prepend>
-                <v-icon
-                  color="pink-accent-3"
-                  icon="mdi-account-question"
-                  size="x-large"
-                  class="me-4"
-                ></v-icon>
-              </template>
-              <v-list-item-title class="text-h5 text-grey-darken-1">
-                そもそも誰に声をかけたらいいかわからない...
-              </v-list-item-title>
-            </v-list-item>
-          </v-list>
+                <v-list-item class="py-3">
+                  <template v-slot:prepend>
+                    <v-icon
+                      color="pink-accent-3"
+                      icon="mdi-account-question"
+                      size="x-large"
+                      class="me-4"
+                    ></v-icon>
+                  </template>
+                  <v-list-item-title class="text-h5 text-grey-darken-1">
+                    そもそも誰に声をかけたらいいかわからない...
+                  </v-list-item-title>
+                </v-list-item>
+              </v-list>
+            </v-col>
+          </v-row>
         </v-col>
       </v-row>
-    </div>
-
+    </v-container>
     <!-- MESSAGE Section -->
     <v-container fluid class="grey-lighten-4 py-0">
       <v-row no-gutters>
