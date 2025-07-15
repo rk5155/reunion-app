@@ -154,8 +154,16 @@
     <div class="text-center text-h3 font-weight-bold py-8 bg-pink-accent-2">
       当日の会費だけで 全てサポートします！
     </div>
-    <!-- MESSAGE Section -->
-    <v-container fluid class="grey-lighten-4 py-0">
+    <v-container fluid class="grey-lighten-4 py-16">
+      <v-row>
+        <v-col cols="12" class="text-center mb-8">
+          <h2
+            class="elegant-heading elegant-heading--gradient text-h3 font-weight-bold"
+          >
+            あなたの同窓会に合ったプラン、一緒に見つけましょう。
+          </h2>
+        </v-col>
+      </v-row>
       <v-row no-gutters>
         <v-col cols="12" md="6" order="1" order-md="1">
           <v-img src="/images/sec02_01.jpg" height="400" cover></v-img>
