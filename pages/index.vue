@@ -288,8 +288,10 @@
       <v-container>
         <v-row justify="center">
           <v-col cols="12" class="text-center mb-8">
-            <h2 class="elegant-heading elegant-heading--gradient">
-              利用の流れ
+            <h2
+              class="elegant-heading elegant-heading--gradient text-h3 font-weight-bold"
+            >
+              ご利用の流れ
             </h2>
           </v-col>
           <v-col cols="12" md="10" lg="8">
