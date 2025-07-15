@@ -413,10 +413,14 @@
       <v-row justify="center">
         <v-col cols="12" class="text-center mb-8">
           <h2
-            class="elegant-heading elegant-heading--gradient text-h3 font-weight-bold"
+            class="elegant-heading elegant-heading--gradient text-h3 font-weight-bold mb-8"
           >
             ご利用の流れ
           </h2>
+          <p class="text-h6 mb-4 text-grey-darken-1">
+            同窓会プランナーが全てプランニングしてくれるので安心です。<br />
+            困ったことがあればいつでもご相談ください。
+          </p>
         </v-col>
         <v-col cols="12" md="10" lg="8">
           <v-timeline side="end" truncate-line="both">
@@ -430,23 +434,36 @@
                 <div
                   class="text-h6 font-weight-bold text-deep-purple-lighten-1"
                 >
-                  {{ step.number }}
+                  STEP {{ step.number }}
                 </div>
               </template>
               <v-card class="elevation-2 rounded-lg">
                 <v-card-text class="pa-6">
-                  <h3 class="text-h6 font-weight-medium mb-3">
+                  <h3 class="text-h6 font-weight-medium mb-3 font-weight-bold">
                     {{ step.title }}
                   </h3>
-                  <p class="text-body-2 text-grey-darken-1 mb-0">
+                  <p class="text-body-2 text-grey-darken-1 mb-2">
                     {{ step.description }}
                   </p>
+                  <v-chip
+                    color="deep-purple-lighten-3"
+                    size="small"
+                    class="mt-2"
+                  >
+                    {{ step.timing }}
+                  </v-chip>
                 </v-card-text>
               </v-card>
             </v-timeline-item>
           </v-timeline>
         </v-col>
       </v-row>
+      <div class="text-center mt-8">
+        <p class="text-body-2 text-grey-darken-1">
+          ※期間は目安です。<br />
+          準備期間が短くても、お気軽にご相談ください。
+        </p>
+      </div>
     </v-container>
 
     <!-- Footer -->
@@ -539,33 +556,45 @@ const plans = [
 const steps = [
   {
     number: 1,
-    title: 'アカウント登録',
+    title: '希望日時・プランなどを相談',
     description:
-      'Reunionに登録して、再会イベントを企画する準備を始めましょう。',
+      'ご希望の開催日時や会場のイメージ、参加予定人数などをお聞かせください。専任プランナーがご要望に合わせて最適なプランをご提案いたします。',
+    timing: '開催5ヶ月前',
   },
   {
     number: 2,
-    title: 'イベント作成',
+    title: '会場手配&会費決定',
     description:
-      'イベントの詳細を入力し、参加者を招待します。日時や場所を簡単に設定可能です。',
+      'プランナーが会場の手配を行い、参加費を決定いたします。全国4,000件以上の提携会場から、ご予算と人数に最適な会場をご提案いたします。',
+    timing: '開催4ヶ月前',
   },
   {
     number: 3,
-    title: '招待リンク送信',
+    title: 'SNS提供',
     description:
-      '招待リンクを参加者に送信し、出欠確認を行います。参加者はリンクから簡単に登録できます。',
+      '同窓会専用のSNSを提供いたします。参加者同士の交流や情報共有にご活用ください。事前に盛り上がりを作ることで当日がより楽しくなります。',
+    timing: '開催3ヶ月前',
   },
   {
     number: 4,
-    title: '決済と準備',
+    title: '案内状発送',
     description:
-      'Stripeを利用して参加費を集金。イベント当日の準備を進めましょう。',
+      'デザインされた案内状を印刷・発送いたします。名簿管理や不着確認もお任せください。WEB案内状での出欠確認も同時に開始いたします。',
+    timing: '開催3ヶ月前',
   },
   {
     number: 5,
-    title: 'イベント開催',
+    title: 'プランナーと最終確認',
     description:
-      'Reunionを活用して、参加者との再会を楽しみましょう。写真やコメントを共有して思い出を振り返ることもできます。',
+      '参加人数の確定や当日の流れ、特別な演出などについて最終確認を行います。不安なことがあれば何でもご相談ください。',
+    timing: '開催1ヶ月前',
+  },
+  {
+    number: 6,
+    title: '同窓会を開催',
+    description:
+      '当日は運営スタッフが受付から司会進行まで全面サポート。幹事様も安心して同窓会をお楽しみください。写真撮影や精算業務もお任せです。',
+    timing: '開催当日',
   },
 ];
 
