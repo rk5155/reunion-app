@@ -1,5 +1,5 @@
 <template>
-  <v-app>
+  <v-main>
     <!-- Header Section -->
     <v-container fluid class="pa-0">
       <v-row no-gutters>
@@ -37,6 +37,22 @@
               </p>
             </div>
           </v-card>
+        </v-col>
+      </v-row>
+    </v-container>
+
+    <!-- CTA Button -->
+    <v-container class="py-10">
+      <v-row justify="center">
+        <v-col cols="12" class="text-center">
+          <v-btn
+            to="/contact"
+            color="deep-purple-lighten-3"
+            size="large"
+            class="font-weight-bold rounded-pill px-8"
+          >
+            お問い合わせ・相談はこちら
+          </v-btn>
         </v-col>
       </v-row>
     </v-container>
@@ -487,7 +503,7 @@
         </div>
       </v-container>
     </v-footer>
-  </v-app>
+  </v-main>
 </template>
 
 <script setup>
