@@ -461,7 +461,7 @@
         </v-col>
       </v-row>
       <div class="text-center mt-8">
-        <p class="text-body-2 text-grey-darken-1">
+        <p class="text-h5 text-grey-darken-1">
           ※期間は目安です。<br />
           準備期間が短くても、お気軽にご相談ください。
         </p>
