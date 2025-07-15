@@ -22,10 +22,10 @@
               class="text-center text-white position-relative"
               style="z-index: 2"
             >
-              <div class="position-relative d-inline-block">
-                <h1
-                  class="text-h1 font-weight-normal mb-5 main-title-decorated"
-                >
+              <div
+                class="position-relative d-inline-block title-decorated-gradient mb-6 rounded-xl"
+              >
+                <h1 class="text-h1 font-weight-normal main-title-decorated">
                   REUNION UP
                 </h1>
               </div>
@@ -701,9 +701,15 @@ const reviews = [
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   text-shadow: 0 0 30px rgba(255, 255, 255, 0.8);
-  animation: titleGradient 4s ease-in-out infinite,
-    titleFloat 3s ease-in-out infinite;
+  animation: titleGradient 3s ease-in-out infinite;
   position: relative;
+  padding: 20px 30px;
+  border-radius: 20px;
+  backdrop-filter: blur(1px);
+}
+
+.title-decorated-gradient {
+  background-color: white;
 }
 
 .subtitle-decorated {
@@ -834,14 +840,7 @@ blockquote {
 
   .main-title-decorated {
     font-size: 2.5rem !important;
-  }
-
-  .sparkle {
-    font-size: 1.2rem;
-  }
-
-  .heart {
-    font-size: 1rem;
+    padding: 15px 20px;
   }
 }
 </style>
