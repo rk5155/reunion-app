@@ -128,73 +128,21 @@
             <!-- 右側：お悩みリスト -->
             <v-col cols="12" md="6" class="d-flex align-center">
               <v-list class="bg-white px-6 py-8 rounded-xl shadow-lg w-100">
-                <v-list-item class="py-3">
+                <v-list-item
+                  v-for="(problem, index) in problems"
+                  :key="index"
+                  class="py-3"
+                >
                   <template v-slot:prepend>
                     <v-icon
                       color="pink-accent-3"
-                      icon="mdi-calendar-alert"
+                      :icon="problem.icon"
                       size="x-large"
                       class="me-4"
                     ></v-icon>
                   </template>
                   <v-list-item-title class="text-h5 text-grey-darken-1">
-                    会場探しや人数調整が大変...
-                  </v-list-item-title>
-                </v-list-item>
-
-                <v-list-item class="py-3">
-                  <template v-slot:prepend>
-                    <v-icon
-                      color="pink-accent-3"
-                      icon="mdi-phone-alert"
-                      size="x-large"
-                      class="me-4"
-                    ></v-icon>
-                  </template>
-                  <v-list-item-title class="text-h5 text-grey-darken-1">
-                    出欠確認の連絡が面倒...
-                  </v-list-item-title>
-                </v-list-item>
-
-                <v-list-item class="py-3">
-                  <template v-slot:prepend>
-                    <v-icon
-                      color="pink-accent-3"
-                      icon="mdi-currency-jpy"
-                      size="x-large"
-                      class="me-4"
-                    ></v-icon>
-                  </template>
-                  <v-list-item-title class="text-h5 text-grey-darken-1">
-                    集金でトラブルにならないか不安...
-                  </v-list-item-title>
-                </v-list-item>
-
-                <v-list-item class="py-3">
-                  <template v-slot:prepend>
-                    <v-icon
-                      color="pink-accent-3"
-                      icon="mdi-clock-alert"
-                      size="x-large"
-                      class="me-4"
-                    ></v-icon>
-                  </template>
-                  <v-list-item-title class="text-h5 text-grey-darken-1">
-                    当日バタバタして楽しめない...
-                  </v-list-item-title>
-                </v-list-item>
-
-                <v-list-item class="py-3">
-                  <template v-slot:prepend>
-                    <v-icon
-                      color="pink-accent-3"
-                      icon="mdi-account-question"
-                      size="x-large"
-                      class="me-4"
-                    ></v-icon>
-                  </template>
-                  <v-list-item-title class="text-h5 text-grey-darken-1">
-                    そもそも誰に声をかけたらいいかわからない...
+                    {{ problem.title }}
                   </v-list-item-title>
                 </v-list-item>
               </v-list>
@@ -476,7 +424,29 @@ const features = [
   },
 ];
 
-// Steps data
+const problems = [
+  {
+    icon: 'mdi-calendar-alert',
+    title: '会場探しや人数調整が大変...',
+  },
+  {
+    icon: 'mdi-phone-alert',
+    title: '出欠確認の連絡が面倒...',
+  },
+  {
+    icon: 'mdi-currency-jpy',
+    title: '集金でトラブルにならないか不安...',
+  },
+  {
+    icon: 'mdi-clock-alert',
+    title: '当日バタバタして楽しめない...',
+  },
+  {
+    icon: 'mdi-account-question',
+    title: 'そもそも誰に声をかけたらいいかわからない...',
+  },
+];
+
 const steps = [
   {
     number: 1,
