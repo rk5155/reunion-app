@@ -23,14 +23,15 @@
               style="z-index: 2"
             >
               <h1
-                class="text-h2 font-weight-normal mb-5"
+                class="text-h1 font-weight-normal mb-5"
                 style="font-family: 'Pacifico', cursive"
               >
                 REUNION UP
               </h1>
-              <h2 class="text-h5 font-weight-normal">
+              <p class="text-h5 font-weight-normal mb-4">
                 あの日の仲間と、もう一度つながる。
-              </h2>
+              </p>
+              <p class="text-h5 font-weight-normal">同窓会代行サービス</p>
             </div>
           </v-card>
         </v-col>
