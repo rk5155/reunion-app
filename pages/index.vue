@@ -76,7 +76,7 @@
                 class="d-flex"
               >
                 <v-card
-                  class="flex-grow-1 text-center pa-4 elevation-0 bg-transparent"
+                  class="flex-grow-1 text-center pa-4 elevation-0 bg-light-blue-lighten-5 rounded-xl"
                 >
                   <v-img
                     :src="feature.image"
@@ -203,6 +203,9 @@
         </v-col>
       </v-row>
     </v-container>
+    <div class="text-center text-h3 font-weight-bold py-8 bg-pink-accent-2">
+      当日の会費だけで 全てサポートします！
+    </div>
     <!-- MESSAGE Section -->
     <v-container fluid class="grey-lighten-4 py-0">
       <v-row no-gutters>
@@ -447,11 +450,10 @@
 </template>
 
 <script setup>
-// Features data
 const features = [
   {
     number: 1,
-    image: '/images/feature_01.png',
+    image: '/images/26679704.png',
     alt: '完全無料で使える',
     title: '幹事のやることはWEB招待状を拡散するのみ！',
     description:
@@ -459,14 +461,14 @@ const features = [
   },
   {
     number: 2,
-    image: '/images/feature_02.png',
+    image: '/images/mark_heart_anshin_anzen.png',
     alt: '卒業年やクラス単位の管理',
     title: 'ドタキャンリスク保証！',
     description: '当日のドタキャンが何人いても幹事さんの自己負担は0円です！',
   },
   {
     number: 3,
-    image: '/images/feature_02.png',
+    image: '/images/image.png',
     alt: '準備の手間なし！',
     title: '準備の手間なし！',
     description:
@@ -532,5 +534,12 @@ const steps = [
 
 .text-h5 {
   font-weight: bold !important;
+}
+
+@media (max-width: 599px) {
+  .text-h3 {
+    font-size: 1.75rem !important;
+    line-height: 1.2 !important;
+  }
 }
 </style>
