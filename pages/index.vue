@@ -207,6 +207,132 @@
       </v-row>
     </v-container>
 
+    <v-container fluid class="py-16 bg-white">
+      <v-row justify="center">
+        <v-col cols="12" class="text-center mb-12">
+          <h2
+            class="elegant-heading elegant-heading--gradient text-h3 font-weight-bold mb-8"
+          >
+            リユニオンアップの同窓会プランは<br />サービスが充実！
+          </h2>
+          <div class="max-w-4xl mx-auto mb-8">
+            <p class="text-h6 mb-4">
+              リユニオンアップの同窓会は、当日集まった同窓生様の会費のみで<br />
+              下記のサービスをご提供しております。
+            </p>
+            <p class="text-body-1 text-grey-darken-1 mb-4">
+              案内状の送付から当日のサポート、精算業務まで行いますので、<br />
+              幹事様もこころゆくまで同窓会を楽しむことができます！
+            </p>
+            <p class="text-h6 font-weight-bold text-deep-purple-darken-1">
+              以下のサービス全てがプラン内に含まれます！
+            </p>
+          </div>
+        </v-col>
+      </v-row>
+
+      <!-- サービス項目 -->
+      <v-row justify="center">
+        <v-col cols="12" md="10" lg="12">
+          <!-- プランナー -->
+          <v-row class="mb-8">
+            <v-col cols="12" class="text-center mb-4">
+              <h3 class="text-h5 font-weight-bold text-deep-purple-darken-1">
+                プランナー
+              </h3>
+            </v-col>
+            <v-col
+              v-for="service in plannerServices"
+              :key="service.title"
+              cols="6"
+              sm="6"
+              md="3"
+              class="d-flex"
+            >
+              <v-card
+                class="flex-grow-1 text-center pa-4 elevation-1 rounded-lg bg-deep-purple-lighten-5"
+                height="120"
+              >
+                <v-icon
+                  :icon="service.icon"
+                  size="40"
+                  color="deep-purple-darken-1"
+                  class="mb-2"
+                ></v-icon>
+                <p class="text-body-2 font-weight-medium text-grey-darken-2">
+                  {{ service.title }}
+                </p>
+              </v-card>
+            </v-col>
+          </v-row>
+
+          <!-- 案内 -->
+          <v-row class="mb-8">
+            <v-col cols="12" class="text-center mb-4">
+              <h3 class="text-h5 font-weight-bold text-deep-purple-darken-1">
+                案内
+              </h3>
+            </v-col>
+            <v-col
+              v-for="service in guidanceServices"
+              :key="service.title"
+              cols="6"
+              sm="6"
+              md="3"
+              class="d-flex"
+            >
+              <v-card
+                class="flex-grow-1 text-center pa-4 elevation-1 rounded-lg bg-light-blue-lighten-5"
+                height="120"
+              >
+                <v-icon
+                  :icon="service.icon"
+                  size="40"
+                  color="light-blue-darken-1"
+                  class="mb-2"
+                ></v-icon>
+                <p class="text-body-2 font-weight-medium text-grey-darken-2">
+                  {{ service.title }}
+                </p>
+              </v-card>
+            </v-col>
+          </v-row>
+
+          <!-- 当日 -->
+          <v-row class="mb-8">
+            <v-col cols="12" class="text-center mb-4">
+              <h3 class="text-h5 font-weight-bold text-deep-purple-darken-1">
+                当日
+              </h3>
+            </v-col>
+            <v-col
+              v-for="service in eventDayServices"
+              :key="service.title"
+              cols="6"
+              sm="6"
+              md="3"
+              class="d-flex"
+            >
+              <v-card
+                class="flex-grow-1 text-center pa-4 elevation-1 rounded-lg bg-pink-lighten-5"
+                height="120"
+              >
+                <v-icon
+                  :icon="service.icon"
+                  size="40"
+                  color="pink-darken-1"
+                  class="mb-2"
+                ></v-icon>
+                <p class="text-body-2 font-weight-medium text-grey-darken-2">
+                  {{ service.title }}
+                </p>
+              </v-card>
+            </v-col>
+          </v-row>
+        </v-col>
+      </v-row>
+    </v-container>
+
     <!-- 利用者の声セクション -->
     <v-container fluid class="py-16 bg-light-blue-lighten-5">
       <v-row justify="center">
@@ -441,6 +567,39 @@ const steps = [
     description:
       'Reunionを活用して、参加者との再会を楽しみましょう。写真やコメントを共有して思い出を振り返ることもできます。',
   },
+];
+
+// リユニオンアップのサービス項目
+const plannerServices = [
+  { title: '企画プランニング', icon: 'mdi-lightbulb-on-outline' },
+  { title: '同窓会SNS提供', icon: 'mdi-devices' },
+  { title: '参加促進のフォロー', icon: 'mdi-trending-up' },
+  { title: '会場リサーチ・交渉', icon: 'mdi-map-search-outline' },
+  { title: '会場手配', icon: 'mdi-phone' },
+  { title: '打ち合わせ', icon: 'mdi-account-group-outline' },
+  { title: '同窓会SNSへの写真アップロード', icon: 'mdi-camera-plus-outline' },
+];
+
+const guidanceServices = [
+  { title: '案内状デザイン', icon: 'mdi-palette-outline' },
+  { title: '案内状印刷・発送', icon: 'mdi-printer-outline' },
+  { title: '名簿管理', icon: 'mdi-account-multiple-outline' },
+  { title: '名簿データ化', icon: 'mdi-database-outline' },
+  { title: '案内状不着確認', icon: 'mdi-email-check-outline' },
+];
+
+const eventDayServices = [
+  { title: 'ディレクター業務', icon: 'mdi-face-man-outline' },
+  { title: '運営スタッフ', icon: 'mdi-account-group' },
+  { title: '受付業務', icon: 'mdi-desk' },
+  { title: '精算業務', icon: 'mdi-calculator-variant-outline' },
+  { title: '名札作成', icon: 'mdi-badge-account-outline' },
+  { title: '参加者名簿作成', icon: 'mdi-file-document-outline' },
+  { title: '司会進行サポート', icon: 'mdi-microphone-outline' },
+  { title: '写真撮影', icon: 'mdi-camera-outline' },
+  { title: 'お食事', icon: 'mdi-food-fork-drink' },
+  { title: 'フリードリンク', icon: 'mdi-glass-cocktail' },
+  { title: '当日キャンセルリスク保証', icon: 'mdi-shield-check-outline' },
 ];
 
 // 利用者の声データ
