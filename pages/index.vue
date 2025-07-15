@@ -208,143 +208,82 @@
       </v-row>
     </div>
 
-    <!-- STORY Section -->
-    <v-container
-      fluid
-      class="py-16 position-relative"
-      style="
-        background: url(/images/bgSec04.jpg) no-repeat center center fixed;
-        background-size: cover;
-      "
-    >
-      <!-- CSS-based overlay -->
-      <div
-        class="position-absolute w-100 h-100 bg-black"
-        style="opacity: 0.6; top: 0; left: 0; z-index: 1"
-      ></div>
-      <v-container class="position-relative" style="z-index: 2">
-        <v-row>
-          <v-col cols="12" md="6" class="mb-8 mb-md-0">
-            <h2 class="elegant-heading elegant-heading--gradient">
+    <!-- 利用者の声セクション -->
+    <v-container fluid class="py-16 bg-light-blue-lighten-5">
+      <v-container>
+        <v-row justify="center">
+          <v-col cols="12" class="text-center mb-12">
+            <h2
+              class="elegant-heading elegant-heading--gradient text-h3 font-weight-bold mb-8"
+            >
               利用者の声
             </h2>
-            <p class="text-body-1 text-white">
-              高校時代の同窓会を開催し、連絡先が分からなかった友人とも再会。忘れられない一日になりました！（40代・男性）
+            <p class="text-h6">
+              実際にリユニオンアップをご利用いただいた皆様の声をご紹介します
             </p>
           </v-col>
-          <v-col cols="12" md="6">
-            <h2 class="elegant-heading elegant-heading--gradient">再会の力</h2>
-            <p class="text-body-1 text-white">
-              再会を通じて新しいビジネスが始まったり、失われていた絆が戻ったり。Reunionはそのきっかけを提供します。
-            </p>
+        </v-row>
+        <v-row>
+          <v-col
+            v-for="(review, index) in reviews"
+            :key="index"
+            cols="12"
+            md="4"
+            class="d-flex"
+          >
+            <v-card
+              class="flex-grow-1 pa-6 elevation-2 rounded-xl"
+              style="border-top: 4px solid #673ab7"
+            >
+              <v-card-text class="pa-0">
+                <div class="d-flex align-center mb-4">
+                  <v-avatar :color="review.avatarColor" size="48" class="me-3">
+                    <span class="text-white font-weight-bold">
+                      {{ review.initial }}
+                    </span>
+                  </v-avatar>
+                  <div>
+                    <h4 class="text-h6 font-weight-bold">
+                      {{ review.name }}
+                    </h4>
+                    <p class="text-body-2 text-grey-darken-1 mb-0">
+                      {{ review.role }}
+                    </p>
+                  </div>
+                </div>
+
+                <div class="mb-3">
+                  <v-rating
+                    :model-value="review.rating"
+                    color="amber"
+                    density="compact"
+                    readonly
+                    size="small"
+                  ></v-rating>
+                </div>
+
+                <blockquote class="text-body-1 text-grey-darken-2 font-italic">
+                  "{{ review.comment }}"
+                </blockquote>
+
+                <v-chip
+                  :color="
+                    review.eventType === 'ホテル・式場プラン'
+                      ? 'deep-purple-lighten-3'
+                      : 'light-blue-lighten-3'
+                  "
+                  size="small"
+                  class="mt-3"
+                >
+                  {{ review.eventType }}
+                </v-chip>
+              </v-card-text>
+            </v-card>
           </v-col>
         </v-row>
       </v-container>
     </v-container>
 
-    <!-- PROFILE Section -->
-    <v-container class="py-16">
-      <v-row justify="center">
-        <v-col cols="12" class="text-center mb-8">
-          <h2 class="elegant-heading elegant-heading--gradient">PROFILE</h2>
-        </v-col>
-        <v-col cols="12" lg="10">
-          <v-row>
-            <v-col cols="12" md="6" class="mb-8 mb-md-0">
-              <v-list class="bg-transparent">
-                <v-list-item class="px-0 py-2">
-                  <template v-slot:prepend>
-                    <span
-                      class="text-body-1 font-weight-medium text-right me-6"
-                      style="min-width: 120px"
-                      >社名</span
-                    >
-                  </template>
-                  <v-list-item-title class="text-body-1"
-                    >Reunion株式会社</v-list-item-title
-                  >
-                </v-list-item>
-                <v-list-item class="px-0 py-2">
-                  <template v-slot:prepend>
-                    <span
-                      class="text-body-1 font-weight-medium text-right me-6"
-                      style="min-width: 120px"
-                      >代表取締役</span
-                    >
-                  </template>
-                  <v-list-item-title class="text-body-1"
-                    >川田 太郎</v-list-item-title
-                  >
-                </v-list-item>
-                <v-list-item class="px-0 py-2">
-                  <template v-slot:prepend>
-                    <span
-                      class="text-body-1 font-weight-medium text-right me-6"
-                      style="min-width: 120px"
-                      >所在地</span
-                    >
-                  </template>
-                  <v-list-item-title class="text-body-1"
-                    >東京都渋谷区〇〇1-2-3</v-list-item-title
-                  >
-                </v-list-item>
-                <v-list-item class="px-0 py-2">
-                  <template v-slot:prepend>
-                    <span
-                      class="text-body-1 font-weight-medium text-right me-6"
-                      style="min-width: 120px"
-                      >連絡先</span
-                    >
-                  </template>
-                  <v-list-item-title class="text-body-1"
-                    >info@reunion-app.com</v-list-item-title
-                  >
-                </v-list-item>
-                <v-list-item class="px-0 py-2">
-                  <template v-slot:prepend>
-                    <span
-                      class="text-body-1 font-weight-medium text-right me-6"
-                      style="min-width: 120px"
-                      >設立</span
-                    >
-                  </template>
-                  <v-list-item-title class="text-body-1"
-                    >2025年4月1日</v-list-item-title
-                  >
-                </v-list-item>
-                <v-list-item class="px-0 py-2">
-                  <template v-slot:prepend>
-                    <span
-                      class="text-body-1 font-weight-medium text-right me-6"
-                      style="min-width: 120px"
-                      >事業内容</span
-                    >
-                  </template>
-                  <v-list-item-title class="text-body-1"
-                    >再会支援サービスの提供</v-list-item-title
-                  >
-                </v-list-item>
-              </v-list>
-            </v-col>
-            <v-col cols="12" md="6">
-              <v-card class="rounded-lg overflow-hidden" height="300">
-                <iframe
-                  src="https://www.google.com/maps/embed?..."
-                  width="100%"
-                  height="100%"
-                  style="border: 0"
-                  allowfullscreen
-                  loading="lazy"
-                  referrerpolicy="no-referrer-when-downgrade"
-                ></iframe>
-              </v-card>
-            </v-col>
-          </v-row>
-        </v-col>
-      </v-row>
-    </v-container>
-
-    <!-- 利用の流れ Section -->
     <v-container fluid class="grey-lighten-4 py-16">
       <v-container>
         <v-row justify="center">
@@ -507,6 +446,40 @@ const steps = [
     title: 'イベント開催',
     description:
       'Reunionを活用して、参加者との再会を楽しみましょう。写真やコメントを共有して思い出を振り返ることもできます。',
+  },
+];
+
+// 利用者の声データ
+const reviews = [
+  {
+    name: '田中 美香さん',
+    role: '高校3年2組 同窓会幹事',
+    initial: '田',
+    avatarColor: 'deep-purple-lighten-1',
+    rating: 5,
+    comment:
+      '初めての幹事で不安でしたが、リユニオンアップのおかげで大成功でした！出欠管理から会場手配まで全てお任せできて、当日は私も心から楽しめました。みんなから「また来年もやろう！」と言ってもらえて嬉しかったです。',
+    eventType: 'ホテル・式場プラン',
+  },
+  {
+    name: '山田 健太さん',
+    role: '大学ゼミ 卒業10周年',
+    initial: '山',
+    avatarColor: 'pink-accent-3',
+    rating: 5,
+    comment:
+      'カジュアルな雰囲気で久しぶりの仲間と楽しい時間を過ごせました。子連れでも参加しやすく、みんなが気軽に来てくれたのが良かったです。料金も手頃で大満足でした！',
+    eventType: 'レストランプラン',
+  },
+  {
+    name: '佐藤 麗子さん',
+    role: '中学校同窓会 実行委員長',
+    initial: '佐',
+    avatarColor: 'light-blue-darken-1',
+    rating: 5,
+    comment:
+      '150人規模の同窓会でしたが、ドタキャン保証があったので安心でした。当日7名のキャンセルがありましたが、追加料金は一切なし。会場も素晴らしく、みんなに喜んでもらえました。',
+    eventType: 'ホテル・式場プラン',
   },
 ];
 </script>
