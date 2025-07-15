@@ -22,13 +22,19 @@
               class="text-center text-white position-relative"
               style="z-index: 2"
             >
-              <h1 class="text-h1 font-weight-normal mb-5 main-title">
-                REUNION UP
-              </h1>
-              <p class="text-h5 font-weight-normal mb-4">
+              <div class="position-relative d-inline-block">
+                <h1
+                  class="text-h1 font-weight-normal mb-5 main-title-decorated"
+                >
+                  REUNION UP
+                </h1>
+              </div>
+              <p class="text-h5 font-weight-normal mb-4 subtitle-decorated">
                 あの日の仲間と、もう一度つながる。
               </p>
-              <p class="text-h5 font-weight-normal">同窓会代行サービス</p>
+              <p class="text-h5 font-weight-normal subtitle-decorated">
+                同窓会代行サービス
+              </p>
             </div>
           </v-card>
         </v-col>
@@ -678,6 +684,62 @@ const reviews = [
   letter-spacing: 0.1em !important;
 }
 
+.main-title-decorated {
+  font-family: 'Noto Sans JP', sans-serif !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.15em !important;
+  background: linear-gradient(
+    45deg,
+    #ff6b6b,
+    #feca57,
+    #48dbfb,
+    #ff9ff3,
+    #54a0ff
+  );
+  background-size: 300% 300%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 0 30px rgba(255, 255, 255, 0.8);
+  animation: titleGradient 4s ease-in-out infinite,
+    titleFloat 3s ease-in-out infinite;
+  position: relative;
+}
+
+.subtitle-decorated {
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  animation: subtitleGlow 2s ease-in-out infinite alternate;
+}
+
+@keyframes titleGradient {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes titleFloat {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes subtitleGlow {
+  0% {
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  }
+  100% {
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3), 0 0 20px rgba(255, 255, 255, 0.3);
+  }
+}
+
 .elegant-heading--gradient {
   background: linear-gradient(135deg, #673ab7, #d974eb, #fa1d67);
   background-clip: text;
@@ -770,8 +832,16 @@ blockquote {
     line-height: 1.4 !important;
   }
 
-  .main-title {
+  .main-title-decorated {
     font-size: 2.5rem !important;
+  }
+
+  .sparkle {
+    font-size: 1.2rem;
+  }
+
+  .heart {
+    font-size: 1rem;
   }
 }
 </style>
