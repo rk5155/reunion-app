@@ -22,10 +22,7 @@
               class="text-center text-white position-relative"
               style="z-index: 2"
             >
-              <h1
-                class="text-h1 font-weight-normal mb-5"
-                style="font-family: 'Pacifico', cursive"
-              >
+              <h1 class="text-h1 font-weight-normal mb-5 main-title">
                 REUNION UP
               </h1>
               <p class="text-h5 font-weight-normal mb-4">
@@ -669,6 +666,18 @@ const reviews = [
 </script>
 
 <style scoped>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700;900&display=swap');
+
+* {
+  font-family: 'Noto Sans JP', sans-serif !important;
+}
+
+.main-title {
+  font-family: 'Noto Sans JP', sans-serif !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.1em !important;
+}
+
 .elegant-heading--gradient {
   background: linear-gradient(135deg, #673ab7, #d974eb, #fa1d67);
   background-clip: text;
@@ -677,6 +686,8 @@ const reviews = [
   background-size: 200% 200%;
   animation: gradientShift 3s ease-in-out infinite;
   font-size: 24px;
+  font-family: 'Noto Sans JP', sans-serif !important;
+  font-weight: 700 !important;
 }
 
 @keyframes gradientShift {
@@ -689,8 +700,34 @@ const reviews = [
   }
 }
 
+.text-h1,
+.text-h2,
+.text-h3,
+.text-h4,
+.text-h5,
+.text-h6 {
+  font-family: 'Noto Sans JP', sans-serif !important;
+  font-weight: 600 !important;
+}
+
 .text-h5 {
   font-weight: bold !important;
+}
+
+.text-body-1,
+.text-body-2 {
+  font-family: 'Noto Sans JP', sans-serif !important;
+  font-weight: 400 !important;
+  line-height: 1.6 !important;
+}
+
+.v-btn {
+  font-family: 'Noto Sans JP', sans-serif !important;
+  font-weight: 600 !important;
+}
+
+.v-list-item-title {
+  font-family: 'Noto Sans JP', sans-serif !important;
 }
 
 .problem-title {
@@ -698,11 +735,28 @@ const reviews = [
   overflow: visible !important;
   text-overflow: unset !important;
   line-height: 1.3 !important;
+  font-family: 'Noto Sans JP', sans-serif !important;
 }
 
 .problem-list-item {
   min-height: auto !important;
   align-items: flex-start !important;
+}
+
+blockquote {
+  font-family: 'Noto Sans JP', sans-serif !important;
+  font-weight: 400 !important;
+  line-height: 1.5 !important;
+}
+
+.v-chip {
+  font-family: 'Noto Sans JP', sans-serif !important;
+  font-weight: 500 !important;
+}
+
+.v-card-text p {
+  font-family: 'Noto Sans JP', sans-serif !important;
+  line-height: 1.6 !important;
 }
 
 @media (max-width: 599px) {
@@ -714,6 +768,10 @@ const reviews = [
   .problem-title {
     font-size: 1rem !important;
     line-height: 1.4 !important;
+  }
+
+  .main-title {
+    font-size: 2.5rem !important;
   }
 }
 </style>
