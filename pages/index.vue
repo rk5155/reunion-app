@@ -229,10 +229,10 @@
           class="d-flex"
         >
           <v-card
-            class="flex-grow-1 pa-6 elevation-2 rounded-xl"
-            style="border-top: 4px solid #673ab7"
+            class="flex-grow-1 pa-6 elevation-2 rounded-xl d-flex flex-column"
+            style="border-top: 4px solid #673ab7; height: 400px"
           >
-            <v-card-text class="pa-0">
+            <v-card-text class="pa-0 d-flex flex-column flex-grow-1">
               <div class="d-flex align-center mb-4">
                 <v-avatar :color="review.avatarColor" size="48" class="me-3">
                   <span class="text-white font-weight-bold">
@@ -259,7 +259,9 @@
                 ></v-rating>
               </div>
 
-              <blockquote class="text-body-1 text-grey-darken-2 font-italic">
+              <blockquote
+                class="text-body-1 text-grey-darken-2 font-italic flex-grow-1"
+              >
                 "{{ review.comment }}"
               </blockquote>
 
@@ -270,7 +272,7 @@
                     : 'light-blue-lighten-3'
                 "
                 size="small"
-                class="mt-3"
+                class="mt-3 align-self-start"
               >
                 {{ review.eventType }}
               </v-chip>
@@ -307,11 +309,6 @@
               <v-card class="elevation-2 rounded-lg">
                 <v-card-text class="pa-6">
                   <h3 class="text-h6 font-weight-medium mb-3">
-                    <span
-                      class="text-deep-purple-lighten-1 font-weight-bold me-1"
-                    >
-                      {{ step.number }}.
-                    </span>
                     {{ step.title }}
                   </h3>
                   <p class="text-body-2 text-grey-darken-1 mb-0">
