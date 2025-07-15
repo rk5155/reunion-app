@@ -41,20 +41,16 @@
       </v-row>
     </v-container>
 
-    <v-container class="py-10">
-      <v-row justify="center">
-        <v-col cols="12" class="text-center">
-          <v-btn
-            to="/contact"
-            color="deep-purple-lighten-3"
-            size="large"
-            class="font-weight-bold rounded-pill px-8"
-          >
-            お問い合わせ・相談はこちら
-          </v-btn>
-        </v-col>
-      </v-row>
-    </v-container>
+    <div class="pt-16 text-center ma-0">
+      <v-btn
+        to="/contact"
+        color="deep-purple-lighten-3"
+        size="large"
+        class="font-weight-bold rounded-pill"
+      >
+        お問い合わせ・相談はこちら
+      </v-btn>
+    </div>
 
     <!-- FEATURE Section -->
     <v-container fluid class="grey-lighten-4 py-16">
@@ -470,8 +466,7 @@
       </div>
     </v-container>
 
-    <!-- CTAセクション -->
-    <HomeCtaSection />
+    <home-cta-section />
 
     <!-- Footer -->
     <v-footer class="bg-blue-grey-lighten-4 text-center pa-8">

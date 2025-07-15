@@ -170,7 +170,7 @@ export const useServices = () => {
 export const useReviews = () => {
   const reviews = [
     {
-      name: '田中 美香さん',
+      name: '荒井 美香さん',
       role: '高校3年2組 同窓会幹事',
       initial: '田',
       avatarColor: 'deep-purple-lighten-1',
@@ -180,7 +180,7 @@ export const useReviews = () => {
       eventType: 'ホテル・式場プラン',
     },
     {
-      name: '山田 健太さん',
+      name: '泉 健太さん',
       role: '大学ゼミ 卒業10周年',
       initial: '山',
       avatarColor: 'pink-accent-3',
@@ -190,7 +190,7 @@ export const useReviews = () => {
       eventType: 'レストランプラン',
     },
     {
-      name: '佐藤 麗子さん',
+      name: '山口 麗子さん',
       role: '中学校同窓会 実行委員長',
       initial: '佐',
       avatarColor: 'light-blue-darken-1',
