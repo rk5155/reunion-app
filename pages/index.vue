@@ -41,16 +41,7 @@
       </v-row>
     </v-container>
 
-    <div class="pt-16 text-center ma-0">
-      <v-btn
-        to="/contact"
-        color="deep-purple-lighten-3"
-        size="large"
-        class="font-weight-bold rounded-pill"
-      >
-        お問い合わせ・相談はこちら
-      </v-btn>
-    </div>
+    <home-cta-section />
 
     <!-- FEATURE Section -->
     <v-container fluid class="grey-lighten-4 py-16">
