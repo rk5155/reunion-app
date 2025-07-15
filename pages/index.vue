@@ -41,7 +41,6 @@
       </v-row>
     </v-container>
 
-    <!-- CTA Button -->
     <v-container class="py-10">
       <v-row justify="center">
         <v-col cols="12" class="text-center">
@@ -52,22 +51,6 @@
             class="font-weight-bold rounded-pill px-8"
           >
             お問い合わせ・相談はこちら
-          </v-btn>
-        </v-col>
-      </v-row>
-    </v-container>
-
-    <!-- CTA Button -->
-    <v-container class="py-10">
-      <v-row justify="center">
-        <v-col cols="12" class="text-center">
-          <v-btn
-            href="#createInvitation"
-            color="deep-purple-lighten-3"
-            size="large"
-            class="font-weight-bold rounded-pill px-8"
-          >
-            無料で招待状を作ってみる
           </v-btn>
         </v-col>
       </v-row>
@@ -507,6 +490,148 @@
 </template>
 
 <script setup>
+// SEO設定
+useSeoMeta({
+  title: 'REUNION UP（リユニオンアップ） | 同窓会代行サービス',
+  description:
+    '同窓会の企画から当日運営まで全てお任せ！幹事の負担を0にする同窓会代行サービス。全国4,000件以上の提携会場から最適なプランをご提案。ドタキャン保証付きで安心です。',
+  keywords:
+    '同窓会,代行,サービス,幹事,企画,会場,ドタキャン保証,リユニオンアップ',
+  author: 'Reunion Inc.',
+  robots: 'index,follow',
+
+  // Open Graph
+  ogTitle: 'REUNION UP（リユニオンアップ） | 同窓会代行サービス',
+  ogDescription:
+    '同窓会の企画から当日運営まで全てお任せ！幹事の負担を0にする同窓会代行サービス。全国4,000件以上の提携会場から最適なプランをご提案。',
+  ogImage: '/images/og-image.jpg',
+  ogImageAlt: 'REUNION UP 同窓会代行サービス',
+  ogType: 'website',
+  ogUrl: 'https://reunion-app.com/',
+  ogSiteName: 'REUNION UP',
+  ogLocale: 'ja_JP',
+
+  // Twitter Card
+  twitterCard: 'summary_large_image',
+  twitterSite: '@reunion_up',
+  twitterCreator: '@reunion_up',
+  twitterTitle: 'REUNION UP（リユニオンアップ） | 同窓会代行サービス',
+  twitterDescription:
+    '同窓会の企画から当日運営まで全てお任せ！幹事の負担を0にする同窓会代行サービス。',
+  twitterImage: '/images/twitter-card.jpg',
+  twitterImageAlt: 'REUNION UP 同窓会代行サービス',
+});
+
+useHead({
+  htmlAttrs: {
+    lang: 'ja',
+  },
+  link: [
+    {
+      rel: 'canonical',
+      href: 'https://reunion-app.com/',
+    },
+    {
+      rel: 'alternate',
+      hreflang: 'ja',
+      href: 'https://reunion-app.com/',
+    },
+  ],
+  script: [
+    {
+      type: 'application/ld+json',
+      children: JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'Organization',
+        name: 'REUNION UP（リユニオンアップ）',
+        description: '同窓会代行サービス',
+        url: 'https://reunion-app.com/',
+        logo: 'https://reunion-app.com/images/logo.png',
+        contactPoint: {
+          '@type': 'ContactPoint',
+          telephone: '+81-3-1234-5678',
+          contactType: 'customer service',
+          areaServed: 'JP',
+          availableLanguage: 'Japanese',
+        },
+        sameAs: [
+          'https://twitter.com/reunion_up',
+          'https://www.facebook.com/reunionup',
+          'https://www.instagram.com/reunion_up',
+        ],
+        address: {
+          '@type': 'PostalAddress',
+          addressCountry: 'JP',
+          addressRegion: '東京都',
+          addressLocality: '渋谷区',
+        },
+      }),
+    },
+    {
+      type: 'application/ld+json',
+      children: JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'Service',
+        name: '同窓会代行サービス',
+        description: '同窓会の企画から当日運営まで全てを代行するサービス',
+        provider: {
+          '@type': 'Organization',
+          name: 'REUNION UP（リユニオンアップ）',
+        },
+        areaServed: 'JP',
+        hasOfferCatalog: {
+          '@type': 'OfferCatalog',
+          name: '同窓会プラン',
+          itemListElement: [
+            {
+              '@type': 'Offer',
+              itemOffered: {
+                '@type': 'Service',
+                name: 'ホテル・式場プラン',
+                description: '雰囲気も料理も大満足のプレミアムプラン',
+              },
+              priceSpecification: {
+                '@type': 'PriceSpecification',
+                price: '8000',
+                priceCurrency: 'JPY',
+                valueAddedTaxIncluded: true,
+              },
+            },
+            {
+              '@type': 'Offer',
+              itemOffered: {
+                '@type': 'Service',
+                name: 'レストランプラン',
+                description: 'カジュアルで気軽な同窓会プラン',
+              },
+              priceSpecification: {
+                '@type': 'PriceSpecification',
+                price: '7000',
+                priceCurrency: 'JPY',
+                valueAddedTaxIncluded: true,
+              },
+            },
+          ],
+        },
+      }),
+    },
+    {
+      type: 'application/ld+json',
+      children: JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'WebSite',
+        name: 'REUNION UP（リユニオンアップ）',
+        url: 'https://reunion-app.com/',
+        potentialAction: {
+          '@type': 'SearchAction',
+          target: 'https://reunion-app.com/search?q={search_term_string}',
+          'query-input': 'required name=search_term_string',
+        },
+      }),
+    },
+  ],
+});
+
 const features = [
   {
     number: 1,
