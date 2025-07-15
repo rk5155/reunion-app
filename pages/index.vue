@@ -150,59 +150,63 @@
           </v-row>
         </v-col>
       </v-row>
+      <p class="text-center text-h3 font-weight-bold mt-16">
+        当日の会費だけで 全てサポートします！
+      </p>
     </v-container>
-    <div class="text-center text-h3 font-weight-bold py-8 bg-pink-accent-2">
-      当日の会費だけで 全てサポートします！
-    </div>
-    <v-container fluid class="grey-lighten-4 py-16">
+
+    <div fluid class="grey-lighten-4 pt-16">
       <v-row>
-        <v-col cols="12" class="text-center mb-8">
+        <v-col cols="12" class="text-center mb-16">
           <h2
-            class="elegant-heading elegant-heading--gradient text-h3 font-weight-bold"
+            class="elegant-heading elegant-heading--gradient text-h3 font-weight-bold mb-8"
           >
             あなたの同窓会に合ったプラン、一緒に見つけましょう。
           </h2>
-        </v-col>
-      </v-row>
-      <v-row no-gutters>
-        <v-col cols="12" md="6" order="1" order-md="1">
-          <v-img src="/images/sec02_01.jpg" height="400" cover></v-img>
-        </v-col>
-        <v-col
-          cols="12"
-          md="6"
-          order="2"
-          order-md="2"
-          class="d-flex align-center"
-        >
-          <div class="pa-8 pa-md-16">
-            <h2 class="elegant-heading elegant-heading--gradient">MESSAGE</h2>
-            <p class="text-body-1 text-grey-darken-1">
-              離れていても、気持ちは繋がっています。Reunionは、再会のきっかけをテクノロジーでつくり出すことで、あなたの人間関係を豊かにします。
-            </p>
-          </div>
+          <p class="text-h6 font-weight-bold">
+            選べる会場は全国4,000件以上！
+            提携外も対応OK。あなたの理想の会場、きっと見つかります。
+          </p>
         </v-col>
       </v-row>
       <v-row no-gutters>
         <v-col
+          v-for="(plan, index) in plans"
+          :key="index"
           cols="12"
-          md="6"
-          order="2"
-          order-md="1"
-          class="d-flex align-center"
+          :class="index % 2 === 0 ? 'order-1 order-md-1' : 'order-1 order-md-2'"
         >
-          <div class="pa-8 pa-md-16">
-            <h2 class="elegant-heading elegant-heading--gradient">MESSAGE</h2>
-            <p class="text-body-1 text-grey-darken-1">
-              Reunionを使えば、再会イベントの企画から連絡、日程調整、参加管理まで一括して行うことができます。思い出をつなぐ一歩を、今ここから。
-            </p>
-          </div>
-        </v-col>
-        <v-col cols="12" md="6" order="1" order-md="2">
-          <v-img src="/images/sec02_02.jpg" height="400" cover></v-img>
+          <v-row no-gutters>
+            <v-col
+              cols="12"
+              md="6"
+              :class="
+                index % 2 === 0 ? 'order-1 order-md-1' : 'order-1 order-md-2'
+              "
+            >
+              <v-img :src="plan.image" height="400" cover></v-img>
+            </v-col>
+            <v-col
+              cols="12"
+              md="6"
+              :class="
+                index % 2 === 0 ? 'order-2 order-md-2' : 'order-2 order-md-1'
+              "
+              class="d-flex align-center"
+            >
+              <div class="pa-8 pa-md-16">
+                <h2 class="elegant-heading elegant-heading--gradient mb-4">
+                  {{ plan.title }}
+                </h2>
+                <p class="text-body-1 text-grey-darken-1">
+                  {{ plan.description }}
+                </p>
+              </div>
+            </v-col>
+          </v-row>
         </v-col>
       </v-row>
-    </v-container>
+    </div>
 
     <!-- STORY Section -->
     <v-container
@@ -452,6 +456,24 @@ const problems = [
   {
     icon: 'mdi-account-question',
     title: 'そもそも誰に声をかけたらいいかわからない...',
+  },
+];
+
+// プラン情報
+const plans = [
+  {
+    title: 'ホテル・式場プラン',
+    description:
+      '雰囲気も料理も大満足！リユニオンアップおすすめの人気プラン。全国のホテルや式場と提携しているので、料理のクオリティはもちろん、ドリンクも豊富にご用意。「せっかくの同窓会だから、雰囲気にもこだわりたい！」という方に選ばれています。ステージやプロジェクター付きの会場も多数ご紹介可能。盛り上がること間違いなしです！',
+    image: '/images/masood-aslami-7w-cRdewpJA-unsplash.jpg',
+    price: '8,000円〜',
+  },
+  {
+    title: 'レストランプラン - Casual',
+    description:
+      '若い世代に好評！おしゃれカジュアルな同窓会プラン。気取らず楽しめる雰囲気で、子連れ参加もOK。少人数〜大人数まで幅広く対応できる柔軟なプランです。',
+    image: '/images/glenov-brankovic-e4B5AvA7Jqo-unsplash.jpg',
+    price: '7,000円〜',
   },
 ];
 
