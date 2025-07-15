@@ -55,53 +55,51 @@
 
     <!-- FEATURE Section -->
     <v-container fluid class="grey-lighten-4 py-16">
-      <v-container>
-        <v-row>
-          <v-col cols="12" class="text-center mb-8">
-            <h2
-              class="elegant-heading elegant-heading--gradient text-h3 font-weight-bold"
+      <v-row>
+        <v-col cols="12" class="text-center mb-8">
+          <h2
+            class="elegant-heading elegant-heading--gradient text-h3 font-weight-bold"
+          >
+            他とは違う！リユニオンアップの3大ポイント
+          </h2>
+        </v-col>
+      </v-row>
+      <v-row justify="center">
+        <v-col cols="12" md="10" lg="12">
+          <v-row>
+            <v-col
+              v-for="(feature, index) in features"
+              :key="index"
+              cols="12"
+              md="4"
+              class="d-flex"
             >
-              他とは違う！リユニオンアップの3大ポイント
-            </h2>
-          </v-col>
-        </v-row>
-        <v-row justify="center">
-          <v-col cols="12" md="10" lg="12">
-            <v-row>
-              <v-col
-                v-for="(feature, index) in features"
-                :key="index"
-                cols="12"
-                md="4"
-                class="d-flex"
+              <v-card
+                class="flex-grow-1 text-center pa-4 elevation-0 bg-light-blue-lighten-5 rounded-xl"
               >
-                <v-card
-                  class="flex-grow-1 text-center pa-4 elevation-0 bg-light-blue-lighten-5 rounded-xl"
-                >
-                  <v-img
-                    :src="feature.image"
-                    :alt="feature.alt"
-                    class="rounded-lg mb-4"
-                    contain
-                    height="200"
-                  ></v-img>
-                  <v-card-text class="px-2">
-                    <h3 class="text-h5 mb-3 text-deep-purple-darken-1">
-                      <span class="text-pink-accent-3 font-weight-bold me-1">
-                        {{ feature.number }}
-                      </span>
-                      {{ feature.title }}
-                    </h3>
-                    <p class="text-body-2 text-grey-darken-1 text-left">
-                      {{ feature.description }}
-                    </p>
-                  </v-card-text>
-                </v-card>
-              </v-col>
-            </v-row>
-          </v-col>
-        </v-row>
-      </v-container>
+                <v-img
+                  :src="feature.image"
+                  :alt="feature.alt"
+                  class="rounded-lg mb-4"
+                  contain
+                  height="200"
+                ></v-img>
+                <v-card-text class="px-2">
+                  <h3 class="text-h5 mb-3 text-deep-purple-darken-1">
+                    <span class="text-pink-accent-3 font-weight-bold me-1">
+                      {{ feature.number }}
+                    </span>
+                    {{ feature.title }}
+                  </h3>
+                  <p class="text-body-2 text-grey-darken-1 text-left">
+                    {{ feature.description }}
+                  </p>
+                </v-card-text>
+              </v-card>
+            </v-col>
+          </v-row>
+        </v-col>
+      </v-row>
     </v-container>
 
     <v-container fluid class="py-16 bg-light-blue-lighten-5">
@@ -155,7 +153,7 @@
       </p>
     </v-container>
 
-    <div fluid class="grey-lighten-4 pt-16">
+    <v-container fluid class="grey-lighten-4 pt-16">
       <v-row>
         <v-col cols="12" class="text-center mb-16">
           <h2
@@ -206,129 +204,125 @@
           </v-row>
         </v-col>
       </v-row>
-    </div>
+    </v-container>
 
     <!-- 利用者の声セクション -->
     <v-container fluid class="py-16 bg-light-blue-lighten-5">
-      <v-container>
-        <v-row justify="center">
-          <v-col cols="12" class="text-center mb-12">
-            <h2
-              class="elegant-heading elegant-heading--gradient text-h3 font-weight-bold mb-8"
-            >
-              利用者の声
-            </h2>
-            <p class="text-h6">
-              実際にリユニオンアップをご利用いただいた皆様の声をご紹介します
-            </p>
-          </v-col>
-        </v-row>
-        <v-row>
-          <v-col
-            v-for="(review, index) in reviews"
-            :key="index"
-            cols="12"
-            md="4"
-            class="d-flex"
+      <v-row justify="center">
+        <v-col cols="12" class="text-center mb-12">
+          <h2
+            class="elegant-heading elegant-heading--gradient text-h3 font-weight-bold mb-8"
           >
-            <v-card
-              class="flex-grow-1 pa-6 elevation-2 rounded-xl"
-              style="border-top: 4px solid #673ab7"
-            >
-              <v-card-text class="pa-0">
-                <div class="d-flex align-center mb-4">
-                  <v-avatar :color="review.avatarColor" size="48" class="me-3">
-                    <span class="text-white font-weight-bold">
-                      {{ review.initial }}
-                    </span>
-                  </v-avatar>
-                  <div>
-                    <h4 class="text-h6 font-weight-bold">
-                      {{ review.name }}
-                    </h4>
-                    <p class="text-body-2 text-grey-darken-1 mb-0">
-                      {{ review.role }}
-                    </p>
-                  </div>
+            利用者の声
+          </h2>
+          <p class="text-h6">
+            実際にリユニオンアップをご利用いただいた皆様の声をご紹介します
+          </p>
+        </v-col>
+      </v-row>
+      <v-row>
+        <v-col
+          v-for="(review, index) in reviews"
+          :key="index"
+          cols="12"
+          md="4"
+          class="d-flex"
+        >
+          <v-card
+            class="flex-grow-1 pa-6 elevation-2 rounded-xl"
+            style="border-top: 4px solid #673ab7"
+          >
+            <v-card-text class="pa-0">
+              <div class="d-flex align-center mb-4">
+                <v-avatar :color="review.avatarColor" size="48" class="me-3">
+                  <span class="text-white font-weight-bold">
+                    {{ review.initial }}
+                  </span>
+                </v-avatar>
+                <div>
+                  <h4 class="text-h6 font-weight-bold">
+                    {{ review.name }}
+                  </h4>
+                  <p class="text-body-2 text-grey-darken-1 mb-0">
+                    {{ review.role }}
+                  </p>
                 </div>
+              </div>
 
-                <div class="mb-3">
-                  <v-rating
-                    :model-value="review.rating"
-                    color="amber"
-                    density="compact"
-                    readonly
-                    size="small"
-                  ></v-rating>
-                </div>
-
-                <blockquote class="text-body-1 text-grey-darken-2 font-italic">
-                  "{{ review.comment }}"
-                </blockquote>
-
-                <v-chip
-                  :color="
-                    review.eventType === 'ホテル・式場プラン'
-                      ? 'deep-purple-lighten-3'
-                      : 'light-blue-lighten-3'
-                  "
+              <div class="mb-3">
+                <v-rating
+                  :model-value="review.rating"
+                  color="amber"
+                  density="compact"
+                  readonly
                   size="small"
-                  class="mt-3"
-                >
-                  {{ review.eventType }}
-                </v-chip>
-              </v-card-text>
-            </v-card>
-          </v-col>
-        </v-row>
-      </v-container>
+                ></v-rating>
+              </div>
+
+              <blockquote class="text-body-1 text-grey-darken-2 font-italic">
+                "{{ review.comment }}"
+              </blockquote>
+
+              <v-chip
+                :color="
+                  review.eventType === 'ホテル・式場プラン'
+                    ? 'deep-purple-lighten-3'
+                    : 'light-blue-lighten-3'
+                "
+                size="small"
+                class="mt-3"
+              >
+                {{ review.eventType }}
+              </v-chip>
+            </v-card-text>
+          </v-card>
+        </v-col>
+      </v-row>
     </v-container>
 
     <v-container fluid class="grey-lighten-4 py-16">
-      <v-container>
-        <v-row justify="center">
-          <v-col cols="12" class="text-center mb-8">
-            <h2
-              class="elegant-heading elegant-heading--gradient text-h3 font-weight-bold"
+      <v-row justify="center">
+        <v-col cols="12" class="text-center mb-8">
+          <h2
+            class="elegant-heading elegant-heading--gradient text-h3 font-weight-bold"
+          >
+            ご利用の流れ
+          </h2>
+        </v-col>
+        <v-col cols="12" md="10" lg="8">
+          <v-timeline side="end" truncate-line="both">
+            <v-timeline-item
+              v-for="(step, index) in steps"
+              :key="index"
+              :dot-color="'deep-purple-lighten-1'"
+              size="small"
             >
-              ご利用の流れ
-            </h2>
-          </v-col>
-          <v-col cols="12" md="10" lg="8">
-            <v-timeline side="end" truncate-line="both">
-              <v-timeline-item
-                v-for="(step, index) in steps"
-                :key="index"
-                :dot-color="'deep-purple-lighten-1'"
-                size="small"
-              >
-                <template v-slot:opposite>
-                  <div
-                    class="text-h6 font-weight-bold text-deep-purple-lighten-1"
-                  >
-                    {{ step.number }}
-                  </div>
-                </template>
-                <v-card class="elevation-2 rounded-lg">
-                  <v-card-text class="pa-6">
-                    <h3 class="text-h6 font-weight-medium mb-3">
-                      <span
-                        class="text-deep-purple-lighten-1 font-weight-bold me-1"
-                      >
-                        {{ step.number }}.
-                      </span>
-                      {{ step.title }}
-                    </h3>
-                    <p class="text-body-2 text-grey-darken-1 mb-0">
-                      {{ step.description }}
-                    </p>
-                  </v-card-text>
-                </v-card>
-              </v-timeline-item>
-            </v-timeline>
-          </v-col>
-        </v-row>
-      </v-container>
+              <template v-slot:opposite>
+                <div
+                  class="text-h6 font-weight-bold text-deep-purple-lighten-1"
+                >
+                  {{ step.number }}
+                </div>
+              </template>
+              <v-card class="elevation-2 rounded-lg">
+                <v-card-text class="pa-6">
+                  <h3 class="text-h6 font-weight-medium mb-3">
+                    <span
+                      class="text-deep-purple-lighten-1 font-weight-bold me-1"
+                    >
+                      {{ step.number }}.
+                    </span>
+                    {{ step.title }}
+                  </h3>
+                  <p class="text-body-2 text-grey-darken-1 mb-0">
+                    {{ step.description }}
+                  </p>
+                </v-card-text>
+              </v-card>
+            </v-timeline-item>
+          </v-timeline>
+        </v-col>
+      </v-row>
     </v-container>
 
     <!-- Footer -->
