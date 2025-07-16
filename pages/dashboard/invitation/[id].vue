@@ -34,9 +34,9 @@
           contain
         />
         <div class="pt-10">
-          <p class="text-center text-h6 font-weight-bold mb-4">
+          <h2 class="text-center text-h6 font-weight-bold mb-4">
             {{ invitation.title }}
-          </p>
+          </h2>
           <p class="text-pre-line">{{ invitation.description }}</p>
         </div>
       </v-card-text>
@@ -70,7 +70,7 @@
 
       <v-card-text class="py-10 bg-grey-darken-4" data-aos="fade-up">
         <div class="max-width-800">
-          <h3 class="text-h5 font-weight-bold mb-4">COUNTDOWN</h3>
+          <h2 class="text-h5 font-weight-bold mb-4">COUNTDOWN</h2>
           <div class="text-h4 font-weight-bold mb-4">
             to {{ invitation.date }}
           </div>
@@ -106,7 +106,9 @@
       </v-card-text>
 
       <v-card-text class="py-10 text-left max-width-800" data-aos="fade-up">
-        <h3 class="text-h5 font-weight-bold mb-4 text-center">INFORMATION</h3>
+        <h2 class="text-h5 font-weight-bold mb-4 text-center text-black">
+          INFORMATION
+        </h2>
         <v-table>
           <tbody>
             <tr>
@@ -185,7 +187,9 @@
       </v-card-text>
 
       <v-card-text class="py-10 bg-grey-lighten-2" data-aos="fade-up">
-        <h3 class="text-h5 font-weight-bold mb-4">PRESENCE OR ABSENCE</h3>
+        <h2 class="text-h5 font-weight-bold mb-4 text-black">
+          PRESENCE OR ABSENCE
+        </h2>
         <div class="max-width-800">
           <div class="new-action-design-tm-Heading3 mb-4">
             お手数ですが　下記お日にち迄に<br />

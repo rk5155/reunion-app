@@ -1,50 +1,58 @@
 <template>
   <div class="px-4 py-8 rounded bg-white shadow">
     <v-form @submit.prevent="openConfirmationModal" class="w-100">
-      <v-radio-group
-        v-model="formData.isAttendance"
-        label="出欠 (必須)"
-        required
-      >
+      <div class="d-flex align-center mb-3">
+        <p class="text-h6 font-weight-bold mr-2">出欠</p>
+        <v-chip size="x-small" color="pink-accent-3" text-color="white"
+          >必須</v-chip
+        >
+      </div>
+      <v-radio-group v-model="formData.isAttendance" required class="mb-6">
         <v-radio label="出席" :value="true"></v-radio>
         <v-radio label="欠席" :value="false"></v-radio>
       </v-radio-group>
 
-      <v-text-field
-        v-model="formData.name"
-        label="氏名（旧姓） (必須)"
-        required
-        class="mb-4"
-      />
+      <div class="d-flex align-center mb-3">
+        <p class="text-h6 font-weight-bold mr-2">氏名（旧姓）</p>
+        <v-chip size="x-small" color="pink-accent-3" text-color="white"
+          >必須</v-chip
+        >
+      </div>
+      <v-text-field v-model="formData.name" required class="mb-6" />
+
+      <div class="d-flex align-center mb-3">
+        <p class="text-h6 font-weight-bold mr-2">メールアドレス</p>
+        <v-chip size="x-small" color="pink-accent-3" text-color="white"
+          >必須</v-chip
+        >
+      </div>
       <v-text-field
         v-model="formData.email"
-        label="メールアドレス (必須)"
         type="email"
         :rules="[emailRule]"
         required
-        class="mb-4"
+        class="mb-6"
       />
 
-      <v-text-field
-        v-model="formData.className"
-        label="クラス (必須)"
-        required
-        class="mb-4"
-      />
-      <v-textarea
-        v-model="formData.message"
-        label="メッセージ"
-        rows="4"
-        required
-        class="mb-4"
-      />
+      <div class="d-flex align-center mb-3">
+        <p class="text-h6 font-weight-bold mr-2">クラス</p>
+        <v-chip size="x-small" color="pink-accent-3" text-color="white"
+          >必須</v-chip
+        >
+      </div>
+      <v-text-field v-model="formData.className" required class="mb-6" />
 
-      <v-checkbox
-        v-model="isPrivacyChecked"
-        label="個人情報の取扱いについて同意します"
-        required
-        class="mb-4"
-      />
+      <p class="mb-3 text-h6 font-weight-bold text-left">メッセージ</p>
+      <v-textarea v-model="formData.message" rows="4" class="mb-6" />
+
+      <div class="d-flex align-center mb-4">
+        <v-checkbox
+          v-model="isPrivacyChecked"
+          label="個人情報の取扱いについて同意します"
+          required
+          class="mr-2"
+        />
+      </div>
 
       <v-btn
         type="submit"
@@ -135,5 +143,3 @@ const dynamicConfirmLabel = computed(() => {
   return formData.value.isAttendance ? '次へ' : '送信';
 });
 </script>
-
-<style scoped></style>
