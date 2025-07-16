@@ -109,9 +109,15 @@ const deleteReservation = async () => {
 };
 
 const saveAttendanceData = async (attendanceData: Record<string, any>) => {
-  const attendanceCollection = collection(db, 'attendances');
+  const attendancesSubCollection = collection(
+    db,
+    'invitations',
+    attendanceData.invitationId,
+    'attendances'
+  );
+
   const querySnapshot = await getDocs(
-    query(attendanceCollection, where('name', '==', attendanceData.name))
+    query(attendancesSubCollection, where('name', '==', attendanceData.name))
   );
 
   if (!querySnapshot.empty) {
@@ -119,7 +125,7 @@ const saveAttendanceData = async (attendanceData: Record<string, any>) => {
     await updateDoc(docRef, attendanceData);
     return;
   }
-  await addDoc(attendanceCollection, attendanceData);
+  await addDoc(attendancesSubCollection, attendanceData);
 };
 
 const sendConfirmationEmail = async (

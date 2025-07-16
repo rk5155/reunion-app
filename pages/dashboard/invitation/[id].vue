@@ -378,9 +378,14 @@ const updateCountdown = () => {
 };
 
 const fetchAttendeeCount = async () => {
+  const attendancesSubCollection = collection(
+    db,
+    'invitations',
+    invitationId as string,
+    'attendances'
+  );
   const attendeesQuery = query(
-    collection(db, 'attendances'),
-    where('invitationId', '==', invitationId),
+    attendancesSubCollection,
     where('isAttendance', '==', true)
   );
   const attendeeDocs = await getDocs(attendeesQuery);
@@ -438,16 +443,23 @@ const registerAttend = async (formData: Record<string, any>) => {
 };
 
 const registerAbsence = async (formData: Record<string, any>) => {
-  const attendanceCollection = collection(db, 'attendances');
-  const querySnapshot = await getDocs(
-    query(attendanceCollection, where('name', '==', formData.name))
+  const attendancesSubCollection = collection(
+    db,
+    'invitations',
+    invitationId as string,
+    'attendances'
   );
+  const querySnapshot = await getDocs(
+    query(attendancesSubCollection, where('name', '==', formData.name))
+  );
+
+  formData.invitationId = invitationId;
 
   if (!querySnapshot.empty) {
     const docRef = querySnapshot.docs[0].ref;
     await updateDoc(docRef, formData);
   } else {
-    await addDoc(attendanceCollection, formData);
+    await addDoc(attendancesSubCollection, formData);
   }
 
   router.push({
