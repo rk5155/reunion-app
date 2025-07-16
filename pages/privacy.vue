@@ -50,7 +50,7 @@
         <p class="mb-4">
           個人情報に関するお問い合わせは、以下の窓口までご連絡ください。
           <br />
-          メールアドレス: blank.zone.free+reunion-app@gmail.com
+          メールアドレス: info@reunion-up.com
         </p>
       </v-card-text>
     </v-card>

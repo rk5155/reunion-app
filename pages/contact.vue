@@ -225,7 +225,7 @@ ${contactFormData.value.message}
 ---
 REUNION UP(リユニオン アップ)
 同窓会代行サービス
-メール: blank.zone.free+reunion-app@gmail.com
+メール: info@reunion-up.com
 営業時間: 平日 9:00 - 18:00
     `;
 

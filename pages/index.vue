@@ -208,7 +208,7 @@
           </h2>
           <div class="max-w-4xl mx-auto mb-8">
             <p class="text-h6 mb-4">
-              リユニオンアップの同窓会は、当日集まった同窓生様の会費のみで<br />
+              リユニオンアップの同窓会は、集まった同窓生様の会費で<br />
               下記のサービスをご提供しております。
             </p>
             <p class="text-body-1 text-grey-darken-1 mb-4">

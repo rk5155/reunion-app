@@ -7,10 +7,12 @@
       <v-card-text>
         <dl>
           <dt class="font-weight-bold mb-1">販売業者の名称</dt>
-          <dd class="mb-4">川田 隆稀（個人事業主）</dd>
+          <dd class="mb-4">
+            Reunion UP ※請求があった際に遅滞なく開示いたします。
+          </dd>
 
           <dt class="font-weight-bold mb-1">運営統括責任者</dt>
-          <dd class="mb-4">川田 隆稀</dd>
+          <dd class="mb-4">※請求があった際に遅滞なく開示いたします。</dd>
 
           <dt class="font-weight-bold mb-1">所在地</dt>
           <dd class="mb-4">※請求があった際には遅滞なく開示いたします。</dd>
@@ -19,16 +21,16 @@
           <dd class="mb-4">※請求があった際には遅滞なく開示いたします。</dd>
 
           <dt class="font-weight-bold mb-1">メールアドレス</dt>
-          <dd class="mb-4">blank.zone.free+reunion-app@gmail.com</dd>
+          <dd class="mb-4">info@reunion-up.com</dd>
 
           <dt class="font-weight-bold mb-1">ホームページURL</dt>
           <dd class="mb-4">
             <a
-              href="https://reunion-app-new.web.app/"
+              href="https://reunion-up.com/"
               target="_blank"
               rel="noopener noreferrer"
             >
-              https://reunion-app-new.web.app/
+              https://reunion-up.com/
             </a>
           </dd>
 
