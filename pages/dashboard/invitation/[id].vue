@@ -145,9 +145,16 @@
                   SERVICE_FEE
                 }}円を別途頂戴しております。<br />
                 ご理解とご協力のほど何卒よろしくお願いいたします。<br />
-                申込時に決済を行いますので、予めご了承ください。
+                申込時に決済を行いますので、予めご了承ください。<br /><br />
+                <nuxt-link
+                  to="/"
+                  class="text-primary font-weight-bold text-decoration-underline"
+                >
+                  詳細はこちら
+                </nuxt-link>
               </td>
             </tr>
+
             <tr>
               <td class="w-25">会場住所</td>
               <td class="py-4">{{ invitation.venueAddress }}</td>
@@ -183,8 +190,8 @@
           <div class="new-action-design-tm-Heading3 mb-4">
             お手数ですが　下記お日にち迄に<br />
             出欠情報のご連絡をお願い申し上げます<br />
-            <div class="text-h5 mt-4 font-weight-bold">
-              {{ getFormattedDate(invitation.deadline) }}
+            <div class="text-h5 mt-4 font-weight-bold text-pink-accent-3">
+              出欠締切日：{{ getFormattedDate(invitation.deadline) }}
             </div>
           </div>
           <p class="mb-4 text-left">
