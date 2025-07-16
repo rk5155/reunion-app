@@ -476,10 +476,6 @@ const handleFormSubmit = async (formData: Record<string, any>) => {
 </script>
 
 <style scoped>
-body {
-  font-family: 'Sawarabi Mincho', serif;
-}
-
 .invitation-title {
   height: 60px;
 }
@@ -505,13 +501,6 @@ h2 {
 
 .semi-transparent-card {
   background-color: rgba(255, 255, 255, 0.8);
-}
-.text-h2,
-.text-h3,
-.text-h4,
-.text-h5,
-.text-h6 {
-  font-family: 'Sawarabi Mincho', serif;
 }
 
 .countdown-label {
@@ -557,10 +546,5 @@ h2 {
   position: sticky;
   bottom: 0;
   z-index: 10;
-}
-
-.max-width-800 {
-  max-width: 800px;
-  margin: auto;
 }
 </style>

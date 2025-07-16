@@ -631,6 +631,15 @@ useHead({
   font-family: 'Noto Sans JP', sans-serif !important;
 }
 
+.text-h1,
+.text-h2,
+.text-h3,
+.text-h4,
+.text-h5,
+.text-h6 {
+  font-family: 'Noto Sans JP', sans-serif !important;
+}
+
 .main-title {
   font-family: 'Noto Sans JP', sans-serif !important;
   font-weight: 700 !important;

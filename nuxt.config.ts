@@ -9,7 +9,10 @@ export default defineNuxtConfig({
       gen: 2
     }
   },
-  css: ['vuetify/styles'],
+  css: [
+    'vuetify/styles',
+    '~/assets/styles/global.scss'
+  ],
   build: {
     transpile: ['vuetify']
   },

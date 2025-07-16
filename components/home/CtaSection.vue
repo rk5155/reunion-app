@@ -72,6 +72,14 @@ defineProps({
 </script>
 
 <style scoped>
+.text-h1,
+.text-h2,
+.text-h3,
+.text-h4,
+.text-h5,
+.text-h6 {
+  font-family: 'Noto Sans JP', sans-serif !important;
+}
 .cta-section {
   padding: 40px 20px;
   border-radius: 20px;
