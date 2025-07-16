@@ -145,7 +145,7 @@
       </p>
     </v-container>
 
-    <v-container fluid class="grey-lighten-4 pt-16">
+    <v-container fluid class="grey-lighten-4 py-16">
       <v-row>
         <v-col cols="12" class="text-center mb-16">
           <h2
@@ -184,7 +184,7 @@
               "
               class="d-flex align-center"
             >
-              <div class="pa-8 pa-md-16">
+              <div class="py-4 pa-md-16">
                 <h2 class="elegant-heading elegant-heading--gradient mb-4">
                   {{ plan.title }}
                 </h2>
@@ -198,9 +198,9 @@
       </v-row>
     </v-container>
 
-    <v-container fluid class="py-16 bg-white">
+    <v-container fluid class="py-16 bg-grey-lighten-5">
       <v-row justify="center">
-        <v-col cols="12" class="text-center mb-12">
+        <v-col cols="12" class="text-center">
           <h2
             class="elegant-heading elegant-heading--gradient text-h3 font-weight-bold mb-8"
           >
