@@ -18,9 +18,13 @@
             class="cta-button font-weight-bold rounded-pill px-12 py-4 elevation-8"
             height="80"
           >
-            <v-icon start size="large">{{ buttonIcon }}</v-icon>
-            {{ buttonText }}
-            <v-icon end size="large">mdi-arrow-right</v-icon>
+            <v-icon start size="large" class="button-icon-start">{{
+              buttonIcon
+            }}</v-icon>
+            <span class="button-text">{{ buttonText }}</span>
+            <v-icon end size="large" class="button-icon-end"
+              >mdi-arrow-right</v-icon
+            >
           </v-btn>
           <div class="mt-6">
             <v-chip
@@ -153,6 +157,31 @@ defineProps({
   .text-h3 {
     font-size: 1.75rem !important;
     line-height: 1.2 !important;
+  }
+
+  .cta-button {
+    height: 60px !important;
+    font-size: 1rem !important;
+    padding: 0 24px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+
+  .button-icon-start,
+  .button-icon-end {
+    font-size: 1.2rem !important;
+  }
+
+  .button-text {
+    margin: 0 8px !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+  }
+
+  .cta-section {
+    padding: 20px 10px !important;
   }
 }
 </style>
