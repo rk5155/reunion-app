@@ -7,12 +7,15 @@
     </v-btn>
     <v-btn color="info" class="mb-2 w-100" @click="shareOnX">
       <v-icon left>mdi-twitter</v-icon>
-      Xで共有
+      X（旧Twitter）で共有
     </v-btn>
     <v-btn color="blue-grey-darken-1" class="mb-2 w-100" @click="copyUrl">
       <v-icon left>mdi-link</v-icon>
       URLをコピー
     </v-btn>
+    <v-snackbar v-model="copied" color="blue" timeout="3000">
+      URLをコピーしました！
+    </v-snackbar>
   </div>
 </template>
 
@@ -24,8 +27,10 @@ const props = defineProps({
   },
 });
 
+const copied = ref(false);
+
 const generateShareMessage = () =>
-  `${props.title}💌\n\n${window.location.href}`;
+  `${props.title} のご案内💌\n\n詳しくはこちら👇\n${window.location.href}`;
 
 const shareOnLine = () => {
   const url = `https://line.me/R/msg/text/?${encodeURIComponent(
@@ -41,23 +46,13 @@ const shareOnX = () => {
   window.open(url, '_blank');
 };
 
-const copyUrl = () => {
-  const url = window.location.href;
-  navigator.clipboard
-    .writeText(url)
-    .then(() => {
-      alert('URLをコピーしました！');
-    })
-    .catch((error) => {
-      console.error('URLのコピーに失敗しました:', error);
-      alert('URLのコピーに失敗しました。もう一度お試しください。');
-    });
+const copyUrl = async () => {
+  try {
+    await navigator.clipboard.writeText(window.location.href);
+    copied.value = true;
+  } catch (error) {
+    console.error('URLのコピーに失敗しました:', error);
+    alert('URLのコピーに失敗しました。もう一度お試しください。');
+  }
 };
 </script>
-
-<style scoped>
-.max-width-800 {
-  max-width: 800px;
-  margin: auto;
-}
-</style>
