@@ -457,6 +457,61 @@
       </div>
     </v-container>
 
+    <v-container fluid class="py-16 bg-white">
+      <v-row justify="center">
+        <v-col cols="12" class="text-center mb-8">
+          <h2
+            class="elegant-heading elegant-heading--gradient text-h3 font-weight-bold mb-8"
+          >
+            よくある質問
+          </h2>
+          <p class="text-h6 mb-4 text-grey-darken-1">
+            お客様からよくいただくご質問をまとめました
+          </p>
+        </v-col>
+        <v-col cols="12" md="10" lg="8">
+          <v-expansion-panels class="elevation-0">
+            <v-expansion-panel
+              v-for="(faq, index) in pageData.faqs"
+              :key="index"
+              class="mb-4 rounded-lg"
+              style="border: 1px solid #e0e0e0"
+            >
+              <v-expansion-panel-title class="text-h6 font-weight-bold pa-6">
+                <template v-slot:default="{ expanded }">
+                  <div class="d-flex align-center">
+                    <v-chip
+                      color="deep-purple-lighten-1"
+                      size="small"
+                      class="me-3"
+                    >
+                      Q
+                    </v-chip>
+                    <span>{{ faq.question }}</span>
+                  </div>
+                </template>
+              </v-expansion-panel-title>
+              <v-expansion-panel-text class="pa-6 pt-0">
+                <div class="d-flex">
+                  <v-chip
+                    color="pink-accent-3"
+                    size="small"
+                    class="me-3 mt-1 flex-shrink-0"
+                  >
+                    A
+                  </v-chip>
+                  <div
+                    class="text-body-1 text-grey-darken-1"
+                    v-html="faq.answer"
+                  ></div>
+                </div>
+              </v-expansion-panel-text>
+            </v-expansion-panel>
+          </v-expansion-panels>
+        </v-col>
+      </v-row>
+    </v-container>
+
     <home-cta-section />
 
     <!-- Footer -->
