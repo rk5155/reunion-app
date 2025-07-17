@@ -5,8 +5,7 @@
       <v-row no-gutters>
         <v-col cols="12">
           <v-card
-            height="568"
-            class="d-flex align-center justify-center position-relative overflow-hidden"
+            class="d-flex align-center justify-center position-relative overflow-hidden main-visual"
             style="
               background-image: url('/images/main_pc.jpg');
               background-size: cover;
@@ -681,6 +680,43 @@ useHead({
 
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700;900&display=swap');
+
+/* メインビジュアルのレスポンシブ対応 */
+.main-visual {
+  height: 568px;
+}
+
+@media (max-width: 959px) {
+  .main-visual {
+    height: 100vh;
+    min-height: 500px;
+  }
+}
+
+@media (max-width: 599px) {
+  .main-visual {
+    height: 100vh;
+    min-height: 400px;
+  }
+
+  .text-h1 {
+    font-size: 2rem !important;
+  }
+
+  .text-h5 {
+    font-size: 1.1rem !important;
+  }
+
+  .main-title-decorated {
+    font-size: 2rem !important;
+    padding: 10px 15px;
+    letter-spacing: 0.1em !important;
+  }
+
+  .subtitle-decorated {
+    font-size: 1rem !important;
+  }
+}
 
 * {
   font-family: 'Noto Sans JP', sans-serif !important;
