@@ -294,7 +294,7 @@ import 'aos/dist/aos.css';
 import Writer from 't-writer.js';
 import { ref, onMounted, computed } from 'vue';
 
-const SERVICE_FEE = 980;
+const SERVICE_FEE = 50;
 const { db } = useFirebase();
 const router = useRouter();
 const route = useRoute();
