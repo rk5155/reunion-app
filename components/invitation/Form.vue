@@ -18,7 +18,12 @@
           >必須</v-chip
         >
       </div>
-      <v-text-field v-model="formData.name" required class="mb-6" />
+      <v-text-field
+        v-model="formData.name"
+        placeholder="例 山田太郎"
+        required
+        class="mb-6"
+      />
 
       <div class="d-flex align-center mb-3">
         <p class="text-h6 font-weight-bold mr-2">メールアドレス</p>
@@ -40,7 +45,12 @@
           >必須</v-chip
         >
       </div>
-      <v-text-field v-model="formData.className" required class="mb-6" />
+      <v-text-field
+        v-model="formData.className"
+        placeholder="例 1"
+        required
+        class="mb-6"
+      />
 
       <p class="mb-3 text-h6 font-weight-bold text-left">メッセージ</p>
       <v-textarea v-model="formData.message" rows="4" class="mb-6" />
