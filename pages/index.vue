@@ -14,7 +14,7 @@
           >
             <!-- CSS-based overlay -->
             <div
-              class="position-absolute w-100 h-100 bg-black"
+              class="position-absolute w-100 h-100"
               style="opacity: 0.3; top: 0; left: 0; z-index: 1"
             ></div>
             <div
@@ -681,9 +681,10 @@ useHead({
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700;900&display=swap');
 
-/* メインビジュアルのレスポンシブ対応 */
 .main-visual {
-  height: 568px;
+  height: 100vh;
+  min-height: 600px;
+  border-radius: 0;
 }
 
 @media (max-width: 959px) {
@@ -714,7 +715,8 @@ useHead({
   }
 
   .subtitle-decorated {
-    font-size: 1rem !important;
+    font-size: 1.4rem !important;
+    text-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
   }
 }
 
@@ -893,7 +895,7 @@ blockquote {
 
   .main-title-decorated {
     font-size: 2.5rem !important;
-    padding: 15px 20px;
+    padding: 0 20px;
   }
 }
 </style>
