@@ -64,6 +64,15 @@
         type="url"
       />
       <v-text-field
+        v-model="form.mapEmbedUrl"
+        label="Google Maps埋め込みURL"
+        outlined
+        class="mb-4"
+        type="url"
+        hint="Google Mapsの「地図を埋め込む」から取得したsrc URLを入力してください"
+        persistent-hint
+      />
+      <v-text-field
         v-model="form.nearestStation"
         label="アクセス"
         outlined
@@ -145,10 +154,11 @@ const form = ref<Invitation>({
   date: '',
   startTime: '',
   endTime: '',
-  receptionStartTime: '', // 受付開始時間を追加
+  receptionStartTime: '',
   venueName: '',
   venueAddress: '',
   venueUrl: '',
+  mapEmbedUrl: '',
   nearestStation: '',
   deadline: '',
   schoolName: '',
@@ -200,10 +210,11 @@ const handleSubmit = async () => {
     date: form.value.date,
     startTime: form.value.startTime,
     endTime: form.value.endTime,
-    receptionStartTime: form.value.receptionStartTime, // 受付開始時間を保存
+    receptionStartTime: form.value.receptionStartTime,
     venueName: form.value.venueName,
     venueAddress: form.value.venueAddress,
     venueUrl: form.value.venueUrl,
+    mapEmbedUrl: form.value.mapEmbedUrl,
     nearestStation: form.value.nearestStation,
     deadline: form.value.deadline,
     schoolName: form.value.schoolName,

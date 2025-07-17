@@ -8,6 +8,7 @@ export interface Invitation {
   venueName: string;
   venueAddress: string;
   venueUrl?: string;
+  mapEmbedUrl?: string;
   nearestStation?: string;
   deadline: string;
   schoolName: string;
