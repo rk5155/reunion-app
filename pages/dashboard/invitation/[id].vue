@@ -131,19 +131,20 @@
               <td class="w-25">会費</td>
               <td class="py-4">
                 {{ invitation.fee }}円<br />
-                ※会費は当日受付にてお支払いください。
+                ※当日受付にてお支払いください。
               </td>
             </tr>
             <tr>
               <td class="w-25">手数料</td>
               <td class="py-4">
-                {{ SERVICE_FEE }}円<br />
-                ※同窓会の円滑な開催のため、同窓会代行サービス(リユニオンアップ)を利用しております。<br />
-                このため、会費に加え、同窓会代行サービス利用手数料{{
+                {{ SERVICE_FEE }}円<br /><br />
+                ※同窓会の円滑な開催のため、企画プランニングやWEB案内状発送、受付・精算対応、写真撮影など、運営を一括でサポートする同窓会代行サービス(リユニオンアップ)を活用しています。<br /><br />
+                このため、同窓会代行サービス利用手数料{{
                   SERVICE_FEE
-                }}円を別途頂戴しております。<br />
+                }}円を別途頂戴しております。<br /><br />
                 ご理解とご協力のほど何卒よろしくお願いいたします。<br />
                 申込時に決済を行いますので、予めご了承ください。<br /><br />
+
                 <nuxt-link
                   to="/"
                   class="text-primary font-weight-bold text-decoration-underline"
@@ -294,7 +295,7 @@ import 'aos/dist/aos.css';
 import Writer from 't-writer.js';
 import { ref, onMounted, computed } from 'vue';
 
-const SERVICE_FEE = 50;
+const SERVICE_FEE = 980;
 const { db } = useFirebase();
 const router = useRouter();
 const route = useRoute();
