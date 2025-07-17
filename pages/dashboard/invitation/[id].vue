@@ -145,12 +145,14 @@
                 ご理解とご協力のほど何卒よろしくお願いいたします。<br />
                 申込時に決済を行いますので、予めご了承ください。<br /><br />
 
-                <nuxt-link
-                  to="/"
+                <a
+                  href="/"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   class="text-primary font-weight-bold text-decoration-underline"
                 >
                   詳細はこちら
-                </nuxt-link>
+                </a>
               </td>
             </tr>
 
