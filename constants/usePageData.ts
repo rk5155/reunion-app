@@ -165,7 +165,7 @@ export const useReviews = () => {
     {
       name: '荒井 美香さん',
       role: '高校3年2組 同窓会幹事',
-      initial: '田',
+      initial: '荒',
       avatarColor: 'deep-purple-lighten-1',
       rating: 5,
       comment:
@@ -175,7 +175,7 @@ export const useReviews = () => {
     {
       name: '泉 健太さん',
       role: '大学ゼミ 卒業10周年',
-      initial: '山',
+      initial: '泉',
       avatarColor: 'pink-accent-3',
       rating: 5,
       comment:
@@ -185,7 +185,7 @@ export const useReviews = () => {
     {
       name: '山口 麗子さん',
       role: '中学校同窓会 実行委員長',
-      initial: '佐',
+      initial: '山',
       avatarColor: 'light-blue-darken-1',
       rating: 5,
       comment:
