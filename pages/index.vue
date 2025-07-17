@@ -141,7 +141,7 @@
         </v-col>
       </v-row>
       <p class="text-center text-h3 font-weight-bold mt-16">
-        当日の会費だけで 全てサポートします！
+        同窓生様からの代行手数料だけで 全てサポートします！
       </p>
     </v-container>
 
@@ -208,7 +208,7 @@
           </h2>
           <div class="max-w-4xl mx-auto mb-8">
             <p class="text-h6 mb-4">
-              リユニオンアップの同窓会は、集まった同窓生様の会費で<br />
+              リユニオンアップの同窓会は、集まった同窓生様の代行手数料で<br />
               下記のサービスをご提供しております。
             </p>
             <p class="text-body-1 text-grey-darken-1 mb-4">
