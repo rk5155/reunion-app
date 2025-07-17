@@ -142,6 +142,8 @@ useHead({
   ],
 });
 
+const { sendEmail } = useSendEmail();
+
 // フォーム関連
 const contactForm = ref(null);
 const isContactFormLoading = ref(false);
@@ -198,14 +200,11 @@ REUNION UP(リユニオン アップ)
 同窓会代行サービス
     `;
 
-    await $fetch('/api/send-email', {
-      method: 'POST',
-      body: {
-        to: 'info@reunion-up.com',
-        subject: `【お問い合わせ】${contactFormData.value.subject}`,
-        text: emailText,
-      },
-    });
+    await sendEmail(
+      'info@reunion-up.com',
+      `【お問い合わせ】${contactFormData.value.subject}`,
+      emailText
+    );
 
     // 確認メールを送信者にも送信
     const confirmationText = `
@@ -229,14 +228,11 @@ REUNION UP(リユニオン アップ)
 営業時間: 平日 9:00 - 18:00
     `;
 
-    await $fetch('/api/send-email', {
-      method: 'POST',
-      body: {
-        to: contactFormData.value.email,
-        subject: '【受付完了】お問い合わせありがとうございます - REUNION UP',
-        text: confirmationText,
-      },
-    });
+    await sendEmail(
+      contactFormData.value.email,
+      '【受付完了】お問い合わせありがとうございます - REUNION UP',
+      confirmationText
+    );
 
     alert(
       'お問い合わせを送信しました。確認メールをお送りしましたのでご確認ください。'
