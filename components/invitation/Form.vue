@@ -106,6 +106,8 @@
 </template>
 
 <script lang="ts" setup>
+import { BLOCKED_USER_LIST } from '@/constants/blockList';
+
 const emit = defineEmits(['submit']);
 
 const formData = ref({
@@ -137,6 +139,9 @@ const isFormValid = computed(() => {
 const isModalVisible = ref(false);
 
 const openConfirmationModal = () => {
+  if (BLOCKED_USER_LIST.includes(formData.value.name)) {
+    return alert('お前は出禁');
+  }
   isModalVisible.value = true;
 };
 
