@@ -139,9 +139,8 @@ const isFormValid = computed(() => {
 const isModalVisible = ref(false);
 
 const openConfirmationModal = () => {
-  if (BLOCKED_USER_LIST.includes(formData.value.name)) {
+  if (BLOCKED_USER_LIST.includes(formData.value.name.replace(/\s/g, '')))
     return alert('お前は出禁');
-  }
   isModalVisible.value = true;
 };
 
