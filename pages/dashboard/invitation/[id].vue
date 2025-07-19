@@ -315,7 +315,7 @@ import 'aos/dist/aos.css';
 import Writer from 't-writer.js';
 import { ref, onMounted, computed } from 'vue';
 
-const showSagiExplanation = ref(true);
+const showSagiExplanation = ref(false);
 const SERVICE_FEE = 980;
 const { db } = useFirebase();
 const router = useRouter();

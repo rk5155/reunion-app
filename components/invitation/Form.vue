@@ -75,6 +75,20 @@
       </v-btn>
     </v-form>
 
+    <v-dialog v-model="showBlockedModal">
+      <v-card>
+        <v-card-text class="pa-6">
+          <v-alert
+            type="error"
+            variant="tonal"
+            class="mb-4 text-center text-h1"
+          >
+            お前は出禁
+          </v-alert>
+        </v-card-text>
+      </v-card>
+    </v-dialog>
+
     <common-modal-confirmation
       v-model:isVisible="isModalVisible"
       :confirm-label="dynamicConfirmLabel"
@@ -119,6 +133,7 @@ const formData = ref({
 });
 
 const isPrivacyChecked = ref(false);
+const showBlockedModal = ref(false);
 
 const emailRule = (value: string) => {
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -139,8 +154,10 @@ const isFormValid = computed(() => {
 const isModalVisible = ref(false);
 
 const openConfirmationModal = () => {
-  if (BLOCKED_USER_LIST.includes(formData.value.name.replace(/\s/g, '')))
-    return alert('お前は出禁');
+  if (BLOCKED_USER_LIST.includes(formData.value.name.replace(/\s/g, ''))) {
+    showBlockedModal.value = true;
+    return;
+  }
   isModalVisible.value = true;
 };
 
