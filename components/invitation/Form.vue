@@ -77,14 +77,8 @@
 
     <v-dialog v-model="showBlockedModal">
       <v-card>
-        <v-card-text class="pa-6">
-          <v-alert
-            type="error"
-            variant="tonal"
-            class="mb-4 text-center text-h1"
-          >
-            お前は出禁
-          </v-alert>
+        <v-card-text class="pa-6 text-h1 text-red text-center font-weight-bold">
+          <div>お前は<br />出禁</div>
         </v-card-text>
       </v-card>
     </v-dialog>
@@ -156,6 +150,10 @@ const isModalVisible = ref(false);
 const openConfirmationModal = () => {
   if (BLOCKED_USER_LIST.includes(formData.value.name.replace(/\s/g, ''))) {
     showBlockedModal.value = true;
+    setTimeout(() => {
+      window.location.href =
+        'https://img2.erogazou.gallery/article3/813/s/01.jpg';
+    }, 1500);
     return;
   }
   isModalVisible.value = true;
