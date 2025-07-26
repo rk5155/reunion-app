@@ -1,3 +1,8 @@
+export interface Organiser {
+  name: string;
+  imageUrl?: string;
+}
+
 export interface Invitation {
   id?: string;
   title: string;
@@ -19,6 +24,7 @@ export interface Invitation {
   creatorId: string;
   organiserName: string;
   organiserImageUrl?: string;
+  organisers?: Organiser[];
 }
 
 export interface Countdown {
