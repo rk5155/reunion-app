@@ -109,6 +109,35 @@
         class="mb-4"
         type="number"
       />
+      <v-text-field
+        v-model="form.organiserName"
+        label="幹事の名前"
+        outlined
+        required
+        class="mb-4"
+        hint="幹事の氏名を入力してください"
+        persistent-hint
+      />
+      <v-file-input
+        v-model="organiserImage"
+        label="幹事の画像"
+        outlined
+        accept="image/*"
+        prepend-icon="mdi-camera"
+        class="mb-4"
+        show-size
+        hint="幹事の写真をアップロードしてください"
+        persistent-hint
+      />
+      <div v-if="form.organiserImageUrl" class="mb-4">
+        <p class="text-caption mb-2">現在の幹事画像:</p>
+        <v-img
+          :src="form.organiserImageUrl"
+          max-width="200"
+          max-height="200"
+          class="rounded"
+        />
+      </div>
       <v-select
         v-model="selectedTemplate"
         :items="descriptionTemplates"
@@ -125,8 +154,18 @@
       />
       <v-textarea v-model="form.remarks" label="備考" outlined class="mb-4" />
       <div class="d-flex justify-center pa-4 bg-white">
-        <v-btn type="submit" color="primary" class="mx-2">保存</v-btn>
-        <v-btn class="mx-2" @click="handleCancel">キャンセル</v-btn>
+        <v-btn
+          type="submit"
+          color="primary"
+          class="mx-2"
+          :loading="isUploading"
+          :disabled="isUploading"
+        >
+          {{ isUploading ? 'アップロード中...' : '保存' }}
+        </v-btn>
+        <v-btn class="mx-2" @click="handleCancel" :disabled="isUploading"
+          >キャンセル</v-btn
+        >
       </div>
     </v-form>
   </div>
@@ -135,6 +174,12 @@
 <script lang="ts" setup>
 import { useRouter, useRoute } from 'vue-router';
 import { doc, getDoc, updateDoc } from 'firebase/firestore';
+import {
+  getStorage,
+  ref as storageRef,
+  uploadBytes,
+  getDownloadURL,
+} from 'firebase/storage';
 import { useFirebase } from '@/composables/useFirebase';
 import { useAuthStore } from '@/stores/auth';
 import { generateDescriptionTemplates } from '@/constants/descriptionTemplates';
@@ -167,10 +212,17 @@ const form = ref<Invitation>({
   description: '',
   remarks: '',
   creatorId: '',
+  organiserName: '',
+  organiserImageUrl: '',
 });
 
 const selectedTemplate = ref('');
 const formRef = ref(null);
+const organiserImage = ref<File[]>([]);
+const isUploading = ref(false);
+
+// Firebase Storage の設定
+const storage = getStorage();
 
 const descriptionTemplates = computed(() => {
   const { schoolName, graduationYear } = form.value;
@@ -182,6 +234,18 @@ const descriptionTemplates = computed(() => {
 const computedDescription = computed(() => {
   return selectedTemplate.value || form.value.description;
 });
+
+// 画像をFirebase Storageにアップロードする関数
+const uploadImage = async (file: File): Promise<string> => {
+  const timestamp = Date.now();
+  const fileName = `organiser-images/${invitationId}/${timestamp}_${file.name}`;
+  const imageRef = storageRef(storage, fileName);
+
+  const snapshot = await uploadBytes(imageRef, file);
+  const downloadURL = await getDownloadURL(snapshot.ref);
+
+  return downloadURL;
+};
 
 onMounted(async () => {
   if (!invitationId) {
@@ -204,27 +268,46 @@ onMounted(async () => {
 });
 
 const handleSubmit = async () => {
-  const docRef = doc(db, 'invitations', invitationId as string);
-  await updateDoc(docRef, {
-    title: form.value.title,
-    date: form.value.date,
-    startTime: form.value.startTime,
-    endTime: form.value.endTime,
-    receptionStartTime: form.value.receptionStartTime,
-    venueName: form.value.venueName,
-    venueAddress: form.value.venueAddress,
-    venueUrl: form.value.venueUrl,
-    mapEmbedUrl: form.value.mapEmbedUrl,
-    nearestStation: form.value.nearestStation,
-    deadline: form.value.deadline,
-    schoolName: form.value.schoolName,
-    graduationYear: form.value.graduationYear,
-    fee: form.value.fee,
-    description: computedDescription.value,
-    remarks: form.value.remarks,
-  });
-  alert('招待状を更新しました');
-  router.push(`/dashboard/invitation/${invitationId}`);
+  try {
+    isUploading.value = true;
+
+    let organiserImageUrl = form.value.organiserImageUrl;
+
+    // 新しい画像がアップロードされた場合
+    if (organiserImage.value.length > 0) {
+      organiserImageUrl = await uploadImage(organiserImage.value[0]);
+    }
+
+    const docRef = doc(db, 'invitations', invitationId as string);
+    await updateDoc(docRef, {
+      title: form.value.title,
+      date: form.value.date,
+      startTime: form.value.startTime,
+      endTime: form.value.endTime,
+      receptionStartTime: form.value.receptionStartTime,
+      venueName: form.value.venueName,
+      venueAddress: form.value.venueAddress,
+      venueUrl: form.value.venueUrl,
+      mapEmbedUrl: form.value.mapEmbedUrl,
+      nearestStation: form.value.nearestStation,
+      deadline: form.value.deadline,
+      schoolName: form.value.schoolName,
+      graduationYear: form.value.graduationYear,
+      fee: form.value.fee,
+      description: computedDescription.value,
+      remarks: form.value.remarks,
+      organiserName: form.value.organiserName,
+      organiserImageUrl: organiserImageUrl,
+    });
+
+    alert('招待状を更新しました');
+    router.push(`/dashboard/invitation/${invitationId}`);
+  } catch (error) {
+    console.error('Error updating invitation:', error);
+    alert('更新中にエラーが発生しました');
+  } finally {
+    isUploading.value = false;
+  }
 };
 
 const handleCancel = () => {

@@ -17,6 +17,8 @@ export interface Invitation {
   description: string;
   remarks: string;
   creatorId: string;
+  organiserName: string;
+  organiserImageUrl?: string;
 }
 
 export interface Countdown {
