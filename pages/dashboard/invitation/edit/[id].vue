@@ -129,15 +129,25 @@
         hint="幹事の写真をアップロードしてください"
         persistent-hint
       />
-      <div v-if="form.organiserImageUrl" class="mb-4">
-        <p class="text-caption mb-2">現在の幹事画像:</p>
+
+      <!-- プレビュー画像表示 -->
+      <div v-if="imagePreviewUrl || form.organiserImageUrl" class="mb-4">
+        <p class="text-caption mb-2">
+          {{
+            imagePreviewUrl ? '選択された画像のプレビュー:' : '現在の幹事画像:'
+          }}
+        </p>
         <v-img
-          :src="form.organiserImageUrl"
+          :src="imagePreviewUrl || form.organiserImageUrl"
           max-width="200"
           max-height="200"
           class="rounded"
         />
+        <p v-if="imagePreviewUrl" class="text-caption text-warning mt-2">
+          ※ 保存ボタンを押すと、この画像に更新されます
+        </p>
       </div>
+
       <v-select
         v-model="selectedTemplate"
         :items="descriptionTemplates"
@@ -184,7 +194,7 @@ import {
 import { useFirebase } from '@/composables/useFirebase';
 import { useAuthStore } from '@/stores/auth';
 import { generateDescriptionTemplates } from '@/constants/descriptionTemplates';
-import { ref, computed, onMounted } from 'vue';
+import { ref, computed, onMounted, watch } from 'vue';
 import type { Invitation } from '@/types/invitation';
 
 definePageMeta({ layout: 'dashboard' });
@@ -221,6 +231,7 @@ const selectedTemplate = ref('');
 const formRef = ref(null);
 const organiserImage = ref<File[]>([]);
 const isUploading = ref(false);
+const imagePreviewUrl = ref<string>('');
 
 // Firebase Storage の設定
 const storage = getStorage();
@@ -234,6 +245,20 @@ const descriptionTemplates = computed(() => {
 
 const computedDescription = computed(() => {
   return selectedTemplate.value || form.value.description;
+});
+
+// 画像選択時にプレビューURLを生成
+watch(organiserImage, (newFiles) => {
+  if (newFiles && newFiles.length > 0) {
+    const file = newFiles[0];
+    imagePreviewUrl.value = URL.createObjectURL(file);
+  } else {
+    // 画像が選択解除された場合、プレビューをクリア
+    if (imagePreviewUrl.value) {
+      URL.revokeObjectURL(imagePreviewUrl.value);
+      imagePreviewUrl.value = '';
+    }
+  }
 });
 
 // 古い画像をFirebase Storageから削除する関数
@@ -320,6 +345,11 @@ const handleSubmit = async () => {
       organiserImageUrl: organiserImageUrl,
     });
 
+    // プレビューURLをクリーンアップ
+    if (imagePreviewUrl.value) {
+      URL.revokeObjectURL(imagePreviewUrl.value);
+    }
+
     alert('招待状を更新しました');
     router.push(`/dashboard/invitation/${invitationId}`);
   } catch (error) {
@@ -331,6 +361,10 @@ const handleSubmit = async () => {
 };
 
 const handleCancel = () => {
+  // プレビューURLをクリーンアップ
+  if (imagePreviewUrl.value) {
+    URL.revokeObjectURL(imagePreviewUrl.value);
+  }
   router.push(`/dashboard/invitation/${invitationId}`);
 };
 </script>
