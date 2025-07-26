@@ -339,7 +339,20 @@ const addOrganiser = () => {
 };
 
 // 幹事を削除
-const removeOrganiser = (index: number) => {
+const removeOrganiser = async (index: number) => {
+  const organiser = organisers.value[index];
+
+  try {
+    // Firebase Storageから画像を削除
+    if (organiser.imageUrl) {
+      await deleteOldImage(organiser.imageUrl);
+      console.log('幹事の画像をStorageから削除しました:', organiser.imageUrl);
+    }
+  } catch (error) {
+    console.warn('幹事の画像削除に失敗しました:', error);
+    // エラーが発生しても削除処理は続行
+  }
+
   // プレビューURLをクリーンアップ
   const previewUrl = previewUrls.value.get(index);
   if (previewUrl) {
@@ -369,6 +382,7 @@ const deleteOldImage = async (imageUrl: string): Promise<void> => {
     console.log('古い画像を削除しました:', imageUrl);
   } catch (error) {
     console.warn('古い画像の削除に失敗しました:', error);
+    throw error; // エラーを再throw
   }
 };
 
