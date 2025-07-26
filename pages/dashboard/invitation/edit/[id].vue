@@ -179,6 +179,7 @@ import {
   ref as storageRef,
   uploadBytes,
   getDownloadURL,
+  deleteObject,
 } from 'firebase/storage';
 import { useFirebase } from '@/composables/useFirebase';
 import { useAuthStore } from '@/stores/auth';
@@ -235,6 +236,19 @@ const computedDescription = computed(() => {
   return selectedTemplate.value || form.value.description;
 });
 
+// 古い画像をFirebase Storageから削除する関数
+const deleteOldImage = async (imageUrl: string): Promise<void> => {
+  try {
+    // Firebase Storage URLから参照を作成
+    const imageRef = storageRef(storage, imageUrl);
+    await deleteObject(imageRef);
+    console.log('古い画像を削除しました:', imageUrl);
+  } catch (error) {
+    console.warn('古い画像の削除に失敗しました:', error);
+    // 削除に失敗しても処理は続行する
+  }
+};
+
 // 画像をFirebase Storageにアップロードする関数
 const uploadImage = async (file: File): Promise<string> => {
   const timestamp = Date.now();
@@ -275,6 +289,12 @@ const handleSubmit = async () => {
 
     // 新しい画像がアップロードされた場合
     if (organiserImage.value.length > 0) {
+      // 既存の画像がある場合は削除
+      if (form.value.organiserImageUrl) {
+        await deleteOldImage(form.value.organiserImageUrl);
+      }
+
+      // 新しい画像をアップロード
       organiserImageUrl = await uploadImage(organiserImage.value[0]);
     }
 
