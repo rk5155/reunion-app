@@ -43,6 +43,49 @@
         </div>
       </v-card-text>
 
+      <v-card-text class="py-10 bg-grey-lighten-5" data-aos="fade-up">
+        <h2 class="text-h5 font-weight-bold mb-4 text-black">ORGANIZERS</h2>
+        <p class="mb-6 text-black">代表幹事</p>
+
+        <div class="organizers-container max-width-800">
+          <div
+            v-for="(organiser, index) in invitation.organisers"
+            :key="index"
+            class="organiser-card mb-4 pa-4 bg-white rounded elevation-2"
+          >
+            <div>
+              <div class="organiser-image-container mb-3">
+                <v-avatar
+                  v-if="organiser.imageUrl"
+                  size="150"
+                  class="elevation-3"
+                >
+                  <v-img
+                    :src="organiser.imageUrl"
+                    :alt="organiser.name"
+                    cover
+                  />
+                </v-avatar>
+                <v-avatar
+                  v-else
+                  size="80"
+                  color="grey-lighten-2"
+                  class="elevation-3"
+                >
+                  <v-icon size="40" color="grey-darken-1">mdi-account</v-icon>
+                </v-avatar>
+              </div>
+
+              <div class="organiser-info flex-grow-1 text-center">
+                <h3 class="text-h6 font-weight-bold text-black mb-1">
+                  {{ organiser.name }}
+                </h3>
+              </div>
+            </div>
+          </div>
+        </div>
+      </v-card-text>
+
       <common-share-buttons
         :title="invitation.title"
         class="py-10 px-4"
@@ -309,7 +352,7 @@ import { useUIStore } from '@/stores/ui';
 import { useAuthStore } from '@/stores/auth';
 import { useCheckout } from '@/composables/useCheckout';
 import { getFormattedDate } from '@/utils/date';
-import type { Invitation, Countdown } from '@/types/invitation';
+import type { Invitation, Countdown, Organiser } from '@/types/invitation';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import Writer from 't-writer.js';
@@ -338,6 +381,8 @@ const invitation = ref<Invitation>({
   creatorId: '',
   remarks: '',
   receptionStartTime: '',
+  organiserName: '',
+  organiserImageUrl: '',
 });
 
 const countdown = ref<Countdown>({
@@ -354,10 +399,12 @@ onMounted(async () => {
   const docRef = doc(db, 'invitations', invitationId as string);
   const docSnap = await getDoc(docRef);
 
-  invitation.value = {
-    id: docSnap.id,
-    ...(docSnap.data() as Invitation),
-  };
+  if (docSnap.exists()) {
+    invitation.value = {
+      id: docSnap.id,
+      ...(docSnap.data() as Invitation),
+    };
+  }
 
   updateCountdown();
 
@@ -616,5 +663,26 @@ h2 {
 
 .max-width-800 {
   max-width: 800px;
+  margin: 0 auto;
+}
+
+.organizers-container {
+  margin: 0 auto;
+}
+
+.organiser-card {
+  transition: transform 0.2s ease;
+}
+
+.organiser-card:hover {
+  transform: translateY(-2px);
+}
+
+.organiser-image-container {
+  flex-shrink: 0;
+}
+
+.organiser-info {
+  text-align: left;
 }
 </style>
