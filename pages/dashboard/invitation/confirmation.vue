@@ -13,11 +13,11 @@
         <p class="text-body-1 mb-6">
           同窓会当日にお会いできるのを<br />楽しみにしております。
         </p>
-        <p class="text-success font-weight-bold text-h6 mb-6">
+        <!-- <p class="text-success font-weight-bold text-h6 mb-6">
           メールを送信しましたので<br />ご確認ください。
-        </p>
+        </p> -->
 
-        <v-btn
+        <!-- <v-btn
           color="cyan-darken-1"
           @click="handleBackToDetail"
           class="mt-4 font-weight-bold"
@@ -25,7 +25,7 @@
           rounded="xl"
         >
           招待状に戻る
-        </v-btn>
+        </v-btn> -->
       </template>
       <template v-else>
         <v-icon color="red-darken-1" size="100" class="mb-6">
@@ -91,9 +91,9 @@ onMounted(async () => {
 //   await deleteReservation();
 // };
 
-const handleBackToDetail = () => {
-  router.push(`/dashboard/invitation/${reservationData.value.invitationId}`);
-};
+// const handleBackToDetail = () => {
+//   router.push(`/dashboard/invitation/${reservationData.value.invitationId}`);
+// };
 
 // const fetchReservationData = async () => {
 //   const reservationRef = doc(db, 'reservations', reservationId as string);
