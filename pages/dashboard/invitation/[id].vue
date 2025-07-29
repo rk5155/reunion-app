@@ -15,8 +15,9 @@
 
       <h1
         class="invitation-title text-center text-h6 font-weight-bold bg-white d-flex justify-center align-center"
-        ref="titleRef"
-      ></h1>
+      >
+        {{ invitation.title }}
+      </h1>
 
       <v-card class="semi-transparent-card">
         <v-img
@@ -378,7 +379,6 @@ import { getFormattedDate } from '@/utils/date';
 import type { Invitation, Countdown, Organiser } from '@/types/invitation';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
-import Writer from 't-writer.js';
 import { ref, onMounted, computed } from 'vue';
 
 const showSagiExplanation = ref(false);
@@ -418,7 +418,6 @@ const countdown = ref<Countdown>({
 });
 
 const attendeeCount = ref(0);
-const titleRef = ref<HTMLElement | null>(null);
 
 onMounted(async () => {
   try {
@@ -446,14 +445,6 @@ onMounted(async () => {
       duration: 2000,
       once: true,
     });
-
-    if (titleRef.value) {
-      titleRef.value.textContent = '';
-      const writer = new Writer(titleRef.value, {
-        typeSpeed: 200,
-      });
-      writer.type(invitation.value.title).start();
-    }
   } catch (error) {
     console.error('データの読み込みに失敗しました:', error);
     isLoading.value = false;
