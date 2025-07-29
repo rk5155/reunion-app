@@ -14,7 +14,7 @@
           同窓会当日にお会いできるのを<br />楽しみにしております。
         </p>
         <p class="text-success font-weight-bold text-h6 mb-6">
-          確認メールを送信しましたので<br />ご確認ください。
+          メールを送信しましたので<br />ご確認ください。
         </p>
 
         <v-btn
