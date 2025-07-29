@@ -103,13 +103,17 @@
         </div>
       </common-share-buttons>
 
-      <v-card-text class="py-10 bg-grey-lighten-4" data-aos="fade-up">
+      <v-card-text
+        v-if="showAttendeeCount"
+        class="py-10 bg-grey-lighten-4"
+        data-aos="fade-up"
+      >
         <h2 class="text-h5 font-weight-bold mb-4 text-black">
           CURRENT PARTICIPATION
         </h2>
         <p class="mb-2">現在の参加状況</p>
         <p class="text-h4 font-weight-bold text-cyan-lighten-2">
-          {{ attendeeCount + 20 }} 人
+          {{ attendeeCount }} 人
         </p>
       </v-card-text>
 
@@ -359,6 +363,7 @@ import Writer from 't-writer.js';
 import { ref, onMounted, computed } from 'vue';
 
 const showSagiExplanation = ref();
+const showAttendeeCount = ref();
 const SERVICE_FEE = 980;
 const { db } = useFirebase();
 const router = useRouter();
@@ -407,6 +412,7 @@ onMounted(async () => {
     };
 
     showSagiExplanation.value = data.showSagiExplanation;
+    showAttendeeCount.value = data.showAttendeeCount;
   }
 
   updateCountdown();

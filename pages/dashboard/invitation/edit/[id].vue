@@ -120,6 +120,16 @@
         persistent-hint
       />
 
+      <v-switch
+        v-model="form.showAttendeeCount"
+        label="現在の参加状況を表示する"
+        class="mb-4"
+        color="primary"
+        inset
+        hint="招待状に現在の参加者数を表示するかどうかを設定します"
+        persistent-hint
+      />
+
       <!-- 幹事セクション -->
       <v-card class="mb-4" outlined>
         <v-card-title class="text-h6">
@@ -289,6 +299,7 @@ const form = ref<Invitation>({
   organiserName: '',
   organiserImageUrl: '',
   showSagiExplanation: false,
+  showAttendeeCount: false,
 });
 
 const selectedTemplate = ref('');
@@ -512,6 +523,7 @@ const handleSubmit = async () => {
       organiserImageUrl: firstOrganiser?.imageUrl || '',
       organisers: updatedOrganisers,
       showSagiExplanation: form.value.showSagiExplanation,
+      showAttendeeCount: form.value.showAttendeeCount,
     });
 
     // プレビューURLをクリーンアップ
