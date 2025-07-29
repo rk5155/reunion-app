@@ -1,336 +1,355 @@
 <template>
-  <invitation-sagi-explanation v-if="showSagiExplanation" />
+  <div
+    v-if="isLoading"
+    class="d-flex justify-center align-center"
+    style="min-height: 100vh"
+  >
+    <v-progress-circular indeterminate size="64" color="primary" />
+  </div>
 
-  <div v-else class="invitation-detail text-center pa-0">
-    <common-loading-overlay :visible="uiStore.loading" />
+  <template v-else>
+    <invitation-sagi-explanation v-if="showSagiExplanation" />
 
-    <h1
-      class="invitation-title text-center text-h6 font-weight-bold bg-white d-flex justify-center align-center"
-      ref="titleRef"
-    ></h1>
+    <div class="invitation-detail text-center pa-0">
+      <common-loading-overlay :visible="uiStore.loading" />
 
-    <v-card class="semi-transparent-card">
-      <v-img
-        src="/images/invitation.jpg"
-        alt="イベント画像"
-        class="event-image mb-4 rounded-0"
-        contain
-      />
+      <h1
+        class="invitation-title text-center text-h6 font-weight-bold bg-white d-flex justify-center align-center"
+        ref="titleRef"
+      ></h1>
 
-      <div class="my-16" data-aos="fade-up">
-        <p class="mb-3 text-grey-darken-3 text-caption">
-          Where memories meet, and stories begin.
-        </p>
-        <h2 class="ttl_center5 text-h3 font-weight-bold text-black mb-3">
-          REUNION INVITATIONS
-        </h2>
-        <p class="text-grey-darken-3 text-caption">
-          Together again, to cherish the moments we share.
-        </p>
-      </div>
-
-      <v-card-text class="bg-black py-10" data-aos="fade-up">
+      <v-card class="semi-transparent-card">
         <v-img
-          src="/images/invitation-2.jpg"
-          class="event-image rounded-0"
+          src="/images/invitation.jpg"
+          alt="イベント画像"
+          class="event-image mb-4 rounded-0"
           contain
         />
-        <div class="pt-10">
-          <h2 class="text-center text-h6 font-weight-bold mb-4">
-            {{ invitation.title }}
+
+        <div class="my-16" data-aos="fade-up">
+          <p class="mb-3 text-grey-darken-3 text-caption">
+            Where memories meet, and stories begin.
+          </p>
+          <h2 class="ttl_center5 text-h3 font-weight-bold text-black mb-3">
+            REUNION INVITATIONS
           </h2>
-          <p class="text-pre-line">{{ invitation.description }}</p>
-        </div>
-      </v-card-text>
-
-      <v-card-text class="py-10 bg-grey-lighten-5" data-aos="fade-up">
-        <h2 class="text-h5 font-weight-bold mb-4 text-black">ORGANIZERS</h2>
-        <p class="mb-6 text-black">代表幹事</p>
-
-        <div class="organizers-container max-width-800">
-          <div
-            v-for="(organiser, index) in invitation.organisers"
-            :key="index"
-            class="organiser-card mb-4 pa-4 bg-white rounded elevation-2"
-          >
-            <div>
-              <div class="organiser-image-container mb-3">
-                <v-avatar
-                  v-if="organiser.imageUrl"
-                  size="150"
-                  class="elevation-3"
-                >
-                  <v-img
-                    :src="organiser.imageUrl"
-                    :alt="organiser.name"
-                    cover
-                  />
-                </v-avatar>
-                <v-avatar
-                  v-else
-                  size="80"
-                  color="grey-lighten-2"
-                  class="elevation-3"
-                >
-                  <v-icon size="40" color="grey-darken-1">mdi-account</v-icon>
-                </v-avatar>
-              </div>
-
-              <div class="organiser-info flex-grow-1 text-center">
-                <h3 class="text-h6 font-weight-bold text-black mb-1">
-                  {{ organiser.name }}
-                </h3>
-              </div>
-            </div>
-          </div>
-        </div>
-      </v-card-text>
-
-      <common-share-buttons
-        :title="invitation.title"
-        class="py-10 px-4"
-        data-aos="fade-up"
-      >
-        <h2 class="mb-4 text-black">幹事からのお願い</h2>
-        <div class="mb-6">
-          <p>
-            このページをまだ同窓会の開催を知らなそうな<br />
-            同級生に拡散してください！
-          </p>
-          <p>
-            一人でも多くの同窓生と再会できるように<br />ご協力をお願いいたします！
+          <p class="text-grey-darken-3 text-caption">
+            Together again, to cherish the moments we share.
           </p>
         </div>
-      </common-share-buttons>
 
-      <v-card-text
-        v-if="showAttendeeCount"
-        class="py-10 bg-grey-lighten-4"
-        data-aos="fade-up"
-      >
-        <h2 class="text-h5 font-weight-bold mb-4 text-black">
-          CURRENT PARTICIPATION
-        </h2>
-        <p class="mb-2">現在の参加状況</p>
-        <p class="text-h4 font-weight-bold text-cyan-lighten-2">
-          {{ attendeeCount }} 人
-        </p>
-      </v-card-text>
-
-      <v-card-text class="py-10 bg-grey-darken-4" data-aos="fade-up">
-        <div class="max-width-800">
-          <h2 class="text-h5 font-weight-bold mb-4">COUNTDOWN</h2>
-          <div class="text-h4 font-weight-bold mb-4">
-            to {{ invitation.date }}
+        <v-card-text class="bg-black py-10" data-aos="fade-up">
+          <v-img
+            src="/images/invitation-2.jpg"
+            class="event-image rounded-0"
+            contain
+          />
+          <div class="pt-10">
+            <h2 class="text-center text-h6 font-weight-bold mb-4">
+              {{ invitation.title }}
+            </h2>
+            <p class="text-pre-line">{{ invitation.description }}</p>
           </div>
-          <div
-            class="text-h4 font-weight-bold text-danger d-flex justify-space-between"
-          >
-            <div class="w-25">
-              <div>{{ countdown.days }}</div>
-              <div class="countdown-label text-cyan-lighten-4 font-weight-bold">
-                Days
-              </div>
-            </div>
-            <div class="w-25">
-              <div>{{ countdown.hours }}</div>
-              <div class="countdown-label text-cyan-lighten-4 font-weight-bold">
-                Hours
-              </div>
-            </div>
-            <div class="w-25">
-              <div>{{ countdown.minutes }}</div>
-              <div class="countdown-label text-cyan-lighten-4 font-weight-bold">
-                Minutes
-              </div>
-            </div>
-            <div class="w-25">
-              <div>{{ countdown.seconds }}</div>
-              <div class="countdown-label text-cyan-lighten-4 font-weight-bold">
-                Seconds
-              </div>
-            </div>
-          </div>
-        </div>
-      </v-card-text>
+        </v-card-text>
 
-      <v-card-text class="py-10 text-left max-width-800" data-aos="fade-up">
-        <h2 class="text-h5 font-weight-bold mb-4 text-center text-black">
-          INFORMATION
-        </h2>
-        <v-table>
-          <tbody>
-            <tr>
-              <td class="w-25">開催日</td>
-              <td>{{ getFormattedDate(invitation.date) }}</td>
-            </tr>
-            <tr>
-              <td class="w-25">受付開始</td>
-              <td>{{ invitation.receptionStartTime }}〜</td>
-            </tr>
-            <tr>
-              <td class="w-25">時間</td>
-              <td>{{ invitation.startTime }} - {{ invitation.endTime }}</td>
-            </tr>
-            <tr>
-              <td class="w-25">会場名</td>
-              <td>{{ invitation.venueName }}</td>
-            </tr>
-            <tr>
-              <td class="w-25">会費</td>
-              <td class="py-4">
-                {{ invitation.fee }}円<br />
-                ※当日受付にてお支払いください。
-              </td>
-            </tr>
-            <tr>
-              <td class="w-25">手数料</td>
-              <td class="py-4">
-                {{ SERVICE_FEE }}円<br /><br />
-                ※同窓会の円滑な開催のため、企画プランニングやWEB案内状作成、受付・精算対応、写真撮影など、運営を一括でサポートする同窓会代行サービス(リユニオンアップ)を活用しています。<br /><br />
-                このため、同窓会代行サービス利用手数料{{
-                  SERVICE_FEE
-                }}円を別途頂戴しております。<br /><br />
-                ご理解とご協力のほど何卒よろしくお願いいたします。<br />
-                申込時に決済を行いますので、予めご了承ください。<br /><br />
+        <v-card-text class="py-10 bg-grey-lighten-5" data-aos="fade-up">
+          <h2 class="text-h5 font-weight-bold mb-4 text-black">ORGANIZERS</h2>
+          <p class="mb-6 text-black">代表幹事</p>
 
-                <a
-                  href="/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="text-primary font-weight-bold text-decoration-underline"
-                >
-                  詳細はこちら
-                </a>
-              </td>
-            </tr>
-
-            <tr>
-              <td class="w-25">会場地図</td>
-              <td class="py-4">
-                <div class="map-container">
-                  <iframe
-                    :src="invitation.mapEmbedUrl"
-                    width="100%"
-                    height="300"
-                    style="border: 0"
-                    loading="lazy"
-                    referrerpolicy="no-referrer-when-downgrade"
-                    class="rounded"
-                  ></iframe>
+          <div class="organizers-container max-width-800">
+            <div
+              v-for="(organiser, index) in invitation.organisers"
+              :key="index"
+              class="organiser-card mb-4 pa-4 bg-white rounded elevation-2"
+            >
+              <div>
+                <div class="organiser-image-container mb-3">
+                  <v-avatar
+                    v-if="organiser.imageUrl"
+                    size="150"
+                    class="elevation-3"
+                  >
+                    <v-img
+                      :src="organiser.imageUrl"
+                      :alt="organiser.name"
+                      cover
+                    />
+                  </v-avatar>
+                  <v-avatar
+                    v-else
+                    size="80"
+                    color="grey-lighten-2"
+                    class="elevation-3"
+                  >
+                    <v-icon size="40" color="grey-darken-1">mdi-account</v-icon>
+                  </v-avatar>
                 </div>
-              </td>
-            </tr>
 
-            <tr>
-              <td class="w-25">会場住所</td>
-              <td class="py-4">{{ invitation.venueAddress }}</td>
-            </tr>
-            <tr>
-              <td class="w-25">アクセス</td>
-              <td class="py-4">{{ invitation.nearestStation }}</td>
-            </tr>
-            <tr>
-              <td class="w-25">会場URL</td>
-              <td class="py-4">
-                <a
-                  :href="invitation.venueUrl"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="text-primary font-weight-bold"
-                >
-                  {{ invitation.venueUrl }}
-                </a>
-              </td>
-            </tr>
-            <tr>
-              <td class="w-25">備考</td>
-              <td class="py-4 text-pre-line">{{ invitation.remarks }}</td>
-            </tr>
-          </tbody>
-        </v-table>
-        <div class="mt-8 text-center">
-          <p class="mb-4">
-            ご不明点、ご不安な点があれば、お気軽にお問い合わせください。
-          </p>
-          <v-btn
-            href="/contact"
-            target="_blank"
-            rel="noopener noreferrer"
-            color="primary"
-            size="large"
-            class="text-white font-weight-bold w-100"
-            prepend-icon="mdi-email"
-          >
-            お問い合わせ
-          </v-btn>
-        </div>
-      </v-card-text>
-
-      <v-card-text class="py-10 bg-grey-lighten-2" data-aos="fade-up">
-        <h2 class="text-h5 font-weight-bold mb-4 text-black">
-          PRESENCE OR ABSENCE
-        </h2>
-        <div class="max-width-800">
-          <div class="new-action-design-tm-Heading3 mb-4">
-            お手数ですが　下記お日にち迄に<br />
-            出欠情報のご連絡をお願い申し上げます<br />
-            <div class="text-h5 mt-4 font-weight-bold text-pink-accent-3">
-              出欠締切日：{{ getFormattedDate(invitation.deadline) }}
+                <div class="organiser-info flex-grow-1 text-center">
+                  <h3 class="text-h6 font-weight-bold text-black mb-1">
+                    {{ organiser.name }}
+                  </h3>
+                </div>
+              </div>
             </div>
           </div>
-          <p class="mb-4 text-left">
-            下記のフォームから同窓会への参加の可否を投稿してください。
-            投稿後に再度出欠を変更することも可能です。
+        </v-card-text>
+
+        <common-share-buttons
+          :title="invitation.title"
+          class="py-10 px-4"
+          data-aos="fade-up"
+        >
+          <h2 class="mb-4 text-black">幹事からのお願い</h2>
+          <div class="mb-6">
+            <p>
+              このページをまだ同窓会の開催を知らなそうな<br />
+              同級生に拡散してください！
+            </p>
+            <p>
+              一人でも多くの同窓生と再会できるように<br />ご協力をお願いいたします！
+            </p>
+          </div>
+        </common-share-buttons>
+
+        <v-card-text
+          v-if="showAttendeeCount"
+          class="py-10 bg-grey-lighten-4"
+          data-aos="fade-up"
+        >
+          <h2 class="text-h5 font-weight-bold mb-4 text-black">
+            CURRENT PARTICIPATION
+          </h2>
+          <p class="mb-2">現在の参加状況</p>
+          <p class="text-h4 font-weight-bold text-cyan-lighten-2">
+            {{ attendeeCount }} 人
           </p>
-          <p class="mb-4 text-left">個人情報の取り扱いについて</p>
-          <p class="text-left mb-8">
-            ・本フォームにて入力をいただいた情報は、同窓会の出欠確認および同窓会に関するご連絡にのみ利用をさせていただきます。<br />
-            お客様の個人情報は、当社の個人情報の取り扱いについてに則りお取り扱いをいたします。<br />
-            <a
-              href="/privacy"
+        </v-card-text>
+
+        <v-card-text class="py-10 bg-grey-darken-4" data-aos="fade-up">
+          <div class="max-width-800">
+            <h2 class="text-h5 font-weight-bold mb-4">COUNTDOWN</h2>
+            <div class="text-h4 font-weight-bold mb-4">
+              to {{ invitation.date }}
+            </div>
+            <div
+              class="text-h4 font-weight-bold text-danger d-flex justify-space-between"
+            >
+              <div class="w-25">
+                <div>{{ countdown.days }}</div>
+                <div
+                  class="countdown-label text-cyan-lighten-4 font-weight-bold"
+                >
+                  Days
+                </div>
+              </div>
+              <div class="w-25">
+                <div>{{ countdown.hours }}</div>
+                <div
+                  class="countdown-label text-cyan-lighten-4 font-weight-bold"
+                >
+                  Hours
+                </div>
+              </div>
+              <div class="w-25">
+                <div>{{ countdown.minutes }}</div>
+                <div
+                  class="countdown-label text-cyan-lighten-4 font-weight-bold"
+                >
+                  Minutes
+                </div>
+              </div>
+              <div class="w-25">
+                <div>{{ countdown.seconds }}</div>
+                <div
+                  class="countdown-label text-cyan-lighten-4 font-weight-bold"
+                >
+                  Seconds
+                </div>
+              </div>
+            </div>
+          </div>
+        </v-card-text>
+
+        <v-card-text class="py-10 text-left max-width-800" data-aos="fade-up">
+          <h2 class="text-h5 font-weight-bold mb-4 text-center text-black">
+            INFORMATION
+          </h2>
+          <v-table>
+            <tbody>
+              <tr>
+                <td class="w-25">開催日</td>
+                <td>{{ getFormattedDate(invitation.date) }}</td>
+              </tr>
+              <tr>
+                <td class="w-25">受付開始</td>
+                <td>{{ invitation.receptionStartTime }}〜</td>
+              </tr>
+              <tr>
+                <td class="w-25">時間</td>
+                <td>{{ invitation.startTime }} - {{ invitation.endTime }}</td>
+              </tr>
+              <tr>
+                <td class="w-25">会場名</td>
+                <td>{{ invitation.venueName }}</td>
+              </tr>
+              <tr>
+                <td class="w-25">会費</td>
+                <td class="py-4">
+                  {{ invitation.fee }}円<br />
+                  ※当日受付にてお支払いください。
+                </td>
+              </tr>
+              <tr>
+                <td class="w-25">手数料</td>
+                <td class="py-4">
+                  {{ SERVICE_FEE }}円<br /><br />
+                  ※同窓会の円滑な開催のため、企画プランニングやWEB案内状作成、受付・精算対応、写真撮影など、運営を一括でサポートする同窓会代行サービス(リユニオンアップ)を活用しています。<br /><br />
+                  このため、同窓会代行サービス利用手数料{{
+                    SERVICE_FEE
+                  }}円を別途頂戴しております。<br /><br />
+                  ご理解とご協力のほど何卒よろしくお願いいたします。<br />
+                  申込時に決済を行いますので、予めご了承ください。<br /><br />
+
+                  <a
+                    href="/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="text-primary font-weight-bold text-decoration-underline"
+                  >
+                    詳細はこちら
+                  </a>
+                </td>
+              </tr>
+
+              <tr>
+                <td class="w-25">会場地図</td>
+                <td class="py-4">
+                  <div class="map-container">
+                    <iframe
+                      :src="invitation.mapEmbedUrl"
+                      width="100%"
+                      height="300"
+                      style="border: 0"
+                      loading="lazy"
+                      referrerpolicy="no-referrer-when-downgrade"
+                      class="rounded"
+                    ></iframe>
+                  </div>
+                </td>
+              </tr>
+
+              <tr>
+                <td class="w-25">会場住所</td>
+                <td class="py-4">{{ invitation.venueAddress }}</td>
+              </tr>
+              <tr>
+                <td class="w-25">アクセス</td>
+                <td class="py-4">{{ invitation.nearestStation }}</td>
+              </tr>
+              <tr>
+                <td class="w-25">会場URL</td>
+                <td class="py-4">
+                  <a
+                    :href="invitation.venueUrl"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="text-primary font-weight-bold"
+                  >
+                    {{ invitation.venueUrl }}
+                  </a>
+                </td>
+              </tr>
+              <tr>
+                <td class="w-25">備考</td>
+                <td class="py-4 text-pre-line">{{ invitation.remarks }}</td>
+              </tr>
+            </tbody>
+          </v-table>
+          <div class="mt-8 text-center">
+            <p class="mb-4">
+              ご不明点、ご不安な点があれば、お気軽にお問い合わせください。
+            </p>
+            <v-btn
+              href="/contact"
               target="_blank"
               rel="noopener noreferrer"
-              class="text-primary font-weight-bold"
+              color="primary"
+              size="large"
+              class="text-white font-weight-bold w-100"
+              prepend-icon="mdi-email"
             >
-              個人情報の取扱いについて </a
-            >内容に同意の上、入力情報を送信してください。　
-          </p>
-          <p class="text-left mb-8 text-danger text-red">
-            ※お申し込み時に発生する手数料（{{ SERVICE_FEE }}円）は、
-            代行サービスの利用開始と同時に発生するため、<br />
-            ご本人都合によるキャンセルや、万が一の開催中止となった場合でも、
-            ご返金はできかねます。<br />
-            あらかじめご理解のほど、何卒よろしくお願いいたします。
-          </p>
-
-          <div
-            v-if="isDeadlinePassed"
-            class="text-danger font-weight-bold mt-2"
-          >
-            受付は終了しました。
+              お問い合わせ
+            </v-btn>
           </div>
+        </v-card-text>
 
-          <invitation-form v-else class="mt-4" @submit="handleFormSubmit" />
-        </div>
-      </v-card-text>
+        <v-card-text class="py-10 bg-grey-lighten-2" data-aos="fade-up">
+          <h2 class="text-h5 font-weight-bold mb-4 text-black">
+            PRESENCE OR ABSENCE
+          </h2>
+          <div class="max-width-800">
+            <div class="new-action-design-tm-Heading3 mb-4">
+              お手数ですが　下記お日にち迄に<br />
+              出欠情報のご連絡をお願い申し上げます<br />
+              <div class="text-h5 mt-4 font-weight-bold text-pink-accent-3">
+                出欠締切日：{{ getFormattedDate(invitation.deadline) }}
+              </div>
+            </div>
+            <p class="mb-4 text-left">
+              下記のフォームから同窓会への参加の可否を投稿してください。
+              投稿後に再度出欠を変更することも可能です。
+            </p>
+            <p class="mb-4 text-left">個人情報の取り扱いについて</p>
+            <p class="text-left mb-8">
+              ・本フォームにて入力をいただいた情報は、同窓会の出欠確認および同窓会に関するご連絡にのみ利用をさせていただきます。<br />
+              お客様の個人情報は、当社の個人情報の取り扱いについてに則りお取り扱いをいたします。<br />
+              <a
+                href="/privacy"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="text-primary font-weight-bold"
+              >
+                個人情報の取扱いについて </a
+              >内容に同意の上、入力情報を送信してください。　
+            </p>
+            <p class="text-left mb-8 text-danger text-red">
+              ※お申し込み時に発生する手数料（{{ SERVICE_FEE }}円）は、
+              代行サービスの利用開始と同時に発生するため、<br />
+              ご本人都合によるキャンセルや、万が一の開催中止となった場合でも、
+              ご返金はできかねます。<br />
+              あらかじめご理解のほど、何卒よろしくお願いいたします。
+            </p>
 
-      <common-share-buttons
-        :title="invitation.title"
-        class="py-10 px-4"
-        data-aos="fade-up"
-      />
+            <div
+              v-if="isDeadlinePassed"
+              class="text-danger font-weight-bold mt-2"
+            >
+              受付は終了しました。
+            </div>
 
-      <p
-        class="ttl_center5 text-h3 font-weight-bold my-16 text-black"
-        data-aos="fade-up"
-      >
-        Thank you!!
-      </p>
-    </v-card>
-  </div>
+            <invitation-form v-else class="mt-4" @submit="handleFormSubmit" />
+          </div>
+        </v-card-text>
+
+        <common-share-buttons
+          :title="invitation.title"
+          class="py-10 px-4"
+          data-aos="fade-up"
+        />
+
+        <p
+          class="ttl_center5 text-h3 font-weight-bold my-16 text-black"
+          data-aos="fade-up"
+        >
+          Thank you!!
+        </p>
+      </v-card>
+    </div>
+  </template>
+
   <div
-    v-if="isCreator"
+    v-if="isCreator && !isLoading"
     class="sticky-bottom d-flex justify-center pa-4 bg-white"
   >
     <v-btn color="primary" @click="handleEdit" class="mx-2"> 編集する </v-btn>
@@ -362,8 +381,9 @@ import 'aos/dist/aos.css';
 import Writer from 't-writer.js';
 import { ref, onMounted, computed } from 'vue';
 
-const showSagiExplanation = ref();
-const showAttendeeCount = ref();
+const showSagiExplanation = ref(false);
+const showAttendeeCount = ref(true);
+const isLoading = ref(true);
 const SERVICE_FEE = 980;
 const { db } = useFirebase();
 const router = useRouter();
@@ -401,36 +421,42 @@ const attendeeCount = ref(0);
 const titleRef = ref<HTMLElement | null>(null);
 
 onMounted(async () => {
-  const docRef = doc(db, 'invitations', invitationId as string);
-  const docSnap = await getDoc(docRef);
+  try {
+    const docRef = doc(db, 'invitations', invitationId as string);
+    const docSnap = await getDoc(docRef);
 
-  if (docSnap.exists()) {
-    const data = docSnap.data() as Invitation;
-    invitation.value = {
-      id: docSnap.id,
-      ...data,
-    };
+    if (docSnap.exists()) {
+      const data = docSnap.data() as Invitation;
+      invitation.value = {
+        id: docSnap.id,
+        ...data,
+      };
 
-    showSagiExplanation.value = data.showSagiExplanation;
-    showAttendeeCount.value = data.showAttendeeCount;
-  }
+      showSagiExplanation.value = data.showSagiExplanation ?? true;
+      showAttendeeCount.value = data.showAttendeeCount ?? true;
+    }
 
-  updateCountdown();
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+    await fetchAttendeeCount();
 
-  setInterval(updateCountdown, 1000);
-  await fetchAttendeeCount();
+    isLoading.value = false;
 
-  AOS.init({
-    duration: 2000,
-    once: true,
-  });
-
-  if (titleRef.value) {
-    titleRef.value.textContent = '';
-    const writer = new Writer(titleRef.value, {
-      typeSpeed: 200,
+    AOS.init({
+      duration: 2000,
+      once: true,
     });
-    writer.type(invitation.value.title).start();
+
+    if (titleRef.value) {
+      titleRef.value.textContent = '';
+      const writer = new Writer(titleRef.value, {
+        typeSpeed: 200,
+      });
+      writer.type(invitation.value.title).start();
+    }
+  } catch (error) {
+    console.error('データの読み込みに失敗しました:', error);
+    isLoading.value = false;
   }
 });
 
