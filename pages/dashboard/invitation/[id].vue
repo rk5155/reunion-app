@@ -267,22 +267,6 @@
               </tr>
             </tbody>
           </v-table>
-          <div class="mt-8 text-center">
-            <p class="mb-4">
-              ご不明点、ご不安な点があれば、お気軽にお問い合わせください。
-            </p>
-            <v-btn
-              href="/contact"
-              target="_blank"
-              rel="noopener noreferrer"
-              color="primary"
-              size="large"
-              class="text-white font-weight-bold w-100"
-              prepend-icon="mdi-email"
-            >
-              お問い合わせ
-            </v-btn>
-          </div>
         </v-card-text>
 
         <v-card-text class="py-10 bg-grey-lighten-2" data-aos="fade-up">
