@@ -201,7 +201,7 @@
                   ※当日受付にてお支払いください。
                 </td>
               </tr>
-              <tr>
+              <!-- <tr>
                 <td class="w-25">手数料</td>
                 <td class="py-4">
                   {{ SERVICE_FEE }}円<br /><br />
@@ -221,7 +221,7 @@
                     詳細はこちら
                   </a>
                 </td>
-              </tr>
+              </tr> -->
 
               <tr>
                 <td class="w-25">会場地図</td>
@@ -298,13 +298,13 @@
                 個人情報の取扱いについて </a
               >内容に同意の上、入力情報を送信してください。　
             </p>
-            <p class="text-left mb-8 text-danger text-red">
+            <!-- <p class="text-left mb-8 text-danger text-red">
               ※お申し込み時に発生する手数料（{{ SERVICE_FEE }}円）は、
               代行サービスの利用開始と同時に発生するため、<br />
               ご本人都合によるキャンセルや、万が一の開催中止となった場合でも、
               ご返金はできかねます。<br />
               あらかじめご理解のほど、何卒よろしくお願いいたします。
-            </p>
+            </p> -->
 
             <div
               v-if="isDeadlinePassed"
@@ -368,7 +368,7 @@ import { ref, onMounted, computed } from 'vue';
 const showSagiExplanation = ref(false);
 const showAttendeeCount = ref(true);
 const isLoading = ref(true);
-const SERVICE_FEE = 980;
+// const SERVICE_FEE = 980;
 const { db } = useFirebase();
 const router = useRouter();
 const route = useRoute();
