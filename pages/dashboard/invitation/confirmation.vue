@@ -67,66 +67,60 @@ const { db } = useFirebase();
 const reservationData = ref<any>(null);
 
 onMounted(async () => {
-  if (!isAttendance) return;
-
-  reservationData.value = await fetchReservationData();
-
-  const attendanceData = {
-    email: reservationData.value?.email,
-    name: reservationData.value?.name,
-    className: reservationData.value?.className,
-    isAttendance: reservationData.value?.isAttendance,
-    message: reservationData.value?.message,
-    invitationId: reservationData.value?.invitationId,
-  };
-
-  await saveAttendanceData(attendanceData);
-
-  const emailText = createEmailText(reservationData.value.invitation);
-
-  await sendConfirmationEmail(
-    reservationData.value?.email,
-    reservationData.value?.invitation?.title,
-    emailText
-  );
-
-  await deleteReservation();
+  // if (!isAttendance) return;
+  // reservationData.value = await fetchReservationData();
+  // const attendanceData = {
+  //   email: reservationData.value?.email,
+  //   name: reservationData.value?.name,
+  //   className: reservationData.value?.className,
+  //   isAttendance: reservationData.value?.isAttendance,
+  //   message: reservationData.value?.message,
+  //   invitationId: reservationData.value?.invitationId,
+  // };
+  // await saveAttendanceData(attendanceData);
+  // const emailText = createEmailText(reservationData.value.invitation);
+  // await sendConfirmationEmail(
+  //   reservationData.value?.email,
+  //   reservationData.value?.invitation?.title,
+  //   emailText
+  // );
+  // await deleteReservation();
 });
 
 const handleBackToDetail = () => {
   router.push(`/dashboard/invitation/${reservationData.value.invitationId}`);
 };
 
-const fetchReservationData = async () => {
-  const reservationRef = doc(db, 'reservations', reservationId as string);
-  const reservationSnap = await getDoc(reservationRef);
-  return reservationSnap.data();
-};
+// const fetchReservationData = async () => {
+//   const reservationRef = doc(db, 'reservations', reservationId as string);
+//   const reservationSnap = await getDoc(reservationRef);
+//   return reservationSnap.data();
+// };
 
-const deleteReservation = async () => {
-  const reservationRef = doc(db, 'reservations', reservationId as string);
-  await deleteDoc(reservationRef);
-};
+// const deleteReservation = async () => {
+//   const reservationRef = doc(db, 'reservations', reservationId as string);
+//   await deleteDoc(reservationRef);
+// };
 
-const saveAttendanceData = async (attendanceData: Record<string, any>) => {
-  const attendancesSubCollection = collection(
-    db,
-    'invitations',
-    attendanceData.invitationId,
-    'attendances'
-  );
+// const saveAttendanceData = async (attendanceData: Record<string, any>) => {
+//   const attendancesSubCollection = collection(
+//     db,
+//     'invitations',
+//     attendanceData.invitationId,
+//     'attendances'
+//   );
 
-  const querySnapshot = await getDocs(
-    query(attendancesSubCollection, where('name', '==', attendanceData.name))
-  );
+//   const querySnapshot = await getDocs(
+//     query(attendancesSubCollection, where('name', '==', attendanceData.name))
+//   );
 
-  if (!querySnapshot.empty) {
-    const docRef = querySnapshot.docs[0].ref;
-    await updateDoc(docRef, attendanceData);
-    return;
-  }
-  await addDoc(attendancesSubCollection, attendanceData);
-};
+//   if (!querySnapshot.empty) {
+//     const docRef = querySnapshot.docs[0].ref;
+//     await updateDoc(docRef, attendanceData);
+//     return;
+//   }
+//   await addDoc(attendancesSubCollection, attendanceData);
+// };
 
 const sendConfirmationEmail = async (
   email: string,

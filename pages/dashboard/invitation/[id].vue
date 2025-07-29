@@ -492,49 +492,49 @@ const handleBack = () => {
   router.push('/dashboard');
 };
 
-const saveReservation = async (formData: any) => {
-  const expireAt = Timestamp.fromDate(new Date(Date.now() + 60 * 60 * 1000));
+// const saveReservation = async (formData: any) => {
+//   const expireAt = Timestamp.fromDate(new Date(Date.now() + 60 * 60 * 1000));
 
-  const reservationData = {
-    ...formData,
-    invitationId: invitationId,
-    invitation: {
-      title: invitation.value.title,
-      date: invitation.value.date,
-      startTime: invitation.value.startTime,
-      endTime: invitation.value.endTime,
-      venueName: invitation.value.venueName,
-      venueAddress: invitation.value.venueAddress,
-      fee: invitation.value.fee,
-      remarks: invitation.value.remarks,
-    },
-    isPaid: false,
-    createdAt: serverTimestamp(),
-    expireAt: expireAt, // TTL対象
-  };
+//   const reservationData = {
+//     ...formData,
+//     invitationId: invitationId,
+//     invitation: {
+//       title: invitation.value.title,
+//       date: invitation.value.date,
+//       startTime: invitation.value.startTime,
+//       endTime: invitation.value.endTime,
+//       venueName: invitation.value.venueName,
+//       venueAddress: invitation.value.venueAddress,
+//       fee: invitation.value.fee,
+//       remarks: invitation.value.remarks,
+//     },
+//     isPaid: false,
+//     createdAt: serverTimestamp(),
+//     expireAt: expireAt, // TTL対象
+//   };
 
-  const docRef = await addDoc(collection(db, 'reservations'), reservationData);
+//   const docRef = await addDoc(collection(db, 'reservations'), reservationData);
 
-  return docRef.id;
-};
+//   return docRef.id;
+// };
 
-const registerAttend = async (formData: Record<string, any>) => {
-  const reservationId = await saveReservation(formData);
-  const successUrl = `${window.location.origin}/dashboard/invitation/confirmation?reservationId=${reservationId}&isAttendance=${formData.isAttendance}`;
-  const cancelUrl = `${window.location.origin}/dashboard/invitation/${invitationId}`;
+// const payment = async (formData: Record<string, any>) => {
+//   const reservationId = await saveReservation(formData);
+//   const successUrl = `${window.location.origin}/dashboard/invitation/confirmation?reservationId=${reservationId}&isAttendance=${formData.isAttendance}`;
+//   const cancelUrl = `${window.location.origin}/dashboard/invitation/${invitationId}`;
 
-  formData.invitationId = invitationId;
-  const res = await useCheckout(
-    SERVICE_FEE,
-    '同窓会代行サービス利用手数料',
-    successUrl,
-    formData.email,
-    cancelUrl
-  );
-  if (res.url) window.location.href = res.url;
-};
+//   formData.invitationId = invitationId;
+//   const res = await useCheckout(
+//     SERVICE_FEE,
+//     '同窓会代行サービス利用手数料',
+//     successUrl,
+//     formData.email,
+//     cancelUrl
+//   );
+//   if (res.url) window.location.href = res.url;
+// };
 
-const registerAbsence = async (formData: Record<string, any>) => {
+const registerAttendance = async (formData: Record<string, any>) => {
   const attendancesSubCollection = collection(
     db,
     'invitations',
@@ -565,11 +565,7 @@ const registerAbsence = async (formData: Record<string, any>) => {
 const handleFormSubmit = async (formData: Record<string, any>) => {
   try {
     uiStore.setLoading(true);
-    if (formData.isAttendance) {
-      await registerAttend(formData);
-      return;
-    }
-    await registerAbsence(formData);
+    await registerAttendance(formData);
   } catch (error) {
     console.error('登録失敗:', error);
     alert('登録に失敗しました。もう一度お試しください。');
