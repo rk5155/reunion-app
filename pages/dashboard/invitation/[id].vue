@@ -10,7 +10,7 @@
   <template v-else>
     <invitation-sagi-explanation v-if="showSagiExplanation" />
 
-    <div class="invitation-detail text-center pa-0">
+    <div v-else class="invitation-detail text-center pa-0">
       <common-loading-overlay :visible="uiStore.loading" />
 
       <h1
