@@ -67,25 +67,29 @@ const { db } = useFirebase();
 const reservationData = ref<any>(null);
 
 onMounted(async () => {
-  // if (!isAttendance) return;
-  // reservationData.value = await fetchReservationData();
-  // const attendanceData = {
-  //   email: reservationData.value?.email,
-  //   name: reservationData.value?.name,
-  //   className: reservationData.value?.className,
-  //   isAttendance: reservationData.value?.isAttendance,
-  //   message: reservationData.value?.message,
-  //   invitationId: reservationData.value?.invitationId,
-  // };
-  // await saveAttendanceData(attendanceData);
-  // const emailText = createEmailText(reservationData.value.invitation);
-  // await sendConfirmationEmail(
-  //   reservationData.value?.email,
-  //   reservationData.value?.invitation?.title,
-  //   emailText
-  // );
-  // await deleteReservation();
+  // await handleAttend();
 });
+
+// const handleAttend = async () => {
+//   if (!isAttendance) return;
+//   reservationData.value = await fetchReservationData();
+//   const attendanceData = {
+//     email: reservationData.value?.email,
+//     name: reservationData.value?.name,
+//     className: reservationData.value?.className,
+//     isAttendance: reservationData.value?.isAttendance,
+//     message: reservationData.value?.message,
+//     invitationId: reservationData.value?.invitationId,
+//   };
+//   await saveAttendanceData(attendanceData);
+//   const emailText = createEmailText(reservationData.value.invitation);
+//   await sendConfirmationEmail(
+//     reservationData.value?.email,
+//     reservationData.value?.invitation?.title,
+//     emailText
+//   );
+//   await deleteReservation();
+// };
 
 const handleBackToDetail = () => {
   router.push(`/dashboard/invitation/${reservationData.value.invitationId}`);
