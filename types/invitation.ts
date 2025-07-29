@@ -25,6 +25,7 @@ export interface Invitation {
   organiserName: string;
   organiserImageUrl?: string;
   organisers?: Organiser[];
+  showSagiExplanation?: boolean;
 }
 
 export interface Countdown {

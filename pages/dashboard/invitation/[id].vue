@@ -1,7 +1,7 @@
 <template>
   <invitation-sagi-explanation v-if="showSagiExplanation" />
 
-  <div v-if="isAdmin" class="invitation-detail text-center pa-0">
+  <div v-else class="invitation-detail text-center pa-0">
     <common-loading-overlay :visible="uiStore.loading" />
 
     <h1
@@ -358,7 +358,7 @@ import 'aos/dist/aos.css';
 import Writer from 't-writer.js';
 import { ref, onMounted, computed } from 'vue';
 
-const showSagiExplanation = ref(true);
+const showSagiExplanation = ref();
 const SERVICE_FEE = 980;
 const { db } = useFirebase();
 const router = useRouter();
@@ -400,10 +400,13 @@ onMounted(async () => {
   const docSnap = await getDoc(docRef);
 
   if (docSnap.exists()) {
+    const data = docSnap.data() as Invitation;
     invitation.value = {
       id: docSnap.id,
-      ...(docSnap.data() as Invitation),
+      ...data,
     };
+
+    showSagiExplanation.value = data.showSagiExplanation;
   }
 
   updateCountdown();
@@ -434,10 +437,6 @@ const isDeadlinePassed = computed(() => {
 
 const isCreator = computed(() => {
   return invitation.value.creatorId === authStore.user?.uid;
-});
-
-const isAdmin = computed(() => {
-  return 'q0Yyy1WfLERqxP2nPjLz6rBaIny2' === authStore.user?.uid;
 });
 
 const updateCountdown = () => {

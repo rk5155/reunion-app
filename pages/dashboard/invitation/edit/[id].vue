@@ -110,6 +110,16 @@
         type="number"
       />
 
+      <v-switch
+        v-model="form.showSagiExplanation"
+        label="詐欺注意文を表示する"
+        class="mb-4"
+        color="primary"
+        inset
+        hint="招待状に詐欺注意文を表示するかどうかを設定します"
+        persistent-hint
+      />
+
       <!-- 幹事セクション -->
       <v-card class="mb-4" outlined>
         <v-card-title class="text-h6">
@@ -278,6 +288,7 @@ const form = ref<Invitation>({
   creatorId: '',
   organiserName: '',
   organiserImageUrl: '',
+  showSagiExplanation: false,
 });
 
 const selectedTemplate = ref('');
@@ -500,6 +511,7 @@ const handleSubmit = async () => {
       organiserName: firstOrganiser?.name || '',
       organiserImageUrl: firstOrganiser?.imageUrl || '',
       organisers: updatedOrganisers,
+      showSagiExplanation: form.value.showSagiExplanation,
     });
 
     // プレビューURLをクリーンアップ
