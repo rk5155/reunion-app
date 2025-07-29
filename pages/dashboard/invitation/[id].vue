@@ -328,13 +328,13 @@
         Thank you!!
       </p>
     </v-card>
-    <div
-      v-if="isCreator"
-      class="sticky-bottom d-flex justify-center pa-4 bg-white"
-    >
-      <v-btn color="primary" @click="handleEdit" class="mx-2"> 編集する </v-btn>
-      <v-btn @click="handleBack" class="mx-2">戻る</v-btn>
-    </div>
+  </div>
+  <div
+    v-if="isCreator"
+    class="sticky-bottom d-flex justify-center pa-4 bg-white"
+  >
+    <v-btn color="primary" @click="handleEdit" class="mx-2"> 編集する </v-btn>
+    <v-btn @click="handleBack" class="mx-2">戻る</v-btn>
   </div>
 </template>
 
