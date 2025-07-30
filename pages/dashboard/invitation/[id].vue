@@ -545,8 +545,6 @@ const registerAttendance = async (formData: Record<string, any>) => {
     query(attendancesSubCollection, where('name', '==', formData.name))
   );
 
-  formData.invitationId = invitationId;
-
   if (!querySnapshot.empty) {
     const docRef = querySnapshot.docs[0].ref;
     await updateDoc(docRef, {
