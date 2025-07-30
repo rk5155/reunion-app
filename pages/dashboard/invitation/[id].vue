@@ -549,9 +549,16 @@ const registerAttendance = async (formData: Record<string, any>) => {
 
   if (!querySnapshot.empty) {
     const docRef = querySnapshot.docs[0].ref;
-    await updateDoc(docRef, formData);
+    await updateDoc(docRef, {
+      ...formData,
+      updatedAt: serverTimestamp(),
+    });
   } else {
-    await addDoc(attendancesSubCollection, formData);
+    await addDoc(attendancesSubCollection, {
+      ...formData,
+      createdAt: serverTimestamp(),
+      updatedAt: serverTimestamp(),
+    });
   }
 
   router.push({
