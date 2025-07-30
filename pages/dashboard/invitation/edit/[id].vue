@@ -223,7 +223,7 @@
         class="mb-4"
       />
       <v-textarea
-        v-model="computedDescription"
+        v-model="form.description"
         label="案内文"
         outlined
         required
@@ -261,7 +261,7 @@ import {
 import { useFirebase } from '@/composables/useFirebase';
 import { useAuthStore } from '@/stores/auth';
 import { generateDescriptionTemplates } from '@/constants/descriptionTemplates';
-import { ref, computed, onMounted, onUnmounted } from 'vue';
+
 import type { Invitation } from '@/types/invitation';
 
 definePageMeta({ layout: 'dashboard' });
@@ -313,10 +313,8 @@ const organisers = ref<Organiser[]>([
   },
 ]);
 
-// プレビューURLを別途管理
 const previewUrls = ref<Map<number, string>>(new Map());
 
-// Firebase Storage の設定
 const storage = getStorage();
 
 const descriptionTemplates = computed(() => {
@@ -326,8 +324,11 @@ const descriptionTemplates = computed(() => {
     : [];
 });
 
-const computedDescription = computed(() => {
-  return selectedTemplate.value || form.value.description;
+watch(selectedTemplate, (newTemplate) => {
+  if (newTemplate) {
+    form.value.description = newTemplate;
+    selectedTemplate.value = '';
+  }
 });
 
 // プレビューURLを取得
@@ -517,7 +518,7 @@ const handleSubmit = async () => {
       schoolName: form.value.schoolName,
       graduationYear: form.value.graduationYear,
       fee: form.value.fee,
-      description: computedDescription.value,
+      description: form.value.description,
       remarks: form.value.remarks,
       organiserName: firstOrganiser?.name || '',
       organiserImageUrl: firstOrganiser?.imageUrl || '',
