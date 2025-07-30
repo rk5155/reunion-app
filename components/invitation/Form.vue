@@ -85,7 +85,6 @@
 
     <common-modal-confirmation
       v-model:isVisible="isModalVisible"
-      :confirm-label="dynamicConfirmLabel"
       @confirm="handleSubmit"
       @cancel="closeConfirmationModal"
     >
@@ -167,8 +166,4 @@ const handleSubmit = () => {
   emit('submit', formData.value);
   closeConfirmationModal();
 };
-
-const dynamicConfirmLabel = computed(() => {
-  return formData.value.isAttendance ? '次へ' : '送信';
-});
 </script>
