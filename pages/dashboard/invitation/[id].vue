@@ -6,6 +6,11 @@
   >
     <v-progress-circular indeterminate size="64" color="primary" />
   </div>
+  <div v-else-if="!invitation.id">
+    <v-alert type="error" class="text-center">
+      招待状が見つかりません。URLを確認してください。
+    </v-alert>
+  </div>
 
   <template v-else>
     <invitation-sagi-explanation v-if="showSagiExplanation" />
@@ -410,6 +415,7 @@ onMounted(async () => {
 
     if (docSnap.exists()) {
       const data = docSnap.data() as Invitation;
+
       invitation.value = {
         id: docSnap.id,
         ...data,
