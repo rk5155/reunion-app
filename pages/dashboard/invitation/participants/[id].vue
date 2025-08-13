@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="d-flex align-center mb-4">
+    <div class="d-flex align-center ma-4">
       <v-btn icon @click="handleBack" color="deep-purple-darken-3" class="mr-2">
         <v-icon>mdi-arrow-left</v-icon>
       </v-btn>
@@ -8,7 +8,7 @@
     </div>
 
     <v-card class="mb-4" outlined>
-      <v-card-title class="bg-deep-purple-lighten-3">
+      <v-card-title class="bg-deep-purple-lighten-3 mb-4">
         {{ invitation.title }}
       </v-card-title>
       <v-card-text>
@@ -114,8 +114,6 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, computed, onMounted } from 'vue';
-import { useRouter, useRoute } from 'vue-router';
 import { doc, getDoc, collection, getDocs } from 'firebase/firestore';
 import { useFirebase } from '@/composables/useFirebase';
 import { useAuthStore } from '@/stores/auth';
