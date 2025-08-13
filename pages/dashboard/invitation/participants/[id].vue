@@ -102,16 +102,16 @@
           v-for="(attendee, index) in nonParticipants"
           :key="attendee.id"
         >
-          <v-list-item>
-            <v-icon color="error" size="24"> mdi-cancel </v-icon>
+          <v-list-item class="py-4">
+            <v-icon color="error" size="24" class="mb-1"> mdi-cancel </v-icon>
 
-            <v-list-item-title class="font-weight-bold">
+            <v-list-item-title class="font-weight-bold mb-1">
               {{ attendee.name }}
             </v-list-item-title>
-            <v-list-item-subtitle>
+            <v-list-item-subtitle class="mb-1">
               {{ attendee.email }}
             </v-list-item-subtitle>
-            <v-list-item-subtitle v-if="attendee.className">
+            <v-list-item-subtitle class="mb-1" v-if="attendee.className">
               クラス: {{ attendee.className }}
             </v-list-item-subtitle>
             <v-list-item-subtitle v-if="attendee.message" class="mt-1">
@@ -120,10 +120,6 @@
             <v-list-item-subtitle class="text-caption text-grey">
               回答日: {{ formatDate(attendee.createdAt) }}
             </v-list-item-subtitle>
-
-            <v-list-item-action>
-              <v-chip color="error" text-color="white" small> 不参加 </v-chip>
-            </v-list-item-action>
           </v-list-item>
 
           <v-divider v-if="index < nonParticipants.length - 1" />
