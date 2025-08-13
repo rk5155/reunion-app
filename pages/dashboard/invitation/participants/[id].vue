@@ -217,8 +217,7 @@ const fetchAttendees = async () => {
       invitationId,
       'attendances'
     );
-    const q = query(attendancesRef, where('isAttendance', '==', true));
-    const querySnapshot = await getDocs(q);
+    const querySnapshot = await getDocs(attendancesRef);
 
     attendees.value = querySnapshot.docs.map((doc) => ({
       id: doc.id,
