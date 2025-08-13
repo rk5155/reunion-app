@@ -13,19 +13,9 @@
         <p class="text-body-1 mb-6">
           同窓会当日にお会いできるのを<br />楽しみにしております。
         </p>
-        <!-- <p class="text-success font-weight-bold text-h6 mb-6">
+        <p class="text-success font-weight-bold text-h6 mb-6">
           メールを送信しましたので<br />ご確認ください。
-        </p> -->
-
-        <!-- <v-btn
-          color="cyan-darken-1"
-          @click="handleBackToDetail"
-          class="mt-4 font-weight-bold"
-          size="large"
-          rounded="xl"
-        >
-          招待状に戻る
-        </v-btn> -->
+        </p>
       </template>
       <template v-else>
         <v-icon color="red-darken-1" size="100" class="mb-6">
