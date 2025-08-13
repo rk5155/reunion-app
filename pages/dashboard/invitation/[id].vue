@@ -356,16 +356,14 @@ import {
   where,
   getDocs,
   addDoc,
-  Timestamp,
   serverTimestamp,
   updateDoc,
 } from 'firebase/firestore';
 import { useFirebase } from '@/composables/useFirebase';
 import { useUIStore } from '@/stores/ui';
 import { useAuthStore } from '@/stores/auth';
-import { useCheckout } from '@/composables/useCheckout';
 import { getFormattedDate } from '@/utils/date';
-import type { Invitation, Countdown, Organiser } from '@/types/invitation';
+import type { Invitation, Countdown } from '@/types/invitation';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import { ref, onMounted, computed } from 'vue';
@@ -373,7 +371,6 @@ import { ref, onMounted, computed } from 'vue';
 const showSagiExplanation = ref(false);
 const showAttendeeCount = ref(true);
 const isLoading = ref(true);
-// const SERVICE_FEE = 980;
 const { db } = useFirebase();
 const router = useRouter();
 const route = useRoute();
@@ -497,48 +494,6 @@ const handleEdit = () => {
 const handleBack = () => {
   router.push('/dashboard');
 };
-
-// const saveReservation = async (formData: any) => {
-//   const expireAt = Timestamp.fromDate(new Date(Date.now() + 60 * 60 * 1000));
-
-//   const reservationData = {
-//     ...formData,
-//     invitationId: invitationId,
-//     invitation: {
-//       title: invitation.value.title,
-//       date: invitation.value.date,
-//       startTime: invitation.value.startTime,
-//       endTime: invitation.value.endTime,
-//       venueName: invitation.value.venueName,
-//       venueAddress: invitation.value.venueAddress,
-//       fee: invitation.value.fee,
-//       remarks: invitation.value.remarks,
-//     },
-//     isPaid: false,
-//     createdAt: serverTimestamp(),
-//     expireAt: expireAt, // TTL対象
-//   };
-
-//   const docRef = await addDoc(collection(db, 'reservations'), reservationData);
-
-//   return docRef.id;
-// };
-
-// const payment = async (formData: Record<string, any>) => {
-//   const reservationId = await saveReservation(formData);
-//   const successUrl = `${window.location.origin}/dashboard/invitation/confirmation?reservationId=${reservationId}&isAttendance=${formData.isAttendance}`;
-//   const cancelUrl = `${window.location.origin}/dashboard/invitation/${invitationId}`;
-
-//   formData.invitationId = invitationId;
-//   const res = await useCheckout(
-//     SERVICE_FEE,
-//     '同窓会代行サービス利用手数料',
-//     successUrl,
-//     formData.email,
-//     cancelUrl
-//   );
-//   if (res.url) window.location.href = res.url;
-// };
 
 const registerAttendance = async (formData: Record<string, any>) => {
   const attendancesSubCollection = collection(
