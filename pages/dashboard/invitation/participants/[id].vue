@@ -46,32 +46,26 @@
 
       <v-list v-else>
         <template v-for="(attendee, index) in participants" :key="attendee.id">
-          <v-list-item>
-            <v-list-item-avatar>
-              <v-icon color="success" size="24"> mdi-check-circle </v-icon>
-            </v-list-item-avatar>
+          <v-list-item class="py-4">
+            <v-icon color="success" size="24" class="mb-1">
+              mdi-check-circle
+            </v-icon>
 
-            <v-list-item-content>
-              <v-list-item-title class="font-weight-bold">
-                {{ attendee.name }}
-              </v-list-item-title>
-              <v-list-item-subtitle>
-                {{ attendee.email }}
-              </v-list-item-subtitle>
-              <v-list-item-subtitle v-if="attendee.className">
-                クラス: {{ attendee.className }}
-              </v-list-item-subtitle>
-              <v-list-item-subtitle v-if="attendee.message" class="mt-1">
-                <strong>メッセージ:</strong> {{ attendee.message }}
-              </v-list-item-subtitle>
-              <v-list-item-subtitle class="text-caption text-grey">
-                回答日: {{ formatDate(attendee.createdAt) }}
-              </v-list-item-subtitle>
-            </v-list-item-content>
-
-            <v-list-item-action>
-              <v-chip color="success" text-color="white" small> 参加 </v-chip>
-            </v-list-item-action>
+            <v-list-item-title class="font-weight-bold mb-1">
+              {{ attendee.name }}
+            </v-list-item-title>
+            <v-list-item-subtitle class="mb-1">
+              {{ attendee.email }}
+            </v-list-item-subtitle>
+            <v-list-item-subtitle class="mb-1">
+              クラス: {{ attendee.className }}
+            </v-list-item-subtitle>
+            <v-list-item-subtitle v-if="attendee.message" class="mt-1">
+              <strong>メッセージ:</strong> {{ attendee.message }}
+            </v-list-item-subtitle>
+            <v-list-item-subtitle class="text-caption text-grey">
+              回答日: {{ formatDate(attendee.createdAt) }}
+            </v-list-item-subtitle>
           </v-list-item>
 
           <v-divider v-if="index < participants.length - 1" />
@@ -109,27 +103,23 @@
           :key="attendee.id"
         >
           <v-list-item>
-            <v-list-item-avatar>
-              <v-icon color="error" size="24"> mdi-cancel </v-icon>
-            </v-list-item-avatar>
+            <v-icon color="error" size="24"> mdi-cancel </v-icon>
 
-            <v-list-item-content>
-              <v-list-item-title class="font-weight-bold">
-                {{ attendee.name }}
-              </v-list-item-title>
-              <v-list-item-subtitle>
-                {{ attendee.email }}
-              </v-list-item-subtitle>
-              <v-list-item-subtitle v-if="attendee.className">
-                クラス: {{ attendee.className }}
-              </v-list-item-subtitle>
-              <v-list-item-subtitle v-if="attendee.message" class="mt-1">
-                <strong>メッセージ:</strong> {{ attendee.message }}
-              </v-list-item-subtitle>
-              <v-list-item-subtitle class="text-caption text-grey">
-                回答日: {{ formatDate(attendee.createdAt) }}
-              </v-list-item-subtitle>
-            </v-list-item-content>
+            <v-list-item-title class="font-weight-bold">
+              {{ attendee.name }}
+            </v-list-item-title>
+            <v-list-item-subtitle>
+              {{ attendee.email }}
+            </v-list-item-subtitle>
+            <v-list-item-subtitle v-if="attendee.className">
+              クラス: {{ attendee.className }}
+            </v-list-item-subtitle>
+            <v-list-item-subtitle v-if="attendee.message" class="mt-1">
+              <strong>メッセージ:</strong> {{ attendee.message }}
+            </v-list-item-subtitle>
+            <v-list-item-subtitle class="text-caption text-grey">
+              回答日: {{ formatDate(attendee.createdAt) }}
+            </v-list-item-subtitle>
 
             <v-list-item-action>
               <v-chip color="error" text-color="white" small> 不参加 </v-chip>
