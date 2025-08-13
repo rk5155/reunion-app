@@ -26,15 +26,26 @@
             </v-list>
           </v-card-text>
 
-          <v-btn
-            @click="handleEditInvitation(invitation.id)"
-            icon
-            size="x-small"
-            color="deep-purple-darken-3"
-            class="ma-2"
-          >
-            <v-icon>mdi-pencil</v-icon>
-          </v-btn>
+          <div class="d-flex">
+            <v-btn
+              @click="handleViewInvitation(invitation.id)"
+              icon
+              size="x-small"
+              color="deep-purple-darken-3"
+              class="ma-1"
+            >
+              <v-icon>mdi-eye</v-icon>
+            </v-btn>
+            <v-btn
+              @click="handleEditInvitation(invitation.id)"
+              icon
+              size="x-small"
+              color="deep-purple-darken-3"
+              class="ma-1"
+            >
+              <v-icon>mdi-pencil</v-icon>
+            </v-btn>
+          </div>
         </v-card>
       </template>
     </template>
@@ -108,6 +119,10 @@ const handleLogout = async () => {
 
 const handleAddInvitation = () => {
   router.push('/dashboard/invitation/create');
+};
+
+const handleViewInvitation = (id: string) => {
+  router.push(`/dashboard/invitation/${id}`);
 };
 
 const handleEditInvitation = (id: string) => {
