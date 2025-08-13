@@ -44,10 +44,12 @@
 </template>
 
 <script lang="ts" setup>
-import { useFirebase } from '@/composables/useFirebase';
+const isAttendance =
+  history.state?.isAttendance === 'true' ||
+  history.state?.isAttendance === true;
+const email = history.state?.email as string;
+const title = history.state?.title as string;
 
-const route = useRoute();
-const isAttendance = route.query.isAttendance === 'true';
 const { sendEmail } = useSendEmail();
 
 const sendConfirmationEmail = async (
@@ -57,6 +59,16 @@ const sendConfirmationEmail = async (
 ) => {
   await sendEmail(email, `【受付完了】${title}の受付が完了しました。`, text);
 };
+
+onMounted(() => {
+  if (isAttendance && email && title) {
+    sendConfirmationEmail(
+      email,
+      title,
+      `🎉 ご参加ありがとうございます！\n\n${title}への出席が登録されました ✅\n\n当日お会いできるのを楽しみにしております 😊`
+    );
+  }
+});
 </script>
 
 <style scoped>

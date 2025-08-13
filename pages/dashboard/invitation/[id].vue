@@ -527,8 +527,10 @@ const registerAttendance = async (formData: Record<string, any>) => {
 
   router.push({
     path: '/dashboard/invitation/confirmation',
-    query: {
+    state: {
       isAttendance: formData.isAttendance,
+      email: formData.email,
+      title: invitation.value.title,
     },
   });
 };
