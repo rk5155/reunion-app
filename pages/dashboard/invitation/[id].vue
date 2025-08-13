@@ -502,8 +502,13 @@ const registerAttendance = async (formData: Record<string, any>) => {
     invitationId as string,
     'attendances'
   );
+
   const querySnapshot = await getDocs(
-    query(attendancesSubCollection, where('name', '==', formData.name))
+    query(
+      attendancesSubCollection,
+      where('name', '==', formData.name),
+      where('email', '==', formData.email)
+    )
   );
 
   if (!querySnapshot.empty) {
