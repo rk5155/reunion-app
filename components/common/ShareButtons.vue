@@ -30,7 +30,7 @@ const props = defineProps({
 const copied = ref(false);
 
 const generateShareMessage = () =>
-  `${props.title} のご案内💌\n\n詳しくはこちら👇\n${window.location.href}`;
+  `${props.title} 💌\n\n詳しくはこちら👇\n${window.location.href}`;
 
 const shareOnLine = () => {
   const url = `https://line.me/R/msg/text/?${encodeURIComponent(

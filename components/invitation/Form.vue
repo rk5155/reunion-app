@@ -40,7 +40,7 @@
       />
 
       <div class="d-flex align-center mb-3">
-        <p class="text-h6 font-weight-bold mr-2">クラス</p>
+        <p class="text-h6 font-weight-bold mr-2">最終学年のクラス</p>
         <v-chip size="x-small" color="pink-accent-3" text-color="white"
           >必須</v-chip
         >
