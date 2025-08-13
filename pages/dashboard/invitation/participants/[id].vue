@@ -114,7 +114,14 @@
 </template>
 
 <script lang="ts" setup>
-import { doc, getDoc, collection, getDocs } from 'firebase/firestore';
+import {
+  doc,
+  getDoc,
+  collection,
+  getDocs,
+  where,
+  query,
+} from 'firebase/firestore';
 import { useFirebase } from '@/composables/useFirebase';
 import { useAuthStore } from '@/stores/auth';
 import type { Invitation } from '@/types/invitation';
@@ -202,7 +209,6 @@ const fetchInvitation = async () => {
   }
 };
 
-// 参加者データを取得
 const fetchAttendees = async () => {
   try {
     const attendancesRef = collection(
@@ -211,27 +217,19 @@ const fetchAttendees = async () => {
       invitationId,
       'attendances'
     );
-    const querySnapshot = await getDocs(attendancesRef);
+    const q = query(attendancesRef, where('isAttendance', '==', true));
+    const querySnapshot = await getDocs(q);
 
-    attendees.value = querySnapshot.docs
-      .map((doc) => ({
-        id: doc.id,
-        ...doc.data(),
-      }))
-      .sort((a, b) => {
-        // 参加者を先に表示し、その後作成日時順
-        if (a.isAttendance !== b.isAttendance) {
-          return a.isAttendance ? -1 : 1;
-        }
-        return b.createdAt?.seconds - a.createdAt?.seconds;
-      });
+    attendees.value = querySnapshot.docs.map((doc) => ({
+      id: doc.id,
+      ...doc.data(),
+    }));
   } catch (error) {
     console.error('参加者の取得に失敗しました:', error);
     alert('参加者データの読み込みに失敗しました');
   }
 };
 
-// 戻るボタンの処理
 const handleBack = () => {
   router.push('/dashboard');
 };
