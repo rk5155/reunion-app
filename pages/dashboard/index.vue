@@ -45,6 +45,15 @@
             >
               <v-icon>mdi-pencil</v-icon>
             </v-btn>
+            <v-btn
+              @click="handleViewParticipants(invitation.id)"
+              icon
+              size="x-small"
+              color="deep-purple-darken-3"
+              class="ma-1"
+            >
+              <v-icon>mdi-account-group</v-icon>
+            </v-btn>
           </div>
         </v-card>
       </template>
@@ -127,6 +136,10 @@ const handleViewInvitation = (id: string) => {
 
 const handleEditInvitation = (id: string) => {
   router.push(`/dashboard/invitation/edit/${id}`);
+};
+
+const handleViewParticipants = (id: string) => {
+  router.push(`/dashboard/invitation/participants/${id}`);
 };
 </script>
 

@@ -1,0 +1,255 @@
+<template>
+  <div>
+    <div class="d-flex align-center mb-4">
+      <v-btn icon @click="handleBack" color="deep-purple-darken-3" class="mr-2">
+        <v-icon>mdi-arrow-left</v-icon>
+      </v-btn>
+      <h2 class="text-h6 font-weight-bold">参加者一覧</h2>
+    </div>
+
+    <v-card class="mb-4" outlined>
+      <v-card-title class="bg-deep-purple-lighten-3">
+        {{ invitation.title }}
+      </v-card-title>
+      <v-card-text>
+        <p class="mb-2"><strong>開催日:</strong> {{ invitation.date }}</p>
+        <p class="mb-2"><strong>会場:</strong> {{ invitation.venueName }}</p>
+      </v-card-text>
+    </v-card>
+
+    <v-card outlined>
+      <v-card-title class="d-flex justify-space-between align-center">
+        <span>参加者情報</span>
+        <v-chip
+          :color="attendees.length > 0 ? 'success' : 'grey'"
+          text-color="white"
+        >
+          {{ attendees.length }}人参加
+        </v-chip>
+      </v-card-title>
+
+      <v-card-text v-if="isLoading" class="text-center py-8">
+        <v-progress-circular indeterminate color="primary" />
+        <p class="mt-2">読み込み中...</p>
+      </v-card-text>
+
+      <v-card-text v-else-if="attendees.length === 0" class="text-center py-8">
+        <v-icon size="64" color="grey">mdi-account-group-outline</v-icon>
+        <p class="text-h6 mt-2">まだ参加者がいません</p>
+        <p class="text-body-2 text-grey">
+          招待状を共有して参加者を募集しましょう
+        </p>
+      </v-card-text>
+
+      <v-list v-else>
+        <template v-for="(attendee, index) in attendees" :key="attendee.id">
+          <v-list-item>
+            <v-list-item-avatar>
+              <v-icon
+                :color="attendee.isAttendance ? 'success' : 'error'"
+                size="24"
+              >
+                {{ attendee.isAttendance ? 'mdi-check-circle' : 'mdi-cancel' }}
+              </v-icon>
+            </v-list-item-avatar>
+
+            <v-list-item-content>
+              <v-list-item-title class="font-weight-bold">
+                {{ attendee.name }}
+              </v-list-item-title>
+              <v-list-item-subtitle>
+                {{ attendee.email }}
+              </v-list-item-subtitle>
+              <v-list-item-subtitle v-if="attendee.className">
+                クラス: {{ attendee.className }}
+              </v-list-item-subtitle>
+              <v-list-item-subtitle v-if="attendee.message" class="mt-1">
+                <strong>メッセージ:</strong> {{ attendee.message }}
+              </v-list-item-subtitle>
+              <v-list-item-subtitle class="text-caption text-grey">
+                回答日: {{ formatDate(attendee.createdAt) }}
+              </v-list-item-subtitle>
+            </v-list-item-content>
+
+            <v-list-item-action>
+              <v-chip
+                :color="attendee.isAttendance ? 'success' : 'error'"
+                text-color="white"
+                small
+              >
+                {{ attendee.isAttendance ? '参加' : '不参加' }}
+              </v-chip>
+            </v-list-item-action>
+          </v-list-item>
+
+          <v-divider v-if="index < attendees.length - 1" />
+        </template>
+      </v-list>
+    </v-card>
+
+    <v-card class="mt-4" outlined>
+      <v-card-title>参加状況サマリー</v-card-title>
+      <v-card-text>
+        <v-row>
+          <v-col cols="6">
+            <div class="text-center">
+              <div class="text-h4 font-weight-bold text-success">
+                {{ participantCount }}
+              </div>
+              <div class="text-body-2">参加者</div>
+            </div>
+          </v-col>
+          <v-col cols="6">
+            <div class="text-center">
+              <div class="text-h4 font-weight-bold text-error">
+                {{ nonParticipantCount }}
+              </div>
+              <div class="text-body-2">不参加者</div>
+            </div>
+          </v-col>
+        </v-row>
+      </v-card-text>
+    </v-card>
+  </div>
+</template>
+
+<script lang="ts" setup>
+import { ref, computed, onMounted } from 'vue';
+import { useRouter, useRoute } from 'vue-router';
+import { doc, getDoc, collection, getDocs } from 'firebase/firestore';
+import { useFirebase } from '@/composables/useFirebase';
+import { useAuthStore } from '@/stores/auth';
+import type { Invitation } from '@/types/invitation';
+
+definePageMeta({
+  layout: 'dashboard',
+});
+
+const { db } = useFirebase();
+const router = useRouter();
+const route = useRoute();
+const authStore = useAuthStore();
+const invitationId = route.params.id as string;
+
+const invitation = ref<Invitation>({
+  title: '',
+  date: '',
+  startTime: '',
+  endTime: '',
+  receptionStartTime: '',
+  venueName: '',
+  venueAddress: '',
+  deadline: '',
+  schoolName: '',
+  graduationYear: '',
+  fee: 0,
+  description: '',
+  remarks: '',
+  creatorId: '',
+  organiserName: '',
+});
+
+const attendees = ref<any[]>([]);
+const isLoading = ref(true);
+
+// 参加者数と不参加者数を計算
+const participantCount = computed(
+  () => attendees.value.filter((attendee) => attendee.isAttendance).length
+);
+
+const nonParticipantCount = computed(
+  () => attendees.value.filter((attendee) => !attendee.isAttendance).length
+);
+
+// 日付フォーマット関数
+const formatDate = (timestamp: any) => {
+  if (!timestamp) return '';
+
+  const date = timestamp.toDate ? timestamp.toDate() : new Date(timestamp);
+  return date.toLocaleDateString('ja-JP', {
+    year: 'numeric',
+    month: 'short',
+    day: 'numeric',
+    hour: '2-digit',
+    minute: '2-digit',
+  });
+};
+
+// 招待状データを取得
+const fetchInvitation = async () => {
+  try {
+    const docRef = doc(db, 'invitations', invitationId);
+    const docSnap = await getDoc(docRef);
+
+    if (docSnap.exists()) {
+      const data = docSnap.data() as Invitation;
+      invitation.value = {
+        id: docSnap.id,
+        ...data,
+      };
+
+      // 権限チェック
+      if (data.creatorId !== authStore.user?.uid) {
+        alert('アクセス権限がありません');
+        router.push('/dashboard');
+        return;
+      }
+    } else {
+      alert('招待状が見つかりません');
+      router.push('/dashboard');
+    }
+  } catch (error) {
+    console.error('招待状の取得に失敗しました:', error);
+    alert('データの読み込みに失敗しました');
+  }
+};
+
+// 参加者データを取得
+const fetchAttendees = async () => {
+  try {
+    const attendancesRef = collection(
+      db,
+      'invitations',
+      invitationId,
+      'attendances'
+    );
+    const querySnapshot = await getDocs(attendancesRef);
+
+    attendees.value = querySnapshot.docs
+      .map((doc) => ({
+        id: doc.id,
+        ...doc.data(),
+      }))
+      .sort((a, b) => {
+        // 参加者を先に表示し、その後作成日時順
+        if (a.isAttendance !== b.isAttendance) {
+          return a.isAttendance ? -1 : 1;
+        }
+        return b.createdAt?.seconds - a.createdAt?.seconds;
+      });
+  } catch (error) {
+    console.error('参加者の取得に失敗しました:', error);
+    alert('参加者データの読み込みに失敗しました');
+  }
+};
+
+// 戻るボタンの処理
+const handleBack = () => {
+  router.push('/dashboard');
+};
+
+onMounted(async () => {
+  await Promise.all([fetchInvitation(), fetchAttendees()]);
+  isLoading.value = false;
+});
+</script>
+
+<style scoped>
+.v-list-item {
+  padding: 16px;
+}
+
+.v-chip {
+  font-weight: bold;
+}
+</style>
