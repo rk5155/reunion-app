@@ -17,14 +17,14 @@
       </v-card-text>
     </v-card>
 
-    <v-card outlined>
-      <v-card-title class="d-flex justify-space-between align-center">
-        <span>参加者情報</span>
-        <v-chip
-          :color="attendees.length > 0 ? 'success' : 'grey'"
-          text-color="white"
-        >
-          {{ attendees.length }}人参加
+    <!-- 参加者セクション -->
+    <v-card outlined class="mb-4">
+      <v-card-title
+        class="d-flex justify-space-between align-center bg-success-lighten-4"
+      >
+        <span>参加者</span>
+        <v-chip color="success" text-color="white">
+          {{ participants.length }}人
         </v-chip>
       </v-card-title>
 
@@ -33,7 +33,10 @@
         <p class="mt-2">読み込み中...</p>
       </v-card-text>
 
-      <v-card-text v-else-if="attendees.length === 0" class="text-center py-8">
+      <v-card-text
+        v-else-if="participants.length === 0"
+        class="text-center py-8"
+      >
         <v-icon size="64" color="grey">mdi-account-group-outline</v-icon>
         <p class="text-h6 mt-2">まだ参加者がいません</p>
         <p class="text-body-2 text-grey">
@@ -42,15 +45,10 @@
       </v-card-text>
 
       <v-list v-else>
-        <template v-for="(attendee, index) in attendees" :key="attendee.id">
+        <template v-for="(attendee, index) in participants" :key="attendee.id">
           <v-list-item>
             <v-list-item-avatar>
-              <v-icon
-                :color="attendee.isAttendance ? 'success' : 'error'"
-                size="24"
-              >
-                {{ attendee.isAttendance ? 'mdi-check-circle' : 'mdi-cancel' }}
-              </v-icon>
+              <v-icon color="success" size="24"> mdi-check-circle </v-icon>
             </v-list-item-avatar>
 
             <v-list-item-content>
@@ -72,17 +70,73 @@
             </v-list-item-content>
 
             <v-list-item-action>
-              <v-chip
-                :color="attendee.isAttendance ? 'success' : 'error'"
-                text-color="white"
-                small
-              >
-                {{ attendee.isAttendance ? '参加' : '不参加' }}
-              </v-chip>
+              <v-chip color="success" text-color="white" small> 参加 </v-chip>
             </v-list-item-action>
           </v-list-item>
 
-          <v-divider v-if="index < attendees.length - 1" />
+          <v-divider v-if="index < participants.length - 1" />
+        </template>
+      </v-list>
+    </v-card>
+
+    <!-- 不参加者セクション -->
+    <v-card outlined class="mb-4">
+      <v-card-title
+        class="d-flex justify-space-between align-center bg-error-lighten-4"
+      >
+        <span>不参加者</span>
+        <v-chip color="error" text-color="white">
+          {{ nonParticipants.length }}人
+        </v-chip>
+      </v-card-title>
+
+      <v-card-text v-if="isLoading" class="text-center py-8">
+        <v-progress-circular indeterminate color="primary" />
+        <p class="mt-2">読み込み中...</p>
+      </v-card-text>
+
+      <v-card-text
+        v-else-if="nonParticipants.length === 0"
+        class="text-center py-8"
+      >
+        <v-icon size="64" color="grey">mdi-account-cancel-outline</v-icon>
+        <p class="text-h6 mt-2">不参加者はいません</p>
+      </v-card-text>
+
+      <v-list v-else>
+        <template
+          v-for="(attendee, index) in nonParticipants"
+          :key="attendee.id"
+        >
+          <v-list-item>
+            <v-list-item-avatar>
+              <v-icon color="error" size="24"> mdi-cancel </v-icon>
+            </v-list-item-avatar>
+
+            <v-list-item-content>
+              <v-list-item-title class="font-weight-bold">
+                {{ attendee.name }}
+              </v-list-item-title>
+              <v-list-item-subtitle>
+                {{ attendee.email }}
+              </v-list-item-subtitle>
+              <v-list-item-subtitle v-if="attendee.className">
+                クラス: {{ attendee.className }}
+              </v-list-item-subtitle>
+              <v-list-item-subtitle v-if="attendee.message" class="mt-1">
+                <strong>メッセージ:</strong> {{ attendee.message }}
+              </v-list-item-subtitle>
+              <v-list-item-subtitle class="text-caption text-grey">
+                回答日: {{ formatDate(attendee.createdAt) }}
+              </v-list-item-subtitle>
+            </v-list-item-content>
+
+            <v-list-item-action>
+              <v-chip color="error" text-color="white" small> 不参加 </v-chip>
+            </v-list-item-action>
+          </v-list-item>
+
+          <v-divider v-if="index < nonParticipants.length - 1" />
         </template>
       </v-list>
     </v-card>
@@ -157,14 +211,19 @@ const invitation = ref<Invitation>({
 const attendees = ref<any[]>([]);
 const isLoading = ref(true);
 
-// 参加者数と不参加者数を計算
-const participantCount = computed(
-  () => attendees.value.filter((attendee) => attendee.isAttendance).length
+// 参加者と不参加者を分ける
+const participants = computed(() =>
+  attendees.value.filter((attendee) => attendee.isAttendance)
 );
 
-const nonParticipantCount = computed(
-  () => attendees.value.filter((attendee) => !attendee.isAttendance).length
+const nonParticipants = computed(() =>
+  attendees.value.filter((attendee) => !attendee.isAttendance)
 );
+
+// 参加者数と不参加者数を計算
+const participantCount = computed(() => participants.value.length);
+
+const nonParticipantCount = computed(() => nonParticipants.value.length);
 
 // 日付フォーマット関数
 const formatDate = (timestamp: any) => {
