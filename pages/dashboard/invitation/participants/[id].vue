@@ -17,6 +17,30 @@
       </v-card-text>
     </v-card>
 
+    <v-card class="mt-4" outlined>
+      <v-card-title>参加状況サマリー</v-card-title>
+      <v-card-text>
+        <v-row>
+          <v-col cols="6">
+            <div class="text-center">
+              <div class="text-h4 font-weight-bold text-success">
+                {{ participantCount }}
+              </div>
+              <div class="text-body-2">参加者</div>
+            </div>
+          </v-col>
+          <v-col cols="6">
+            <div class="text-center">
+              <div class="text-h4 font-weight-bold text-error">
+                {{ nonParticipantCount }}
+              </div>
+              <div class="text-body-2">不参加者</div>
+            </div>
+          </v-col>
+        </v-row>
+      </v-card-text>
+    </v-card>
+
     <!-- 参加者セクション -->
     <v-card outlined class="mb-4">
       <v-card-title
@@ -125,30 +149,6 @@
           <v-divider v-if="index < nonParticipants.length - 1" />
         </template>
       </v-list>
-    </v-card>
-
-    <v-card class="mt-4" outlined>
-      <v-card-title>参加状況サマリー</v-card-title>
-      <v-card-text>
-        <v-row>
-          <v-col cols="6">
-            <div class="text-center">
-              <div class="text-h4 font-weight-bold text-success">
-                {{ participantCount }}
-              </div>
-              <div class="text-body-2">参加者</div>
-            </div>
-          </v-col>
-          <v-col cols="6">
-            <div class="text-center">
-              <div class="text-h4 font-weight-bold text-error">
-                {{ nonParticipantCount }}
-              </div>
-              <div class="text-body-2">不参加者</div>
-            </div>
-          </v-col>
-        </v-row>
-      </v-card-text>
     </v-card>
   </div>
 </template>
