@@ -161,6 +161,7 @@ import {
   getDocs,
   where,
   query,
+  orderBy,
 } from 'firebase/firestore';
 import { useFirebase } from '@/composables/useFirebase';
 import { useAuthStore } from '@/stores/auth';
@@ -262,7 +263,8 @@ const fetchAttendees = async () => {
       invitationId,
       'attendances'
     );
-    const querySnapshot = await getDocs(attendancesRef);
+    const q = query(attendancesRef, orderBy('createdAt', 'desc'));
+    const querySnapshot = await getDocs(q);
 
     attendees.value = querySnapshot.docs.map((doc) => ({
       id: doc.id,
