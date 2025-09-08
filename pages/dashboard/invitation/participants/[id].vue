@@ -38,6 +38,15 @@
             </div>
           </v-col>
         </v-row>
+        <v-row class="mt-2">
+          <v-col cols="12">
+            <div class="text-center">
+              <span class="text-h6 font-weight-bold"
+                >回答: {{ totalCount }}人</span
+              >
+            </div>
+          </v-col>
+        </v-row>
       </v-card-text>
     </v-card>
 
@@ -211,6 +220,10 @@ const nonParticipants = computed(() =>
 const participantCount = computed(() => participants.value.length);
 
 const nonParticipantCount = computed(() => nonParticipants.value.length);
+
+const totalCount = computed(
+  () => participantCount.value + nonParticipantCount.value
+);
 
 // 日付フォーマット関数
 const formatDate = (timestamp: any) => {
