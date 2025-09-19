@@ -294,7 +294,8 @@ const handleBack = () => {
 };
 
 onMounted(async () => {
-  await Promise.all([fetchInvitation(), fetchAttendees()]);
+  await fetchInvitation();
+  await fetchAttendees();
   isLoading.value = false;
 });
 </script>
