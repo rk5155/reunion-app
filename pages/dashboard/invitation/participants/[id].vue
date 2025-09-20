@@ -253,7 +253,10 @@ const fetchInvitation = async () => {
       };
 
       // 権限チェック
-      if (data.creatorId !== authStore.user?.uid) {
+      if (
+        data.creatorId !== authStore.user?.uid &&
+        authStore.user?.email !== 'kawaguchi-high-school-admin@gmail.com'
+      ) {
         alert('アクセス権限がありません');
         router.push('/dashboard');
         return;
