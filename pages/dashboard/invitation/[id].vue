@@ -441,8 +441,10 @@ onMounted(async () => {
 const isDeadlinePassed = computed(() => {
   if (!invitation.value.deadline) return false;
   const deadlineDate = new Date(invitation.value.deadline);
+  deadlineDate.setHours(0, 0, 0, 0);
+  deadlineDate.setDate(deadlineDate.getDate() + 1);
   const now = new Date();
-  return now > deadlineDate;
+  return now >= deadlineDate;
 });
 
 const isCreator = computed(() => {
