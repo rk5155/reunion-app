@@ -86,7 +86,7 @@
               MESSAGES FROM ATTENDEES
             </h2>
             <p class="mb-6 text-black text-center">
-              みんなからのメッセージ（抜粋）
+              みんなからのメッセージ（ランダム抜粋）
             </p>
 
             <div
@@ -130,7 +130,6 @@
           </div>
         </v-card-text>
 
-        <!-- 他のセクションは変更なし -->
         <v-card-text class="py-10 bg-grey-lighten-5" data-aos="fade-up">
           <h2 class="text-h5 font-weight-bold mb-4 text-black">ORGANIZERS</h2>
           <p class="mb-6 text-black">代表幹事</p>
