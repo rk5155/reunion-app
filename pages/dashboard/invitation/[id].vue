@@ -76,6 +76,60 @@
           </div>
         </v-card-text>
 
+        <v-card-text
+          v-if="attendeesWithMessages.length > 0"
+          class="py-10 bg-grey-lighten-3"
+          data-aos="fade-up"
+        >
+          <div class="mx-auto" style="max-width: 800px">
+            <h2 class="text-h5 font-weight-bold mb-4 text-black text-center">
+              MESSAGES FROM ATTENDEES
+            </h2>
+            <p class="mb-6 text-black text-center">
+              みんなからのメッセージ（抜粋）
+            </p>
+
+            <div
+              class="overflow-x-auto pb-2"
+              style="scrollbar-width: none; -ms-overflow-style: none"
+            >
+              <div
+                class="d-flex ga-4"
+                style="width: max-content; min-width: 100%"
+              >
+                <div
+                  v-for="(attendee, index) in attendeesWithMessages"
+                  :key="index"
+                  class="flex-shrink-0"
+                  style="width: 280px"
+                >
+                  <v-card
+                    class="pa-4 d-flex align-center justify-center elevation-1"
+                    style="height: 150px; border-left: 4px solid #000"
+                    hover
+                  >
+                    <div
+                      class="text-body-2 text-center overflow-y-auto pa-2"
+                      style="
+                        height: 100%;
+                        width: 100%;
+                        scrollbar-width: thin;
+                        scrollbar-color: #ccc transparent;
+                      "
+                    >
+                      <div class="d-flex align-center justify-center h-100">
+                        <span class="text-pre-line text-black text-left">
+                          {{ attendee.message }}
+                        </span>
+                      </div>
+                    </div>
+                  </v-card>
+                </div>
+              </div>
+            </div>
+          </div>
+        </v-card-text>
+
         <v-card-text class="py-10 bg-grey-lighten-5" data-aos="fade-up">
           <h2 class="text-h5 font-weight-bold mb-4 text-black">ORGANIZERS</h2>
           <p class="mb-6 text-black">代表幹事</p>
@@ -422,6 +476,7 @@ const countdown = ref<Countdown>({
 });
 
 const attendeeCount = ref(0);
+const attendeesWithMessages = ref<any[]>([]);
 
 onMounted(async () => {
   try {
@@ -443,6 +498,7 @@ onMounted(async () => {
     updateCountdown();
     setInterval(updateCountdown, 1000);
     await fetchAttendeeCount();
+    await fetchAttendeesWithMessages();
 
     isLoading.value = false;
 
@@ -505,6 +561,42 @@ const fetchAttendeeCount = async () => {
   );
   const attendeeDocs = await getDocs(attendeesQuery);
   attendeeCount.value = attendeeDocs.size;
+};
+
+const fetchAttendeesWithMessages = async () => {
+  const attendancesSubCollection = collection(
+    db,
+    'invitations',
+    invitationId as string,
+    'attendances'
+  );
+
+  const allAttendeesQuery = query(attendancesSubCollection);
+  const attendeeDocs = await getDocs(allAttendeesQuery);
+
+  const attendeesWithMsg = attendeeDocs.docs
+    .map((doc) => ({ id: doc.id, ...doc.data() }))
+    .filter((attendee) => attendee.message && attendee.message.trim() !== '')
+    .sort((a, b) => {
+      // createdAtで降順ソート（新しい順）
+      if (a.createdAt && b.createdAt) {
+        return b.createdAt.toDate() - a.createdAt.toDate();
+      }
+      return 0;
+    });
+
+  attendeesWithMessages.value = attendeesWithMsg;
+};
+
+const formatMessageDate = (timestamp: any) => {
+  if (!timestamp) return '';
+  const date = timestamp.toDate();
+  return date.toLocaleDateString('ja-JP', {
+    month: 'numeric',
+    day: 'numeric',
+    hour: '2-digit',
+    minute: '2-digit',
+  });
 };
 
 const handleEdit = () => {
@@ -656,28 +748,30 @@ h2 {
   height: 100%;
 }
 
-.max-width-800 {
-  max-width: 800px;
-  margin: 0 auto;
+.overflow-x-auto::-webkit-scrollbar {
+  display: none;
 }
 
-.organizers-container {
-  margin: 0 auto;
+.overflow-y-auto::-webkit-scrollbar {
+  width: 6px;
 }
 
-.organiser-card {
-  transition: transform 0.2s ease;
+.overflow-y-auto::-webkit-scrollbar-track {
+  background: transparent;
 }
 
-.organiser-card:hover {
-  transform: translateY(-2px);
+.overflow-y-auto::-webkit-scrollbar-thumb {
+  background-color: #ccc;
+  border-radius: 3px;
 }
 
-.organiser-image-container {
-  flex-shrink: 0;
+.overflow-y-auto::-webkit-scrollbar-thumb:hover {
+  background-color: #999;
 }
 
-.organiser-info {
-  text-align: left;
+@media (max-width: 600px) {
+  .overflow-x-auto .flex-shrink-0 {
+    width: 240px !important;
+  }
 }
 </style>
