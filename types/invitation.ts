@@ -3,6 +3,15 @@ export interface Organiser {
   imageUrl?: string;
 }
 
+export interface Attendee {
+  id: string;
+  name: string;
+  email?: string;
+  message?: string;
+  isAttendance: boolean;
+  createdAt?: any;
+}
+
 export interface Invitation {
   id?: string;
   title: string;

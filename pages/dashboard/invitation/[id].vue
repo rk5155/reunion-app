@@ -118,7 +118,7 @@
                       "
                     >
                       <div class="d-flex align-center justify-center h-100">
-                        <span class="text-pre-line text-black text-left">
+                        <span class="text-black text-left">
                           {{ attendee.message }}
                         </span>
                       </div>
@@ -130,6 +130,7 @@
           </div>
         </v-card-text>
 
+        <!-- 他のセクションは変更なし -->
         <v-card-text class="py-10 bg-grey-lighten-5" data-aos="fade-up">
           <h2 class="text-h5 font-weight-bold mb-4 text-black">ORGANIZERS</h2>
           <p class="mb-6 text-black">代表幹事</p>
@@ -278,27 +279,6 @@
                   ※当日受付にてお支払いください。
                 </td>
               </tr>
-              <!-- <tr>
-                <td class="w-25">手数料</td>
-                <td class="py-4">
-                  {{ SERVICE_FEE }}円<br /><br />
-                  ※同窓会の円滑な開催のため、企画プランニングやWEB案内状作成、受付・精算対応、写真撮影など、運営を一括でサポートする同窓会代行サービス(リユニオンアップ)を活用しています。<br /><br />
-                  このため、同窓会代行サービス利用手数料{{
-                    SERVICE_FEE
-                  }}円を別途頂戴しております。<br /><br />
-                  ご理解とご協力のほど何卒よろしくお願いいたします。<br />
-                  申込時に決済を行いますので、予めご了承ください。<br /><br />
-
-                  <a
-                    href="/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="text-primary font-weight-bold text-decoration-underline"
-                  >
-                    詳細はこちら
-                  </a>
-                </td>
-              </tr> -->
 
               <tr>
                 <td class="w-25">会場地図</td>
@@ -375,13 +355,6 @@
                 個人情報の取扱いについて </a
               >内容に同意の上、入力情報を送信してください。　
             </p>
-            <!-- <p class="text-left mb-8 text-danger text-red">
-              ※お申し込み時に発生する手数料（{{ SERVICE_FEE }}円）は、
-              代行サービスの利用開始と同時に発生するため、<br />
-              ご本人都合によるキャンセルや、万が一の開催中止となった場合でも、
-              ご返金はできかねます。<br />
-              あらかじめご理解のほど、何卒よろしくお願いいたします。
-            </p> -->
 
             <div
               v-if="isDeadlinePassed"
@@ -435,7 +408,7 @@ import { useFirebase } from '@/composables/useFirebase';
 import { useUIStore } from '@/stores/ui';
 import { useAuthStore } from '@/stores/auth';
 import { getFormattedDate } from '@/utils/date';
-import type { Invitation, Countdown } from '@/types/invitation';
+import type { Invitation, Countdown, Attendee } from '@/types/invitation';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import { ref, onMounted, computed } from 'vue';
@@ -476,7 +449,7 @@ const countdown = ref<Countdown>({
 });
 
 const attendeeCount = ref(0);
-const attendeesWithMessages = ref<any[]>([]);
+const attendeesWithMessages = ref<Attendee[]>([]);
 
 onMounted(async () => {
   try {
@@ -571,19 +544,15 @@ const fetchAttendeesWithMessages = async () => {
     'attendances'
   );
 
-  const allAttendeesQuery = query(attendancesSubCollection);
-  const attendeeDocs = await getDocs(allAttendeesQuery);
+  const attendeesQuery = query(
+    attendancesSubCollection,
+    where('isAttendance', '==', true)
+  );
+  const attendeeDocs = await getDocs(attendeesQuery);
 
   const attendeesWithMsg = attendeeDocs.docs
-    .map((doc) => ({ id: doc.id, ...doc.data() }))
-    .filter((attendee) => attendee.message && attendee.message.trim() !== '')
-    .sort((a, b) => {
-      // createdAtで降順ソート（新しい順）
-      if (a.createdAt && b.createdAt) {
-        return b.createdAt.toDate() - a.createdAt.toDate();
-      }
-      return 0;
-    });
+    .map((doc) => ({ id: doc.id, ...doc.data() } as Attendee))
+    .filter((attendee) => attendee.message && attendee.message.trim() !== '');
 
   attendeesWithMessages.value = attendeesWithMsg;
 };
