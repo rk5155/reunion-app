@@ -44,6 +44,24 @@
           </p>
         </div>
 
+        <v-card-text class="py-10 bg-grey-lighten-2" data-aos="fade-up">
+          <div class="max-width-800">
+            <v-alert color="#f50057" class="mb-6" icon="mdi-clock-outline">
+              <div class="text-body-1 font-weight-bold text-left">
+                予定が読めない、シフトが出てないから未定の人を考慮して、期限延長しました！
+              </div>
+            </v-alert>
+
+            <div class="new-action-design-tm-Heading3 mb-4">
+              お手数ですが　下記お日にち迄に<br />
+              出欠情報のご連絡をお願い申し上げます。<br />
+              <div class="text-h5 mt-4 font-weight-bold text-pink-accent-3">
+                出欠締切日：{{ getFormattedDate(invitation.deadline) }}
+              </div>
+            </div>
+          </div>
+        </v-card-text>
+
         <v-card-text class="bg-black py-10" data-aos="fade-up">
           <v-img
             src="/images/invitation-2.jpg"
