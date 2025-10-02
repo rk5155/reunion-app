@@ -86,7 +86,7 @@
               MESSAGES FROM ATTENDEES
             </h2>
             <p class="mb-6 text-black text-center">
-              みんなからのメッセージ（ランダム抜粋）
+              みんなからのメッセージ（一部）
             </p>
 
             <div
