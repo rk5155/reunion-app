@@ -46,116 +46,11 @@
           </p>
         </div>
 
-        <v-card-text class="bg-black py-10" data-aos="fade-up">
-          <v-img
-            src="/images/invitation-2.jpg"
-            class="event-image rounded-0"
-            contain
-          />
-          <div class="pt-10">
-            <h2 class="text-center text-h6 font-weight-bold mb-4">
-              {{ invitation.title }}
-            </h2>
-            <p class="text-pre-line">{{ invitation.description }}</p>
-          </div>
-        </v-card-text>
+        <invitation-description :invitation="invitation" />
 
-        <v-card-text
-          v-if="attendeesWithMessages.length > 0"
-          class="py-10 bg-grey-lighten-3"
-          data-aos="fade-up"
-        >
-          <div class="mx-auto" style="max-width: 800px">
-            <h2 class="text-h5 font-weight-bold mb-4 text-black text-center">
-              MESSAGES FROM ATTENDEES
-            </h2>
-            <p class="mb-6 text-black text-center">
-              みんなからのメッセージ（一部）
-            </p>
+        <invitation-messages :attendees-with-messages="attendeesWithMessages" />
 
-            <div
-              class="overflow-x-auto pb-2"
-              style="scrollbar-width: none; -ms-overflow-style: none"
-            >
-              <div
-                class="d-flex ga-4"
-                style="width: max-content; min-width: 100%"
-              >
-                <div
-                  v-for="(attendee, index) in attendeesWithMessages"
-                  :key="index"
-                  class="flex-shrink-0"
-                  style="width: 280px"
-                >
-                  <v-card
-                    class="pa-4 d-flex align-center justify-center elevation-1"
-                    style="height: 150px; border-left: 4px solid #000"
-                    hover
-                  >
-                    <div
-                      class="text-body-2 text-center overflow-y-auto pa-2"
-                      style="
-                        height: 100%;
-                        width: 100%;
-                        scrollbar-width: thin;
-                        scrollbar-color: #ccc transparent;
-                      "
-                    >
-                      <div class="d-flex align-center justify-center h-100">
-                        <span class="text-black text-left">
-                          {{ attendee.message }}
-                        </span>
-                      </div>
-                    </div>
-                  </v-card>
-                </div>
-              </div>
-            </div>
-          </div>
-        </v-card-text>
-
-        <v-card-text class="py-10 bg-grey-lighten-5" data-aos="fade-up">
-          <h2 class="text-h5 font-weight-bold mb-4 text-black">ORGANIZERS</h2>
-          <p class="mb-6 text-black">代表幹事</p>
-
-          <div class="organizers-container max-width-800">
-            <div
-              v-for="(organiser, index) in invitation.organisers"
-              :key="index"
-              class="organiser-card mb-4 pa-4 bg-white rounded elevation-2"
-            >
-              <div>
-                <div class="organiser-image-container mb-3">
-                  <v-avatar
-                    v-if="organiser.imageUrl"
-                    size="150"
-                    class="elevation-3"
-                  >
-                    <v-img
-                      :src="organiser.imageUrl"
-                      :alt="organiser.name"
-                      cover
-                    />
-                  </v-avatar>
-                  <v-avatar
-                    v-else
-                    size="80"
-                    color="grey-lighten-2"
-                    class="elevation-3"
-                  >
-                    <v-icon size="40" color="grey-darken-1">mdi-account</v-icon>
-                  </v-avatar>
-                </div>
-
-                <div class="organiser-info flex-grow-1 text-center">
-                  <h3 class="text-h6 font-weight-bold text-black mb-1">
-                    {{ organiser.name }}
-                  </h3>
-                </div>
-              </div>
-            </div>
-          </div>
-        </v-card-text>
+        <invitation-organizers :organizers="invitation.organisers" />
 
         <common-share-buttons
           :title="invitation.title"
@@ -697,32 +592,5 @@ h2 {
   left: 0;
   width: 100%;
   height: 100%;
-}
-
-.overflow-x-auto::-webkit-scrollbar {
-  display: none;
-}
-
-.overflow-y-auto::-webkit-scrollbar {
-  width: 6px;
-}
-
-.overflow-y-auto::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-.overflow-y-auto::-webkit-scrollbar-thumb {
-  background-color: #ccc;
-  border-radius: 3px;
-}
-
-.overflow-y-auto::-webkit-scrollbar-thumb:hover {
-  background-color: #999;
-}
-
-@media (max-width: 600px) {
-  .overflow-x-auto .flex-shrink-0 {
-    width: 240px !important;
-  }
 }
 </style>
