@@ -24,6 +24,17 @@
         {{ invitation.title }}
       </h1>
 
+      <v-card-text class="py-6 bg-grey-lighten-2" data-aos="fade-up">
+        <div class="max-width-800">
+          <v-alert type="info" icon="mdi-clock-outline">
+            <div class="text-body-2 font-weight-bold text-left">
+              1ヶ月前で予定が読めない方、および予定調整中の方を考慮し、期限を延長しました！<br />
+              出欠締切日：{{ getFormattedDate(invitation.deadline) }}
+            </div>
+          </v-alert>
+        </div>
+      </v-card-text>
+
       <v-card class="semi-transparent-card">
         <v-img
           src="/images/invitation.jpg"
@@ -43,24 +54,6 @@
             Together again, to cherish the moments we share.
           </p>
         </div>
-
-        <v-card-text class="py-10 bg-grey-lighten-2" data-aos="fade-up">
-          <div class="max-width-800">
-            <v-alert type="info" class="mb-6" icon="mdi-clock-outline">
-              <div class="text-body-1 font-weight-bold text-left">
-                1ヶ月前で予定が読めない方、および予定調整中の方を考慮し、期限を延長しました！
-              </div>
-            </v-alert>
-
-            <div class="new-action-design-tm-Heading3 mb-4">
-              お手数ですが下記お日にち迄に<br />
-              出欠情報のご連絡をお願い申し上げます。<br />
-              <div class="text-h5 mt-4 font-weight-bold text-pink-accent-3">
-                出欠締切日：{{ getFormattedDate(invitation.deadline) }}
-              </div>
-            </div>
-          </div>
-        </v-card-text>
 
         <v-card-text class="bg-black py-10" data-aos="fade-up">
           <v-img
