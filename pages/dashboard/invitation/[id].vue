@@ -46,14 +46,14 @@
 
         <v-card-text class="py-10 bg-grey-lighten-2" data-aos="fade-up">
           <div class="max-width-800">
-            <v-alert color="#f50057" class="mb-6" icon="mdi-clock-outline">
+            <v-alert type="info" class="mb-6" icon="mdi-clock-outline">
               <div class="text-body-1 font-weight-bold text-left">
-                予定が読めない、シフトが出てないから未定の人を考慮して、期限延長しました！
+                1ヶ月前で予定が読めない方、および予定調整中の方を考慮し、期限を延長しました！
               </div>
             </v-alert>
 
             <div class="new-action-design-tm-Heading3 mb-4">
-              お手数ですが　下記お日にち迄に<br />
+              お手数ですが下記お日にち迄に<br />
               出欠情報のご連絡をお願い申し上げます。<br />
               <div class="text-h5 mt-4 font-weight-bold text-pink-accent-3">
                 出欠締切日：{{ getFormattedDate(invitation.deadline) }}
@@ -410,7 +410,6 @@ import { getFormattedDate } from '@/utils/date';
 import type { Invitation, Countdown, Attendee } from '@/types/invitation';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
-import { ref, onMounted, computed } from 'vue';
 
 const showSagiExplanation = ref(false);
 const showAttendeeCount = ref(true);
