@@ -24,9 +24,9 @@
         {{ invitation.title }}
       </h1>
 
-      <v-card-text class="py-6 bg-grey-lighten-2" data-aos="fade-up">
+      <v-card-text class="py-6 bg-grey-lighten-2">
         <div class="max-width-800">
-          <v-alert type="info" icon="mdi-clock-outline">
+          <v-alert type="info" icon="mdi-clock-outline" data-aos="zoom-in">
             <div class="text-body-2 font-weight-bold text-left">
               1ヶ月前で予定が読めない方、および予定調整中の方を考慮し、期限を延長しました！<br />
               出欠締切日：{{ getFormattedDate(invitation.deadline) }}
