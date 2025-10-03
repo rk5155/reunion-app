@@ -66,7 +66,6 @@
           min="0"
           max="10"
           placeholder="0"
-          hint="お子様がいらっしゃらない場合は0を入力してください"
           persistent-hint
           class="mb-2"
         />
