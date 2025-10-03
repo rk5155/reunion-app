@@ -69,64 +69,12 @@
           </div>
         </common-share-buttons>
 
-        <v-card-text
-          v-if="showAttendeeCount"
-          class="py-10 bg-grey-lighten-4"
-          data-aos="fade-up"
-        >
-          <h2 class="text-h5 font-weight-bold mb-4 text-black">
-            CURRENT PARTICIPATION
-          </h2>
-          <p class="mb-2">現在の参加状況</p>
-          <p class="text-h4 font-weight-bold text-cyan-lighten-2">
-            {{ attendeeCount }} 人
-          </p>
-        </v-card-text>
+        <invitation-participation
+          :attendee-count="attendeeCount"
+          :show-attendee-count="showAttendeeCount"
+        />
 
-        <v-card-text class="py-10 bg-grey-darken-4" data-aos="fade-up">
-          <div class="max-width-800">
-            <h2 class="text-h5 font-weight-bold mb-4">COUNTDOWN</h2>
-            <div class="text-h4 font-weight-bold mb-4">
-              to {{ invitation.date }}
-            </div>
-            <div
-              class="text-h4 font-weight-bold text-danger d-flex justify-space-between"
-            >
-              <div class="w-25">
-                <div>{{ countdown.days }}</div>
-                <div
-                  class="countdown-label text-cyan-lighten-4 font-weight-bold"
-                >
-                  Days
-                </div>
-              </div>
-              <div class="w-25">
-                <div>{{ countdown.hours }}</div>
-                <div
-                  class="countdown-label text-cyan-lighten-4 font-weight-bold"
-                >
-                  Hours
-                </div>
-              </div>
-              <div class="w-25">
-                <div>{{ countdown.minutes }}</div>
-                <div
-                  class="countdown-label text-cyan-lighten-4 font-weight-bold"
-                >
-                  Minutes
-                </div>
-              </div>
-              <div class="w-25">
-                <div>{{ countdown.seconds }}</div>
-                <div
-                  class="countdown-label text-cyan-lighten-4 font-weight-bold"
-                >
-                  Seconds
-                </div>
-              </div>
-            </div>
-          </div>
-        </v-card-text>
+        <invitation-countdown :date="invitation.date" :countdown="countdown" />
 
         <v-card-text class="py-10 text-left max-width-800" data-aos="fade-up">
           <h2 class="text-h5 font-weight-bold mb-4 text-center text-black">
