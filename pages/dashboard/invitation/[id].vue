@@ -114,7 +114,6 @@ import {
 import { useFirebase } from '@/composables/useFirebase';
 import { useUIStore } from '@/stores/ui';
 import { useAuthStore } from '@/stores/auth';
-import { getFormattedDate } from '@/utils/date';
 import type { Invitation, Countdown, Attendee } from '@/types/invitation';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
@@ -263,17 +262,6 @@ const fetchAttendeesWithMessages = async () => {
   attendeesWithMessages.value = attendeesWithMsg;
 };
 
-const formatMessageDate = (timestamp: any) => {
-  if (!timestamp) return '';
-  const date = timestamp.toDate();
-  return date.toLocaleDateString('ja-JP', {
-    month: 'numeric',
-    day: 'numeric',
-    hour: '2-digit',
-    minute: '2-digit',
-  });
-};
-
 const handleEdit = () => {
   router.push(`/dashboard/invitation/edit/${invitationId}`);
 };
@@ -339,6 +327,7 @@ const handleFormSubmit = async (formData: Record<string, any>) => {
 .invitation-title {
   height: 60px;
 }
+
 .invitation-detail {
   background-image: url('/images/bg.png');
   background-size: cover;
@@ -354,17 +343,8 @@ const handleFormSubmit = async (formData: Record<string, any>) => {
   border-radius: 10px 10px 0 0;
 }
 
-h2 {
-  margin-bottom: 20px;
-  color: #fff;
-}
-
 .semi-transparent-card {
   background-color: rgba(255, 255, 255, 0.8);
-}
-
-.countdown-label {
-  font-size: 0.8rem;
 }
 
 .ttl_center5 {
@@ -395,31 +375,9 @@ h2 {
   right: 0;
 }
 
-.fixed-bottom {
-  background-color: rgba(255, 255, 255, 0.9);
-  backdrop-filter: blur(10px);
-  border-top: 1px solid #ddd;
-  padding: 10px 0;
-}
-
 .sticky-bottom {
   position: sticky;
   bottom: 0;
   z-index: 10;
-}
-
-.map-container {
-  overflow: hidden;
-  padding-top: 56.25%; /* 16:9 */
-  position: relative;
-  height: 0;
-}
-
-.map-container iframe {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
 }
 </style>
