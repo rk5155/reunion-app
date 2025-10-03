@@ -34,17 +34,7 @@
           contain
         />
 
-        <div class="my-16" data-aos="fade-up">
-          <p class="mb-3 text-grey-darken-3 text-caption">
-            Where memories meet, and stories begin.
-          </p>
-          <h2 class="ttl_center5 text-h3 font-weight-bold text-black mb-3">
-            REUNION INVITATIONS
-          </h2>
-          <p class="text-grey-darken-3 text-caption">
-            Together again, to cherish the moments we share.
-          </p>
-        </div>
+        <invitation-header />
 
         <invitation-description :invitation="invitation" />
 
