@@ -39,7 +39,15 @@
           </v-col>
         </v-row>
         <v-row class="mt-2">
-          <v-col cols="12">
+          <v-col cols="6">
+            <div class="text-center">
+              <div class="text-h6 font-weight-bold text-primary">
+                {{ totalChildrenCount }}
+              </div>
+              <div class="text-body-2">お子様</div>
+            </div>
+          </v-col>
+          <v-col cols="6">
             <div class="text-center">
               <span class="text-h6 font-weight-bold"
                 >回答: {{ totalCount }}人</span
@@ -92,6 +100,12 @@
             </v-list-item-subtitle>
             <v-list-item-subtitle class="mb-1">
               クラス: {{ attendee.className }}
+            </v-list-item-subtitle>
+            <v-list-item-subtitle
+              v-if="attendee.childrenCount > 0"
+              class="mb-1"
+            >
+              お子様: {{ attendee.childrenCount }}人
             </v-list-item-subtitle>
             <v-list-item-subtitle v-if="attendee.message" class="mt-1">
               <strong>メッセージ:</strong> {{ attendee.message }}
@@ -224,6 +238,12 @@ const nonParticipantCount = computed(() => nonParticipants.value.length);
 const totalCount = computed(
   () => participantCount.value + nonParticipantCount.value
 );
+
+const totalChildrenCount = computed(() => {
+  return participants.value.reduce((total, participant) => {
+    return total + (participant.childrenCount || 0);
+  }, 0);
+});
 
 // 日付フォーマット関数
 const formatDate = (timestamp: any) => {
