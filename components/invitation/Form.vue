@@ -52,6 +52,26 @@
         class="mb-6"
       />
 
+      <!-- 子連れ人数入力 -->
+      <div v-if="formData.isAttendance" class="mb-6">
+        <div class="d-flex align-center mb-3">
+          <p class="text-h6 font-weight-bold mr-2">お子様の人数</p>
+        </div>
+        <p class="text-caption text-grey-darken-1 mb-3">
+          ※小学生以下のお子様は参加費・飲食費無料です
+        </p>
+        <v-text-field
+          v-model.number="formData.childrenCount"
+          type="number"
+          min="0"
+          max="10"
+          placeholder="0"
+          hint="お子様がいらっしゃらない場合は0を入力してください"
+          persistent-hint
+          class="mb-2"
+        />
+      </div>
+
       <p class="mb-3 text-h6 font-weight-bold text-left">メッセージ</p>
       <v-textarea v-model="formData.message" rows="4" class="mb-6" />
 
@@ -104,6 +124,14 @@
         <p class="mb-1">クラス</p>
         <p>{{ formData.className }}</p>
       </div>
+      <div
+        v-if="formData.isAttendance && formData.childrenCount > 0"
+        class="mb-2 border-b py-2"
+      >
+        <p class="mb-1">お子様の人数</p>
+        <p>{{ formData.childrenCount }}人</p>
+      </div>
+
       <div class="mb-2 border-b py-2">
         <p class="mb-1">メッセージ</p>
         <p>{{ formData.message }}</p>
@@ -123,6 +151,7 @@ const formData = ref({
   isAttendance: null,
   className: '',
   message: '',
+  childrenCount: 0,
 });
 
 const isPrivacyChecked = ref(false);
